@@ -1,14 +1,33 @@
 - name: GEMS in Combinatorics
   sponsor: American Institute of Mathemaitcs (AIM)
   years: 2023
-  description: A conference devoted to building a diverse community of mathematicians in combinatorics to address gender equity in the mathematical community and foster new research collaborations.
+  description: A conference devoted to building a diverse community of mathematicians in combinatorics to address gender equity in the mathematical community and foster new research collaborations. (~ 35 participants)
 - name: Trans Math Day
   years: 2020-2023
-  description: A yearly conference bringing together transgender and non-binary mathematicians to highlght their research and find community and support.
+  description: A yearly conference bringing together transgender and non-binary mathematicians to highlght their research and find community and support. (~ 75 participants per year)
 - name: BATMOBILE
   years: 2022
-  description: A vehicle for bringing together the algebraic and tropical geometry communities of Brown and surrounding institutions for a biannual day of talks.
+  description: A vehicle for bringing together the algebraic and tropical geometry communities of Brown and surrounding institutions for a biannual day of talks. (~ 30 participants)
 - name: \(\text{Spec}(\overline{\mathbb{Q}})\)
   sponsor: Fields Institute
   years: 2022
-  description: A conference to celebrate and promote research advances of LGBT2Q mathematicians specialising in algebraic geometry, arithmetic geometry, commutative algebra, and number theory.
+- name: GEMS in Combinatorics
+  years: 2021
+  description: GEMS of Combinatorics (Gender Equity in the Mathematical Study of Combinatorics) is a two day conference that will be held virtually on Zoom. (~ 30 participants)
+- name: Western Algebraic Geometry Symposium
+  years: 2021
+  description: The Western Algebraic Geometry Symposium (WAGS) is a biannual meeting of algebraic geometers in the western part of North America. WAGS aims to build a regional community among algebraic geometers of all career stages, from advanced undergraduates to full professors. (~ 75 participants)
+- name: CAZoom
+  years: 2020
+- name: Graduate Workshop in Commutative Algebra for Women and Mathematicians of Minority Genders
+  years: 2019
+  sponsor: University of Minnestoa
+- name: Geometry & Arithmetic of Surfaces
+  years: 2019
+  sponsor: University of Wisconsin, Madison
+- name: Macaulay2 at UW
+  years: 2018
+  sponsor: University of Wisconsin, Madison
+- name: Math Careers Beyond Academia
+  years: 2017
+  sponsor: University of Wisconsin, Madison
