@@ -1,25 +1,14 @@
 - name: GEMS in Combinatorics
-  years: 2020
-  description: "For my thesis on \"Interactive Systems for Scalable Visualization and Analysis\"."
-- name: InfoVis Best Paper
-  years: 2018
-  description: "For \"Formalizing Visualization Design Knowledge as Constraints: Actionable and Extensible Models in Draco\"."
-- name: InfoVis Best Paper
-  years: 2016
-  description: "For \"Vega-Lite: A Grammar of Interactive Graphics\"."
-- name: Fulbright Fellowship
-  years: 2013-2014
-  sponsor: Bureau of Educational and Cultural Affairs
-  description: Highly competitive, merit-based grant for international educational exchange for students, scholars, teachers and scientists.
-- name: DAAD Scholarship
-  years: 2013
-  sponsor: German Academic Exchange Service (DAAD)
-  description: Scholarship to study at a North American university for one academic year, covering tuition and living expenses.
-- name: Studienstiftung des Deutschen Volkes
-  years: 2010-2015
-  sponsor: Studienstiftung des Deutschen Volkes, Bonn
-  description: The German National Academic Foundation grants prestigious scholarships to students with outstanding academic achievements. Merit-based grant for B.S. and M.S. studies.
-- name: Hasso Plattner Scholarship
-  years: 2013
-  sponsor: Hasso Plattner Institute, Potsdam
-  description: One-year scholarship awarded to the highest performing graduates of each year.
+  sponsor: American Institute of Mathemaitcs (AIM)
+  years: 2023
+  description: A conference devoted to building a diverse community of mathematicians in combinatorics to address gender equity in the mathematical community and foster new research collaborations.
+- name: Trans Math Day
+  years: 2020-2023
+  description: A yearly conference bringing together transgender and non-binary mathematicians to highlght their research and find community and support.
+- name: BATMOBILE
+  years: 2022
+  description: A vehicle for bringing together the algebraic and tropical geometry communities of Brown and surrounding institutions for a biannual day of talks.
+- name: $$$\text{Spec}(\overline{\mathbb{Q}})$$$
+  sponsor: Fields Institute
+  years: 2022
+  description: A conference to celebrate and promote research advances of LGBT2Q mathematicians specialising in algebraic geometry, arithmetic geometry, commutative algebra, and number theory.
