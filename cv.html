@@ -20,8 +20,7 @@ title: CV
     <p class="right-align">
       <a href="{{ absolute_url }}/">https://www.domoritz.de</a><br/>
       <a href="mailto:domoritz@cmu.edu">domoritz@cmu.edu</a><br/>
-      <a href="https://twitter.com/domoritz">@domoritz</a><br/>
-      <a href="https://vis.social/@dom">@dom@vis.social</a>
+      <a href="https://twitter.com/domoritz">@domoritz</a>
     </p>
   </div>
 </div>
@@ -182,7 +181,7 @@ To enhance people's ability to understand and communicate large and complex data
 {% endfor %}
 
 
-<h2>Student Mentoring</h2>
+<h2>Mentoring</h2>
 
 {% assign filtered_mentoring = site.data.mentoring | where_exp:'item','item.hidden == null' %}
 {% for mentor in filtered_mentoring %}

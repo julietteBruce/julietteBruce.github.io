@@ -1,11 +1,11 @@
 /* TEAM */
-	Author/Theme: Dominik Moritz
+	Author/Theme: Juliette Bruce
+	Original Design: Dominik Moritz
 	Twitter: @domoritz
-	Mastodon: @dom@vis.social
-	From: Pittsburgh, PA
+	From: Providence, RI
 
 /* SITE */
-	Language: English / German
+	Language: English
 	Doctype: HTML5
-	IDE: Sublime Text, VIM, VSCode
+	IDE: Sublime Text, BBEdit, VSCode
 	Software: Jekyll

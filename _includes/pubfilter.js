@@ -20,7 +20,7 @@
     item.element = element;
 
     item.authors = (item.authors || []).filter(function(d) {
-      return d !== "Dominik Moritz";
+      return d !== "Juliette Bruce";
     });
 
     data.push(item);
@@ -28,13 +28,13 @@
 
   var engine = itemsjs(data, {
     aggregations: {
-      venue_tags: {
+      journal_tags: {
         size: 5
       },
       authors: {
         size: 6
       },
-      awards: {
+      status: {
         size: 5
       },
       highlight: {
@@ -47,7 +47,7 @@
         size: 5
       }
     },
-    searchableFields: ["authors", "awards", "tags", "type", "title", "content"]
+    searchableFields: ["authors", "status", "tags", "type", "title", "content"]
   });
 
   // get default search from URL

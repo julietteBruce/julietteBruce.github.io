@@ -1,226 +1,500 @@
-- title: "Vega: Layered Abstractions for Data Visualizations"
-  location: Plateau Keynote
-  url: https://2023.plateau-workshop.org
-  date: 2023-02-14
-- title: "Vega: Layered Abstractions for Data Visualizations"
-  location: Turing Institute Visualization Interest Group
-  date: 2022-12-13
-- title: "Scalable Interactive Systems for Visualization and Analysis"
-  location: TU Darmstadt
-  date: 2022-10-07
-- title: "Apache Arrow on the Web and Beyond"
-  location: Thread Conference
-  date: 2022-06-23
-  recording: https://www.youtube.com/watch?v=yhkS78fNjYc
-- title: "Hello Swift Charts"
-  location: WWDC 2022
-  date: "2022-06-06"
-  recording: https://developer.apple.com/wwdc22/10136
-- title: "Enhancing Decision-Making through Interactive Data Analysis"
-  date: 2021-09-27
-  location: CMU ENAiBLE
-  url: https://www.cs.cmu.edu/partnerships/events/enaible/enaible-speaker-series-09-27-2021
-  recording: https://www.youtube.com/watch?v=DepWqeuKvj0
-- title: "Scalable Interactive Systems for Visualization and Analysis"
-  date: 2021-08-01
-  location: Sigma Computing
-- title: "Declarative and Scalable Visualization Design"
-  location: Robust AI Meetup
+- title: "Syzygies, Geometry, and Computation"
+  location: Mathematics Colloqium, Bowdoin College
+  city: Bowdoin, ME
+  date: 2023-02-01
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Algebraic Geometry Seminar, University of Texas
+  city: Austin, TX
+  date: 2022-12-01
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Algebraic Geometry Seminar, Harvard University
+  city: Cambridge, MA
+  date: 2022-11-29
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: AGNES, UMass Amherst
+  city: Amherst, MA
+  date: 2022-11-19
+  url: https://sites.google.com/site/agneshomepage/amherst-2022?authuser=0
+- title: "Homological algebra on toric varieties"
+  location: Algebra Seminar, University of Kentucky
+  city: Lexington, KY
+  date: 2022-11-09
+- title: "Multigraded regularity on products of projective spaces"
+  location: Special Session, Fall Western AMS Sectional
+  city: Salt Lake City, UT
+  date: 2022-10-22
+  url: https://meetings.ams.org/math/fall2022w/meetingapp.cgi/Paper/15540
+- title: "Multigraded regularity on products of projective spaces"
+  location: Special Session, Fall Southeastern AMS Sectional
+  city: Chattanooga, TN
+  date: 2022-10-15
+  url: https://meetings.ams.org/math/fall2022se/meetingapp.cgi/Paper/15539
+- title: "Computing Syzygies"
+  location: Combinatorics Seminar, Brown University
+  city: Providence, RI
+  date: 2022-10-17
+- title: "Homological algebra on toric varieties"
+  location: BATMOBILE, Brown University
+  city: Providence, RI
+  date: 2022-05-06
+- title: "Multigraded regularity on products of projective spaces"
+  location: CA+, Iowa State University
+  city: Ames, IA
+  date: 2022-04-30
+- title: "Syzygies, Geometry, and Computation"
+  location: Mathematistas Raising Voices Colloquium, San Francisco State University
+  city: San Francisco, CA
+  date: 2022-04-15
+- title: "Syzygies in higher dimensions"
+  location: COGENT Online Seminar
   city: Zoom
-  date: 2020-05-07
-- title: "Visualization for People + Systems"
-  location: GAMES Webinar
-  city: Online
-  date: 2019-11-14
-  url: http://games-cn.org/games-webinar-20191114-118/
-- title: "Declarative Visualization Design with Vega-Lite and Altair"
-  location: Open Data Science Conference West (ODSC)
-  city: San Francisco
-  date: 2019-10-31
-  url: https://odsc.com/training/portfolio/title-coming-soon-46/
-- title: "Altair: Declarative Visualization in Python"
-  location: Symposium on Data Science and Statistics (SDSS)
-  city: Bellevue
-  date: 2019-05-30
-  url: https://ww2.amstat.org/meetings/sdss/2019/onlineprogram/Program.cfm?date=05-30-19
-- title: "Visualization for People + Systems"
-  location: MIT
-  city: Boston
-  date: 2019-04-26
-- title: "Visualization for People + Systems"
-  location: Google
-  city: Boston
-  date: 2019-04-25
-- title: "Visualization for People + Systems"
-  location: Tableau
-  city: Seattle
-  date: 2019-04-23
-- title: "Visualization for People + Systems"
-  location: Apple (Turi)
-  city: Seattle
-  date: 2019-03-26
-- title: "Visualization for People + Systems"
-  location: Microsoft Research
-  city: Redmond
-  date: 2019-03-27
-  url: https://www.microsoft.com/en-us/research/video/visualization-for-people-systems/
-  recording: https://www.youtube.com/watch?v=ww0HGwC18Qo
-- title: "Visualization for People + Systems"
-  location: New York University (NYU)
-  city: New York
-  date: 2019-04-01
-- title: "Visualization for People + Systems"
-  location: Northwestern
-  city: Evanston
-  date: 2019-04-17
-- title: "Visualization for People + Systems"
-  location: University of Chicago
-  city: Chicago
-  date: 2019-04-15
-- title: "Visualization for People + Systems"
-  location: University of British Columbia (UBC)
-  city: Vancouver
-  date: 2019-04-09
-- title: "Visualization for People + Systems"
-  location: University of Wisconsin
-  city: Madison
-  date: 2019-04-05
-- title: "Visualization for People + Systems"
-  location: Carnegie Mellon University (CMU)
-  city: Pittsburgh
-  date: 2019-03-18
-  url: https://www.cs.cmu.edu/calendar/mon-2019-03-18-1200/scs-faculty-candidate
-- title: "Visualization for People + Systems"
-  location: University of California (UCSD)
-  city: San Diego
-  date: 2019-03-13
-- title: "Visualization for People + Systems"
-  location: University of Toronto
-  city: Toronto
-  date: 2019-03-07
-- title: "Visualization for People + Systems"
-  location: University of Illinois (UIUC)
-  city: Urbana-Champaign
-  date: 2019-02-28
-- title: "Visualization for People + Systems"
-  location: University of Pennsylvania
-  city: Philadelphia
-  date: 2019-02-12
-  url: https://events.seas.upenn.edu/event/cis-seminar-visualization-for-people-systems/
-- title: "Raising the Abstraction of Data Visualization"
-  location: IBM Research
-  city: Bangalore
-  date: 2019-01-04
-- title: "Data Visualization with Vega-Lite and Altair for Machine Learning"
-  location: TVM Conference
-  city: Seattle
-  date: 2018-12-12
-  url: https://sampl.cs.washington.edu/tvmconf/
-- title: "Formalizing Visualization Design Knowledge as Constraints: Actionable and Extensible Models in Draco"
-  location: IEEE VIS
-  city: Berlin
-  recording: https://vimeo.com/308980888
-  date: 2018-10-23
-- title: "Automated Visualization Design with Draco"
-  location: Tableau Research
-  city: Seattle
-  date: 2018-09-10
-- title: "Automated Visualization Design with Draco"
-  location: Microsoft Excel
-  city: Redmond
-  date: 2018-08-14
-- title: "Formalizing Visualization Design Knowledge as Constraints: Actionable and Extensible Models in Draco"
-  location: Microsoft Research
-  city: Redmond
-  date: 2018-07-24
-- title: "Formalizing Visualization Design Knowledge as Constraints: Actionable and Extensible Models in Draco"
-  location: UW Database Affiliates Workshop
-  city: Seattle
-  date: 2018-07-13
-- title: "Declarative Visualization with Vega-Lite and Altair"
-  location: Data Stories Podcast
-  url: http://datastori.es/121-declarative-visualization-with-vega-lite-and-altair-with-dominik-moritz-jacob-vanderplas-kanit-ham-wongsuphasawat/
-  date: 2018-05-25
-- title: "Vega-Lite: A Grammar of Interactive Graphics"
-  location: UW ACM Student
-  city: Seattle
-  date: 2018-05-07
-- title: "Declarative Visualization Design with Vega-Lite"
-  location: Tintash
-  city: Lahore
-  date: 2018-01-16
-- title: "Vega-Lite: A Grammar of Interactive Graphics"
-  location: Technical University Berlin
-  city: Berlin
-  date: 2017-12-12
-- title: "Vega-Lite: A Grammar of Interactive Graphics"
-  location: DeepMind (Google)
-  city: London
-  date: 2017-11-22
-- title: "Vega-Lite: A Grammar of Interactive Graphics"
-  location: City University
-  city: London
-  date: 2017-11-21
-- title: "Visualization Grammars"
-  location: Dagstuhl Seminar on Connecting Visualization and Data Management Research
-  url: https://www.dagstuhl.de/de/programm/kalender/semhp/?semnr=17461
-  date: 2017-11-14
-- title: "Vega-Lite: A Grammar of Interactive Graphics"
-  location: Microsoft
-  city: Redmond
-  date: 2017-11-07
-  recording: https://www.youtube.com/watch?v=Nsrz4YdaZ_A
-- title: "Vega-Lite: A Grammar of Interactive Graphics"
-  location: Turi (Apple)
-  city: Seattle
-  date: 2017-06-13
-- title: "Trust, but Verify: Optimistic Visualizations of Approximate Queries for Exploring Big Data"
-  location: Tableau Research
-  city: Seattle
-  date: 2017-07-27
-- title: "Vega-Lite: A Grammar of Interactive Graphics"
-  location: OpenVis Conf
-  city: Boston
-  url: https://openvisconf.com/#speakers
-  date: 2017-04-24
-  slides: /talks/VegaLite-OpenVisConf-2017.pdf
-  recording: https://www.youtube.com/watch?v=9uaHRWj04D4
-- title: "Vega-Lite: A Grammar of Interactive Graphics"
-  location: IEEE Infovis
-  city: Baltimore
-  date: 2017-10-25
-- title: "Trust, but Verify: Optimistic Visualizations of Approximate Queries for Exploring Big Data"
-  location: Database Seminar, Microsoft Research
-  city: Redmond
-  date: 2016-09-28
-- title: "What Users Don't Expect about Exploratory Data Analysis on AQP Systems "
-  location: HILDA at ACM SIGMOD
-  city: Chicago
-  date: 2017-05-14
-- title: "Trust, but Verify: Optimistic Visualizations of Approximate Queries for Exploring Big Data"
-  location: ACM CHI
-  city: San Jose
-  date: 2016-05-10
-  recording: https://www.youtube.com/watch?v=4ntnRzqiG7Y
-- title: "Vega-Lite: A Declarative Format for Visualization"
-  location: Plotcon
-  city: New York City
-  url: https://plotcon-2016.plot.ly/schedule
-  date: 2016-11-15
-- title: "Voyager: Exploratory Analysis via Faceted Browsing of Visualization Recommendations"
-  location: SIGGRAPH
-  city: Anaheim
-  date: 2016-07-26
-- title: "Voyager: Exploratory Analysis via Faceted Browsing of Visualization Recommendations"
-  location: Tableau Research
-  city: Seattle
-  date: 2016-01-15
-- title: "Voyager: Exploratory Analysis via Faceted Browsing of Visualization Recommendations"
-  location: IEEE Infovis
-  city: Chicago
-  date: 2015-10-26
-  recording: https://vimeo.com/236170947
-- title: "Perfopticon: Visual Query Analysis for Distributed Databases"
-  location: Eurovis
-  city: Cagliari
-  date: 2015-05-27
+  date: 2022-03-21
+- title: "Multigraded regularity on products of projective spaces"
+  location: Number Theory & Algebraic Geometry Seminar, Simon Fraser University
+  city: Zoom
+  date: 2022-03-03
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Special Session, Joint Mathematics Meetings
+  city: Seattle, WA
+  date: 2022-01-06
+- title: "Characterizing multigraded regularity on products of projective spaces"
+  location: Special Session, Joint Mathematics Meetings
+  city: Seattle, WA
+  date: 2022-01-06
+- title: "Multigraded regularity on products of projective spaces"
+  location: Special Session, CMS Winter Meetings
+  city: Zoom
+  date: 2021-12-07
+- title: "Computing Syzygies"
+  location: Queer Research Showcase, QAtCanSTEM
+  city: Zoom
+  date: 2022-11-03
+- title: "Multigraded Castelnuovo-Mumford regularity and powers"
+  location: Special Session, Fall Central AMS Sectional
+  city: Zoom
+  date: 2021-10-09
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: Special Session, SIAM Applied Algebraic Geometry
+  city: Zoom
+  date: 2021-08-17
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Queer and Trans Mathematicians in Combinatorics, Fields Institute
+  city: Zoom
+  date: 2021-06-25
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Special Session, Fall Western AMS Sectional
+  city: Zoom
+  date: 2021-05-01
+- title: "Combinatorial Cones & the Moduli Space of Abelian Surfaces"
+  location: Mathematics Colloqium, Reed College
+  city: Zoom
+  date: 2021-04-29
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Special Session, Spring Central AMS Sectional
+  city: Zoom
+  date: 2021-04-18
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Bay Area Discrete (BAD) Math Day
+  city: Zoom
+  date: 2021-04-10
+  url: https://sites.google.com/view/bad-math-day-spring-2021/home
+  recording: https://www.youtube.com/live/Zef76ebr_Uc?feature=share
+- title: "Combinatorial cones and the moduli of polarized donuts"
+  location: Algebra, Geometry, and Combinatorics Seminar, San Francisco State University
+  city: Zoom
+  date: 2021-04-07
+- title: "Syzygies in higher dimensions"
+  location: Special Session, Spring Southeastern AMS Sectional
+  city: Zoom
+  date: 2021-03-13
+- title: "Syzygies in higher dimensions"
+  location: Algebra, Geometry, and Combinatorics Seminar
+  city: Zoom
+  date: 2021-02-08
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Non-linear Algebra Seminar Online, MPI MiS
+  city: Zoom
+  date: 2021-02-02
+  recording: https://media.mis.mpg.de/naso2020/2021-02-02_2/
+- title: "Computing Syzygies"
+  location: LGBTQ+ Math Day, Fields Institute
+  city: Zoom
+  date: 2020-11-18
+  recording: https://youtu.be/m_egvqURm3U
+  url: https://math.ryerson.ca/~abonato/LGBTQ/
+- title: "Syzygies in higher dimensions"
+  location: Algebra Seminar, Syracuse University
+  city: Zoom
+  date: 2020-11-06
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Number Theory Seminar, Arizona State University
+  city: Zoom
+  date: 2020-10-30
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Algebraic Geometry & Number Theory Seminar, Louisiana State University
+  city: Zoom
+  date: 2020-10-20
+  recording: https://youtu.be/4irKGJtgUTI
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Algebraic Geometry Seminar, University of Georgia
+  city: Zoom
+  date: 2020-10-14
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Algebraic Geometry Seminar, Stanford University
+  city: Zoom
+  date: 2020-10-02
+  recording: https://youtu.be/edZ32LkyVh0
+- title: "Syzygies of Products of Projective Spaces"
+  location: Fellowship of the Ring Seminar, MSRI
+  city: Zoom
+  date: 2020-09-10
+- title: "Computing Syzygies"
+  location: Early Commutative Algebra Researcherse
+  city: Zoom
+  date: 2020-06-27
+- title: "Computing Syzygies"
+  location: Workshop on Computational Number Theory, FoCM
+  city: Vancouver, BC (Canceled)
+  date: 2020-06-17
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: Commutative Algebra Seminar, University of Nebraska
+  city: Lincoln, NE (Canceled)
+  date: 2020-04-22
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: Western Algebraic Geometry Online (WAGON)
+  city: Zoom
+  date: 2020-04-18
+  recording: https://youtu.be/Jp9T7NWP79k
+  url: https://sites.math.washington.edu/~jarod/wagon.html
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: Special Session, Joint Mathematics Meetings
+  city: Denver, CO
+  date: 2020-01-17
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: AWM Poster Session, Joint Mathematics Meetings
+  city: Denver, CO
+  date: 2020-01-17
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: Commutative Algebra Seminar, University of Michigan
+  city: Ann Arbor, MI
+  date: 2019-12-05
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: Algebraic Geometry Seminar, Notre Dame University
+  city: South Bend, IN
+  date: 2019-11-16
+- title: "Studying Polynomials via Supercomputing"
+  location: Mathematics Colloqium, Lawerence University
+  city: Appleton, WI
+  date: 2019-10-30
+- title: "Asymptotic Syzygies for Products of Projective Space"
+  location: Algebra, Combinatorics, and Number Theory Seminar, DePaul University
+  city: Chicago, IL
+  date: 2019-10-18
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: Algebraic Geometry Seminar, University of Utah
+  city: Salt Lake City, UT
+  date: 2019-09-24
+- title: "Asymptotic Syzygies for Products of Projective Space"
+  location: Special Session, SIAM Applied Algebraic Geometry
+  city: Bern, CH
+  date: 2019-07-12
+- title: "Asymptotic Syzygies for Products of Projective Space"
+  location: Summer School on Randomness and Learning in NLA, MPI MiS (Poster)
+  city: Leipzig, DE
+  date: 2019-07-02
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: Algebraic Geometry Seminar, Stanford University
+  city: Palo Alto, CA
+  date: 2019-05-03
+- title: "Asymptotic Syzygies for Products of Projective Space"
+  location: Algebra Seminar, University of Kentucky
+  city: Lexington, KY
+  date: 2019-04-24
+- title: "Semi-Ample Asymptotic Syzygies"
+  location: Commutative Algebra Seminar, Universtiy of Minnesota
+  city: Minneapolis, MN
+  date: 2019-04-11
+- title: "Asymptotic Syzygies for Products of Projective Space"
+  location: Poster Session, AWM Research Symposium
+  city: Houston, TX
+  date: 2019-04-06
+- title: "Asymptotic Syzygies for Products of Projective Space"
+  location: KUMUNUk Jr. - University of Nebraska
+  city: Lincoln, NE
+  date: 2019-03-30
+- title: "Asymptotic Syzygies for Products of Projective Space"
+  location: Special Session, Spring Southeastern AMS Sectional
+  city: Auburn, AL
+  date: 2019-03-16
+- title: "Asymptotic Syzygies for Products of Projective Space"
+  location: Special Session, Joint Mathematics Meetings
+  city: Baltimore, MD
+  date: 2019-01-17
+- title: "Covering Abelian Varieties and Effective Bertini "
+  location: Algebra & Algebraic Geometry Seminar, University of Wisconsin
+  city: Madison, WI
+  date: 2018-11-03
+- title: "Asymptotic Syzygies for Products of Projective Space"
+  location: Special Session, Fall Central AMS Sectional
+  city: Ann Arbor, MI
+  date: 2018-10-20
+- title: "Asymptotic Syzygies in the Semi-Ample Setting"
+  location: AGNES, Brown University (Poster)
+  city: Providence, RI
+  date: 2018-09-22
+- title: "Covering Abelian Varieties and Effective Bertini "
+  location: Algebraic Geometry and Number Theory Seminar, Rice University
+  city: Houston, TX
+  date: 2018-09-18
+- title: "Syzygies of Surfaces via Distributed Computing"
+  location: Algebra, Combinatorics, and Number Theory Seminar, DePaul University
+  city: Chicago, IL
+  date: 2018-03-18
+- title: "Asymptotic Syzygies in the Semi-Ample Setting"
+  location: AWM Poster Session, Joint Mathematics Meetings
+  city: San Diego, CA
+  date: 2018-01-12
+- title: "Asymptotic Syzygies in the Semi-Ample Setting"
+  location: Commutative Algebra Seminar, University of Michigan
+  city: Ann Arbor, MI
+  date: 2017-12-17
+- title: "Asymptotic Syzygies in the Semi-Ample Setting"
+  location: Structures on Free Resolutions, Texas Tech University
+  city: Lubbock, TX
+  date: 2017-10-27
+- title: 'A Distributed Numerical Approach to Syzygies $$\mathbb{P}^{2}$$'
+  location: Free Resolutions and Computations, University of California - Berkeley (Poster)
+  city: Berkeley, CA
+  date: 2017-07-18
+- title: 'The Degree of $$\text{SO}(n)$$ and Low-rank SDP'
+  location: Applied Algebra Seminar, University of Wisconsin, Madison
+  city: Madison, WI
+  date: 2017-03-17
+- title: "A Probabilistic Approach to Noether Normalization"
+  location: RTG Lectures in Arithmetic Geometry, Rice University (Poster)
+  city: Houston, TX
+  date: 2017-02-18
+- title: "Noether Normalization in Families"
+  location: Introductory Workshop Combinatorial Algebraic Geometry, Fields Institute (Poster)
+  city: Toronto, CA
+  date: 2016-08-16
+- title: "Noether Normalization in Families"
+  location: Commutative Algebra and Its Interactions with Algebraic Geometry (Poster)
+  city: Ann Arbor, MI
+  date: 2016-07-08
+- title: "Noether Normalization in Families"
+  location: Midwest Commutative Algebra and Commutative Algebra Conference (Poster)
+  city: South Bend, IN
+  date: 2016-05-17
+- title: "Noether Normalization in Families"
+  location: Algebraic Geometry Seminar, University of Wisconsin - Madison
+  city: Madison, WI
+  date: 2016-04-15
+- title: "Betti Tables of Graph Curves"
+  location: Midwest Algebraic Geometry Graduate Conference, University of Illinois - Chicago
+  city: Chicago, IL
+  date: 2015-04-11
+- title: "Betti Tables of Graph Curves"
+  location: Algebraic Geometry Seminar, University of Wisconsin, Madison
+  city: Madison, WI
+  date: 2014-12-12
+#- title: "Declarative and Scalable Visualization Design"
+#  location: Robust AI Meetup
+#  city: Zoom
+#  date: 2020-05-07
+#- title: "Visualization for People + Systems"
+#  location: GAMES Webinar
+#  city: Online
+#  date: 2019-11-14
+#  url: http://games-cn.org/games-webinar-20191114-118/
+#- title: "Declarative Visualization Design with Vega-Lite and Altair"
+#  location: Open Data Science Conference West (ODSC)
+#  city: San Francisco
+#  date: 2019-10-31
+#  url: https://odsc.com/training/portfolio/title-coming-soon-46/
+#- title: "Altair: Declarative Visualization in Python"
+#  location: Symposium on Data Science and Statistics (SDSS)
+#  city: Bellevue
+#  date: 2019-05-30
+#  url: https://ww2.amstat.org/meetings/sdss/2019/onlineprogram/Program.cfm?date=05-30-19
+#- title: "Visualization for People + Systems"
+#  location: MIT
+#  city: Boston
+#  date: 2019-04-26
+#- title: "Visualization for People + Systems"
+#  location: Google
+#  city: Boston
+#  date: 2019-04-25
+#- title: "Visualization for People + Systems"
+#  location: Tableau
+#  city: Seattle
+#  date: 2019-04-23
+#- title: "Visualization for People + Systems"
+#  location: Apple (Turi)
+#  city: Seattle
+#  date: 2019-03-26
+#- title: "Visualization for People + Systems"
+#  location: Microsoft Research
+#  city: Redmond
+#  date: 2019-03-27
+#  url: https://www.microsoft.com/en-us/research/video/visualization-for-people-systems/
+#  recording: https://www.youtube.com/watch?v=ww0HGwC18Qo
+#- title: "Visualization for People + Systems"
+#  location: New York University (NYU)
+#  city: New York
+#  date: 2019-04-01
+#- title: "Visualization for People + Systems"
+#  location: Northwestern
+#  city: Evanston
+#  date: 2019-04-17
+#- title: "Visualization for People + Systems"
+#  location: University of Chicago
+#  city: Chicago
+#  date: 2019-04-15
+#- title: "Visualization for People + Systems"
+#  location: University of British Columbia (UBC)
+#  city: Vancouver
+#  date: 2019-04-09
+#- title: "Visualization for People + Systems"
+#  location: University of Wisconsin
+#  city: Madison
+#  date: 2019-04-05
+#- title: "Visualization for People + Systems"
+#  location: Carnegie Mellon University (CMU)
+#  city: Pittsburgh
+#  date: 2019-03-18
+#  url: https://www.cs.cmu.edu/calendar/mon-2019-03-18-1200/scs-faculty-candidate
+#- title: "Visualization for People + Systems"
+#  location: University of California (UCSD)
+#  city: San Diego
+#  date: 2019-03-13
+#- title: "Visualization for People + Systems"
+#  location: University of Toronto
+#  city: Toronto
+#  date: 2019-03-07
+#- title: "Visualization for People + Systems"
+#  location: University of Illinois (UIUC)
+#  city: Urbana-Champaign
+#  date: 2019-02-28
+#- title: "Visualization for People + Systems"
+#  location: University of Pennsylvania
+#  city: Philadelphia
+#  date: 2019-02-12
+#  url: https://events.seas.upenn.edu/event/cis-seminar-visualization-for-people-systems/
+#- title: "Raising the Abstraction of Data Visualization"
+#  location: IBM Research
+#  city: Bangalore
+#  date: 2019-01-04
+#- title: "Data Visualization with Vega-Lite and Altair for Machine Learning"
+#  location: TVM Conference
+#  city: Seattle
+#  date: 2018-12-12
+#  url: https://sampl.cs.washington.edu/tvmconf/
+#- title: "Formalizing Visualization Design Knowledge as Constraints: Actionable and Extensible Models in Draco"
+#  location: IEEE VIS
+#  city: Berlin
+#  recording: https://vimeo.com/308980888
+#  date: 2018-10-23
+#- title: "Automated Visualization Design with Draco"
+#  location: Tableau Research
+#  city: Seattle
+#  date: 2018-09-10
+#- title: "Automated Visualization Design with Draco"
+#  location: Microsoft Excel
+#  city: Redmond
+#  date: 2018-08-14
+#- title: "Formalizing Visualization Design Knowledge as Constraints: Actionable and Extensible Models in Draco"
+#  location: Microsoft Research
+#  city: Redmond
+#  date: 2018-07-24
+#- title: "Formalizing Visualization Design Knowledge as Constraints: Actionable and Extensible Models in Draco"
+#  location: UW Database Affiliates Workshop
+#  city: Seattle
+#  date: 2018-07-13
+#- title: "Declarative Visualization with Vega-Lite and Altair"
+#  location: Data Stories Podcast
+#  url: http://datastori.es/121-declarative-visualization-with-vega-lite-and-altair-with-dominik-moritz-jacob-vanderplas-kanit-ham-wongsuphasawat/
+#  date: 2018-05-25
+#- title: "Vega-Lite: A Grammar of Interactive Graphics"
+#  location: UW ACM Student
+#  city: Seattle
+#  date: 2018-05-07
+#- title: "Declarative Visualization Design with Vega-Lite"
+#  location: Tintash
+#  city: Lahore
+#  date: 2018-01-16
+#- title: "Vega-Lite: A Grammar of Interactive Graphics"
+#  location: Technical University Berlin
+#  city: Berlin
+#  date: 2017-12-12
+#- title: "Vega-Lite: A Grammar of Interactive Graphics"
+#  location: DeepMind (Google)
+#  city: London
+#  date: 2017-11-22
+#- title: "Vega-Lite: A Grammar of Interactive Graphics"
+#  location: City University
+#  city: London
+#  date: 2017-11-21
+#- title: "Visualization Grammars"
+#  location: Dagstuhl Seminar on Connecting Visualization and Data Management Research
+#  url: https://www.dagstuhl.de/de/programm/kalender/semhp/?semnr=17461
+#  date: 2017-11-14
+#- title: "Vega-Lite: A Grammar of Interactive Graphics"
+#  location: Microsoft
+#  city: Redmond
+#  date: 2017-11-07
+#  recording: https://www.youtube.com/watch?v=Nsrz4YdaZ_A
+#- title: "Vega-Lite: A Grammar of Interactive Graphics"
+#  location: Turi (Apple)
+#  city: Seattle
+#  date: 2017-06-13
+#- title: "Trust, but Verify: Optimistic Visualizations of Approximate Queries for Exploring Big Data"
+#  location: Tableau Research
+#  city: Seattle
+#  date: 2017-07-27
+#- title: "Vega-Lite: A Grammar of Interactive Graphics"
+#  location: OpenVis Conf
+#  city: Boston
+#  url: https://openvisconf.com/#speakers
+#  date: 2017-04-24
+#  slides: /talks/VegaLite-OpenVisConf-2017.pdf
+#  recording: https://www.youtube.com/watch?v=9uaHRWj04D4
+#- title: "Vega-Lite: A Grammar of Interactive Graphics"
+#  location: IEEE Infovis
+#  city: Baltimore
+#  date: 2017-10-25
+#- title: "Trust, but Verify: Optimistic Visualizations of Approximate Queries for Exploring Big Data"
+#  location: Database Seminar, Microsoft Research
+#  city: Redmond
+#  date: 2016-09-28
+#- title: "What Users Don't Expect about Exploratory Data Analysis on AQP Systems "
+#  location: HILDA at ACM SIGMOD
+#  city: Chicago
+#  date: 2017-05-14
+#- title: "Trust, but Verify: Optimistic Visualizations of Approximate Queries for Exploring Big Data"
+#  location: ACM CHI
+#  city: San Jose
+#  date: 2016-05-10
+#  recording: https://www.youtube.com/watch?v=4ntnRzqiG7Y
+#- title: "Vega-Lite: A Declarative Format for Visualization"
+#  location: Plotcon
+#  city: New York City
+#  url: https://plotcon-2016.plot.ly/schedule
+#  date: 2016-11-15
+#- title: "Voyager: Exploratory Analysis via Faceted Browsing of Visualization Recommendations"
+#  location: SIGGRAPH
+#  city: Anaheim
+#  date: 2016-07-26
+#- title: "Voyager: Exploratory Analysis via Faceted Browsing of Visualization Recommendations"
+#  location: Tableau Research
+#  city: Seattle
+#  date: 2016-01-15
+#- title: "Voyager: Exploratory Analysis via Faceted Browsing of Visualization Recommendations"
+#  location: IEEE Infovis
+#  city: Chicago
+#  date: 2015-10-26
+#  recording: https://vimeo.com/236170947
+#- title: "Perfopticon: Visual Query Analysis for Distributed Databases"
+#  location: Eurovis
+#  city: Cagliari
+#  date: 2015-05-27
