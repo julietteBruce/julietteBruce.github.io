@@ -8,7 +8,7 @@
 - name: BATMOBILE
   years: 2022
   description: A vehicle for bringing together the algebraic and tropical geometry communities of Brown and surrounding institutions for a biannual day of talks.
-- name: $$$\text{Spec}(\overline{\mathbb{Q}})$$$
+- name: \(\text{Spec}(\overline{\mathbb{Q}})\)
   sponsor: Fields Institute
   years: 2022
   description: A conference to celebrate and promote research advances of LGBT2Q mathematicians specialising in algebraic geometry, arithmetic geometry, commutative algebra, and number theory.
