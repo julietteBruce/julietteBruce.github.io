@@ -34,112 +34,24 @@ algebra and surrounding areas, and
 
 ## Schedule 
 
-There will be a desert social 7:30pm to 9:00pm on Friday, November 10 for those particpants who've arrived.
+There will be a desert social 7:30pm to 9:00pm on Friday, November 10 for those particpants who've arrived
 
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th></th>
-        <th class="text-center">April 12</th>
-        <th class="text-center">April 13</th>
-        <th class="text-center">April 14</th>
-      </tr>
-    </thead>
-    <tbody class="text-center">
-<!-- 
-    <tr>
-        <td>8:00-8:30</td>
-        <td rowspan="18" bgcolor="#D5DBDB"></td>
-        <td rowspan="2">Breakfast</td>
-        <td rowspan="2">Breakfast</td>
-      </tr>
-      <tr>
-        <td>8:30-9:00</td>
-      </tr>
- -->
-      <tr>
-        <td>9:00-9:30</td>
-        <td rowspan="16" bgcolor="#D5DBDB"></td>
-        <td rowspan="2">Plenary Talk <br> <i>Kuei-Nuan Lin</i></td>
-        <td rowspan="2">Plenary Talk <br> <i>Rebecca R.G.</i></td>
-      </tr>
-      <tr >
-        <td>9:30-10:00</td>
-      </tr>
-      <tr>
-        <td>10:00-10:30</td>
-        <td rowspan="1">Grad Talk <br> <i>Whitney Liske</i></td>
-        <td rowspan="1">Grad Talk <br> <i>Jenny Kenkel</i></td>
-      </tr>
-      <tr>
-        <td>10:30-11:00</td>
-        <td rowspan="2">Poster Session #1</td>
-        <td rowspan="1">Coffee Break</td>
-      </tr>
-      <tr>
-        <td>11:00-11:30</td>
-        <td rowspan="2">Plenary Talk <br> <i>Haydee M. A. Lindo</i></td>
-      </tr>
-      <tr>
-        <td>11:30-12:00</td>
-        <td rowspan="1">Grad Talk <br> <i>Aida Maraj</i></td>
-      </tr>
-      <tr>
-        <td>12:00-12:30</td>
-        <td rowspan="3">Lunch</td>
-        <td rowspan="3">Lunch</td>
-      </tr>
-      <tr class="text-center">
-        <td>12:30-1:00</td>
-      </tr>
-      <tr>
-        <td>1:00-1:30</td>
-      </tr>
-      <tr>
-        <td>1:30-2:00</td>
-        <td rowspan="2">Plenary Talk <br> <i>Alexandra Seceleanu</i></td>
-        <td rowspan="2">Small Group Discussions</td>
-      </tr>
-      <tr>
-        <td>2:00-2:30</td>
-      </tr>
-      <tr class="text-center">
-        <td>2:30-3:00</td>
-        <td rowspan="2">Poster Session</td>
-        <td rowspan="2">Problem Session</td>
-      </tr>
-      <tr>
-        <td>3:00-3:30</td>
-      </tr>
-      <tr>
-        <td>3:30-4:00</td>
-        <td rowspan="1">Grad Talk <br> <i>Ayah Almousa</i></td>
-        <td rowspan="7" bgcolor="#D5DBDB"></td>
-      </tr>
-      <tr>
-        <td>4:00-4:30</td>
-        <td rowspan="2">Small Group Discussions</i></td>
-      </tr>
-      <tr>
-        <td>4:30-5:00</td>
-      </tr>
-      <tr class="text-center">
-        <td>5:00-5:30</td>
-        <td rowspan="4">Dessert Social</td>
-        <td rowspan="2">Problem Session</td>
-      </tr>
-      <tr class="text-center">
-        <td>5:30-6:00</td>
-      </tr>
-      <tr class="text-center">
-        <td>6:00-6:30</td>
-        <td rowspan="3" bgcolor="#D5DBDB"></td>
-      </tr>
-      <tr class="text-center">
-        <td>6:30-7:00</td>
-      </tr>
-    </tbody>
-  </table>
+|                     | Saturday, November 10      | Sunday, November 11 |
+| :---------              | :---------  | :-----  |
+| 8:30-9:00 | Breakfast and Registration | Breakfast |
+| 9:00-9:50 | Plenary Talk #1 | Plenary Talk #3 |
+| 10:00-10:20 | Coffee Break | Coffee Break |
+| 10:20-11:10 | Problem Session | Problem Session |
+| 11:20-11:40 | Graduate Student Talk #1 | Poster Session #2 |
+| 11:50-1:20 | Lunch and Small Group Discussions | Lunch and Small Group Discussions | Lunch
+| 1:30-1:50 | Graduate Student Talk #2 | |
+| 2:00-2:50 | Plenary Talk #2 | |
+| 3:00-3:20 | Coffee Break | |
+| 3:20-4:10 | Problem Session | |
+| 4:20-4:40 | Graduate Student Talk #3 | |
+| 4:40-5:20 | Poster Session #1 | |
+| 6:00-7:30 | Group Dinner | |
+
 
 ## Meeting Structure
 While reading, write any questions you have and bring them. Each week the speaker will be giving a ~15 minute talk summarizing the reading that week (maybe bullet-point style), skipping proofs and focusing on how to use the theorems and objects. Note that being the speaker does *not* mean you are expected to know everything -- You can have lots of questions too. After, we can all discuss questions we had on the reading. 
