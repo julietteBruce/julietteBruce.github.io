@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: organization/3264/
+permalink: organization/gemsca23/
 title: 3264 and all that
 class: class
 ---
