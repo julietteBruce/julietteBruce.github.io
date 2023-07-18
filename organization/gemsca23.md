@@ -5,11 +5,11 @@ title: GEMS of Commutative Algebra 2023
 class: class
 ---
 
-# Gender Equity in the Mathematical Study (GEMS) of Commutative Algebra 2023
+# GEMS of Commutative Algebra 2023
 ![GOS](/images/umn.jpg "UMN Math Building")
 
 ## About
-A workshop for graduate students at the University of Minnesota, November 10-12, 2023 focused on forming a community for women and non-binary researchers interested in commutative algebra through learning about specific topics in commutative algebra from a diverse group of prominent active researchers. The goals of this workshop are to:
+Gender Equity in the Mathematical Study (GEMS) of Commutative Algebra is a workshop for graduate students at the University of Minnesota, November 10-12, 2023. This workshop is focused on forming a community for women and non-binary researchers interested in commutative algebra through learning about specific topics in commutative algebra from a diverse group of prominent active researchers. The goals of this workshop are to:
 1. introduce participants to cutting edge research topics in commutative algebra and surrounding areas,
 2. facilitate the formation of mentoring relationships between participants and faculty,
 3. strengthen the network of women and non-binary mathematicians in commutative
