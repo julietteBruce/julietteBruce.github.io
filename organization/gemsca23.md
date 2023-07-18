@@ -15,6 +15,7 @@ A workshop for graduate students at the University of Minnesota, November 10-12,
 3. strengthen the network of women and non-binary mathematicians in commutative
 algebra and surrounding areas, and
 4. develop long-term collaborative relationships.
+Towards these goals the workshop will consist of plenary talks, graduate student talks, problem sessions, discussion groups, and poster sessions.
 
 <div class="button-container" style="text-align: center">
     <a href="https://scholar.harvard.edu/files/joeharris/files/000-final-3264.pdf" class="button" style="margin:5px">
@@ -22,6 +23,10 @@ algebra and surrounding areas, and
     Registration
     </a>
 </div>
+
+## Logistics
+
+We hope to provide lodging for as many registered participants as possible. Specific details regarding lodging for funded participants will be added at a later date.
 
 ## Schedule 
 
@@ -44,5 +49,12 @@ There will be a desert social 7:30pm to 9:00pm on Friday, November 10 for those 
 | 6:00-7:30 | Group Dinner | |
 
 
-## Meeting Structure
-While reading, write any questions you have and bring them. Each week the speaker will be giving a ~15 minute talk summarizing the reading that week (maybe bullet-point style), skipping proofs and focusing on how to use the theorems and objects. Note that being the speaker does *not* mean you are expected to know everything -- You can have lots of questions too. After, we can all discuss questions we had on the reading. 
+## Inclusivity
+
+The organizers are committed to making GEMS of Commutative Algebra an event inclusive and supportive of all. This conference further strongly supports the [Welcoming Environment Statement](https://awm-math.org/policy-advocacy/welcoming-environment/) of the Association for Women in Mathematics.
+
+## Organizers
+- Christine Berkesch, University of Minnesota
+- Patricia Klein, Texas A&M
+- Juliette Bruce, Brown University
+
