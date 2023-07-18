@@ -26,7 +26,7 @@ Towards these goals the workshop will consist of plenary talks, graduate student
 
 ## Logistics
 
-We hope to provide lodging for as many registered participants as possible. Specific details regarding lodging for funded participants will be added at a later date.
+There will be a limited amount of funding for junior participants. We expect to be able to provide partial travel support for some participants from within the United States. Accommodation for funded participants will be arranged by the organizers for the nights of Friday, November 9 and Saturday, November 10. Researchers from generally underrepresented groups are strongly encouraged to apply, and will be given priority when it comes to funding decisions. If you wish to participate in the workshop please complete the registation form linked above by ADD DATE.
 
 ## Schedule 
 
