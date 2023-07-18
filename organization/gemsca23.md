@@ -9,7 +9,7 @@ class: class
 ![GOS](/images/organization/umn.jpg "UMN Math Building")
 
 ## About
-A workshop for graduate students at the University of Minnesota, November 10-12, 2023 focused on forming a community for women and non-binary researchers interested in commutative algebra through learning about specific topics in commutative algebra from a diverse group of prominent active researchers. The goals of this workshop are to
+A workshop for graduate students at the University of Minnesota, November 10-12, 2023 focused on forming a community for women and non-binary researchers interested in commutative algebra through learning about specific topics in commutative algebra from a diverse group of prominent active researchers. The goals of this workshop are to:
 1. introduce participants to cutting edge research topics in commutative algebra and surrounding areas,
 2. facilitate the formation of mentoring relationships between participants and faculty,
 3. strengthen the network of women and non-binary mathematicians in commutative
@@ -43,7 +43,7 @@ There will be a desert social 7:30pm to 9:00pm on Friday, November 10 for those 
 | 10:00-10:20 | Coffee Break | Coffee Break |
 | 10:20-11:10 | Problem Session | Problem Session |
 | 11:20-11:40 | Graduate Student Talk #1 | Poster Session #2 |
-| 11:50-1:20 | Lunch and Small Group Discussions | Lunch and Small Group Discussions | Lunch
+| 11:50-1:20 | Lunch & Discussions | Lunch & Discussions |
 | 1:30-1:50 | Graduate Student Talk #2 | |
 | 2:00-2:50 | Plenary Talk #2 | |
 | 3:00-3:20 | Coffee Break | |
