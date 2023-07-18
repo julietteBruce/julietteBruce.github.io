@@ -19,17 +19,8 @@ algebra and surrounding areas, and
 <div class="button-container" style="text-align: center">
     <a href="https://scholar.harvard.edu/files/joeharris/files/000-final-3264.pdf" class="button" style="margin:5px">
     <i class="fas fa-book" aria-hidden="true"></i>
-    Book
+    Registration
     </a>
-    <a href="https://groups.google.com/a/g-groups.wisc.edu/g/3264" class="button" style="margin:5px">
-    <i class="fas fa-envelope" aria-hidden="true"></i>
-    Email List
-    </a>
-    <a href="" class="button" style="margin:5px">
-    <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
-    Sign up for a talk
-    </a>
-    
 </div>
 
 ## Schedule 
@@ -38,7 +29,7 @@ There will be a desert social 7:30pm to 9:00pm on Friday, November 10 for those 
 
 |                     | Saturday, November 10      | Sunday, November 11 |
 | --------              | ---------  | -----  |
-| 8:30-9:00 | Breakfast and Registration | Breakfast |
+| 8:30-9:00 | Registration | Breakfast |
 | 9:00-9:50 | Plenary Talk #1 | Plenary Talk #3 |
 | 10:00-10:20 | Coffee Break | Coffee Break |
 | 10:20-11:10 | Problem Session | Problem Session |
