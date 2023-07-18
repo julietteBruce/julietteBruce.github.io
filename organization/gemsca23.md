@@ -1,15 +1,15 @@
 ---
 layout: page
 permalink: organization/gemsca23/
-title: 3264 and all that
+title: GEMS of Commutative Algebra 2023
 class: class
 ---
 
-# 3264 and all that
-![GOS](/images/projects/3264.jpg "Various illustrations from 3264 and all that.")
+# Gender Equity in the Mathematical Study (GEMS) of Commutative Algebra 2023
+![GOS](/images/organization/umn.jpg "UMN Math Building https://cse.umn.edu/math/about")
 
-## Resources
-We are reading 3264 and all that by David Eisenbud and Joe Harris. If you'd like to be kept updated, please [join the mailing list](https://groups.google.com/a/g-groups.wisc.edu/g/3264).
+## About
+A workshop for graduate students at the University of Minnesota, November 10-12, 2023 focused on forming a community for women and non-binary researchers interested in commutative algebra through learning about specific topics in commutative algebra from a diverse group of prominent active researchers.
 
 <div class="button-container" style="text-align: center">
     <a href="https://scholar.harvard.edu/files/joeharris/files/000-final-3264.pdf" class="button" style="margin:5px">
