@@ -34,10 +34,10 @@ algebra and surrounding areas, and
 
 ## Schedule 
 
-There will be a desert social 7:30pm to 9:00pm on Friday, November 10 for those particpants who've arrived
+There will be a desert social 7:30pm to 9:00pm on Friday, November 10 for those particpants who've arrived.
 
 |                     | Saturday, November 10      | Sunday, November 11 |
-| :---------              | :---------  | :-----  |
+| --------              | ---------  | -----  |
 | 8:30-9:00 | Breakfast and Registration | Breakfast |
 | 9:00-9:50 | Plenary Talk #1 | Plenary Talk #3 |
 | 10:00-10:20 | Coffee Break | Coffee Break |
