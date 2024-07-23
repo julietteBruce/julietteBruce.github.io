@@ -1,10 +1,9 @@
 # Site settings
 title: Juliette Bruce
-email: juliette_bruce1@brown.edu
+email: juliette.bruce@dartmouth.edu
 description: > # this means to ignore newlines until "baseurl:"
-   Postdoctoral research associate in the Mathematics Department at Brown University. I combine homological
-   and combinatorial techniques to study the geometry of solutions to systems polynomial equations.
-   PhD from the University of Wisconsin, Madison.
+   Assistant professor in the Department of Mathematics at Dartmouth College. I combine homological
+   and combinatorial techniques to study the geometry of solutions to systems of polynomial equations.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.juliettebruce.xyz" # the base hostname & protocol for your site
 production_url: "https://www.juliettebruce.xyz"

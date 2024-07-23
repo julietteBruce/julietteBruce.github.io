@@ -9,9 +9,9 @@ class: home
 <div class="columns" markdown="1">
 
 <div class="intro" markdown="1">
-I am a postdoctoral research associate in the Department of Mathematics at Brown University. My research interests lie in algebraic geometry, commutative algebra, and arithmetic geometry. In particular, I am interested in using homological and combinatorial methods to study the geometry of zero loci of systems of polynomials (i.e. algebraic varieties). I am also interested in studying the arithmetic properties of varieties over finite fields. I am passionate about promoting inclusion, diversity, and justice in mathematics. 
+I am an assistant professor in the Department of Mathematics at Dartmouth College. My research interests lie in algebraic geometry, commutative algebra, and arithmetic geometry. In particular, I am interested in using homological and combinatorial methods to study the geometry of zero loci of systems of polynomials (i.e. algebraic varieties). I am also interested in studying the arithmetic properties of varieties over finite fields. I am passionate about promoting inclusion, diversity, and justice in mathematics. 
 
-In 2020, I  recieved my Ph.D. in mathematics from the University of Wisconsin, Madison, where my advisor was [Daniel Erman](https://people.math.wisc.edu/~derman/). For the 2020-2021 academic year I was also a postdoctoral fellow at MSRI. During 2020-2022 I was an NSF Postdoctoral Resarch Fellow in the Department of Mathematics at the University of California, Berkeley. 
+In 2020, I received my Ph.D. in mathematics from the University of Wisconsin, Madison, where my advisor was [Daniel Erman](https://people.math.wisc.edu/~derman/). Previously I was a postdoctoral fellow at MSRI (2020-2021), an NSF Postdoctoral Research Fellow in the Department of Mathematics at the University of California, Berkeley (2020-2022), and a postdoctoral research associate in the Department of Mathematics at Brown University (2022-2024). I was the president of [Spectra: The Associate for LGBTQ+ Mathematicians](http://lgbtmath.org/Board.html) in 2022.
 
 </div>
 
@@ -25,7 +25,7 @@ In 2020, I  recieved my Ph.D. in mathematics from the University of Wisconsin, M
 
 {:.no-list}
 * <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-* 310 Kassar House
+* 6188 Kemeny Hall
 * she/her/hers
 <!-- * <a href="{{ "/publications/" | relative_url }}" class="button">
   <i class="fas fa-chevron-circle-right"></i>

@@ -1,3 +1,52 @@
+- title: BIRS COMOC
+  where: Banff
+  start: 2024-07-28
+  end: 2024-08-02
+- title: Fields Institute
+  where: Toronto
+  start: 2024-06-17
+  end: 2024-06-21
+- title: KOALA 2024
+  where: Lexington
+  start: 2024-05-20
+  end: 2024-05-22
+- title: Cal Poly Pomona
+  where: Pomona
+  start: 2024-02-07
+  end: 2024-02-09
+- title: UIUC
+  where: Urbana-Champaign 
+  start: 2024-02-01
+  end: 2024-02-04
+- title: Bowdoin College
+  where: Bowdoin
+  start: 2024-01-23
+  end: 2024-01-26
+- title: Dartmouth
+  where: Hanover
+  start: 2024-01-17
+  end: 2024-01-19
+- title: UT Dallas
+  where: Dallas
+  start: 2024-01-15
+  end: 2024-01-19
+- title: JMM 2024
+  where: San Francisco
+  start: 2024-01-03
+  end: 2024-01-05
+### 2023
+- title: Gems in CA
+  where: Minneapolis 
+  start: 2023-11-10
+  end: 2023-11-12
+- title: MREG Summer School
+  where: Ann Arbor 
+  start: 2023-07-24
+  end: 2023-07-29
+- title: AGNES Summer School
+  where: Providence 
+  start: 2023-07-10
+  end: 2023-07-14
 - title: Princeton University
   where: Princeton
   start: 2023-04-24
@@ -10,7 +59,7 @@
   where: Chicago
   start: 2023-04-14
   end: 2023-04-16
-- title: AIM Gems in Combinatoircs
+- title: AIM Gems in Combinatorics
   where: San Jose
   start: 2023-03-26
   end: 2023-03-31

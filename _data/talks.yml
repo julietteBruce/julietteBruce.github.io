@@ -1,7 +1,85 @@
+#####2024
+- title: "Syzygies Beyond Projective Space"
+  location: \(\text{Spec}(\overline{\mathbb{Q}}(2\pi i))\), Fields Institute
+  city: Toronto, ON
+  date: 2024-06-18
+  url: http://www.fields.utoronto.ca/activities/23-24/SpecQ
+  recording: https://www.youtube.com/watch?v=To0oJPENtIE&embeds_referring_euri=http%3A%2F%2Fwww.fields.utoronto.ca%2F&source_ve_path=MjM4NTE
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: KOALA 2024, University of Kentucky
+  city: Lexington, Kentucky
+  date: 2024-05-21
+  url: https://www.ms.uky.edu/~dhje223/KOALA2024.html
+- title: "Multigraded regularity on products of projective spaces"
+  location: Special Session, Spring Western AMS Sectional
+  city: San Francisco, CA
+  date: 2024-05-04
+  url: https://meetings.ams.org/math/spring2024w/meetingapp.cgi/Paper/35973
+- title: "Syzygies Beyond Projective Space"
+  location: Department Colloquium, California State Polytechnic University, Pomona
+  city: Pomona, CA
+  date: 2024-02-08
+- title: "Syzygies Beyond Projective Space"
+  location: Department Colloquium, University of Illinois, Urbana-Champaign
+  city: Urbana-Champaign, IL
+  date: 2024-02-02
+- title: "Syzygies Beyond Projective Space"
+  location: Department Colloquium, Bowdoin College
+  city: Bowdoin, ME
+  date: 2024-01-25
+- title: "Syzygies Beyond Projective Space"
+  location: Department Colloquium, Dartmouth College
+  city: Hanover, NH
+  date: 2024-01-18
+- title: "Syzygies Beyond Projective Space"
+  location: Department Colloquium, University of Texas, Dallas
+  city: Dallas, TX
+  date: 2024-01-16
+- title: 'Finite Generation of Multigraded Regularity'
+  location: Special Session, Joint Mathematics Meetings
+  city: San Francisco, CA
+  date: 2024-01-05
+  url: https://meetings.ams.org/math/jmm2024/meetingapp.cgi/Paper/29983
+- title: 'Matroids and the Moduli Space of Abelian Varieties'
+  location: Special Session, Joint Mathematics Meetings
+  city: San Francisco, CA
+  date: 2024-01-05
+  url: https://meetings.ams.org/math/jmm2024/meetingapp.cgi/Paper/31507
+####2023
+- title: "Homological algebra on toric varieties"
+  location: Algebra, Geometry, and Combinatorics Seminar, San Francisco State
+  city: San Francisco, CA
+  date: 2023-09-20
+  url: https://sites.google.com/view/sfsuagc/fall-2023?authuser=0#h.lcs2f3mma0v0
+- title: 'The Cohomology of $$\mathcal{A}_{g}$$'
+  location: Department Colloquium, University of Vermont
+  city: Burlington, VT
+  date: 2023-05-03
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Algebraic Geometry Seminar, Princeton University
+  city: Princeton, NJ
+  date: 2023-04-25
+  url: https://www.math.princeton.edu/events/top-weight-cohomology-ag-2023-04-25t203000
+- title: "A Probabilistic Approach to Noether Normalization"
+  location: Random Algebraic Geometry, BIRS
+  city: Banff, AB
+  date: 2023-04-20
+  url: https://www.birs.ca/events/2023/5-day-workshops/23w5070/videos/watch/202304200900-Bruce.html
+  recording: https://www.birs.ca/events/2023/5-day-workshops/23w5070/videos/watch/202304200900-Bruce.html 
+- title: 'Introduction to Syzygies and Regularity'
+  location: Syzygies and Regularity Workshop, Univesity of Illinois, Chicago
+  city: Chicago, IL
+  date: 2023-04-15
+  url: https://wlzhang.people.uic.edu/SyzygiesRegularity/
+- title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
+  location: Algebra & Number Theory Seminar, Dartmouth College
+  city: Hanover, NH
+  date: 2023-04-11
 - title: "Syzygies, Geometry, and Computation"
-  location: Mathematics Colloqium, Bowdoin College
+  location: Department Colloquium, Bowdoin College
   city: Bowdoin, ME
   date: 2023-02-01
+####2022
 - title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
   location: Algebraic Geometry Seminar, University of Texas
   city: Austin, TX
@@ -69,6 +147,7 @@
   location: Queer Research Showcase, QAtCanSTEM
   city: Zoom
   date: 2022-11-03
+####2021
 - title: "Multigraded Castelnuovo-Mumford regularity and powers"
   location: Special Session, Fall Central AMS Sectional
   city: Zoom
@@ -86,7 +165,7 @@
   city: Zoom
   date: 2021-05-01
 - title: "Combinatorial Cones & the Moduli Space of Abelian Surfaces"
-  location: Mathematics Colloqium, Reed College
+  location: Mathematics Colloquium, Reed College
   city: Zoom
   date: 2021-04-29
 - title: 'The Top-Weight Cohomology of $$\mathcal{A}_{g}$$'
@@ -116,6 +195,7 @@
   city: Zoom
   date: 2021-02-02
   recording: https://media.mis.mpg.de/naso2020/2021-02-02_2/
+####2020
 - title: "Computing Syzygies"
   location: LGBTQ+ Math Day, Fields Institute
   city: Zoom
@@ -174,6 +254,7 @@
   location: AWM Poster Session, Joint Mathematics Meetings
   city: Denver, CO
   date: 2020-01-17
+####2019
 - title: "Semi-Ample Asymptotic Syzygies"
   location: Commutative Algebra Seminar, University of Michigan
   city: Ann Arbor, MI
@@ -183,7 +264,7 @@
   city: South Bend, IN
   date: 2019-11-16
 - title: "Studying Polynomials via Supercomputing"
-  location: Mathematics Colloqium, Lawerence University
+  location: Mathematics Colloquium, Lawerence University
   city: Appleton, WI
   date: 2019-10-30
 - title: "Asymptotic Syzygies for Products of Projective Space"
@@ -230,6 +311,7 @@
   location: Special Session, Joint Mathematics Meetings
   city: Baltimore, MD
   date: 2019-01-17
+####2018
 - title: "Covering Abelian Varieties and Effective Bertini "
   location: Algebra & Algebraic Geometry Seminar, University of Wisconsin
   city: Madison, WI
@@ -254,6 +336,7 @@
   location: AWM Poster Session, Joint Mathematics Meetings
   city: San Diego, CA
   date: 2018-01-12
+####2017
 - title: "Asymptotic Syzygies in the Semi-Ample Setting"
   location: Commutative Algebra Seminar, University of Michigan
   city: Ann Arbor, MI
@@ -274,6 +357,7 @@
   location: RTG Lectures in Arithmetic Geometry, Rice University (Poster)
   city: Houston, TX
   date: 2017-02-18
+####2016
 - title: "Noether Normalization in Families"
   location: Introductory Workshop Combinatorial Algebraic Geometry, Fields Institute (Poster)
   city: Toronto, CA
@@ -290,10 +374,12 @@
   location: Algebraic Geometry Seminar, University of Wisconsin - Madison
   city: Madison, WI
   date: 2016-04-15
+####2015
 - title: "Betti Tables of Graph Curves"
   location: Midwest Algebraic Geometry Graduate Conference, University of Illinois - Chicago
   city: Chicago, IL
   date: 2015-04-11
+####2014
 - title: "Betti Tables of Graph Curves"
   location: Algebraic Geometry Seminar, University of Wisconsin, Madison
   city: Madison, WI

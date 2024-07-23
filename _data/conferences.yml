@@ -1,5 +1,9 @@
+- name: GEMS in Commutative Algebra
+  sponsor: University of Minnesota
+  years: 2023
+  description: A workshop focusing on forming a community of women and non-binary researchers interested in commutative algebra by learning about specific topics in commutative algebra from a diverse group of prominent active researchers. (~35 participants)
 - name: GEMS in Combinatorics
-  sponsor: American Institute of Mathemaitcs (AIM)
+  sponsor: American Institute of Mathematics (AIM)
   years: 2023
   description: A conference devoted to building a diverse community of mathematicians in combinatorics to address gender equity in the mathematical community and foster new research collaborations. (~ 35 participants)
 - name: BATMOBILE
@@ -9,11 +13,11 @@
 - name: \(\text{Spec}(\overline{\mathbb{Q}})\)
   sponsor: Fields Institute
   years: 2022
-  description: A conference to celebrate and promote research advances of LGBT2Q mathematicians specialising in algebraic geometry, arithmetic geometry, commutative algebra, and number theory. (~ 50 participants)
+  description: A conference to celebrate and promote research advances of LGBT2Q mathematicians specializing in algebraic geometry, arithmetic geometry, commutative algebra, and number theory. (~ 50 participants)
 - name: GEMS in Combinatorics
   sponsor: Held Virtually
   years: 2021
-  description: GEMS of Combinatorics (Gender Equity in the Mathematical Study of Combinatorics) is a two day conference that will be held virtually on Zoom. (~ 40 participants)
+  description: GEMS of Combinatorics (Gender Equity in the Mathematical Study of Combinatorics) is a two-day conference that will be held virtually on Zoom. (~ 40 participants)
 - name: Western Algebraic Geometry Symposium
   sponsor: Held Virtually
   years: 2021
@@ -24,17 +28,17 @@
   description: A virtual online conference bringing together people in commutative algebra and related fields.(~ 70 participants)
 - name: Graduate Workshop in Commutative Algebra for Women and Mathematicians of Minority Genders
   years: 2019
-  sponsor: University of Minnestoa
+  sponsor: University of Minnesota
   description: A workshop at the University of Minnesota, April 12-14, 2019, focusing on forming a community of women and non-binary researchers interested in commutative algebra by learning about specific topics in commutative algebra from a diverse group of prominent active researchers.(~ 35 participants)
 - name: Geometry & Arithmetic of Surfaces
   years: 2019
   sponsor: University of Wisconsin, Madison
-  description: A workshop at providing a diverse group of early career researchers the opportunity to learn about specific topics in the arithmetic and algebraic geometry of surfaces from a diverse set of prominent active researchers.(~ 40 participants)
+  description: A workshop providing a diverse group of early career researchers the opportunity to learn about specific topics in the arithmetic and algebraic geometry of surfaces from a diverse set of prominent active researchers.(~ 40 participants)
 - name: Macaulay2 at UW
   years: 2018
   sponsor: University of Wisconsin, Madison
-  description: A workshopfocused on creating exciting new packages for Macaulay2 by bringing together developers and users of all skill levels and experience. (~ 45 participants)
+  description: A workshop focused on creating exciting new packages for Macaulay2 by bringing together developers and users of all skill levels and experience. (~ 45 participants)
 - name: Math Careers Beyond Academia
   years: 2017
   sponsor: University of Wisconsin, Madison
-  descrption:  professional development symposium focusing on providing graduate students a sense of potential careers outside of academia, and what skills they should be developing to pursue these careers. (~ 50 participants)
+  descrption:  A professional development symposium focusing on providing graduate students a sense of potential careers outside of academia, and what skills they should be developing to pursue these careers. (~ 50 participants)
