@@ -1,3 +1,11 @@
+- name: BATMOBILE
+  sponsor: Dartmouth College
+  years: 2024
+  description: A vehicle for bringing together the algebraic and tropical geometry communities of Brown and surrounding institutions for a biannual day of talks. (~ 40 participants)
+- name: AGNES
+  sponsor: Dartmouth College
+  years: 2024
+  description: A series of weekend workshops in algebraic geometry held at institutions in the Northeast, with the goal to introduce graduate students to a broad spectrum of current research in algebraic geometry. (~ 150 participants)
 - name: GEMS in Commutative Algebra
   sponsor: University of Minnesota
   years: 2023
