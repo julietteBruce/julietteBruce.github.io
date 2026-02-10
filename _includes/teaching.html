@@ -1,27 +1,26 @@
-<div class="talk">
-  {{ talk.location }}{% if talk.city %}, <span class="city">{{ talk.city }}</span>{% endif %}
+{%- comment -%}
+  Usage:
+    {% include teaching.html course=course %}
+  Expects fields like:
+    course.course
+    course.date         (e.g. "Fall 2026", "Spring 2025", "2024")
+    course.url          (optional)
+{%- endcomment -%}
 
-  <span class="extra-links">
-    {% if talk.slides %}
-    <a href="{{ talk.slides }}">
-      <i class="fas fa-window-maximize" aria-hidden="true"></i> Slides
-    </a>
-    {% endif %}
+<tr>
+  <td class="date">
+    {%- if course.date and course.date != "" -%}
+      {{ course.date }}
+    {%- else -%}
+      in the future
+    {%- endif -%}
+  </td>
 
-    {% if talk.recording %}
-    <a href="{{ talk.recording }}">
-      <i class="fas fa-video" aria-hidden="true"></i> Recording
-    </a>
-    {% endif %}
-
-    {% if talk.url %}
-    <a href="{{ talk.url }}">
-      <i class="fas fa-link" aria-hidden="true"></i> Website
-    </a>
-    {% endif %}
-  </span>
-
-  <time datetime="{{ talk.date }}">
-    {{ talk.date | date: "%b %Y" }}
-  </time>
-</div>
+  <td>
+    {%- if course.url and course.url != "" -%}
+      <a href="{{ course.url }}">{{ course.course }}</a>
+    {%- else -%}
+      {{ course.course }}
+    {%- endif -%}
+  </td>
+</tr>
