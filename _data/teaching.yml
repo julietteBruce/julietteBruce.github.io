@@ -1,19 +1,71 @@
-- course: 'Math  8: Calculus'
-  institution: Dartmouth College
-  term: Fall
-  year: 2025
-  date: 2025-01-11
-  url: https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/39363
-
-- course: 'Math  31: Calculus'
+- course: 'Math  121: Commutative Algebra'
   institution: Dartmouth College
   term: Spring
   year: 2025
-  date: 2025-01-11
+  url: 
 
-- course: 'Math  201: Calculus'
-  institution: University of Wisonsin, Madison
+- course: 'Math  125: Topics in Combinatorial Algebraic Geometry'
+  institution: Dartmouth College
+  term: Spring
+  year: 2025
+  url: https://math.dartmouth.edu/~m8f25/
+
+- course: 'Math  150: Topics in Algebra (Weil Conjectures)'
+  institution: Dartmouth College
   term: Winter
-  year: 2022
-  date: 2025-01-11
-  url: https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/39363
+  year: 2026
+
+- course: 'Math  8: Calculus of Functions of One and Several Variables'
+  institution: Dartmouth College
+  term: Fall
+  year: 2025
+  url: https://math.dartmouth.edu/~m8f25/
+
+- course: 'Math  31: Topics in Algebra'
+  institution: Dartmouth College
+  term: Fall
+  year: 2024
+  url: https://math.dartmouth.edu/~m31f24/
+
+- course: 'Math  8: Calculus of Functions of One and Several Variables'
+  institution: Dartmouth College
+  term: Fall
+  year: 2024
+  url: https://math.dartmouth.edu/~m8f24/
+
+- course: 'Math  150: Topics in Algebra (Examples in Algebraic Geomtry)'
+  institution: Dartmouth College
+  term: Fall
+  year: 2024
+
+- course: 'Math  228: Wisconsin Emerging Scholars'
+  institution: University of Wisonsin, Madison
+  term: Fall
+  year: 2019
+
+- course: 'Math  221: Calculus and Analytic Geometry I'
+  institution: University of Wisonsin, Madison
+  term: Fall
+  year: 2019
+
+- course: 'Math  228: Wisconsin Emerging Scholars'
+  institution: University of Wisonsin, Madison
+  term: Fall
+  year: 2018
+
+- course: 'Math  221: Calculus and Analytic Geometry I'
+  institution: University of Wisonsin, Madison
+  term: Fall
+  year: 2018
+
+- course: 'Math  132: Problem Solving in Algebra, Probability and Statistics'
+  institution: University of Wisonsin, Madison
+  term: Spring
+  year: 2015
+
+- course: 'Math  221: Calculus and Analytic Geometry I'
+  institution: University of Wisonsin, Madison
+  term: Fall
+  year: 2014
+
+
