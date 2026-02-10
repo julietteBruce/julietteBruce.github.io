@@ -24,3 +24,31 @@
     {%- endif -%}
   </td>
 </tr>
+
+<div class="talk">
+  {{ course.institution }}
+
+  <span class="extra-links">
+    {% if course.slides %}
+    <a href="{{ course.slides }}">
+      <i class="fas fa-window-maximize" aria-hidden="true"></i> Slides
+    </a>
+    {% endif %}
+
+    {% if course.recording %}
+    <a href="{{ course.recording }}">
+      <i class="fas fa-video" aria-hidden="true"></i> Recording
+    </a>
+    {% endif %}
+
+    {% if course.url %}
+    <a href="{{ course.url }}">
+      <i class="fas fa-link" aria-hidden="true"></i> Website
+    </a>
+    {% endif %}
+  </span>
+
+  <time datetime="{{ course.date }}">
+    {{ course.date | date: "%b %Y" }}
+  </time>
+</div>
