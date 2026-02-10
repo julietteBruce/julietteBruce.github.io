@@ -1,12 +1,12 @@
 ---
 layout: page
-permalink: /talks/
-title: Talks
+permalink: /teaching/
+title: Teaching
 class: talks
 ---
 
 {:.hidden}
-# Talks
+# Teaching
 
 {% assign talktitles = site.data.talks | group_by:"title" %}
 {% for title in talktitles %}
