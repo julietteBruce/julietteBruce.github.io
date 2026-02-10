@@ -2,7 +2,7 @@
 layout: page
 permalink: /teaching/
 title: Teaching
-class: teaching
+class: talk
 ---
 
 {:.hidden}
