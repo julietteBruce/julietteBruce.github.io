@@ -15,7 +15,7 @@ class: talks
 
 {% assign sorted_courses = place.items | sort: "date" | reverse %}
 {% for class in sorted_sourses %}
-  {% include teaching.html talk=class %}
+  {% include teaching.html class=talk %}
 {% endfor %}
 
 {% endfor %}
