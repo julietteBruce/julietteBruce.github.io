@@ -14,6 +14,6 @@ class: talks
 ### {{ place.name }}
 {% assign sorted_place = place.items | sort: 'date' | reverse %}
 {% for class in sorted_talks  %}
-  {% include teaching.html class=class %}
+  {% include teaching.html talk=class %}
 {% endfor %}
 {% endfor %}
