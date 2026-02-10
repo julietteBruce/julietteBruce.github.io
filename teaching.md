@@ -8,7 +8,7 @@ class: talks
 {:.hidden}
 # Teaching
 
-{% assign term_order = "Spring,Summer,Fall,Winter" | split: "," %}
+{% assign term_order = "Winter,Spring,Summer,Fall" | split: "," %}
 {% assign coursePlaces = site.data.teaching | group_by: "institution" %}
 
 {% for place in coursePlaces %}
