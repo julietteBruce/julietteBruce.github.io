@@ -1,11 +1,11 @@
 ---
 layout: page
 permalink: /teaching/
-title: teacgubg
+title: teaching
 class: talks
 ---
 
-{{:.hidden}
+{:.hidden}
 # Teaching
 
 {% assign term_order = "Spring,Summer,Fall,Winter" | split: "," %}
