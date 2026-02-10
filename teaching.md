@@ -6,14 +6,14 @@ class: talks
 ---
 
 {:.hidden}
-# Talks
+# Teaching
 
 {% assign courseList = site.data.teaching | group_by:"institution" %}
-{% for group in courseList %}
+{% for course in courseList %}
 {:.talk-title}
 ### {{ group.name }}
-{% assign sorted_classes = group.items | sort: 'date' | reverse %}
-{% for item in sorted_classes %}
+{% assign sorted_classes = title.items | sort: 'date' | reverse %}
+{% for class in sorted_classes %}
   {% include class.html class=item %}
 {% endfor %}
 {% endfor %}
