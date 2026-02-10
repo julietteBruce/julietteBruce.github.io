@@ -15,17 +15,14 @@ class: talks
 {:.place-title}
 ### {{ place.name }}
 
-{% assign decorated = "" | split: "" %}
-{% for course in place.items %}
-  {% assign term_index = term_order | index_of: course.term %}
-  {% assign sort_key = course.year | times: 10 | plus: term_index %}
-  {% assign decorated = decorated | push: course | push: sort_key %}
-{% endfor %}
-
-{% assign sorted = place.items | sort: "year" | reverse %}
-
-{% for course in sorted %}
-  {% include teaching.html course=course %}
+{% assign years = place.items | map: "year" | uniq | sort | reverse %}
+{% for year in years %}
+  {% for term in term_order %}
+    {% assign courses_for_term = place.items | where: "year", year | where: "term", term %}
+    {% for course in courses_for_term %}
+      {% include teaching.html course=course %}
+    {% endfor %}
+  {% endfor %}
 {% endfor %}
 
 {% endfor %}
