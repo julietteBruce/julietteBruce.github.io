@@ -40,12 +40,12 @@
     color: $brand-color;
     padding: 6px 16px;
     border-radius: 3px;
-    border: 1px solid lighten($brand-color, 0%);
+    border: 1px solid $brand-color;
 
     &:hover {
       opacity: 1;
       text-decoration: none;
-      background-color: lighten($brand-color, 70%);
+      background-color: color.adjust($brand-color, $lightness: 70%);
     }
   }
 
@@ -201,7 +201,7 @@
 
     .button {
       font-size: 1.1em;
-      background-color: lighten($brand-color, 57%);
+      background-color: color.adjust($brand-color, $lightness: 57%);
     }
 
     .featured-projects {
