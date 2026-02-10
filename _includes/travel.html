@@ -1,26 +1,23 @@
-%- comment -%}
-  Usage:
-    {% include teaching.html course=course %}
-  Expects fields like:
-    course.course
-    course.date         (e.g. "Fall 2026", "Spring 2025", "2024")
-    course.url          (optional)
-{%- endcomment -%}
+{% assign month_start = travel.start | date: "%m" %}
+{% assign month_end = travel.end | date: "%m" %}
 
 <tr>
   <td class="date">
-    {%- if course.date and course.date != "" -%}
-      {{ course.date }}
-    {%- else -%}
+    {% if travel.start and travel.end %}
+      {% if month_start == month_end %}
+        {% if travel.start == travel.end %}
+          {{ travel.start | date: "%b %-d, '%y" }}
+        {% else %}
+          {{ travel.start | date: "%b %-d" }}–{{ travel.end | date: "%-d, '%y" }}
+        {% endif %}
+      {% else %}
+        {{ travel.start | date: "%b %-d" }}–{{ travel.end | date: "%b %-d, '%y" }}
+      {% endif %}
+    {% else %}
       in the future
-    {%- endif -%}
+    {% endif %}
   </td>
-
   <td>
-    {%- if course.url and course.url != "" -%}
-      <a href="{{ course.url }}">{{ course.course }}</a>
-    {%- else -%}
-      {{ course.course }}
-    {%- endif -%}
+    {{ travel.title }}{% if travel.where %}, {{ travel.where }}{% endif %}
   </td>
 </tr>
