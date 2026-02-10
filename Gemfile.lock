@@ -28,6 +28,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
+    faraday-retry (2.4.0)
+      faraday (~> 2.0)
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     forwardable-extended (2.6.0)
@@ -87,6 +89,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    logger (1.7.0)
     mercenary (0.4.0)
     minitest (5.24.1)
     mutex_m (0.2.0)
@@ -131,12 +134,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  faraday-retry
   jekyll
   jekyll-feed
   jekyll-github-metadata
   jekyll-mentions
   jekyll-seo-tag
   jekyll-sitemap
+  logger
 
 BUNDLED WITH
    2.5.22

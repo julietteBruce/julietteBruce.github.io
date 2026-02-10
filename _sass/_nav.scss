@@ -120,12 +120,12 @@ nav {
 
       &:hover {
         border-color: transparent;
-        background: lighten($brand-color, 55%);
+        background: color.scale($brand-color, $lightness: 69.26%);
       }
 
       &[aria-current] {
         border-color: transparent;
-        background: lighten($brand-color, 50%);
+        background: color.scale($brand-color, $lightness: 62.96%);
         border-radius: 3px;
       }
     }

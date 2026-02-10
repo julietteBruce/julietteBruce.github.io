@@ -3,6 +3,9 @@
 
 @charset "utf-8";
 
+@use "sass:color";
+@use "sass:math";
+
 // Our variables
 $base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $base-font-size:   100%;  // 16px by default
@@ -21,12 +24,12 @@ $link-color:        #00693e;
 // $link-color:        #3477ad;
 $header-background: #00693e;
 $footer-background: #00693e;
-$footer-text:       darken(#fff, 10%);
+$footer-text:       color.adjust(#fff, $lightness: -10%);
 
 $grey-color:       #6b6b6b;
 $grey-color-lightest: #f8f8f8;
-$grey-color-dark:  darken($grey-color, 15%);
-$grey-color-light:  lighten($grey-color, 15%);
+$grey-color-dark:  color.adjust($grey-color, $lightness: -15%);
+$grey-color-light:  color.adjust($grey-color, $lightness: 15%);
 
 $on-palm:          600px;
 $on-laptop:        800px;
@@ -38,6 +41,7 @@ $on-laptop:        800px;
 }
 
 // Import partials from `sass_dir` (defaults to `_sass`)
+// Using @import for now as it allows variables to be shared with partials
 @import
   "base",
   "layout",
