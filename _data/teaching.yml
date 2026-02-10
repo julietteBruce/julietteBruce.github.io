@@ -1,14 +1,13 @@
-- title: 'Math  8: Calculus'
-  location: Dartmouth College
+- course: 'Math  8: Calculus'
+  institution: Dartmouth College
   date: 2025-01-11
   url: https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/39363
 
-- title: 'Math 31: Calculus'
-  location: Dartmouth College
+- course: 'Math  31: Calculus'
+  institution: Dartmouth College
   date: 2025-01-11
-  url: https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/39363
 
-- title: 'Math  201: Calculus'
-  location: University of Wisonsin, Madison
+- course: 'Math  201: Calculus'
+  institution: University of Wisonsin, Madison
   date: 2025-01-11
   url: https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/39363
