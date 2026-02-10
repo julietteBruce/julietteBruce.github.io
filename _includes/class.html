@@ -1,0 +1,27 @@
+<div class="class">
+  {{ class.institution }}{% if class.city %}, <span class="city">{{ class.city }}</span>{% endif %}
+
+  <span class="extra-links">
+    {% if class.slides %}
+    <a href="{{ class.slides }}">
+      <i class="fas fa-window-maximize" aria-hidden="true"></i> Slides
+    </a>
+    {% endif %}
+
+    {% if class.recording %}
+    <a href="{{ class.recording }}">
+      <i class="fas fa-video" aria-hidden="true"></i> Recording
+    </a>
+    {% endif %}
+
+    {% if class.url %}
+    <a href="{{ class.url }}">
+      <i class="fas fa-link" aria-hidden="true"></i> Website
+    </a>
+    {% endif %}
+  </span>
+
+  <time datetime="{{ class.date }}">
+    {{ class.date | date: "%b %Y" }}
+  </time>
+</div>
