@@ -5,15 +5,17 @@ title: Teaching
 class: talks
 ---
 
-{:.hidden}
+{: .hidden}
 # Teaching
 
-{% assign institutions = site.data.teaching | group_by:"location" %}
+{% assign institutions = site.data.teaching | group_by: "location" %}
 {% for place in institutions %}
-{:.place-location}
-### {{ place.location }}
-{% assign sorted_talks = title.items | sort: 'date' | reverse %}
-{% for talk in sorted_talks  %}
-  {% include talk.html talk=talk %}
+{: .place-location}
+### {{ place.name }}
+
+{% assign sorted_courses = place.items | sort: "date" | reverse %}
+{% for class in sorted_sourses %}
+  {% include teaching.html talk=class %}
 {% endfor %}
+
 {% endfor %}
