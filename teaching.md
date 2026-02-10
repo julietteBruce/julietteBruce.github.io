@@ -8,7 +8,7 @@ class: talks
 {:.hidden}
 # Teaching
 
-{% assign talktitles = site.data.talks | group_by:"title" %}
+{% assign talktitles = site.data.teaching | group_by:"title" %}
 {% for title in talktitles %}
 {:.talk-title}
 ### {{ title.name }}
