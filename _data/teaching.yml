@@ -1,13 +1,19 @@
 - course: 'Math  8: Calculus'
   institution: Dartmouth College
+  term: Fall
+  year: 2025
   date: 2025-01-11
   url: https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/39363
 
 - course: 'Math  31: Calculus'
   institution: Dartmouth College
+  term: Spring
+  year: 2025
   date: 2025-01-11
 
 - course: 'Math  201: Calculus'
   institution: University of Wisonsin, Madison
+  term: Winter
+  year: 2022
   date: 2025-01-11
   url: https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/39363

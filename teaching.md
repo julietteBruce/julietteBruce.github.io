@@ -5,15 +5,27 @@ title: teacgubg
 class: talks
 ---
 
-{:.hidden}
-# Talks
+{{:.hidden}
+# Teaching
 
-{% assign coursePlacees = site.data.teaching | group_by:"institution" %}
-{% for place in coursePlacees %}
+{% assign term_order = "Spring,Summer,Fall,Winter" | split: "," %}
+{% assign coursePlaces = site.data.teaching | group_by: "institution" %}
+
+{% for place in coursePlaces %}
 {:.place-title}
 ### {{ place.name }}
-{% assign sorted_place = place.items | sort: 'date' | reverse %}
-{% for course in sorted_place  %}
-  {% include teaching.html course=couse %}
+
+{% assign decorated = "" | split: "" %}
+{% for course in place.items %}
+  {% assign term_index = term_order | index_of: course.term %}
+  {% assign sort_key = course.year | times: 10 | plus: term_index %}
+  {% assign decorated = decorated | push: course | push: sort_key %}
 {% endfor %}
+
+{% assign sorted = place.items | sort: "year" | reverse %}
+
+{% for course in sorted %}
+  {% include teaching.html course=course %}
+{% endfor %}
+
 {% endfor %}
