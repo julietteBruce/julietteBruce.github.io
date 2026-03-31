@@ -1,0 +1,160 @@
+
+%\documentclass{amsart}
+\documentclass[12pt]{amsart}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{latexsym,amsfonts,amssymb,amsthm,amsmath,amscd,stmaryrd}
+\usepackage{mathrsfs}
+\usepackage[all]{xy}  
+\usepackage{enumerate}
+\usepackage{color,tikz}
+\usepackage{multicol}
+\usepackage{empheq}
+\usepackage{comment}
+
+
+
+
+%For sets
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+
+%Letters
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\p}{\mathfrak{p}}
+
+%operators
+\newcommand{\Ring}{\textbf{Ring}}
+\newcommand{\syz}{\operatorname{syz}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Depth}{\operatorname{depth}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\renewcommand{\ker}{\operatorname{ker}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Max}{\operatorname{max}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Ass}{\operatorname{Ass}}	
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\rk}{\operatorname{rk}}	
+\newcommand{\height}{\operatorname{ht}}	
+\newcommand{\ceil}[1]{\lceil {#1} \rceil}
+\newcommand{\floor}[1]{\lfloor {#1} \rfloor}
+\newcommand{\ann}{\operatorname{ann}}
+\newcommand{\Min}{\operatorname{Min}}
+\DeclareMathOperator{\im}{im}
+\renewcommand{\dim}{\operatorname{dim}}
+\newcommand{\grade}{\operatorname{grade}}
+\newcommand{\reg}{\operatorname{reg}}
+\newcommand{\depth}{\operatorname{depth}}
+\DeclareMathOperator{\Supp}{Supp}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\renewcommand{\height}{\operatorname{ht}}
+\newcommand{\Rmod}{\operatorname{R-mod}}
+\newcommand{\pd}{\operatorname{pd}}
+
+
+%leg/geqslant
+\newcommand{\ls}{\leqslant}
+\newcommand{\gs}{\geqslant}
+
+%(co)homology
+\renewcommand{\H}{\operatorname{H}}
+%Cech
+\newcommand{\Ch}{\textrm{\v C}}
+
+
+%colors
+\newcommand{\blue}[1]{\color {blue} #1}                   
+\newcommand{\red}[1]{\color {red} #1}                   
+\newcommand{\green}[1]{\color {green} #1}  
+
+%primes
+
+
+\begin{document}
+
+	\thispagestyle{empty}\kern -2em
+\rightline{\emph{\tiny (c) Juliette Bruce 2025}}
+\kern -.5em
+\rightline{\emph{\tiny licensed under a Creative Commons}}
+\kern -.5em
+\rightline{\emph{\tiny By-NC-SA 4.0 International License.}}
+% \rightline{\includegraphics[width=.75in]{cc_notice}}
+
+\bigskip
+	
+\begin{center}
+	{\Large Worksheet 1.1: Basics of Rings}
+\end{center}
+
+
+\medskip
+
+\noindent	 Let $R$ be any ring.  In this course, ``ring" means  {\it commutative ring with unity}.
+
+\medskip
+
+	\noindent	 \hrulefill 
+	
+\begin{enumerate}
+	 \item Let $R$ be a ring and consider $R[[t]]$ the ring of formal power series with coefficients in $R$. The goal of this exercise is prove that:
+	 \[
+	 \left(R[[t]]\right)^{\times} = \left\{ u + tf(t) \;\; \big| \;\; u \in R^{\times}, \;\; f(t) \in R[[t]] \right\}.
+	 \]
+	 \begin{enumerate}[(a)]
+	 	\item Elements of $R[[t]]$ can be written as $f=\sum_{k=0}^{\infty} f_k t^k$ for $f_{k} \in R$. We call $f_0$ the constant (or lead) term of $f$. If $f=\sum_{k=0}^{\infty} f_k t^k$ and $g=\sum_{k=0}^{\infty} g_k t^k$ then find a formula for the lead term of $fg$. 
+		\item Using the formula from (a) prove that if $f$ is a unit then $f_0 \in R^{\times}$. 
+		\item Find a formula for the coefficient of $t^k$ appearing in $fg$. 
+		\item Assume that $f_0 \in R^{\times}$. Prove that $f$ is a unit by explicitly constructing an element $g \in R[[t]]$ such that $fg = 1$. (Hint: the condition that $fg = 1$ places constraints on each coefficient of $fg$. Use the constraints together with part (c) to recursively solve for the coefficients of $g$.)	\end{enumerate}
+	\ \\
+	
+	\item 
+	\begin{enumerate}[(a)]
+		\item Prove that an element $u \in R$ is a unit if and only if the principal ideal $\langle u \rangle = R$.
+		\item Prove that if $ab$ and $b$ are units, then $a$ is a unit.
+		\item Prove that if $u$ is a unit and $a \in R$, then $a$ and $ua$ generate the same principal ideal.
+		\item In the ring $\ZZ/\langle 12 \rangle$, determine which elements are units.
+	\end{enumerate}
+	\ \\
+	
+	\item Given two rings $R$ and $S$ we let $\Hom_{\Ring}(R,S)$ be the set of ring homomorphism from $R$ to $S$. When there is little room for confusion we will often drop the subscript $\Ring$ and simply write $\Hom(R,S)$. 
+	\begin{enumerate}[(a)]
+		\item Prove or disprove: If $R$ and $S$ are rings, then $\Hom(R,S)$ is a ring under point-wise multiplication and point-wise addition. 
+		\item Give an explicit description of the hom-sets below:
+		\begin{enumerate}[(i)]
+			\item $\Hom(\ZZ, \ZZ)$
+			\item $\Hom(\ZZ/\langle 2 \rangle, \ZZ)$
+			\item $\Hom(\ZZ, \ZZ/\langle 2 \rangle)$
+			\item $\Hom(\ZZ, \CC[x])$
+		\end{enumerate}
+		\item Based on part (b) state and prove a characterization of $\Hom(\ZZ,R)$ for any ring $R$. 
+	\end{enumerate}
+	\ \\
+		
+	\item Let $\phi:R \to S$ be a ring homomorphism.
+	\begin{enumerate}[(a)]
+		\item Prove that if $J \subset S$ is an ideal then $\phi^{-1}(J) \subset R$ is an ideal.
+		\item Assuming $\phi$ is injective, give a nice description of $\phi^{-1}(J)$ for an ideal $J \subset S$. 
+		\item Find a counterexample showing that if $I \subset R$ is an ideal $\phi(I)$ need not be an ideal.
+		\item Prove that if $\phi$ is surjective then $\phi(I)$ is an ideal of $S$. 
+		\item Let $I \subset R$ be an ideal. Prove that if $\ker(\phi) \subset I$ then $\phi^{-1}(\phi(I))=I$? 
+		\item Is the assumption that $\ker(\phi) \subset I$ needed in part (e)?
+	\end{enumerate}
+	
+\end{enumerate}
+\end{document}
+
+
+
+
+
