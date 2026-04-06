@@ -1,0 +1,265 @@
+ \documentclass[12pt,reqno]{amsart}
+\input{../../121preamble.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\originalurl}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/ValuationRings.pdf}
+\title{Worksheet 2.3: Valuation Rings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\thispagestyle{firstpage}
+
+Fix a field $\KK$. In this worksheet we will explore a special, but important type of rings called valuation rings. 
+\begin{definition}
+	A \emph{valuation ring} of a field $\KK$ is a subring $R \subset \KK$ with the property that for all $x \in \KK^{\times}$ either $x \in R$ or $x^{-1} \in R$. 
+\end{definition}
+
+Note that, since a valuation ring $R$ of a field $\KK$ is a subring of $\KK$ it is necessarily a domain. We first study valuation rings directly, then show how certain functions that broadly measure some notion of divisibility, called valuations, produce them. Lastly, we compare discrete and non-discrete examples.
+
+
+ \hrulefill 
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Examples of Valuation Rings.} Recall $\CC(x,y)$ is the field of formal rational functions in $x$ and $y$, which concretely is the set of elements $f/g$ where $f,g\in \CC[x,y]$ with $g\neq 0$.  For each of the following subsets $\cS \subset \CC(x,y)$ determine whether or not they are valuation rings by showing whether for every $h \in \CC(x,y)^{\times}$ either $h \in \cS$ or $h^{-1} \in \cS$.
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+    \item Hint: Use that $\CC[x,y]$ is a UFD to understand when $g$ is divisible by $y$.
+    \[
+    \cS_{1} \coloneqq \left\{ \frac{f}{g} \;\; \big| \;\; f,g \in \CC[x,y] \text{ and } g\not \in \langle y \rangle \right\}
+    \]
+
+
+    \item Hint: Consider the element $\frac{x}{y}$. 
+    \[
+    \cS_{2} \coloneqq \left\{ \frac{f}{g} \;\; \big| \;\; f,g \in \CC[x,y] \text{ and } g(0,0) \neq 0 \right\}
+    \]
+
+    \item Define the \emph{order} of a non-zero polynomial $f \in \mathbb{C}[x,y]$ to be $\ord(f)$, the lowest degree of a monomial in $f$ and $\ord(0)=\infty$. 
+    \[
+    \cS_{3} \coloneqq \left\{ \frac{f}{g} \;\; \big| \;\; f,g \in \CC[x,y], \; g\neq0, \text{ and } \ord(f) \geq \ord(g) \right\}
+    \]
+\end{enumerate}
+
+ \item \textbf{Ideals in Valuation Rings.} Let $R$ be a valuation ring of $\KK$. 
+      \begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+      \item Show that for any two non-zero elements $x, y \in R$, either $x|y$ or $y|x$.
+      \item Show that every finitely generated ideal of  $R$  is principal.
+      \item Prove that the ideals of $R$ form a totally ordered set. That is, for any two ideals $I, J$ in $R$, either $I \subseteq J$ or $J\subseteq I$. (Hint: Given $x\in I$ with $x\not\in J$ consider whether an element $y\in J$ can divide $x$.)
+      \item What does the previous parts say about the poset structure on $\Spec(R)$?
+\end{enumerate}
+
+\item \textbf{Local Rings \& Valuation Rings.} An arbitrary ring $R$ is said to be a \emph{local ring} if it has exactly one maximal ideal. We often write a local ring $R$ as a pair $(R,\fm)$ where $\fm \subset R$ is the unique maximal ideal. 
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Describe $\mSpec(R)$ if $R$ is a local ring.
+	\item Describe the closed points of $\Spec(R)$ if $R$ is a local ring. 
+	\item Prove that a valuation ring is a local ring. 
+\end{enumerate}
+
+\item \textbf{$p$-Adic Integers.} Fix a prime $p$. The \emph{$p$-adic numbers} $\mathbb{Q}_p$ are the completion of $\mathbb{Q}$ with respect to the $p$-adic absolute value $|\cdot|_p$, defined as follows: for a nonzero rational number $x$, write $x = p^k \frac{a}{b}$ where $a,b \in \mathbb{Z}$ are not divisible by $p$. Then
+\[
+|x|_p = p^{-k}, \qquad |0|_p = 0.
+\]
+Note $|\cdot|_{p}$ extends uniquely to $\QQ_{p}$. The \emph{$p$-adic integers} are defined by
+\[
+\ZZ_p = \left\{x \in \QQ_p \;\; \big| \;\;  |x|_p \leq 1\right\}.
+\]
+Similar to decimal expansion in $\RR$, it is a fact that every element $x \in \QQ_p$ can be written uniquely as a formal series
+\[
+x = \sum_{i=k}^{\infty} a_i p^i  \quad \quad \text{where} \quad \quad a_i \in \left\{0,1,\dots,p-1\right\}, \quad a_k \neq 0,
+\]
+and that
+\[
+\ZZ_p = \left\{ \sum_{i=0}^{\infty} a_i p^i \;\; \big| \;\; a_i \in \{0,1,\dots,p-1\} \right\}.
+\]
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+   \item Prove that the $p$-adic absolute value is well-defined. (Hint: Use the fact that $\ZZ$ is a UFD to show that every element $x\in \QQ$ can be written uniquely (up to sign and reordering) as  $p_1^{a_1}\dots p_t^{a_t}$ where the $p_i$ are distinct primes and $a_i \in \mathbb Z$.)
+    \item\label{ex-pt:padic-add} Prove the $p$-adic absolute value satisfies the \emph{non-Archimedean (ultrametric) inequality}:
+    \[
+    |x+y|_p \leq \max\left\{|x|_p, |y|_p\right \}.
+    \]
+    
+    \item\label{ex-pt:padic-mlt}  Prove the $p$-adic absolute value is multiplicative: $|xy|_{p} = |x|_{p}|y|_{p}$.
+    
+    \item Use parts \ref{ex-pt:padic-add} and \ref{ex-pt:padic-mlt} to show that $\ZZ_p$ is closed under addition and multiplication.
+    
+    \item Conclude that $\ZZ_p$ is a ring (called the ring of $p$-adic integers).
+    
+    \item Prove that $\ZZ_{p}$ is a valuation ring. 
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+The previous exercises suggest why valuation rings are called \emph{valuation} rings: they arise from functions that measure divisibility, generalizing the $p$-adic absolute value. Such functions are called valuations. An \emph{ordered abelian group} is an abelian group $(\Gamma,+)$ together with a total order $<$ on $\Gamma$ that is compatible with addition, in the sense that if $\alpha<\beta$ then  $\alpha+\gamma<\beta+\gamma$ for all $\alpha,\beta,\gamma \in \Gamma$.   We will frequently extend the total ordering on an ordered abelian group $\Gamma$ to $\Gamma \cup \{\infty\}$ by making the convention that $\gamma < \infty$ for all $\gamma \in \Gamma$. Similarly, we will extend addition to $\Gamma\cup\{\infty\}$ by declaring $\infty + \gamma = \gamma + \infty = \infty$ for all $\gamma \in \Gamma$.
+
+\begin{definition}
+Let $(\Gamma,+,<)$ be an ordered abelian group. A  \emph{$\Gamma$-valued valuation}, or just a \emph{valuation}, on $\KK$ is a function: $\nu:\KK \to \Gamma\cup\{\infty\}$, which satisfies the following axioms for all $x,y\in \KK$:
+\begin{enumerate}[(i)]
+\item $\nu(xy) = \nu(x) + \nu(y)$
+\item $\nu(x + y) \geq \min\left\{ \nu(x), \nu(y)\right\}$, and
+\item $\nu(x) = \infty$ if and only if $x=0$.
+\end{enumerate}
+\end{definition}
+
+Note that this means $\nu$ defines a group homomorphism $\nu:\KK^{\times} \to \Gamma$. Indeed, it is standard to define a valuation as a group homomorphism $\nu: \KK^{\times} \to \Gamma$ satisfying axiom (ii), and then extend it to all of $\KK$ by setting $\nu(0)=\infty$. This convention is implicit throughout the remainder of the worksheet. 
+
+The \emph{value group} of a valuation $\nu:\KK^{\times} \to \Gamma$ is the image of $\nu$. A valuation is a \emph{discrete valuation} if its value group is isomorphic to $\ZZ$. If $\FF \subset \KK$ is a subfield, we say that $\nu$ is a $\FF$-valuation if $\nu(\lambda) = 0 $ for all $\lambda \in \FF^{\times}$.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*]
+  \setcounter{enumi}{4}
+
+\item \textbf{Examples of Valuations.} Prove that the following are valuations.
+	\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item The $p$-adic valuation:
+	\[
+	\nu_p:\QQ^\times \to \ZZ,
+	\qquad
+	\nu_p\!\left(p^k\frac{a}{b}\right)=k
+	\]
+	where $a,b\in \ZZ$ are not divisible by $p$.
+	
+	\item The order valuation on $\CC(x)$:
+	\[
+	\nu_0:\CC(x)^\times \to \ZZ,
+	\qquad
+	\nu_0(f/g)=\ord_{x=0}(f)-\ord_{x=0}(g).
+	\]
+	
+	\item More generally, if $a\in \CC$, define
+	\[
+	\nu_a:\CC(x)^\times \to \ZZ
+	\]
+	by order of vanishing at $x=a$. Show this is again a valuation.
+	
+	\item On $\CC(x,y)$, define
+	\[
+	\nu(f/g)=\operatorname{ord}(f)-\operatorname{ord}(g),
+	\]
+	where $\operatorname{ord}(h)$ is the degree of the lowest-degree nonzero term of $h\in \CC[x,y]$. Show that this is a valuation with value group $\ZZ$.
+	\end{enumerate}
+	
+\item Prove that every ordered abelian group is torsion-free. (Hint: Reduce to the case when $x>0$.)
+
+\item \textbf{Basic Properties of Valuations.} Let $\nu:\KK^{\times} \to \Gamma$ be an arbitrary valuation. Fix $f,g \in \KK^{\times}$.
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Show that $\nu(f^{-1}) = -\nu(f)$.
+	\item\label{ex-pt:val-sum} Show that if $\nu(g) < \nu(f)$, then $\nu(f+g) = \nu(g).$ (Hint: Use that $(f+g) + (-f) = g$.)
+	\item Show that  $\nu(f) = \nu (-f)$. (Hint: Use part \ref{ex-pt:val-sum}.)
+\end{enumerate}
+
+
+ \item Consider the field $ \CC(x, y)$. Throughout this question $\pi$ refers to the number $\pi=3.1415926...$.
+     \begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+      \item\label{ex-pt:val-exm1} Show that there is a unique $\CC$-valuation $\nu_{\pi}:\CC(x,y)^{\times} \to (\RR,+)$  such that 
+      \[
+      \nu_{\pi}\left(x^ay^b\right) = a + \pi b.
+      \]
+      What is the value group of $\nu_{\pi}$? (Hint: Use Question 3.) 
+      \item\label{ex-pt:val-exm2} Consider the group $\Gamma = \ZZ\oplus\ZZ$ ordered by the lexicographical ordering. Show that there exists a unique $\CC$-valuation $\nu:\CC(x,y)^{\times} \to \Gamma$ such that $\nu(x^ay^b)=(a,b)$. 
+      \item Are either of these valuations constructed in parts \ref{ex-pt:val-exm1} or \ref{ex-pt:val-exm2} discrete?
+      \end{enumerate}
+        
+ 
+ \item \textbf{Valuations Determine Valuation Rings.}  Let $\nu$ be an arbitrary valuation on $\KK$. 
+	\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+		\item Prove that the set $R \subset \KK$ of elements $f\in \KK$ with $\nu(f) \geq 0$ is a valuation ring of $\KK$. We call this the \emph{valuation ring} of $\nu$. (Hint: Remember our convention about $\nu(0)$.)
+		\item Show that the following is an ideal of $R$:
+		\[
+		\fm \coloneqq \left\{ f \in \KK \;\; \big| \;\; 0 < \nu(f) \right\}.
+		\]
+		\item Prove that if $f \in R$ and $f \not \in \fm$ then $f$ is a unit.
+		\item Combine the previous parts to deduce $\fm$ is the unique maximal ideal of $R$. 
+		\item Fix an element $\gamma \in \Gamma$. Prove the sets below are ideals of $R$:
+		\[
+		\left\{ f \in R \;\; \big|\;\; \nu(f) > \gamma \right\} \quad \text{and} \quad \left\{ f \in R \;\; \big|\;\; \nu(f) \geq \gamma \right\}.
+		\]
+	\end{enumerate}
+ 
+\item \textbf{Discrete Valuation Rings.} Let $\nu:\KK^{\times} \to \ZZ$ be a discrete valuation on $\KK$. Let $(R,\fm)$ be the corresponding \emph{discrete valuation ring}. 
+ \begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Let $I \subset R$ be any non-zero ideal, explain why we can choose an element $f \in I $ such that $\nu(f)$ is minimal among elements in $I$.
+	\item\label{ex-pt:dvr-pid}  Prove that every ideal in $R$ is principal. In particular, a discrete valuation ring is a PID. 
+	\item By part \ref{ex-pt:dvr-pid} there exists an element $t\in R$ such that $\langle t \rangle = \fm$. Show that every ideal of $R$ is either $0$ or of the form $\langle t^{n} \rangle$ for some $n\geq0$. 
+\end{enumerate}
+
+\item Consider the valuation $\nu_{\pi}$ on $\CC(x,y)$ constructed in Question~\ref{ex-pt:val-exm1}. Let $(R,\fm)$ be the corresponding valuation ring for $\nu_{\pi}$.
+ \begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+ 	\item For a real number $x \in \RR_{\geq 0}$ let $\{x\}\coloneqq x - \lfloor x \rfloor$ denote its fractional part. Fix a positive integer $N$ and consider the sequence consisting of the fractional parts of the first $N+1$ multiples of $\pi$: $\{0\}, \{\pi\}, \{2\pi\},\ldots,\{N\pi\} \in [0,1)$. Divide the interval $[0,1)$ into $N$ evenly spaced subintervals: 
+	\[
+	\left[0, 1\right) = \left[0,\frac{1}{N}\right) \cup \left[\frac{1}{N},\frac{2}{N}\right)\cup \cdots \cup \left[\frac{N-1}{N},1\right).
+	\] 
+	Prove there exist integers $0\leq k,j\leq N$ such that $\{k\pi\}$ and $\{j\pi\}$ lie in the same subinterval. Deduce that for any positive integer $N$ there exist integers $0\leq k,j\leq N$ such that $|\{k\pi\} - \{j\pi\}| \leq \frac{1}{N}$. (Hint: Think about pigeons.)
+	\item Using that $\pi$ is irrational show that $\{j\pi\}\neq \{k\pi\}$ whenever $j\neq k$. 
+ 	\item\label{ex-pt:ZplusPiZ-dense} Prove for every real number $\epsilon>0$, there exist integers $a,b\in \ZZ$ such that $0 < a+b\pi < \epsilon$. 
+	\item Prove that $\fm$ is not finitely generated. (Hint: Use part \ref{ex-pt:ZplusPiZ-dense}.)
+	\item Prove that $\fm$ is the only non-zero radical ideal of $R$. (Hint: If $I \subset R$ is a non-zero radical ideal, let $f \in I$ be non-zero. For an arbitrary element $h \in \fm$ show that $h^{n} \in \langle f \rangle$ for $n \gg0$.)
+	\item Describe $\Spec(V)$. 
+\end{enumerate}
+ 
+ \item Consider the valuation $\nu$ on $\CC(x,y)$ constructed in Question~\ref{ex-pt:val-exm2}. Let $(R,\fm)$ be the corresponding valuation ring for $\nu$.
+  \begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+ 	\item Show that the maximal ideal of $R$ is
+	\[
+	\fm = \left\{f \in \CC(x,y) \;\; \big| \;\; \nu(f) \geq  (0, 1)\right\} = \langle y \rangle.
+	\]
+ 	\item Show that the ideal  $\langle x\rangle \subset R$ is not prime. (Hint: $x = xy^{-1}\cdot y$.)
+	\item Show that the set below is a prime, non-maximal ideal of $R$:
+	\[
+	P \coloneqq \left \{ f \in R \;\; \big | \;\; \nu(f) = (a,b) \text{ where } a \geq 1 \right\}\cup\{0\}.
+	\] 
+ 	\item Use the valuation to construct an infinite strictly ascending chain of ideals in $R$:
+	\[
+	\left\langle xy^{-1} \right\rangle \subset \left\langle xy^{-2} \right\rangle \subset \left\langle xy^{-3}  \right\rangle \subset \cdots.
+	\]
+	Explain why all inclusions are strict.
+  \end{enumerate}
+
+     
+\item \textbf{Valuation Rings Determine Valuations.}
+Let $R$ be a valuation ring of $\KK$ with $R \neq \KK$. This problem shows how to recover a valuation from the divisibility structure of $R$.
+
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Let $\Gamma'$ be the set of nonzero principal ideals of $R$:
+	\[
+	\Gamma' = \left\{\langle a\rangle \subset R \;\; \big|\;\; a \in R,\ a \neq 0\right\}.
+	\]
+	Define a multiplication on $\Gamma'$ by ideal multiplication: $\langle a\rangle \cdot \langle b\rangle = \langle ab\rangle$.
+	\begin{enumerate}
+		\item Show that this operation is well-defined and makes $\Gamma'$ into an abelian monoid (associative, commutative, binary operation with an identity element).
+		\item Show that $\Gamma'$ is totally ordered by inclusion: for distinct elements $\langle a\rangle,\langle b\rangle \in \Gamma'$, either $\langle a\rangle \subseteq \langle b\rangle$ or $\langle b\rangle \subseteq \langle a\rangle$.
+		\end{enumerate}
+
+	\item Define an equivalence relation $\sim$ on $\KK^\times$ by $x \sim y$ if and only if $x=uy$ for some unit $u \in R^{\times}$. Let $\Gamma = \KK^\times / \sim$ denote the set of equivalence classes. Given $x\in \KK^{\times}$ write $[x]$ its equivalence class in $\Gamma$.
+	\begin{enumerate}
+		\item Show that $\sim$ is a well-defined equivalence relation.
+		\item Show that multiplication in $\KK^\times$ induces a well-defined operation on $\Gamma$, making it into an abelian group.
+		\item Define $[x] \leq [y]$ if and only if $yx^{-1} \in R$. Show this is a well-defined total order on $\Gamma$.
+		\item Deduce that $\Gamma$ is an ordered abelian group.
+		\item Show that the map $\Gamma' \to \Gamma$ given by $\langle a \rangle \mapsto [a]$ is an order-preserving embedding whose image consists exactly of the elements $\ge [1]$.
+	\end{enumerate}
+	
+	\item Define $\nu:\KK^{\times} \to \Gamma$ by $\nu(x) = [x]$. Prove that $\nu$ is a valuation on $\KK$ with value group $\Gamma$ and 
+	\[
+	R = \left\{ x \in \KK \;\; \big| \;\; \nu(x) \geq [1] \right\}.
+	\]
+	Moreover, $\nu(x) \in \Gamma'$ if and only if $x \in R$. 
+	\end{enumerate}
+  
+\end{enumerate}
+
+\end{document}
+
+
+
+
+

@@ -1,0 +1,170 @@
+ \documentclass[12pt,reqno]{amsart}
+\input{../../121preamble.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Worksheet 1.3: Gr\"{o}bner Bases Pt. I}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\thispagestyle{firstpageIP}
+
+ \textbf{Polynomial Division.} Recall the following classical theorem: 
+
+\begin{theorem}\label{thm:division-alg}
+Let $g \in \KK[x]$ be a non-zero polynomial. Every polynomial $f\in \KK[x]$ can be written uniquely as $f=qg+r$ where $q,r \in \KK[x]$, and either $r=0$ or $\deg(r) < \deg(g)$. 
+\end{theorem}
+
+While this theorem might seem innocuous when first learned as a teenager, it turns out to be very powerful when studying ideals and polynomials in $\KK[x]$. The proof of this theorem also provides an algorithm for computing $q$ and $r$, which when presented in pseudocode looks something like
+
+\begin{algorithm}
+\caption{Division Algorithm}
+\begin{algorithmic}
+\Require $g, f$
+\Ensure $q, r$
+\State $q \gets 0$; $r \gets f$
+\While{$r \neq 0$ \textbf{and} $\LT(g)$ divides $\LT(r)$}
+    \State $q \gets q + \LT(r)/\LT(g)$
+    \State $r \gets r - (\LT(r)/\LT(g))g$
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+The goal of this worksheet is to begin exploring how we might extend this theorem to polynomial rings in more variables. Along the way we will see how these explorations will lead to both computational tools for studying the commutative algebra of polynomial rings over fields, but also gives us useful tools for proving theorems in this setting as well. 
+
+\hrulefill
+
+
+\begin{enumerate}[leftmargin=*]
+\item Use Theorem~\ref{thm:division-alg} to prove the following:
+\begin{enumerate}[(a)]
+	\item If $f\in \KK[x]$ is a non-zero polynomial then $f$ has at most $\deg(f)$ roots in $\KK$.
+	\item If $g\in \KK[x]$ is a non-zero polynomial then $f \in \langle g \rangle$ if and only if $r=0$. 
+\end{enumerate}
+
+\item Implement the algorithm above in Macaulay2, and use your code to compute $q$ and $r$ for the following polynomials. (If you want to test your code versus the built-in functions use \verb|time f//g| and \verb|time f%g| to compute $q$ and $r$ respectively and time the computation.)
+\begin{multicols}{2}
+\begin{enumerate}[(a)]
+	\item $f = x^3 + x + 1$, \quad $g = x + 1$.
+	\item $f = x^5 - 1$, \quad $g = x - 1$.
+	\item $f = x^2 + 1$, \quad $g = x^3 + x$.
+	\item $f = x^{100} - 1$, \quad $g = x^2 - 1$.
+	\item $f = x^{1000} - 1$, \quad $g = x - 1$.
+	\item $f = \sum_{i=0}^{500} x^i$, \quad $g = x^2 + x + 1$.
+\end{enumerate}
+\end{multicols}
+\end{enumerate}
+
+\hrulefill 
+
+The computations in Question~(2) are deliberately familiar: in one variable division works because there is a canonical notion of ``largest term,'' namely highest degree. In several variables there is no such natural choice. To imitate the division algorithm we must first choose an ordering on monomials, and the next questions explain exactly what properties that ordering must satisfy.
+
+\begin{definition}
+A monomial ordering on $\KK[x_1,\ldots,x_n]$ is a relation $<$ on $\ZZ^{n}_{\geq0}$ satisfying the following:
+\begin{enumerate}[(i)]
+\item $<$ is a total ordering on $\ZZ^{n}_{\geq0}$,
+\item if $\alpha < \beta$ and $\gamma \in \ZZ^{n}_{\geq0}$ then $\alpha+\gamma < \beta + \gamma$, and
+\item $<$ is a well-ordering on $\ZZ^{n}_{\geq0}$.
+\end{enumerate}
+\end{definition}
+
+Recall that a \emph{total ordering} means that of any two elements $\alpha,\beta \in \ZZ^{n}_{\geq0}$ exactly one of the following statements is true: $\alpha < \beta$, $\alpha = \beta$, or $\beta < \alpha$. That $<$ is a well-ordering on $\ZZ^{n}_{\geq0}$  means that every non-empty subset of $\ZZ^{n}_{\geq0}$ has a smallest element with respect to $<$.
+
+Once a monomial ordering has been fixed, every non-zero polynomial acquires a distinguished piece of data: its leading monomial, leading coefficient, and leading term. These are the ingredients that drive the multivariable division process just as degree and leading coefficient drive ordinary polynomial division.
+
+
+\hrulefill 
+
+\begin{enumerate}[leftmargin=*]
+\setcounter{enumi}{2}
+
+\item Prove that a monomial ordering $<$ on $\ZZ^{n}_{\geq0}$ is equivalent to a relation $<$ on the set of monomials in $\KK[x_1,\ldots,x_n]$ satisfying analogous conditions to (i), (ii), and (iii) above. Explain why this justifies the moniker ``monomial ordering''.
+
+\item Prove or disprove that the following are monomial orderings:
+\begin{enumerate}[(a)]
+	\item Lexicographic (Lex) Order: Given $\alpha=(\alpha_1,\ldots,\alpha_n)$ and $\beta=(\beta_1,\ldots,\beta_n)$ in $\ZZ^{n}_{\geq0}$ we say  $\beta <_{\lex} \alpha$ if and only if the left-most non-zero entry of $\alpha-\beta$ is positive.
+	\item Graded Lex Order: With $\alpha$ and $\beta$ as in (a) we say that $\beta <_{\grlex} \alpha$ if and only if
+	\[
+	|\beta| \coloneqq \sum_{i=1}^{n} \beta_i < |\alpha| = \sum_{i=1}^{n} \alpha_{i} \quad \quad \text{or} \quad \quad |\beta| = |\alpha| \text{ and } \beta <_{\lex} \alpha.
+	\]
+	\item Reverse Lex (RevLex) Order: With $\alpha$ and $\beta$ as in (a) we say that $\beta <_{\revlex} \alpha$ if and only if the right-most non-zero entry of $\alpha-\beta$ is negative.
+	\item Graded RevLex Order: With $\alpha$ and $\beta$ as in (a) we say that $\beta <_{\grevlex} \alpha$ if and only if
+	\[
+	|\beta| \coloneqq \sum_{i=1}^{n} \beta_i < |\alpha| = \sum_{i=1}^{n} \alpha_{i} \quad \quad \text{or} \quad \quad |\beta| = |\alpha| \text{ and } \beta <_{\revlex} \alpha.
+	\]
+	\item Weight Order: Fix a vector $w=(w_1,\ldots,w_n) \in \ZZ^{n}$. With $\alpha$ and $\beta$ as in (a) say $\beta <_{w} \alpha$ if and only if
+	\[
+	\beta\cdot w = \sum_{i=1}^{n}\beta_i w_i< \alpha \cdot w = \sum_{i=1}^{n} \alpha_i w_i
+	\]
+\end{enumerate}
+\end{enumerate}
+
+
+\begin{enumerate}[leftmargin=*]
+\setcounter{enumi}{4}
+
+\item  \textbf{Leading Terms.} Fix a monomial ordering $<$ on $\ZZ_{\geq 0}^n$, and use the corresponding ordering on monomials in $\KK[x_1,\ldots,x_n]$.
+ Let $f=\sum_{\alpha} c_\alpha x^\alpha \in \KK[x_1,\ldots,x_n]$ be a non-zero polynomial. Define the \emph{leading monomial} $\LM(f)$, \emph{leading coefficient} $\LC(f)$, and \emph{leading term} $\LT(f)$ with respect to the fixed monomial ordering.
+\begin{enumerate}[(a)]
+    \item Compute $\LM(f)$, $\LC(f)$, and $\LT(f)$ for
+    \[
+    f=x^3+3x^2y+5xy^3-7z^2 \in \KK[x,y,z]
+    \]
+    with respect to Lex, Graded Lex, and Graded RevLex orderings (assume $x>y>z$).
+    
+    \item\label{ex-pt:leading-terms} Prove that if $f,g\in \KK[x_1,\ldots,x_n]$ are non-zero, then
+    \[
+    \LM(fg)=\LM(f)\LM(g)
+    \qquad\text{and}\qquad
+    \LT(fg)=\LT(f)\LT(g).
+    \]
+    
+    \item Explain which property of a monomial ordering is used in part \ref{ex-pt:leading-terms}.
+\end{enumerate}
+
+\item Let $G=(g_1,\ldots,g_s)$ be an ordered list of non-zero polynomials in $\KK[x_1,\ldots,x_n]$.
+\begin{enumerate}[(a)]
+    \item Write pseudocode for a division algorithm which takes as input $f$ and $G$ and returns polynomials $q_1,\ldots,q_s,r$ such that $f=q_1g_1+\cdots+q_sg_s+r$, where no monomial appearing in $r$ is divisible by any of the monomials $\LM(g_1),\ldots,\LM(g_s)$.
+    
+    \item In the algorithm above, what should happen if the leading monomial of the current polynomial is not divisible by any $\LM(g_i)$?
+    
+    \item Prove that your algorithm terminates. What plays the role of ``degree'' in the proof of termination?
+\end{enumerate}
+
+\item\label{ex:need-for-gb} Work in $\KK[x,y]$ with Lex order and $x>y$. Let $=xy^2-x, \; g_1=xy-1,$ and $g_2=y^2-1$.
+%\[
+%f=xy^2-x,\qquad g_1=xy-1,\qquad g_2=y^2-1.
+%\]
+\begin{enumerate}[(a)]
+    \item Divide $f$ by the ordered list $(g_1,g_2)$.
+    
+    \item Divide $f$ by the ordered list $(g_2,g_1)$.
+    
+    \item Show directly that $f\in \langle g_1,g_2\rangle$.
+    
+    \item What do your computations show about division in several variables? In particular, is the remainder uniquely determined by the ideal $\langle g_1,g_2\rangle$?
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+Question~\ref{ex:need-for-gb} shows the central obstacle in several variables: ordinary division is no longer canonical, so ideal membership cannot be read off from a unique remainder. In several variables, a zero remainder of $f$ divided by $g_1,\ldots,g_s$ implies that $f \in \langle g_1,\ldots,g_s\rangle$, but a non-zero remainder does not rule out ideal membership. Fixing this will led to the theory of Gr\"obner bases, which we shall see later in the course. 
+
+\hrulefill
+
+\end{document}
+
+
+
+
+

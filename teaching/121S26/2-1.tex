@@ -1,0 +1,188 @@
+ \documentclass[12pt,reqno]{amsart}
+\input{../../121preamble.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\originalurl}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/SpectrumWorksheet.pdf}
+\title{Worksheet 2.1: The Zariski Topology Pt. I}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\thispagestyle{firstpage}
+
+Throughout this course, "ring" means  \textit{commutative} ring with unity.
+ 
+ \hrulefill 
+
+\begin{enumerate}[leftmargin=*]
+\item Recall that the spectrum and maximal spectrum of a ring $R$ are the sets:
+\[
+\Spec(R) \coloneqq\left\{ P \subset R \;\; \big|\;\; \text{$P$ is a prime ideal}\right\}  \quad \text{and}  \quad
+\mSpec(R) \coloneqq\left\{ P \subset R \;\; \big|\;\; \text{$P$ is a maximal ideal}\right\} 
+\]
+Given any subset $\cS \subset R$ define 
+\[
+\VV(\cS) \coloneqq \left\{P \in \Spec(R) \;\; \big| \;\; \cS \subset P\right \}.
+\]
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Describe $\Spec(\KK)$ and $\mSpec(\KK)$ when $\KK$ is a field. 
+	\item Describe both $\Spec(\KK[x]/\langle x^{3}\rangle)$ and $\mSpec(\KK[x]/\langle x^{3}\rangle)$ when $\KK$ is a field. 
+	\item For an arbitrary ring $R$, compute $\VV(\{0\})$ and $\VV(\{1\})$. 
+	\item Explain the natural poset structure on $\Spec(R)$. Describe the poset for $\Spec(\ZZ)$. 
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+A \emph{topological space} is a set $X$ together with a collection of subsets $\tau$, which satisfies the following conditions: i) $\varnothing \in \tau$ and $X \in \tau$, ii) $\tau$ is closed under arbitrary unions, and iii) $\tau$ is closed under finite intersections. We call $\tau$ a \emph{topology} on $X$, the elements of $\tau$ the open subsets of $X$, and a subset $Z \subset X$ is closed if and only if $X\setminus Z$ is open (i.e., $X \setminus Z \in \tau$). If $S \subset X$ is a subset, the \emph{subspace topology} on $S$ is the topology where the open sets of $S$ are all sets of the form $S \cap U \subset S$ where $U \subset X$ is open in $X$. A map $f: X \to Y$ of topological spaces is \emph{continuous} if and only if $f^{-1}(U) \subset X$ is open for all open subsets $U \subset Y$, i.e., the preimage of an open set is open. 
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*]
+ \setcounter{enumi}{1}
+\item \textbf{The Zariski Topology.} We will now place a topology on the set $\Spec(R)$,  called the Zariski topology after Oscar Zariski. 
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Prove that if  $\cS, \cT \subset R$ are arbitrary sets then $\VV(\cS) \cap \VV(\cT) = \VV(\cS \cup \cT)$. Explain why your argument extends to an \emph{arbitrary} intersection. 
+	\item Prove that if  $\cS, \cT \subset R$ are arbitrary sets then $\VV(\cS) \cup \VV(\cT) = \VV(\cS \cdot \cT)$ where 
+\[
+\cS \cdot \cT \coloneqq \{ st \;\; |\;\; s \in \cS,\; t \in \cT\}.
+\]
+	\item Prove that the sets of the form $\VV(\cS)$ are the closed sets of a topology on $\Spec(R)$. We call this topology the Zariski topology on $\Spec(R)$. (Hint: Rephrase the definition of a topology in terms of closed sets instead of open sets.) 
+	\item Take a break and Google Oscar Zariski and read about his life. 
+\end{enumerate}
+
+\item Describe the closed subsets of $\mSpec(R) \subset \Spec(R)$ in the subspace topology.
+
+\item Let $\KK$ be an algebraically closed field. This exercise will describe the Zariski topology on $\Spec(\KK[x])$. 
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Describe the points of $\Spec(\KK[x])$. (Hint: There are two types.)
+	\item Prove that if $\cS \subset \KK[x]$ then $\VV(\cS) = \VV(\{f\})$ where $f$ is the greatest common divisor of all elements of $\cS$. 
+	\item Show that the subspace topology on $\mSpec(\KK[x])$ is the finite complement topology. (Recall the \emph{finite complement topology} on a set $X$ is defined by letting the open sets be the empty set and sets of the form $X \setminus T$ for $T \subset X$ a subset of finite cardinality.)
+\end{enumerate}
+
+\item \textbf{Dense Points.} If $X$ is a topological space we say that a set $S \subset X$ is \emph{dense} if $U\cap S \neq \varnothing$ for every non-empty open subset $U \subset X$. 
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Let $p$ be a point in a topological space $X$. Prove that  $\{p\}$ is a dense subset of $X$ if and only if the smallest closed subset which contains $\{p\}$ is $X$. We call such points \emph{dense points} of $X$. (Note: no point in $\RR^n$ or $\CC^n$ with the Euclidean topology is dense in this sense.)
+	\item Given a prime ideal $P \subset R$ we will frequently write $[P]$ to denote the corresponding point in $\Spec(R)$. Prove that a point $[P] \in \Spec(R)$ is dense if and only if $\VV(P) = \Spec(R)$.
+	\item\label{ex-pt:dense-points-exm} Characterize all of the dense points in the following: 
+		\begin{multicols}{2}
+		\begin{enumerate}[(i)]
+			\item $\Spec(\KK[x])$
+			\item $\Spec(\ZZ)$
+			\item $\Spec(\ZZ[t])$
+			\item $\Spec(\KK[x]/\langle x^{2}\rangle)$
+			\item $\Spec(\KK[x,y])$
+			\item $\Spec(\ZZ/\langle 6\rangle)$.
+			\item $\Spec(\ZZ/\langle 4\rangle)$.
+			\item $\Spec(\ZZ/\langle 12\rangle)$.
+		\end{enumerate}
+		\end{multicols}
+	\item Prove that if $R$ is a domain then $\Spec(R)$ has a unique dense point. 
+	\item Repeat part \ref{ex-pt:dense-points-exm} replacing $\Spec$ with $\mSpec$ in the subspace topology. Can $\mSpec(R)$ ever have a dense point?
+	\item Consider the following two properties (which together are implied by the Hausdorff condition) for a topological space $X$: i) for every $p \in X$ the set $\{p\}$ is closed and ii) given two distinct points $p,q\in X$ there exist open subsets $U,V \subset X$ such that $p \in U$ and $q \in V$ and $U\cap V = \varnothing$. Prove that if $X$ is a topological space with a dense point, and $X$ is not a single point, then $X$ fails both parts of this definition. 
+	\end{enumerate}
+
+\item Let $\cS \subset R$ be any subset. Prove that $\VV(\cS) = \VV(\langle \cS \rangle)$ where $\langle \cS \rangle$ denotes the ideal generated by $\cS$. 
+
+\item In this exercise we wish to understand the Zariski topology on $\Spec(\CC[x,y])$. Fix a point $p=(a,b) \in \CC^{2}$.
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Use the \emph{evaluation-at-$p$} map: $\ev: \CC[x,y] \to \CC$ to prove that the set of polynomial functions vanishing at $p$ is a maximal ideal $\fm_{p} \subset \CC[x,y]$. 
+	\item Find generators for the ideal $\fm_{p}$. Is this ideal principal?
+	\item\label{ex-pt:specCxy-eta-map} Prove that the following map is injective:
+	\[
+	\begin{tikzcd}[row sep = .5em, column sep = 3.5em]
+	\CC^{2} \arrow[r,"\eta"] & \Spec(\CC[x,y]) \\
+	p \arrow[r,mapsto] & \fm_{p}
+	\end{tikzcd}.
+	\]
+	\item Show that the map $\eta$ from part \ref{ex-pt:specCxy-eta-map} is not surjective by finding at least two distinct points in $\Spec(\CC[x,y])$ not in the image of $\eta$. 
+	\item Describe the closed subsets of $\Spec(\CC[x,y])$. (Hint: They come in four types)
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+A function $f: X \to Y$ of topological spaces is \emph{continuous} if and only if $f^{-1}(U) \subset X$ is open for all open subsets $U \subset Y$, i.e., the preimage of an open is open. A \emph{homeomorphism} $f: X \to Y$ is a continuous map of topological spaces with a continuous inverse $f^{-1}:Y \to X$. A useful fact is that a continuous map $f:X \to Y$ is a homeomorphism if and only if it is bijective and $f(U) \subset Y$ is open for every open subsets $U \subset X$. 
+ 
+\hrulefill
+
+\begin{enumerate}[leftmargin=*]
+ \setcounter{enumi}{7}
+\item\label{ex:ring-maps-spec-maps} \textbf{Ring Maps Induce Continuous Maps.} Let $\phi:R \to S$ be a ring homomorphism. The goal of this exercise is to show $\phi$ induces a map $\phi^{\#}:\Spec(S) \to \Spec(R)$, which is continuous in the Zariski topology.
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	 \item Prove that if $[P] \in \Spec(S)$, then $[\phi^{-1}(P)] \in  \Spec(R)$.
+	 \item Prove that the map below is continuous in the Zariski topology:
+	 \[
+	 \begin{tikzcd}[row sep = .5em, column sep = 3.5em]
+	 \Spec(S) \arrow[r,"\phi^{\#}"] & \Spec(R) \\
+	 \left[P\right] \arrow[r,mapsto] & \left[ \phi^{-1}(P)\right]
+	 \end{tikzcd}
+	 \]
+	 \item For the ring map $\mathbb Z \rightarrow \mathbb Z/2\mathbb Z$ sending each integer to its residue class modulo 2, describe the induced map on spectra explicitly.
+	 \item For the ring map $\mathbb Z \hookrightarrow \mathbb Q$, describe the induced map on spectra explicitly.
+	 \item If $\phi: R \hookrightarrow S$ is an injective ring map, give a simple description of the induced map on spectra. 
+  \end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+A \emph{category} is a collection of objects together with, for each pair of objects, a set of morphisms between them, equipped with an associative composition law and an identity morphism for each object. A \emph{functor} between categories $\textbf{C}$ and $\textbf{D}$ is a mapping that assigns to each object of $\textbf{C}$ an object of $\textbf{D}$ and to each morphism in $\textbf{C}$ a morphism in $\textbf{D}$, preserving identity morphisms and composition. A functor is \emph{contravariant} if it reverses the order of composition and \emph{covariant} if it preserves the order of composition.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*]
+ \setcounter{enumi}{8}
+\item \textbf{Spec as a Functor.} In this problem we package together much of this worksheet to define the $\Spec$ functor. Consider the map:
+\[
+\begin{tikzcd}[row sep  = .5em, column sep = 3.5em]
+\comRing \arrow[r] & \Top \\
+R \arrow[r, mapsto] & \Spec(R)
+\end{tikzcd}
+\]
+from the category of commutative rings with unit with ring homomorphisms to the category of topological spaces with continuous maps. 
+ \begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	 \item Explain using Question~\ref{ex:ring-maps-spec-maps} how this mapping defines a contravariant functor from $\comRing$ to $\Top$. To check functoriality, verify 
+	 \[
+	 \left(\Id_{R}\right)^{\#} = \Id_{\Spec(R)} \quad \quad \text{and} \quad \quad \left(\psi \circ \phi\right)^{\#} = \phi^{\#} \circ \psi^{\#}
+	 \]
+	 for ring maps $\phi:R\to S$ and $\psi:S\to T$.   We call this the $\Spec$ functor.
+	 \item Do isomorphic rings have Spectra that are homeomorphic topological spaces? Explain.
+	 \item If two rings have homeomorphic spectra, are they necessarily isomorphic rings? Explain.
+\end{enumerate}
+
+\item Find a homeomorphism between  $\Spec(\CC[x])$ and  $\Spec(\CC[x,y] /\langle x-y \rangle).$ Construct the corresponding ring map explicitly in \textit{Macaulay2} and compute its kernel.
+
+\item \textbf{Closed Embeddings I.}  Let $I \subset R$ be an ideal and $\pi: R \to R/I$ the natural quotient map. Consider the induced map on spectra
+\[
+\begin{tikzcd}[row sep = .5em, column sep = 3.5em]
+\Spec\left(R/I\right) \arrow[r, "\pi^{\#}"] & \Spec\left(R\right) 
+\end{tikzcd}
+\]
+In this exercise we will show this map is a closed embedding. A \emph{closed embedding} is a map of topological spaces whose image is closed and which is a homeomorphism onto its image.
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Using the correspondence between ideals in $R$ and $R/I$ give an explicit description of $\pi^{\#}$.
+	\item Prove that the image of $\pi^{\#}$ is equal to $\VV(I)$. 
+	\item Explain why the ideal correspondence implies that $\pi^{\#}$ is injective. 
+	\item Prove that $\pi^{\#}$ is a closed embedding onto $\VV(I)$, in the subspace topology, by showing that if $J \subset R/I$ is an ideal then
+	\[
+	\pi^{\#}\left(\VV(J)\right) = \VV\left(\pi^{-1}(J)\right). 
+	\]
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
+
+
+
+
+

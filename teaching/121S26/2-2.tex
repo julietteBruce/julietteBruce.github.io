@@ -1,0 +1,252 @@
+ \documentclass[12pt,reqno]{amsart}
+\input{../../121preamble.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\originalurl}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/WorksheetAlgebraicSets.pdf}
+\title{Worksheet 2.2: Algebraic Sets}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\thispagestyle{firstpage}
+
+Throughout this course, "ring" means  \textit{commutative} ring with unity. In this worksheet $\KK$ will denote a field. Our goal is to study subsets of $\KK^n$ cut out by systems of polynomial equations. We begin by studying zero loci of polynomial systems and the maximal ideals arising from evaluation at points. This leads to the following foundational theorem:
+
+\begin{theorem}[Hilbert's Nullstellensatz I] If $\KK$ is algebraically closed, then every maximal ideal of $\KK[x_1,\ldots,x_n]$ is of the form $\langle x_1-a_1,\ldots,x_n-a_n\rangle$ for some point $(a_1,\ldots,a_n) \in \KK^n$.
+\end{theorem}  
+ 
+ Note this is just the first of a series of theorems that will go by Hilbert's Nullstellensatz. Recall that a $\KK$-algebra is a ring $R$ together with a specified ring homomorphism $\KK \to R$. A morphism of $\KK$-algebras $\varphi:R\to S$ is a ring homomorphism that preserves scalars, i.e.\ $\varphi(c\cdot 1_R)=c\cdot 1_S$ for every $c\in \KK$. In particular, $\KK[x_1,\ldots,x_n]$ is a $\KK$-algebra, every evaluation map $\ev_p:\KK[x_1,\ldots,x_n]\to \KK$ is a $\KK$-algebra homomorphism, and if $\fm$ is a maximal ideal then $R/\fm$ is naturally a field equipped with a $\KK$-algebra structure. When we say below that a residue field is ``isomorphic to $\KK$,'' we mean \emph{as a $\KK$-algebra}.
+
+ 
+ \hrulefill 
+
+\begin{enumerate}[leftmargin=*]
+
+\item \textbf{Evaluation Maps.} For a point $p=(a_1,\ldots,a_n) \in \KK^n$ the \emph{evaluation-at-$p$} map is given by
+\[
+\begin{tikzcd}[row sep =.5em, column sep = 3.5em]
+	\KK[x_1,\ldots,x_n] \arrow[r, "\ev_p"] & \KK \\
+	f \arrow[r, mapsto] & f(p)
+\end{tikzcd}.
+\]
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Prove that $\ev_p$ is a ring homomorphism and find generators for $\fm_{p}\coloneqq \ker(\ev_p)$. 
+	\item Prove that there is a bijection, induced by these evaluation maps, between $\KK^{n}$ and the subset of $\Spec(\KK[x_1,\ldots,x_n])$ consisting of maximal ideals whose residue field is isomorphic to $\KK$ as a $\KK$-algebra. 
+	\item Find a maximal ideal of $\RR[x,y]$ that is not of the form $\fm_p$ for any $p\in \RR^{2}$. 
+	\item Restate Hilbert's Nullstellensatz I (above) in terms of $\fm_p$. 
+\end{enumerate}
+
+\item \textbf{Algebraic Sets.} Let $\cS \subset \KK[x_1,\ldots,x_n]$ be a subset. Define the corresponding \emph{algebraic set} in $\KK^n$ to be:
+\[
+\VV(\cS) \coloneqq \left\{ p \in \KK^n \;\; \big|\;\; f(p) = 0 \text{ for all $f \in \cS$}\right\}.
+\]
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Prove that $\VV$ is order-reverse, i.e., if $\cS \subset \cT$ then $\VV(\cT) \subset \VV(\cS)$. 
+	\item Prove that $\VV(\cS) = \VV(\langle \cS \rangle) = \VV(\sqrt{\langle \cS\rangle})$.
+	\item Describe each of the following algebraic sets, and when possible draw a picture. 
+	\begin{multicols}{2}
+	\begin{enumerate}[(i)]
+		\item $\cS \coloneqq \{x^2 - y\} \subset \RR[x,y]$.
+		\item $\cS \coloneqq \{x^2 - xy\} \subset \RR[x,y]$.
+		\item $\cS \coloneqq \{x^6 - 3 x^5 y + 3 x^4 y^2 - x^3 y^3\} \subset \RR[x,y]$.
+		\item $\cS \coloneqq \{x^4 -2x^{3}y + x^2y^2\} \subset \RR[x,y]$.
+		\item $\cS \coloneqq \{x^2 + y^2-1\} \subset \RR[x,y]$.
+		\item $\cS \coloneqq \{n(x^2+y^2-z^2) \; | \; n \in \ZZ_{\geq0} \} \subset \RR[x,y,z]$.
+		\item $\cS \coloneqq \{x^2 + 1 \} \subset \RR[x]$.
+		\item $\cS \coloneqq \{x^2 + 1\} \subset \CC[x]$.
+		\item $\cS$ is a collection of any linear polynomials in $\KK[x_1,\ldots,x_n]$.
+	\end{enumerate}
+	\end{multicols}
+	\item Explain why $\SL_{n}(\KK)$ has the structure of an algebraic set. 
+	\item Explain why the set of $m \times n$ matrices of rank $<t$ is an algebraic set contained in $\KK^{m \times n}$. 
+\end{enumerate}
+ 
+ \item \textbf{Defining Ideal of an Algebraic Set.} Let $V \subset \KK^n$ be an algebraic set. The \emph{defining ideal} of $V$ is the ideal in $\KK[x_1,\ldots,x_n]$ given by 
+ \[
+ \II(V) \coloneqq \left\{ f \in \KK[x_1,\ldots,x_n] \;\; \big| \;\; f(p) = 0 \text{ for all $p \in V$} \right\}.
+ \]
+ \begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+ 	\item Prove that $\II(V)$ is in fact an ideal. 
+	\item Prove that $\II(V)$ is radical. 
+	\item If $V = \VV(\cS)$ for some subset $\cS \subset \KK[x_1,\ldots,x_n]$, show that $\langle \cS \rangle \subset \sqrt{\langle \cS \rangle} \subset \II(V)$. 
+	\item\label{ex-pt:big-obstruction} Let $\KK=\RR$. Give an example to show that the inclusion $\sqrt{\langle \cS \rangle } \subset \II(V)$ can be proper. 
+	\item If $V = \VV(\cS)$ for some subset $\cS \subset \KK[x_1,\ldots,x_n]$, show that $\VV(\cS) = \VV(\II(V))$. 
+ \end{enumerate}
+ \end{enumerate}
+ 
+ \hrulefill
+ 
+So far you have built two order-reversing operations:
+\[
+\cS \longmapsto \VV(\cS)
+\qquad\text{and}\qquad
+V \longmapsto \II(V).
+\]
+You have shown that passing from equations to a zero set only remembers the radical of the ideal they generate, and Question~\ref{ex-pt:big-obstruction} shows that over a non-algebraically closed field this can lose information. The next theorem says that over an algebraically closed field this is the only ambiguity.
+ 
+ \begin{theorem}[Hilbert's Nullstellensatz II] If $\KK$ is algebraically closed and $V = \VV(\cS) \subset \KK^n$ is an algebraic set, for some subset $\cS \subset \KK[x_1,\ldots,x_n]$, then $\II(V) = \sqrt{\langle \cS \rangle}$. 
+\end{theorem}  
+
+At this point the basic affine dictionary is taking shape; Question~(4) asks you to make the correspondence between algebraic sets and radical ideals completely explicit. After that we turn to coordinate rings, which package an algebraic set $V$ into algebra and will let us recover from $\KK[V]$ its points, its topology, and ultimately its morphisms.
+
+
+ \hrulefill
+
+\begin{enumerate}[leftmargin=*]
+  \setcounter{enumi}{3}
+
+\item Let $\KK$ be algebraically closed. Use Hilbert's Nullstellensatz II (above) to give an explicit inclusion-reversing bijection between algebraic sets in $\KK^n$ and radical ideals. 
+
+\item \textbf{Coordinate Rings.} Let $V \subset \KK^n$ be an algebraic set and $\cR = \Hom_{\Set}(V,\KK)$ be the ring of all (set) functions from $V$ to $\KK$. In this question we study the restriction map from $\KK[x_1,\ldots,x_n]$ to $\cR$ given by:
+\[
+\begin{tikzcd}[column sep = 3.5em, row sep = .5em]
+\KK[x_1,\ldots,x_n] \arrow[r, "\rho"] & \cR\\
+f \arrow[r, mapsto] & f|_{V}
+\end{tikzcd}.
+\]
+Here we are viewing $f \in \KK[x_1,\ldots,x_n]$ as defining a function $\KK^n \to \KK$ given by $p \mapsto f(p)$. We call the image of $\rho$ the \emph{coordinate ring} of $V$ and denote it $\KK[V]$. 
+ \begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+ 	\item Prove that $\rho$ is in fact a ring homomorphism. 
+	\item Verify that each of the following functions lies in the coordinate ring of the given algebraic set. 
+	\begin{enumerate}[(i)]
+		\item Let $V = \VV(x^2+y^2-1) \subset \RR^2$ and consider the function $V \to \RR$ given by $(x,y)\mapsto e^{x^2+y^2}$.
+		\item Let $V = \VV(xy-1) \subset \KK^{2}$ and consider the function $V\to \KK$ given by $(x,y) \mapsto \frac{1}{x}$. 
+	\end{enumerate}
+	\item\label{ex-pt:cord-ring-as-quot} Identify the kernel of $\rho$ and use it to give an explicit presentation for $\KK[V]$ as a $\KK$-algebra.
+	\item The $i$-th coordinate of $\KK^n$ is the linear functional $e_i^\vee: \KK^n \to \KK$ sending $(a_1,\ldots,a_n) \mapsto a_i$. Explain why $e_i^{\vee} \in \KK[\KK^n]$, and under the presentation given in part \ref{ex-pt:cord-ring-as-quot},  which polynomial corresponds to $e_i^{\vee}$. 
+	\item Explain why $\KK[V]$ is called the coordinate ring of $V$. Hint: Think about the previous part.
+	\item Describe the coordinate ring for the following algebraic sets:
+	\begin{enumerate}[(i)]
+		\item $\VV(y-x^2) \subset \KK^2$.
+		\item $\VV(y^2, xy, x^{17}) \subset \KK^2$.
+		\item $\VV(x^6 - 3 x^5 y + 3 x^4 y^2 - x^3 y^3) \subset \KK^2$.
+		\item The set of $3\times 3$ matrices over $\FF_5$ of determinant $1$ and trace $0$. (Hint/Warning: There will likely be 9 more polynomials in the defining ideal than you expect, coming from the fact that finite fields have a special automorphism. This highlights another way we might get a counterexample for Question~\ref{ex-pt:big-obstruction}.)
+	\end{enumerate}
+ \end{enumerate}
+ \end{enumerate}
+ 
+ \hrulefill
+
+You should now think of $\KK[V]$ as the algebraic avatar of $V$: its elements are precisely the polynomial functions on $V$, and the coordinate functions on $\KK^n$ descend to generators of $\KK[V]$. The next step is to recognize points of $V$ purely algebraically, either as $\KK$-algebra maps $\KK[V]\to \KK$ or as maximal ideals whose residue fields are isomorphic to $\KK$ as $\KK$-algebras.
+
+\hrulefill
+
+ \begin{enumerate}[leftmargin=*]
+  \setcounter{enumi}{5}
+ \item Let $R$ be a finitely generated $\KK$-algebra. Fix a presentation $R \cong \KK[x_1,\ldots,x_n]/I$. Describe a natural bijection between the following three sets:
+ \begin{enumerate}[(i)]
+ 	\item points in $\VV(I) \subset \KK^n$, 
+	\item maximal ideals in $R$ with residue field isomorphic to $\KK$ as a $\KK$-algebra, and 
+	\item elements of $\Hom_{\KK-\alg}(R,\KK)$, the set of morphisms from $R$ to $\KK$ in the category of $\KK$-algebras. 
+\end{enumerate}
+
+\item \textbf{Zariski Topology on Algebraic Sets.} Let $V \subseteq \KK^n$ be an algebraic set. Define the \emph{Zariski topology} on $V$ by declaring the closed sets to be the subsets of $V$ of the form $\VV(I)$ for some ideal $I \subset \KK[x_1,\ldots,x_n]$. In other words, the closed sets are precisely the \emph{algebraic subsets} of $V$.
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Verify that this definition indeed determines a topology on $V$.
+
+	\item For $f \in \KK[V]$, define
+	\[
+	D(f) = \left\{p \in V \;\; \big| \;\;  f(p) \neq 0\right \}.
+	\]
+	Show that $\{D(f)\}$ form a basis for the Zariski topology on $V$.
+
+	\item For each point $p \in V$, let
+	\[
+	\fm_p = \left\{f \in \KK[V] \;\; \big| \;\;  f(p)=0 \right\}
+	\]
+	be the corresponding maximal ideal. Show that the map
+	\[
+	\begin{tikzcd}[row sep = .5em, column sep = 3.5em]
+	V \arrow[r] & \Spec(\KK[V]) \\
+ 	p \arrow[r,mapsto] & \fm_p
+ 	\end{tikzcd}
+	\]
+	is a homeomorphism onto its image, which consists of those maximal ideals whose residue field is isomorphic to $\KK$ as a $\KK$-algebra.
+	\item If $\KK$ is algebraically closed how can the preceding part be rephrased in terms of $\mSpec(\KK[V])$?
+	\item Is the Zariski topology on $V$ Hausdorff in general? If not, when is it? 
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+By now you have recovered from $\KK[V]$ not just the points of $V$, but also its Zariski topology. The next goal is to understand maps in the same way: a morphism of algebraic sets should be encoded contravariantly by a $\KK$-algebra homomorphism of coordinate rings.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*]
+  \setcounter{enumi}{7}
+\item \textbf{Morphisms of Algebraic Sets.} A \emph{polynomial map} from $\KK^n$ to $\KK^m$ is a function of the form: 
+\[
+\Phi: \KK^n \longrightarrow \KK^m \quad p \mapsto (f_1(p), \dots, f_{m}(p)).
+\]
+where  $f_1, \dots, f_m \in \KK[x_1,\dots,x_n]$.  A \emph{morphism of algebraic sets} $V \to W$ is defined to be the restriction of such a polynomial map $\Phi$ with $\Phi(V) \subset W$. Fix a polynomial map $\Phi$ as above. 
+\begin{enumerate}[label=(\alph*),ref=\theenumi\alph*]
+	\item Show that there is an induced $\KK$-algebra homomorphism
+	\[
+	\phi: \KK[\KK^{m}] \longrightarrow \KK[\KK^{n}] \quad \text{given by} \quad  g \mapsto g \circ \Phi.
+	\]
+	Describe $\phi$ explicitly in terms of the coordinate function generators of $\KK[\KK^{m}]$.
+	\item Let $V \subset \KK^n$ and $W \subset \KK^m$ be algebraic sets. Show that $\Phi(V) \subset W$ if and only if $\phi(\II(W)) \subset \II(V)$.
+	\item Deduce that $\Phi$ restricts to a morphism of algebraic sets $\Phi|_V : V \longrightarrow W$ if and only if the composition
+	\[
+	\begin{tikzcd}[row sep = .3em, column sep = 3.5em]
+	\KK[\KK^m] \arrow[r, "\phi"] & \KK[\KK^n] \arrow[r, "\rho"] &\KK[V]
+	\end{tikzcd}
+	\]
+	factors through $\KK[W]$. Here $\rho$ is the restriction map.
+	\item For each of the given maps of coordinate rings, describe the corresponding map of algebraic sets. When possible draw pictures. Compare to the corresponding maps on spectra.
+	\begin{enumerate}[(i)]
+		\item $\CC[x,y] \rightarrow \CC[t]$ given by $x\mapsto t$ and $y\mapsto t$.
+		\item $\CC[t] \rightarrow \CC[x,y]$ given by $t \mapsto x$.
+		\item $\CC[t] \rightarrow \CC[x,y,t]/\langle xy-t \rangle$ given by $t \mapsto t$. 
+	\end{enumerate}
+\end{enumerate}
+
+\item Prove that a morphism of algebraic sets is continuous with respect to the Zariski topology.
+
+\item Show that the image of $\KK \to \KK^3$ sending $t \to (t,t^2,t^3)$ is an algebraic set defined by two polynomials. Verify your answer by constructing the corresponding ring map in \textit{Macaualy2}. 
+
+\item Prove or disprove: The image of every polynomial map $\KK^n \to \KK^m$ is an algebraic set. (Warning: this might be field dependent. As a hint, if $\KK$ is finite, which subsets of $\KK^n$ are algebraic sets?)
+\end{enumerate}
+
+\hrulefill
+
+You now have the main algebra-geometry dictionary in hand. Over any field $\KK$, every algebraic set $V \subset \KK^n$ has a coordinate ring $\KK[V]$, points of $V$ are the same as $\KK$-algebra maps $\KK[V]\to \KK$, and morphisms $V \to W$ correspond contravariantly to $\KK$-algebra homomorphisms $\KK[W]\to \KK[V]$. Thus the assignment
+\[
+V \longmapsto \KK[V]
+\]
+always gives a contravariant bridge from geometry to algebra. When $\KK$ is algebraically closed, Hilbert's Nullstellensatz says that every finitely generated reduced $\KK$-algebra comes from an algebraic set, so this bridge becomes an anti-equivalence of categories.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*]
+  \setcounter{enumi}{11}
+\item \textbf{Putting It All Together.} Assume that $\KK$ is algebraically closed. Use the previous parts together with Hilbert's Nullstellensatz II to show that every finitely generated reduced $\KK$-algebra is isomorphic to $\KK[V]$ for some algebraic set $V$.  Conclude that the assignment $V\mapsto \KK[V]$ defines a  (anti-) equivalence from the category of algebraic sets over $\KK$ to the category of finitely generated reduced $\KK$-algebras. 
+
+%\item \textbf{Rings of Invariants.} Let $\zeta_{n}$ be a primitive $n$-th root of unity and $C_{n} = \langle \zeta_n \rangle$ be the cyclic group generated by $\zeta_n$. Let $C_n$ act $\CC$-linearly on $R\coloneqq \CC[x,y]$ by $x \mapsto \zeta_{n}x$ and $y\mapsto \zeta_{n}y$. This question considers the set of invariant polynomials: 
+%\[
+%R^{C_n} \coloneqq \left\{f \in \CC[x,y] \;\; \big| \;\; \gamma \cdot f = f \text{ for all $\gamma \in C_n$} \right\}.
+%\]
+%\begin{enumerate}[(a)]
+%	\item Prove that $R^{C_n}$ is a subring of $R$. 
+%	\item Prove that $R^{C_n}$ is finitely generated. (Warning: a subring of a ring need \emph{not} be finitely generated.)
+%	\item Show there is a bijection between the points of  $\mSpec(R^{C_n})$ and the orbits of the induced action of $C_n$ on $\CC^2$. 
+%\end{enumerate}
+
+\end{enumerate}
+\end{document}
+
+
+
+
+
