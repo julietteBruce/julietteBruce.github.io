@@ -1,0 +1,413 @@
+\documentclass[12pt,reqno]{amsart}
+\input{../../121preamble.tex}
+\renewcommand{\originalurl}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/LocalizationWorksheet.pdf}
+\title{Worksheet 4.2: Localization}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\thispagestyle{firstpage}
+
+Throughout this course, ``ring'' means \textit{commutative} ring with unity. In the previous worksheet we built the basic language of modules, quotient modules, free modules, Hom, and tensor products. The goal of this worksheet is to introduce one of the central operations in commutative algebra: \emph{localization}. Informally, localization is the process of forcing a chosen collection of elements of a ring to become invertible. This construction simultaneously generalizes the passage from $\ZZ$ to $\QQ$, the localization $\ZZ_{\langle p\rangle}$ at a prime number $p$, and the algebraic operation of restricting attention to a principal open subset $D(f)$ of $\Spec(R)$.
+
+Let $R$ be a ring. A subset $U \subset R$ is called \emph{multiplicatively closed} if $1\in U$ and $u,t\in U$ implies $ut\in U$. Given a multiplicative set $U \subset R$, the localization of $R$ at $U$ is a ring $U^{-1}R$ together with a ring homomorphism $\eta: R \to U^{-1}R$ satisfying the following universal property: For all ring homomorphisms $\phi:R \to T$ such that every element of $\phi(U)$ is a unit in $T$ there exists a unique homomorphism $\tilde{\phi}:U^{-1}R \to T$ such that the following diagram commutes:
+\[
+\begin{tikzcd}[row sep = 3.5em, column sep = 3.5em]
+R \arrow[r, "\eta"] \arrow[d, swap, "\phi"] & U^{-1}R  \arrow[dl, dashed,"\tilde{\phi}"] \\
+T & 
+\end{tikzcd}.
+\]
+Roughly speaking we should think of $U^{-1}R$ as being the ``smallest'' ring where every element of $U$ is a unit.  As always the universal property guarantees that $U^{-1}R$ and the map $\eta$ are unique up to unique isomorphism (assuming that they exist, which we will now discuss). 
+
+Informally, we think of elements of $U^{-1}R$ as obtained by formally inverting every element of $U$ and imposing the necessary equivalence conditions to make it into a well-behaved ring. Elements of $U^{-1}R$ are formal fractions $r/u$ where $r\in R$ and $u \in U$ subject to some equivalence relation. If $R$ is an integral domain and $0\notin U$, equality of fractions is the familiar cross-multiplication relation, i.e. $r_{1}/u_{1} = r_{2}/u_{2}$ as elements in $U^{-1}R$ if and only if $r_{1}u_{2}=r_{2}u_{1}$ as elements in $R$. In general, because zero divisors may be present, one must allow extra clearing denominators:
+\[
+\frac{r_{1}}{u_1}=\frac{r_2}{u_2} \text{\;\;\; in $U^{-1}R$} 
+\quad \Longleftrightarrow \quad
+t\left(r_{1}u_{2}-r_{2}u_{1}\right) = 0 \text{\;\; in $R$ for some $t\in U$}
+\]
+Multiplication and addition in $U^{-1}R$ are then defined in the usual way for fractions:
+\[
+\left(\frac{r_{1}}{u_1}\right)\left(\frac{r_2}{u_2}\right)=\frac{r_1r_2}{u_1u_2} \quad \quad \text{and} \quad \quad \frac{r_{1}}{u_1}+\frac{r_2}{u_2} = \frac{r_1u_{2}+r_{2}u_{1}}{u_1u_2}
+\]
+The additive identity is then the equivalence class of $0/1$ and the multiplicative identity is $1/1$. The function $\eta:R \to U^{-1}R$ is defined by $r \mapsto \frac{r}{1}$, which formally makes sense because $1 \in U$. Although this construction is relatively easy to define, there is work involved in checking that the operations and $\eta$ are well-defined, that $U^{-1}R$ is a ring, and that it satisfies the correct universal property. You will carefully go through this construction in the exercises. 
+
+A few warnings: when $R$ is not a domain localization can behave somewhat strangely. For example, from our experience with fractions since childhood and its unassuming definition one might expect $\eta$ to be injective; this is not the case. The element $\eta(r)=r/1$ can be equal to zero in $U^{-1}R$. By definition this occurs when $r/1 = 0/1$, which translates to $tr=0$ in $R$ for some element $t\in U$. Even worse, if $0 \in U$ then the ring $U^{-1}R$ becomes the zero ring. 
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*]
+
+\item \textbf{Multiplicative Sets.}
+\begin{enumerate}
+	\item Verifying, using the definition directly, which of the following subsets are multiplicatively closed?
+	\begin{multicols}{2}
+	\begin{enumerate}
+    		\item $R = \ZZ$ and $U = \{1, 3, 9, 27, \ldots\}$.
+    		\item $R = \ZZ$ and $U = \{1, 2, 3\}$.
+		\item $R=\ZZ$ and $U=\ZZ \setminus\langle 2 \rangle$.
+		\item $R=\ZZ$ and $U=\{n \geq 1\}$.
+		\item $R=\RR[x,y]$ and $U=R\setminus\langle x,y\rangle$.
+		\item $R=\RR[x,y]$ and $U = \{f \in R \;\; |\;\;  f(1,0) \neq 0\}$.
+		\item $R=\RR[x,y]/\langle y^2-x^3+x\rangle$ and $U=R\setminus\langle \overline{x}, \overline{y} \rangle$.
+		\item $R=\RR[x,y]$ and $U = \{f \in R \;\; |\;\;  f(0,0) \neq 0 \text{ and } f(1,1) \neq 0\}$.
+	\end{enumerate}
+	\end{multicols}
+	\item\label{ex-pt:prime-mult-set} Let $I \subset R$ be an ideal. Prove that $U=R\setminus I$ is multiplicatively closed if and only if $I$ is prime. 
+	\item Let $U \subset R$ be a multiplicatively closed set. If $\phi:R\to S$ is a ring homomorphism, is $\phi(U) \subset S$ a multiplicatively closed subset?
+\end{enumerate}
+
+\item \textbf{First Examples.} Despite not having formally verified that our construction is well-defined, discuss ways to explicitly understand $U^{-1}R$ in each of the following cases. 
+\begin{multicols}{2}
+\begin{enumerate}
+	\item $R=\ZZ$ and $U=\ZZ\setminus\{0\}$.
+	\item $R=\ZZ$ and $U=\{2^{n}\;\;|\;\; n\in \ZZ_{\geq0}\}$.
+	\item $R=\ZZ$ and $U=\ZZ\setminus\langle 2 \rangle$.
+	\item $R=\KK[x]$ and $U=\KK[x]\setminus\{0\}$.
+	\item $R=\KK[x]$ and $U=\{1,x,x^2,x^3,\ldots\}$.
+	\item $R=\ZZ/12\ZZ$ and $U=\{\overline{1},\overline{2},\overline{4},\overline{8}\}$.
+	\item $R=\ZZ/12\ZZ$ and $U=\{\overline{1},\overline{3},\overline{9}\}$.
+	\item $R=\ZZ[x]/\langle nx-1\rangle$ and $U=\{n^k \;\; | \;\; k \in \ZZ_{\geq0}\}$ for a fixed non-zero integer $n$.
+	\item\label{ex-pt:localize-nilpotent} $R$ an arbitrary ring and $U$ a multiplicative closed set containing a nilpotent. 
+\end{enumerate}
+\end{multicols}
+
+\item\label{ex:localization-construct} \textbf{Constructing $U^{-1}R$.} Let $R$ be a ring and $U \subset R$ a multiplicatively closed set. Define a relation on $R\times U$ by saying $(r_{1},u_{1}) \sim (r_{2},u_{2})$ if and only if $t(r_1u_{2}-r_{2}u_{1})=0$ in $R$ for some $t\in U$. 
+\begin{enumerate}
+	\item Prove that $\sim$ is an equivalence relation on $R\times U$. 
+	\item Let $\frac{r}{u}$ denote the equivalence class of a pair $(r,u)$ under the equivalence relation $\sim$ defined in the previous part. Prove that the operations:
+	\[
+	\left(\frac{r_{1}}{u_1}\right)\left(\frac{r_2}{u_2}\right)=\frac{r_1r_2}{u_1u_2} \quad \quad \text{and} \quad \quad \frac{r_{1}}{u_1}+\frac{r_2}{u_2} = 	\frac{r_1u_{2}+r_{2}u_{1}}{u_1u_2}
+	\]
+	are well-defined. Hint: You must show that changing the representative of either input fraction does not change the resulting equivalence class.
+	\item Define $U^{-1}R$ to be the set of equivalence classes of $\sim$. Show that the operations above make $U^{-1}R$ into a ring where $\frac{0}{1}$ is the zero element and $\frac{1}{1}$ is the multiplicative identity. 
+	\item Show that the function $\eta:R \to U^{-1}R$ given by $r\mapsto \frac{r}{1}$ is a well-defined ring homomorphism. 
+	\item Prove that if $u \in U$ then $\eta(u)$ is a unit in $U^{-1}R$. Explicitly what is its inverse?
+	\item Where in this construction did you use that $U$ was multiplicatively closed and contains $1$?
+\end{enumerate}
+
+ \item \textbf{First Properties of Localization.} Let $R$ be a ring and $U \subset R$ a multiplicatively closed set. 
+ \begin{enumerate}
+ 	\item Prove that if $0 \in U$ then $U^{-1}R$ is the zero ring. 
+	\item Prove that if $R$ is an integral domain and $0\not\in U$ then $\frac{r_1}{u_1}=\frac{r_2}{u_2}$ in $U^{-1}R$ if and only if $r_1u_2=r_2u_1$.
+	\item Let $R$ be an integral domain and $U=R\setminus\{0\}$. Prove that $U^{-1}R$ is a field.
+	\item Find an example of a non-zero ring $R$ for which $R\setminus\{0\}$ is not multiplicatively closed. What goes wrong with trying to form $(R\setminus\{0\})^{-1}R$?
+\end{enumerate}
+
+\item \textbf{The Kernel of the Localization Map.} Let $R$ be a ring, $U\subset R$ be a multiplicatively closed set, and $\eta:R \to U^{-1}R$ the localization map as described in Question~\ref{ex:localization-construct}.
+\begin{enumerate}
+	\item Prove that $\eta$ is injective if and only if every $u\in U$ is a nonzerodivisor on $R$, i.e. $ur=0$ implies $r=0$ for all $r\in R$.	
+	\item Let $I=\{r \in R \;\; | \;\; ur = 0 \text{ for some $u \in U$}\}$. Prove that $I$ is an ideal. 
+	\item Show that there exists an injective ring homomorphism $R/I \to U^{-1}R$ such that the following diagram commutes:
+	\[
+	\begin{tikzcd}[row sep = 3.5em, column sep = 3.5em]
+	R \arrow[r, "\pi"] \arrow[dr, swap,"\eta"] & R/I \arrow[d,dashed] \\
+	& U^{-1}R
+	\end{tikzcd}.
+	\]
+	\item Prove that $\ker(\eta)=I$. 
+	\item  Revisit the examples in Question~2. For which of them is the localization map $R\to U^{-1}R$ injective?
+\end{enumerate}
+
+\item \textbf{Field of Fractions.} Let $R$ be an integral domain. The \emph{field of fractions} of $R$ is the ring $U^{-1}R$ where $U=R\setminus\{0\}$. We denote the field of fractions of $R$ by $\Frac(R)$.
+\begin{enumerate}
+	\item Show that $\Frac(R)$ is a field containing $R$.
+	\item Describe $\Frac(R)$ when $R=\ZZ$ and $R=\KK[x]$.
+	\item If $R$ is an integral domain and $U \subset R$ is any multiplicatively closed set not containing zero, explain how we can view $U^{-1}R$ as a subring of $\Frac(R)$. 
+\end{enumerate}
+
+\item \textbf{Universal Property of Localization.} In this exercise we shall show that $U^{-1}R$ and $\eta$ as constructed in Question~\ref{ex:localization-construct} satisfy the universal property of localization. Let $R$ be a ring and $U \subset R$ a multiplicatively closed subset. Let $\phi:R \to T$ be a ring homomorphism such that $\phi(U) \subset T^{\times}$.
+\begin{enumerate}
+	\item Define a function $\tilde{\phi}:U^{-1}R \to T$ by $\frac{r}{u}\mapsto \phi(r)\phi(u)^{-1}$. Explain why $\tilde{\phi}$ is well-defined and prove it is a ring homomorphism. 
+	\item Show that $\tilde{\phi}$ makes the following diagram commute:
+	\[
+	\begin{tikzcd}[row sep = 3.5em, column sep = 3.5em]
+	R \arrow[r, "\eta"] \arrow[d, swap, "\phi"] & U^{-1}R \arrow[dl, "\tilde{\phi}"] \\
+	T  & 
+	\end{tikzcd}.
+	\]
+	\item Prove that $\tilde{\phi}$ is the unique ring homomorphism $U^{-1}R\to T$ making the diagram commute. Hint: If $\psi:U^{-1}R\to T$ is any such map, first determine $\psi\left(\frac{1}{u}\right)$ for $u\in U$, and then use the equality $\frac{r}{u}=\frac{r}{1}\frac{1}{u}$.
+\end{enumerate}
+
+\item \textbf{Applications of the Universal Property of Localization.} Let $R$ be a ring and $U \subset R$ a multiplicatively closed subset. 
+\begin{enumerate}
+	\item Use the universal property of localization to show that $U^{-1}R$ and $\eta$ are unique up to unique isomorphism.
+	\item Suppose every element of $U$ is already a unit in $R$. Prove that the localization map $\eta:R\to U^{-1}R$ is an isomorphism.
+	\item Suppose $V\subset R$ is another multiplicatively closed set and $U\subset V$. Use the universal property to construct a natural homomorphism $U^{-1}R\to V^{-1}R$. 
+	\item Let $\phi:R\to S$ be a ring homomorphism such that $\phi(U)\subset S^{\times}$. Let $\tilde{\phi}:U^{-1}R\to S$ be the induced map. Prove that if $\phi$ is surjective, then $\tilde{\phi}$ is surjective. Prove that if $\phi$ is injective, then $\tilde{\phi}$ is injective.
+\end{enumerate} 
+
+\end{enumerate}
+
+\hrulefill
+
+The two most important examples of localization are: i) when $U$ is equal to the complement of a prime ideal and ii) when $U=\{1,f,f^2,f^3,\ldots\}$ for some non-zero element $f\in R$. Given a prime ideal $\fp \subset R$ you showed in Question~\ref{ex-pt:prime-mult-set} that $U=R \setminus \fp$ is a multiplicatively closed set. The ring $(R\setminus \fp)^{-1}R$ occurs so frequently that we give it its own notation and name. The \emph{localization of $R$ at $\fp$} is the ring:
+\[
+R_{\fp} \coloneqq \left(R\setminus\fp\right)^{-1}R.
+\]
+The guiding feature of $R_{\fp}$ is that all elements outside of $\fp$ become invertible, while the elements in $\fp$ remain non-units. As we shall see shortly, this implies that $R_{\fp}$ has a unique maximal ideal, namely,
+\[
+\fp R_{\fp} \coloneqq \left\{ \frac{r}{u} \;\; \big|\;\; r \in \fp,\; u\in R\setminus \fp\right\}.
+\]
+A ring with a unique maximal ideal is called a \emph{local ring}. We often denote a local ring by $(R,\fm)$, where $\fm$ is its unique maximal ideal. Local rings are algebraic analogues of rings of germs near a point.
+
+Turning towards the second important example, fix a non-zero element $f \in R$ and consider the set $U = \{1, f, f^2, f^3, \ldots\}$. Note we should assume $f$ is not a nilpotent element, since otherwise as we saw in Question~\ref{ex-pt:localize-nilpotent}, the localization $U^{-1}R$ will be the zero ring. The localization $U^{-1}R$ consists of fractions of the form $\frac{r}{f^n}$ with $r \in R$ and $n \geq 0$. Every such fraction can be rewritten as $r \cdot \frac{1}{f^n} = r \cdot \left(\frac{1}{f}\right)^n$, so every element of $U^{-1}R$ is a polynomial expression in $\frac{1}{f}$ with coefficients in $R$. In other words, $U^{-1}R$ is generated, as a ring, by the image of $R$ and the single new inverse $\frac{1}{f}$. We therefore write:
+\[
+R\left[\tfrac{1}{f}\right] \coloneqq \left\{1, f, f^2, \ldots\right\}^{-1}R = \left\{ \frac{r}{f^n} \;\;\big|\;\; r \in R,\; n \geq 0 \right\}.
+\]
+We will see shortly that we can make the idea that $R[\frac{1}{f}]$ is  ``polynomials in $\frac{1}{f}$ with coefficients in $R$'' precise by showing $R[\frac{1}{f}]$ is isomorphic to $R[x]/\langle xf-1\rangle$. Intuitively this makes sense since quotienting by $\langle xf-1\rangle$ means setting $xf=1$, i.e., let the formal variable $x$ equal the inverse of $f$. (Note we saw something similar to this when we used the Rabinowitsch trick on the Nullstellensatz worksheet.)
+
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item \textbf{Localization at a Prime Ideal.} Let $R$ be a ring and $\fp \subset R$ be a prime ideal.
+\begin{enumerate}
+	\item Prove that an element $\frac{r}{u} \in R_{\fp}$ is a unit if and only if $r \not \in \fp$.
+	\item Deduce that the non-units of $R_{\fp}$ are precisely the elements
+	\[
+	\fp R_{\fp} \coloneqq \left\{ \frac{r}{u} \;\; \big|\;\; r \in \fp,\; u\in R\setminus \fp\right\}.
+	\]
+	\item Prove that $\fp R_{\fp}$ is an ideal in $R_{\fp}$. 
+	\item Show that $\fp R_{\fp}$ is a maximal ideal in $R_{\fp}$. Hint: Show that any ideal strictly containing $\fp R_{\fp}$ must contain a unit.
+	\item Show that $R_{\fp}$ does not have any other maximal ideal, i.e. $(R_{\fp}, \fp R_{\fp})$ is a local ring. 
+	\item More generally, show that a ring $R$ is a local ring if and only if the set of non-units in $R$ is an ideal. 
+	\item Let $p\in \ZZ$ be a prime number. Describe the units and unique maximal ideal of $\ZZ_{\langle p\rangle}$. 
+	\item Let $R=\CC[x]$ and $\fm = \langle x-a\rangle$ for $a \in \CC$.  Which rational functions in $\CC(x)$ lie in $R_{\fm}$? Which of them are units?
+\end{enumerate}
+
+\item \textbf{Inverting an Element.} Let $R$ be a ring and let $f\in R$ be a nonzero, non-nilpotent element. Recall the ring $R[\frac{1}{f}]$ is defined to be the localization of $R$ at $U=\{1,f,f^2,f^3,\ldots\}$. 
+\begin{enumerate}
+	\item Show that the $R$-algebra homomorphism $\phi:R[x] \to R[\frac{1}{f}]$ determined by $\phi(r)=\frac{r}{1}$ for $r\in R$ and $\phi(x)=\frac{1}{f}$ is well-defined.
+	\item Prove that $\phi$ is surjective by explicitly finding an element that maps to $\frac{r}{f^{k}}$ for $r\in R$ and $k\in \ZZ_{\geq0}$. 
+	\item Show that $\ker(\phi) = \langle fx - 1\rangle$. 
+	\item Conclude that $R[\frac{1}{f}]$ is isomorphic to $R[x]/\langle fx-1\rangle$.
+	\item Give a different argument proving  $R[\frac{1}{f}]$ and $R[x]/\langle fx-1\rangle$ are isomorphic using the universal property of localizations. 
+	\item What changes if $f$ is nilpotent? Show that both $R[\frac{1}{f}]$ and $R[x]/\langle fx-1\rangle$ are the zero ring.
+	\item Let $f,g\in R$. Use the universal property to prove that
+	\[
+	\left(R\left[\tfrac{1}{f}\right]\right)\left[\tfrac{1}{g}\right]\cong R\left[\tfrac{1}{fg}\right].
+	\]
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+Given any ring homomorphism $\phi: R\to S$, there is a natural interplay between ideals of $R$ and ideals of $S$. If $I\subset R$ is an ideal, its \emph{extension} is the ideal of $S$ generated by the image of $I$ under $\phi$:
+\[
+\phi(I)\cdot S \coloneqq \left \langle \phi(I) \right\rangle
+= \left\{\sum_{i=1}^n s_i \phi(r_i) \;\; \middle|\;\; r_i\in I,\; s_i\in S,\; n\geq 0\right\}.
+\]
+Note we must take the ideal generated by $\phi(I)$, not just the image of $I$ itself, since as we previously saw $\phi(I)$ may not be an ideal of $S$.
+
+Conversely, if $J\subseteq S$ is an ideal, its \emph{contraction} is the preimage
+\[
+\phi^{-1}(J) = \left\{r\in R\;\; \big|\;\; \phi(r)\in J\right\},
+\]
+which is always an ideal of $R$. Note there are numerous different notations for extension and contraction of ideals: some (namely Atiyah--MacDonald) write $I^{e}$ and $J^{c}$ for the extension and contraction respectively, others write $IS$ and $J\cap R$ (as a nod to what occurs when $\phi$ is an injection). We generally avoid these notations to emphasize that contraction and extension are dependent on the homomorphism $\phi$.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item \textbf{Extension and Contraction of Ideals.} Let $\phi:R \to S$ be a homomorphism of rings. Let $I \subset R$ and $J \subset S$ be ideals.
+\begin{enumerate}
+	\item Prove that $\phi^{-1}(J)$ is an ideal of $R$. 
+	\item Give an explicit example showing that $\phi(I) \subset S$ need not be an ideal. 
+	\item Prove that $I \subset \phi^{-1}(\phi(I)S)$.
+	\item Let $\phi:\ZZ \to \ZZ/\langle 6\rangle$ be the natural quotient map and let $I=\langle 0\rangle \subset \ZZ$. Explicitly describe $J=\phi(I)(\ZZ/\langle 6\rangle)$ and $\phi^{-1}(J)$.  Show that $I \subsetneq \phi^{-1}(J)$. Thus, the inclusion in the previous part can be strict.
+	\item Prove that $\phi(\phi^{-1}(J))S \subset J$.
+	\item Let $\phi:\ZZ\to \ZZ[x]$ be the inclusion map and let $J=\langle x\rangle \subset \ZZ[x]$. Explicitly describe $I=\phi^{-1}(J)$ and $\phi(I)\ZZ[x]$. Show that $\phi(I)\ZZ[x] \subsetneq J$. Thus, the inclusion in the previous part can be strict.
+	\item Prove that if $J \subset S$ is prime then the contraction $\phi^{-1}(J) \subset R$ is prime. 
+	\item Give an example showing that if $J \subset S$ is maximal the contraction $\phi^{-1}(J) \subset R$ need not be maximal.
+	\item Give an example showing that if $I \subset R$ is prime then the extension $\phi(I)S \subset S$ need not be prime. 
+	\item Let $\phi:R \hookrightarrow S$ be an injective ring homomorphism. Prove that 
+	\[
+	\phi^{-1}(J)=J\cap R \quad \quad \text{and} \quad \quad \phi(I)S = IS.
+	\]
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+ As we saw in the previous exercise, in general, extension and contraction are far from being inverse operations: $\phi^{-1}(\phi(I)S)$ may strictly contain $I$, and $\phi(\phi^{-1}(J))S$ may be strictly smaller than $J$. In the case of localization, extension and contraction along the canonical localization map $\eta:R\to U^{-1}R$ sending $r\mapsto r/1$ have very nice forms. For an ideal $I \subset R$ the extension along $\eta$ is
+ \[
+\eta(I)\left(U^{-1}R\right)= U^{-1}I\coloneqq \left\{\frac{r}{u}\;\; \big|\;\; r\in I,\; u\in U\right\}\subset U^{-1}R.
+\]
+For an ideal $J \subset U^{-1}R$ the contraction along $\eta$ is:
+\[
+\eta^{-1}(J) = \left\{r\in R\;\; \big|\;\; \frac{r}{1} \in J\right\}.
+\]
+
+Although the extension--contraction correspondence remains lossy for arbitrary ideals, it becomes perfectly behaved for prime ideals. If $\fq \subset U^{-1}R$ is a proper ideal, then no element of $U$ can lie in its contraction. (This is because $\frac{u}{1}$ is a unit in $U^{-1}R$ for every $u\in U$.) Thus every prime ideal of $U^{-1}R$ contracts to a prime ideal of $R$ which is disjoint from $U$. Conversely, if $\fp\subset R$ is a prime ideal disjoint from $U$, then its extension
+\[
+U^{-1}\fp=\left\{\frac{r}{u}\;\; \big|\;\; r\in \fp,\; u\in U\right\}
+\]
+is a prime ideal of $U^{-1}R$. In fact, extension and contraction give an order-preserving bijection
+\[
+\left\{\text{prime ideals of }U^{-1}R\right\}
+\longleftrightarrow
+\left\{\fp\in \Spec(R)\;\; \big|\;\; \fp\cap U=\emptyset\right\}.
+\]
+Under this correspondence, a prime ideal $\mathfrak{q}\subset U^{-1}R$ is sent to its contraction $\eta^{-1}(\mathfrak{q})$, and a prime ideal $\fp\subset R$ disjoint from $U$ is sent to its extension $U^{-1}\fp$.
+
+This is especially important in the two basic examples above. If $U=R\setminus \fp$, then the prime ideals of $R_{\fp}$ correspond exactly to the prime ideals of $R$ contained in $\fp$. If $U=\{1,f,f^2,\ldots\}$, then the prime ideals of $R[\frac{1}{f}]$ correspond exactly to the prime ideals of $R$ which do not contain $f$.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item \textbf{Ideals and Localization.} Let $R$ be a ring, let $U\subset R$ be a multiplicatively closed set, and let $\eta:R\to U^{-1}R$ be the localization map.
+\begin{enumerate}
+	\item Let $I\subset R$ be an ideal. Prove that $U^{-1}I\coloneqq \{\frac{r}{u}\;\; |\;\; r\in I,\; u\in U\}$ is an ideal of $U^{-1}R$.
+	\item Prove that $U^{-1}I$ is the extension of $I$ along the localization map $\eta:R\to U^{-1}R$.
+	\item Prove that $U^{-1}I=U^{-1}R$ if and only if $I\cap U\neq \varnothing$.
+	\item Prove that $\frac{r}{u}\in U^{-1}I$ if and only if $tr \in I$ for some $t \in U$. 
+	\item Deduce that the contraction of $U^{-1}I$ back to $R$ is
+	\[
+	\eta^{-1}(U^{-1}I)=\left\{r\in R\;\; \big|\;\; tr\in I \text{ for some } t\in U\right\}.
+	\]
+	\item Let $R=\ZZ$ and $U=\{1,2,4,8,\ldots\}$. If $I=\langle 6\rangle$, compute $U^{-1}I\subset U^{-1}\ZZ$ and its contraction back to $\ZZ$. Show that $I\subsetneq \eta^{-1}(U^{-1}I)$.
+	\item Let $R=\ZZ$ and $U=\ZZ\setminus \langle 2\rangle$. If $I=\langle 6\rangle$, compute  $U^{-1}I\subset \ZZ_{\langle 2\rangle}$ and its contraction back to $\ZZ$.
+	\item Let $R=\KK[x,y]$ and $U=\{1,x,x^2,\ldots\}$. For each of the ideals $\langle x\rangle$, $\langle y\rangle$, and $\langle x,y\rangle$, describe its extension to $R[\frac{1}{x}]$. Which of these ideals become the whole ring after localization?
+\end{enumerate}
+
+\item \textbf{Prime Ideal Correspondence for Localization.} Let $R$ be a ring, let $U\subset R$ be a multiplicatively closed set, and let $\eta:R\to U^{-1}R$ be the localization map.
+\begin{enumerate}
+	\item Let $\mathfrak{q}\subset U^{-1}R$ be a prime ideal. Prove that $\eta^{-1}(\mathfrak{q})$ is a prime ideal of $R$ and that $\eta^{-1}(\mathfrak{q})\cap U=\varnothing$.
+	\item Let $\fp\subset R$ be a prime ideal such that $\fp\cap U=\emptyset$. Prove that $U^{-1}\fp$ is a proper prime ideal of $U^{-1}R$. Hint: Use the criterion from the previous exercise for when a fraction belongs to $U^{-1}\fp$.
+	\item Let $\fp\subset R$ be a prime ideal such that $\fp\cap U=\emptyset$. Prove that the contraction of $U^{-1}\fp$ is $\fp$.
+	\item Let $\mathfrak{q}\subset U^{-1}R$ be a prime ideal. Prove that the extension of its contraction is again $\mathfrak{q}$, i.e.
+	\[
+	U^{-1}\eta^{-1}(\mathfrak{q})=\mathfrak{q}.
+	\]
+	Hint: If $\frac{r}{u}\in U^{-1}R$, then $\frac{r}{u}\in \mathfrak{q}$ if and only if $\frac{r}{1}\in \mathfrak{q}$, since $\frac{u}{1}$ is a unit.
+	\item Conclude that extension and contraction give an order-preserving bijection
+	\[
+	\Spec(U^{-1}R)
+	\longleftrightarrow
+	\left\{\fp\in \Spec(R)\;\; \big|\;\; \fp\cap U=\emptyset\right\}.
+	\]
+	\item Specialize to the case $U=R\setminus \fp$. Prove that the prime ideals of $R_{\fp}$ correspond to the prime ideals of $R$ contained in $\fp$.
+	\item Specialize to the case $U=\{1,f,f^2,\ldots\}$. Prove that the prime ideals of $R[\frac{1}{f}]$ correspond to the prime ideals of $R$ which do not contain $f$.
+	\item Describe the prime ideals of $\ZZ_{\langle p\rangle}$ for a prime number $p$.
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+Localization is not limited to rings: we can also localize modules in essentially the same way. Let $R$ be a ring and let $M$ be an $R$-module. If $U \subset R$ is a multiplicatively closed subset, we want to build a new module $U^{-1}M$ by formally dividing elements of $M$ by the elements of $U$. The elements of $U^{-1}M$ are fractions $\frac{m}{u}$, where $m\in M$ and $u\in U$. So the numerators come from the module $M$, while the denominators come from the set $U$ which lives in the ring.  Of course, we must introduce a criterion of when two fractions $\frac{m_1}{u_1}$ and $\frac{m_2}{u_2}$ are equal. Just as when localizing a ring we say 
+\[
+\frac{m_{1}}{u_1}=\frac{m_2}{u_2} \text{\;\;\; in $U^{-1}M$} 
+\quad \Longleftrightarrow \quad
+t\left(u_{2}m_{1}-u_{1}m_{2}\right) = 0 \text{\;\; in $M$ for some $t\in U$}
+\]
+The factor of $t \in U$ is needed in order to ensure this is a transitive relation. Define addition on $U^{-1}M$ by
+\[
+\frac{m_1}{u_1}+\frac{m_2}{u_2} = \frac{m_1u_{2}+m_{2}u_{1}}{u_1u_2}
+\]
+which makes $U^{-1}M$ into an abelian group where the identity is $0/1$. The abelian group $U^{-1}M$ has the structure of both an $R$-module and a $U^{-1}R$-module. The $R$-module structure and the $U^{-1}R$-module structure are given by
+\[
+r \left(\frac{m}{u}\right)=\frac{rm}{u} \quad \quad \text{and} \quad \quad
+\left(\frac{r}{u_1}\right)\left(\frac{m}{u_2}\right)=\frac{rm}{u_1u_2}
+\]
+respectively. These module structures are compatible: the $R$-module structure on $U^{-1}M$ is the one obtained from the $U^{-1}R$-module structure by restriction of scalars along the localization map $\eta:R\to U^{-1}R$. 
+
+In general, if $\phi: R\to S$ is any ring homomorphism and $N$ is an $S$-module, then $N$ becomes an $R$-module by defining $rn \coloneqq \phi(r)n$ for $r\in R$ and $n\in N$. This construction is called \emph{restriction of scalars}. One checks immediately that this gives $N$ a well-defined $R$-module structure, since $\phi$ preserves addition, multiplication, and the identity. In our situation, the localization map $\eta: R\to U^{-1}R$ is defined by $\eta(r)=r/1$. Since $U^{-1}M$ is a $U^{-1}R$-module, restriction of scalars along $\eta$ gives $U^{-1}M$ an $R$-module structure via
+\[
+r\cdot \frac{m}{u} \;=\; \eta(r)\cdot\frac{m}{u} \;=\; \frac{r}{1}\cdot\frac{m}{u} \;=\; \frac{rm}{u},
+\]
+which is exactly the $R$-module structure we defined above. So there is really only one module structure at play: the $U^{-1}R$-module structure is the fundamental one, as the $R$-module structure is inherited from it.
+ 
+Just as the localization of a ring is characterized by a universal property, so is the localization of a module. There is a natural $R$-module homomorphism $\eta_{M}: M\to U^{-1}M$ given by $m\mapsto \frac{m}{1}$, which we call the \emph{localization map}. Note that the target $U^{-1}M$ carries a $U^{-1}R$-module structure, and in particular every element of $U$ acts invertibly on $U^{-1}M$: for any $u\in U$, multiplication by $u/1\in U^{-1}R$ is an isomorphism with inverse given by multiplication by $1/u$. The pair $U^{-1}M$ and $\eta_{M}$ satisfies the following universal property: Let $N$ be any $U^{-1}R$-module, viewed as an $R$-module by restriction of scalars along $\eta: R\to U^{-1}R$. Then for every $R$-module homomorphism $\phi: M\to N$, there exists a unique $U^{-1}R$-module homomorphism $\tilde{\phi}: U^{-1}M\to N$ such that the following diagram commutes:
+\[
+\begin{tikzcd}[row sep = 3.5em, column sep = 3.5em]
+M \arrow[r, "\eta_{M}"] \arrow[d, "\phi"'] & U^{-1}M \arrow[dl, dashed, "\tilde{\phi}"] \\
+N &
+\end{tikzcd}.
+\]
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item \textbf{Constructing $U^{-1}M$.} Let $R$ be a ring, $U \subset R$ a multiplicatively closed set, and $M$ be an $R$-module. Define a relation on $M\times U$ by $(m_{1},u_{1}) \sim (m_{2},u_{2})$ if and only if $t(m_1u_{2}-m_{2}u_{1})=0$ in $M$ for some $t\in U$. 
+\begin{enumerate}
+	\item Prove that $\sim$ is an equivalence relation on $M\times U$. 
+	\item Let $\frac{m}{u}$ denote the equivalence class of a pair $(m,u)$ under the equivalence relation $\sim$ defined in the previous part. Prove that the operation:
+	\[
+\frac{m_1}{u_1}+\frac{m_2}{u_2} = \frac{m_1u_{2}+m_{2}u_{1}}{u_1u_2}
+\]
+	is well-defined. Show that this makes $U^{-1}M$ an abelian group.
+	\item Show that the operations 
+	\[
+	r \left(\frac{m}{u}\right)=\frac{rm}{u} \quad \quad \text{and} \quad \quad \left(\frac{r}{u_1}\right)\left(\frac{m}{u_2}\right)=\frac{rm}{u_1u_2} 
+	\]
+	are well-defined. Deduce that $U^{-1}M$ has the structure of both an $R$-module and a $U^{-1}R$-module.
+	\item Let $\eta_M:M\to U^{-1}M$ be the function $m\mapsto \frac{m}{1}$. Show that $\eta_M$ is an $R$-module homomorphism. 
+	\item Prove that $\eta_M(m)=0$ if and only if $um=0$ for some $u\in U$. Deduce that $\eta_M$ is injective if and only if no element of $U$ acts as a zero-divisor on $M$.
+\end{enumerate}
+
+\item \textbf{Examples of Localizing Modules.} Discuss ways to explicitly understand $U^{-1}M$ in each of the following cases. Describe the natural map $M\to U^{-1}M$ and determine whether it is injective.
+\begin{multicols}{2}
+\begin{enumerate}
+	\item $R=\ZZ$, $U=\ZZ\setminus\{0\}$, and $M=\ZZ$.
+	\item $R=\ZZ$, $U=\{1,2,4,8,\ldots\}$, and $M=\ZZ$.
+	\item $R=\ZZ$, $U=\{1,2,4,8,\ldots\}$, and $M=\ZZ/\langle 6\rangle$.
+	\item $R=\ZZ$, $U=\ZZ\setminus \langle 2\rangle$, and $M=\ZZ/\langle 6\rangle$.
+	\item $R=\KK[x]$, $U=\{1,x,x^2,\ldots\}$, and $M=R/\langle x^3\rangle$.
+	\item $R=\KK[x]$, $U=R\setminus \langle x\rangle$, and $M=R/\langle x^3\rangle$.
+	\item $R=\KK[x,y]$, $U=\{1,y,y^2,\ldots\}$, and $M=R/\langle xy\rangle$.
+	\item $R$ is an arbitrary ring, $M$ is an $R$-module, and $U$ contains an element $u$ such that $uM=0$.
+\end{enumerate}
+\end{multicols}
+
+\item \textbf{Universal Property of $U^{-1}M$.} Let $R$ be a ring, let $U\subset R$ be a multiplicatively closed set, and let $M$ be an $R$-module. Let $N$ be a $U^{-1}R$-module, which we view as an $R$-module via the localization map $\eta:R\to U^{-1}R$. Let $\psi:M\to N$ be an $R$-module homomorphism.
+\begin{enumerate}
+	\item Define a function $\tilde{\psi}:U^{-1}M\to N$ by $\tilde{\psi}(\frac{m}{u})=\frac{1}{u}\psi(m)$. Prove that $\tilde{\psi}$ is well-defined.
+	\item Prove that $\tilde{\psi}$ is a homomorphism of $U^{-1}R$-modules.
+	\item Show that $\tilde{\psi}$ makes the following diagram commute:
+	\[
+	\begin{tikzcd}[row sep = 3.5em, column sep = 3.5em]
+	M \arrow[r, "\eta_M"] \arrow[d, swap, "\psi"] & U^{-1}M \arrow[dl, "\tilde{\psi}"] \\
+	N &
+	\end{tikzcd}
+	\]
+	\item Prove that $\tilde{\psi}$ is the unique $U^{-1}R$-module homomorphism making the diagram commute.
+	\item Deduce that $U^{-1}M$ is unique up to unique isomorphism as a $U^{-1}R$-module satisfying this universal property.
+\end{enumerate}
+
+\item \textbf{$U^{-1}M$ as a Tensor Product.} Let $R$ be a ring, $U\subset R$ be a multiplicatively closed set, and let $M$ be an $R$-module. We view $U^{-1}R$ as an $R$-module via the localization map $\eta:R\to U^{-1}R$.
+\begin{enumerate}
+	\item Show that the function given below is a well-defined bilinear map of $R$-modules:
+	\[
+	\begin{tikzcd}[row sep = .5em, column sep = 3.5em]
+	U^{-1}R\times M\arrow[r, "\overline{\alpha}"] & U^{-1}M\\
+	 \left(\frac{r}{u},m\right)\arrow[r, mapsto] & \frac{rm}{u}
+	 \end{tikzcd}
+	\]
+	\item Use the universal property of tensor products to construct an $R$-module homomorphism $\alpha:U^{-1}R\otimes_R M\to U^{-1}M$. Find a formula for $\alpha\left(\frac{r}{u}\otimes m\right)$.
+	\item Show that the function $\beta$ given below is a well-defined $R$-module homomorphism:
+	\[
+	\begin{tikzcd}[row sep = .5em, column sep = 3.5em]
+	U^{-1}M\arrow[r, "\beta"] & U^{-1}R\otimes_R M \\
+	 \frac{m}{u}\arrow[r, mapsto] & \frac{1}{u}\otimes m
+	 \end{tikzcd}.
+	\]
+	\item Prove that $\alpha$ and $\beta$ are mutual inverses. Conclude that $U^{-1}M\cong U^{-1}R\otimes_R M$ as $R$-modules. 
+	\item Deduce that $U^{-1}(R^n)\cong (U^{-1}R)^n$ as $U^{-1}R$-modules.
+	\item If $f:M\to N$ is an $R$-module homomorphism, define a natural $U^{-1}R$-module homomorphism $U^{-1}f:U^{-1}M\to U^{-1}N$. What is its formula on fractions?
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
