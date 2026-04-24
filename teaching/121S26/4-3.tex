@@ -1,0 +1,392 @@
+\documentclass[12pt,reqno]{amsart}
+\input{../../121preamble.tex}
+\renewcommand{\originalurl}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/LocalizationDay2Worksheet.pdf}
+\renewcommand{\originalurlI}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/SpectrumWorksheet.pdf}
+\title{Worksheet 4.3: Zariski Topology Pt. II}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\thispagestyle{firstpage2}
+
+Throughout this course, ``ring'' means a \textit{commutative} ring with unity. Recall that, given an ideal $I \subset R$, we define the vanishing set of $I$ to be
+\[
+\VV(I) \coloneqq \left\{[P] \in \Spec(R) \;\middle|\; I \subset P\right\}.
+\]
+The \emph{Zariski topology} on $\Spec(R)$ is then defined by declaring the closed sets to be the subsets of the form $\VV(I)$ as $I$ ranges over all ideals of $R$. In Worksheet 2.1 we verified that this is indeed a topology and studied it in detail. For example, we showed that any ring map $\phi:R \to S$ induces a continuous map of topological spaces $\phi^{\#}: \Spec(S) \to \Spec(R)$ given by $[P] \mapsto [\phi^{-1}(P)]$. (More precisely, $\Spec$ is a contravariant functor from the category of commutative rings to the category of topological spaces.) Further, we showed that the natural quotient map $\pi:R \to R/I$ induces a closed embedding $\pi^{\#}:\Spec(R/I) \to \Spec(R)$ whose image is $\VV(I)$.
+
+Now that we have localization in our toolbox, we return to studying the Zariski topology on $\Spec(R)$. The main slogan is that localizing a ring lets us study the part of $\Spec(R)$ where a given ``function'' is nonzero. We have not yet defined functions on $\Spec(R)$, but in many familiar examples elements of $R$ really are functions—for example, when $R$ is the coordinate ring of an algebraic set. Recall the following theorem from the last worksheet.
+
+\begin{theorem}\label{thm:localization-corr}
+	Let $R$ be a ring and let $U \subset R$ be a multiplicatively closed set. The localization map $\eta:R \to U^{-1}R$ induces an inclusion-preserving bijection:
+	\[
+	\begin{tikzcd}[row sep = .5em, column sep = 5em]
+	\left\{ 
+	\begin{matrix}
+	\text{prime ideals in} \\
+	U^{-1}R
+	\end{matrix}
+	\right\} \arrow[r,"\sim"] & 
+	\left\{
+	\begin{matrix}
+	\text{prime ideals in $R$} \\
+	\text{disjoint from $U$} 
+	\end{matrix}
+	\right\} \\
+	P \arrow[r, mapsto] & \eta^{-1}(P)
+	\end{tikzcd}.
+	\]
+\end{theorem}
+
+We begin by using this theorem in the case that $U=\{1,f,f^2,f^3,\ldots\}$ for an element $f \in R$ to study what are called the basic open sets of $\Spec(R)$. A \emph{basic open subset} -- also called a \emph{distinguished open subset} -- of $\Spec(R)$ is a set of the form
+\[
+D(f) \coloneqq \left\{ [P] \in \Spec(R) \;\; \big| \;\; f \not \in P\right\}  \subset \Spec(R)
+\]
+for some element $f\in R$. We will show that these subsets form a nice basis for the Zariski topology on $\Spec(R)$. A \emph{basis} for a topological space $X$ is a collection $\mathcal{B}$ of open subsets of $X$ such that for every open set $U \subset X$ and every point $x \in U$, there exists some $B \in \mathcal{B}$ with $x \in B \subset U$. Equivalently, every open subset of $X$ can be written as a union of elements of $\mathcal{B}$.
+
+%Recall that when $U=\{1,f,f^2,f^3,\ldots\}$ we denote the localization $U^{-1}R$ by $R[\frac{1}{f}]$. 
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, series=problems]
+
+\item \textbf{Basic Open Sets.} Let $R$ be a ring and $f,g \in R$.
+\begin{enumerate}
+	\item Prove directly from the definition of the Zariski topology that $D(f)$ is an open set. 
+	\item Compute $D(0)$ and $D(1)$. 
+	\item Prove that $D(f) = D(f^{n})$ for all $n\geq1$. 
+	\item Prove that $D(f) \cap D(g) = D(fg)$. Use induction to find a formula for the intersection of finitely many basic opens. 
+	\item Prove that $D(f)\subset D(g)$ if and only if $f\in \sqrt{\langle g\rangle}$. Hint: Take complements to rewrite $D(f)\subset D(g)$ as $\VV(g)\subset \VV(f)$, and use the fact that $\VV(I)\subset \VV(J)$ if and only if $\sqrt{J}\subset \sqrt{I}$.
+	\item Prove that $D(f) = D(g)$ if and only if $\sqrt{\langle f \rangle} = \sqrt{\langle g \rangle}$. 
+	\item Let $U\subset \Spec(R)$ be an open subset and let $[\fp] \in U$. Show that there exists $f\in R$ such that $[\fp] \in D(f) \subset U$. Hint: Since $U$ is open, write $\Spec(R)\setminus U=\VV(I)$ for some ideal $I$. Then use the fact that $[\fp]\notin \VV(I)$ to choose $f\in I\setminus \fp$.
+	\item Deduce that the basic open sets form a basis for the Zariski topology on $\Spec(R)$. 
+\end{enumerate}
+
+\item \textbf{Examples of Basic Opens.} Explicitly describe the basic open set $D(f) \subset \Spec(R)$ in each of the following cases. 
+\begin{multicols}{2}
+\begin{enumerate}
+	\item $R=\KK[x]$ and $f=x$.
+	\item $R=\KK[x]$ and $f=x-a$ for $a\in \KK$.
+	\item $R=\ZZ$ and $f=p$ for a prime number $p$.
+	\item $R=\KK[x,y]/\langle xy\rangle$ and $f=\overline{x}$.
+	\item $R=\KK[x,y]/\langle xy\rangle$ and $f=\overline{y}$.
+	\item $R=\ZZ/\langle12\rangle$ and $f=\overline{2}$.
+	\item $R=\ZZ/\langle12\rangle$ and $f=\overline{3}$.
+	\item $R=\ZZ/\langle12\rangle$ and $f=\overline{6}$.
+\end{enumerate}
+\end{multicols}
+ 
+ \item \textbf{Induced Map by Localization.}  Let $U\subset R$ be a multiplicatively closed set and let $\eta:R\to U^{-1}R$ be the localization map. In this exercise we will study the induced map $\eta^{\#}:\Spec(U^{-1}R) \to \Spec(R)$. 
+ \begin{enumerate}
+ 	\item Use the correspondence between prime ideals in $U^{-1}R$ and $R$ given in Theorem~\ref{thm:localization-corr} to prove that $\eta^{\#}$ is injective and the image of $\eta^{\#}$ is
+	\[
+	X_{U} \coloneqq \left\{[\fp] \in \Spec(R) \;\; \big| \;\; \fp \cap U = \varnothing\right\} \subset \Spec(R).
+	\]
+	\item Let $R=\ZZ$ and $U=\ZZ\setminus \langle p \rangle$ for a prime $p\in \ZZ$. Show that $X_U=\{\langle 0 \rangle, \langle p \rangle\}$.  Prove that this is not open in $\Spec(\ZZ)$.
+	\item Let $R=\ZZ$ and $U=\{2^{i}3^{j} \;\; | \;\;  i,j\in \ZZ_{\geq0}\}$. Show that $X_{U}=\{\langle 0\rangle\} \cup \{\langle p \rangle \; | \; \text{$p$ prime,  $p\neq2,3$}\}$. Show that this is an open subset of  $\Spec(\mathbb{Z})$.
+	\item Describe $X_U$ when $R=\CC[x,y]$ and $U=\{(xy)^n \;\; | \; \;  n\in\ZZ_{\geq0}\}$.
+	\item Prove that $X_{U} = \bigcap_{f \in U} D(f)$. 
+	\item Deduce that if $U$ is a multiplicative set generated by finitely many elements then $X_{U}$ is open. 
+	\item Fix an element $\frac{r}{u} \in U^{-1}R$. Prove that $\eta^{\#}(D(\frac{r}{u})) = D(r) \cap X_{U}$. Hint: In $U^{-1}R$, the element $u$ is a unit, so $D(\frac{r}{u})=D(\frac{r}{1})$. Then use part~(a) to identify the image of $\eta^{\#}$.
+	\item Prove that $\eta^{\#}:\Spec(U^{-1}R) \to \Spec(R)$ is a homeomorphism onto its image $X_{U}$ (considered with the subspace topology). 
+	\item Specializing to the case that $U=\{1,f,f^2,f^3,\ldots\}$, prove that $\eta^{\#}:\Spec(R[\frac{1}{f}]) \to \Spec(R)$ is a homeomorphism onto the basic open subset $D(f)$.
+\end{enumerate} 
+\end{enumerate}
+
+\hrulefill
+
+Let $X$ be a topological space. An \emph{open cover} of $X$ is a collection $\{U_i\}_{i \in \Lambda}$ of open subsets of $X$ such that $X = \bigcup_{i \in \Lambda} U_i$. A \emph{finite subcover} is a finite subcollection $\{U_{i_1}, \dots, U_{i_n}\}$ that still covers $X$, i.e.\ $X = U_{i_1} \cup \cdots \cup U_{i_n}$.
+ 
+With these terms in hand, recall that $X$ is \emph{quasi-compact} if every open cover admits a finite subcover. More generally, a subset $Y \subset X$ is \emph{quasi-compact} if every cover of $Y$ by open subsets of $X$ admits a finite subcover; equivalently, $Y$ is quasi-compact in the subspace topology. In the Hausdorff setting this is simply compactness; the prefix ``quasi-'' is standard in algebraic geometry because Zariski topologies are virtually never Hausdorff, and one wants to keep the two notions distinct.
+ 
+ Every affine spectrum $\Spec R$ is quasi-compact. The proof is a clean illustration of how the basic opens $D(f)$ serve as a bridge between topology and commutative algebra. If $\{D(f_i)\}_{i \in \Lambda}$ covers $\Spec(R)$, then no prime ideal contains every $f_i$, so the $f_i$ generate the unit ideal. But any expression $1 = \sum a_i f_i$ involves only finitely many terms, so a finite subfamily already generates the unit ideal and the corresponding $D(f_i)$'s already cover. The argument generalizes immediately: any open subset that can be written as a finite union of basic opens is itself quasi-compact.
+  
+This kind of translation---reformulating a covering condition as an ideal-membership statement, then exploiting the finiteness built into ring equations---is one of the workhorses of scheme theory.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{Quasi-compactness of the Zariski Topology.} Let $R$ be a ring.
+\begin{enumerate}
+	\item Let $\Lambda \subset R$ be a collection of elements of $R$. Prove that $\{D(f)\}_{f\in \Lambda}$ is an open cover of $\Spec(R)$ if and only if $\langle f \mid f\in \Lambda\rangle$ is the unit ideal.
+	\item Let $\Lambda \subset R$ be a collection of elements of $R$. Explain why if $\langle f \mid f\in \Lambda\rangle$ is the unit ideal then there exist finitely many elements $f_{1},\ldots,f_{n} \in \Lambda$ such that $\langle f_{1},\ldots,f_{n} \rangle$ is also the unit ideal.
+	\item Deduce that every cover of $\Spec(R)$ by basic open subsets has a finite subcover.
+	\item Use the fact that the $D(f)$ form a basis to prove that $\Spec(R)$ is quasi-compact. Hint: Refine each open set in the cover by basic open neighborhoods using the basis property from Problem 1. 
+	\item Prove that $\VV(I)$ is quasi-compact for every ideal $I\subseteq R$. Hint: Use the homeomorphism $\Spec(R/I)\cong \VV(I)$ from Worksheet 2.1.
+	 \item Let $I \subset R$ be an ideal and set $U \coloneqq \Spec(R)\setminus \VV(I)$.
+	\begin{enumerate}
+	\item Show that $U=\bigcup_{f\in I} D(f)$.
+	\item Show that if $U$ is quasi-compact, then $U=D(f_1)\cup\cdots\cup D(f_n)$ for some $f_1,\ldots,f_n\in I$.
+	\item Deduce that $U$ is quasi-compact if and only if $\sqrt{I}=\sqrt{\langle f_1,\ldots,f_n\rangle}$ for some $f_1,\ldots,f_n\in I$.
+\end{enumerate}
+Equivalently, $U$ is quasi-compact if and only if $\sqrt{I}$ is the radical of a finitely generated ideal.
+	\item Deduce that if $R$ is Noetherian, every open subset of $\Spec(R)$ is quasi-compact. Hint: First show that $\Spec(R)\setminus \VV(I)=\bigcup_{f\in I} D(f)$.
+\end{enumerate}
+
+\item \textbf{Counterexamples to Quasi-compactness of Subsets.} In the previous problem we saw that $\Spec(R)$ and every closed subset $\VV(I) \subset \Spec(R)$ are quasi-compact in the Zariski topology. We also saw that when $R$ is Noetherian every open subset of $\Spec(R)$ is quasi-compact. In this exercise we explore some pathologies for open subsets when $R$ is not Noetherian.
+\begin{enumerate}
+	\item Let $R=\KK[x_1,x_2,\ldots]$ and $I=\langle x_1,x_2,\ldots\rangle$. Consider the open subset $U\coloneqq \Spec(R) \setminus \VV(I)$. Prove that $\{D(x_i)\}_{i=1}^{\infty}$ is an open cover of $U$, which has no finite subcover. Hence an open subset of $\Spec(R)$ need not be quasi-compact. Hint: If you try to cover $U$ by only $D(x_1),\ldots,D(x_n)$, consider the prime ideal $\langle x_1,\ldots,x_n\rangle$.
+	\item Explain why each basic open set $D(x_i)$ is quasi-compact. Deduce that an arbitrary union of quasi-compact open subsets of $\Spec(R)$ need not be quasi-compact.
+\end{enumerate}
+
+
+\item \textbf{Checking Properties on a Finite Cover.} Let $R$ be a ring. Suppose that $f_1,\ldots,f_n \in R$ are such that $\{D(f_i)\}_{i=1}^{n}$ is a finite open cover of $\Spec(R)$, i.e., $\Spec(R)=D(f_1)\cup D(f_2)\cup \cdots \cup D(f_n)$. We will see that certain ring-theoretic properties of $R$ can be checked locally by looking at the rings $R[\frac{1}{f_i}]$.
+\begin{enumerate}
+	\item Let $r \in R$. Prove that if $r/1=0$ in $R[\frac{1}{f_i}]$ for all $i$ then $r=0$ in $R$. Hint: In $R[\frac{1}{f_i}]$, the equality $r/1=0$ means that $f_i^{n_i}r=0$ for some $n_i\ge 0$.
+	\item Deduce that if  $R[\frac{1}{f_i}]=0$ for all $i$ then $R=0$. 
+	\item Prove that if $R[\frac{1}{f_i}]$ is reduced for all $i$, then $R$ is reduced. 
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+An element $r\in R$ is \emph{nilpotent} if $r^n=0$ for some integer $n\geq 1$. If $ I \subset R$ is an ideal, the \emph{radical} of $I$ is
+\[
+\sqrt{I}\coloneqq\left\{r\in R\;\middle|\; r^n\in I\text{ for some }n\geq 1\right\},
+\]
+which we previously checked is an ideal of $R$ containing $I$ and $\sqrt{\sqrt{I}}=\sqrt{I}$. An ideal $I \subset R$ is \emph{radical} if and only if $I=\sqrt{I}$. We saw that radical ideals play a crucial role in the study of algebraic sets as $\II(V)$ is always radical and Hilbert's Nullstellensatz gave an inclusion-reversing bijection between radical ideals in $\KK[x_1,\ldots,x_n]$ and algebraic subsets of $\KK^n$ when $\KK$ is an algebraically closed field. These facts highlight the following motto: \emph{(classical) geometry does not see nilpotents.} (Here classical means anything one encounters pre-scheme theory; topology, classical algebraic geometry, complex geometry, etc.)
+
+We shall see that the invisibility of nilpotents to geometry also applies to spectra of rings. The \emph{nilradical} of $R$ is the set of all nilpotent elements of $R$, equivalently the radical of the zero ideal:
+\[
+\Nil(R)\coloneqq\sqrt{\langle 0\rangle}=\left\{r\in R\;\middle|\; r^n=0\text{ for some }n\geq 1\right\}.
+\]
+If $f \in \Nil(R)$ and $f^{n}=0$, then $f^{n}\in I$ for every ideal $I \subset R$. In particular, if $P \subset R$ is a prime ideal, then $f^{n}=0\in P$, which implies that $f\in P$. Thus the nilradical of $R$ is contained in every prime ideal of $R$. In the exercises below you will prove the reverse inclusion, giving the fundamental characterization
+\[
+\Nil(R)=\bigcap_{\mathfrak{p}\in\Spec(R)}\mathfrak{p}.
+\]
+Since prime ideals of $R/\Nil(R)$ are in bijection with prime ideals of $R$ containing $\Nil(R)$, the equality above implies that prime ideals of $R$ are in bijection with prime ideals of $R/\Nil(R)$. Geometrically, this means that the quotient map $\pi:R \to R/\Nil(R)$ induces a map of topological spaces
+\[
+\begin{tikzcd}[row sep = .5em, column sep = 3.5em]
+	\Spec(R/\Nil(R)) \arrow[r, "\pi^{\#}"] & \Spec(R)
+\end{tikzcd}
+\]
+that is bijective and continuous. We will see shortly that this map is actually a homeomorphism; hence, topologically $\Spec(R)$ and $\Spec(R/\Nil(R))$ are indistinguishable. This is another instance of the motto: geometry does not see nilpotents. A ring $R$ is called \emph{reduced} if $\Nil(R)=\langle 0 \rangle$, i.e., if the only nilpotent element is $0$. We often call $R/\Nil(R)$ the reduced ring associated to $R$ and denote it $R_{\red}\coloneqq R/\Nil(R)$.
+
+More generally, the nilradical characterization extends to arbitrary ideals. One checks that $\Nil(R/I)=\sqrt{I}/I$, since the elements of $R/I$ whose powers lie in $I$ are exactly the images of elements of $\sqrt{I}$. Applying the nilradical formula in the ring $R/I$ and pulling back to $R$ gives
+\[
+\sqrt{I}=\bigcap_{\substack{\mathfrak{p}\in\Spec(R)\\\mathfrak{p}\supseteq I}}\mathfrak{p}.
+\]
+This has immediate geometric consequences. For example, this gives another proof that $\VV(I) = \VV(\sqrt{I})$. Thus the Zariski-closed subsets of $\Spec(R)$ determined by $I$ and $\sqrt{I}$ are identical. This interacts cleanly with quotient rings; in particular, an argument like the one above shows that $\Spec(R/I)$ and $\Spec(R/\sqrt{I})$ are homeomorphic.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{Nilradicals and Reduced Rings.} Let $R$ be a ring. 
+\begin{enumerate}
+	\item Explain why $\Nil(R)$ is an ideal and $\Nil(R)\subset \bigcap_{\fp\in \Spec(R)}\fp$.
+	\item Prove that if $f \in R$ is not a nilpotent then $R[\frac{1}{f}] \neq 0$ and hence contains a prime ideal. Hint: If $R[\frac{1}{f}]=0$, then $1=0$ in $R[\frac{1}{f}]$. What does that say about some power of $f$?
+	\item Use the correspondence between prime ideals in $R[\frac{1}{f}]$ and $R$ not containing $f$ to show there is a prime ideal $\fp\subset R$ such that $f\notin \fp$.
+	\item\label{ex-pt:nilradical} Deduce the theorem
+	\[
+	\Nil(R)=\bigcap_{\fp\in \Spec(R)}\fp. 
+	\]
+	\item Define $R_{\red}$ to be equal to $R/\Nil(R)$. Prove that $R_{\red}$ is reduced.
+	\item Use the above characterization to prove that $D(f) = \varnothing$ if and only if $f$ is a nilpotent element. 
+	\item Show that $D(f) = \Spec(R)$ if and only if $f$ is a unit in $R$. 
+	\item Let $\pi:R \to R_{\red}$ be the natural quotient map. Prove that the induced map $\pi^{\#}:\Spec(R_{\red}) \to \Spec(R)$ is a homeomorphism. (Hint: We already know it is continuous. Use part~\ref{ex-pt:nilradical} to show it is a bijection. Finally, show that the map is closed by proving that for every ideal $I\supseteq \Nil(R)$, the closed set $\VV(I/\Nil(R))\subseteq \Spec(R_{\red})$ maps to $\VV(I)\subseteq \Spec(R)$.)
+	\item Compute $R_{\red}$ for each of the following rings:
+	\begin{multicols}{2}
+	\begin{enumerate}
+		\item $\KK[\epsilon]/\langle \epsilon^2\rangle$,
+		\item $\KK[x]/\langle x^3\rangle$,
+		\item $\KK[x,y]/\langle x^2,xy\rangle$,
+		\item $\ZZ/12\ZZ$.
+	\end{enumerate}
+	\end{multicols}
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+
+Given a ring homomorphism $\phi:R \to S$, we know that it induces a continuous map $\phi^{\#}: \Spec(S) \to \Spec(R)$ of topological spaces. A natural geometric question is: what is the fibre of this map over a point $[\fp] \in \Spec(R)$? Recall that if $f:X \to Y$ is a map of topological spaces, then the fibre over a point $y \in Y$ is just the preimage $f^{-1}(\{y\})=\{x \in X \mid f(x)=y\} \subset X$, considered with the subspace topology. In algebraic geometry, authors often write $X_y$ for the fibre over $y$ when the map $f$ is clear. Returning to the induced map $\phi^{\#}$, since we know that $\phi^{\#}([\fq])=[\phi^{-1}(\fq)]$, we can directly describe the fibre as
+\[
+(\phi^{\#})^{-1}\left([\fp]\right) = \left\{ [\fq] \in \Spec(S) \;\middle|\; \phi^{-1}(\fq)=\fp \right\} \subset \Spec(S).
+\]
+However, we would like a better, more algebraic description of this set. Answering this involves two conceptual steps: localization and reduction to the residue field. It is worth pausing to try to get an intuitive understanding of each step. As a roadmap: to compute the fibre over $[\fp]$, we first localize at $\fp$, then quotient by $\fp R_{\fp}$; this is what leads naturally to the fibre ring $\kappa(\fp)\otimes_R S$.
+
+Let $f:X \to Y$ be any continuous map of topological spaces. The fibre over a point $y \in Y$ is local on $Y$ in the sense that it really only depends on the behavior of $f$ at the point $y$, or perhaps in an open neighborhood of $y$. More precisely, if $U \subset Y$ contains $y$ and $V=f^{-1}(U)$, then
+\[
+f^{-1}(\{y\}) = (f|_{V})^{-1}(\{y\}),
+\]
+where $f|_{V}:V \to U$ is the restriction of $f$. If we wished to be fancy, we might draw a commutative diagram of topological spaces
+\[
+\begin{tikzcd}[row sep = 3.5em, column sep =3.5em]
+	X \arrow[r, "f"] & Y \\
+	V \arrow[u, hookrightarrow, "\iota"] \arrow[r, swap,"f|_{V}"] & U \arrow[u, hookrightarrow]
+\end{tikzcd}
+\]
+where $\iota$ is the inclusion of $V$ into $X$. Since $V=f^{-1}(U)$ and $y\in U$, every point of the fibre over $y$ already lies in $V$, so the displayed equality holds. In other words, restricting $f$ to $V$ does not change the fibre over $y$; more generally, we may replace $X$ by any subset that still contains the fibre over $y$.
+
+Returning to the algebraic situation $\phi^{\#}:\Spec(S) \to \Spec(R)$, we happen to know from the previous exercise on localization a very nice subset of $\Spec(R)$ containing the point $[\fp]$, namely
+\[
+[\fp]\in X_U\subset \Spec(R)
+\qquad\text{where}\qquad
+U=R\setminus \fp.
+\]
+Even better, the localization map $\eta:R\to R_{\fp}$ induces a homeomorphism from $\Spec(R_{\fp})$ onto $X_U$. We could thus hope to compute the fibre over $[\fp]$ by trying to factor $\phi^{\#}$ through $\eta^{\#}$, i.e.\ to find a commutative diagram of topological spaces as shown on the left below for some subset $V\subset \Spec(S)$.
+\[
+\begin{tikzcd}[row sep = 4.5em, column sep =4.5em]
+	\Spec(S) \arrow[r, "\phi^{\#}"] & \Spec(R) \\
+	V \arrow[u, dashed, hookrightarrow] \arrow[r, dashed] & \Spec(R_{\fp}) \arrow[u, hookrightarrow, "\eta^{\#}"]
+\end{tikzcd}
+\qquad\qquad\qquad
+\begin{tikzcd}[row sep = 4.5em, column sep =4.5em]
+	R \arrow[r, "\phi"] \arrow[d, "\eta"] & S \arrow[d, dashed] \\
+	R_{\fp} \arrow[r, dashed] & ??
+\end{tikzcd}.
+\]
+It turns out we can find such a subset using the universal property of localization. To see why, let us just hope that $V$ can be realized as the spectrum of some ring and that the dashed maps arise from ring homomorphisms. This means we are trying to complete the diagram of rings above on the right. Recall that the image of a multiplicatively closed set is again multiplicatively closed, so we may localize $S$ at
+\[
+T\coloneqq \phi(R\setminus\fp)\subset S.
+\]
+Let $\eta_S:S\to T^{-1}S$ be the localization map. We now have a diagram in which the diagonal map is the composition of $\phi$ and $\eta_S$:
+\[
+\begin{tikzcd}[row sep = 3.5em, column sep =3.5em]
+	R \arrow[r, "\phi"] \arrow[d, "\eta"] \arrow[dr] & S \arrow[d, "\eta_S"] \\
+	R_{\fp} \arrow[r, dashed, "\widetilde{\phi}"] & T^{-1}S
+\end{tikzcd}
+\]
+where the diagonal map is just the composition of $\phi$ and $\eta_S$. Every element of $R\setminus \fp$ maps to a unit in $T^{-1}S$ under the diagonal map, so the universal property of localization gives a unique ring map $\widetilde{\phi}:R_{\fp}\longrightarrow T^{-1}S$ making the diagram commute. Passing to spectra gives a commutative diagram
+\[
+\begin{tikzcd}[row sep = 3.5em, column sep =3.5em]
+	\Spec(S) \arrow[r, "\phi^{\#}"] & \Spec(R) \\
+	\Spec(T^{-1}S) \arrow[u, hookrightarrow, "\eta_S^{\#}"] \arrow[r, "\widetilde{\phi}^{\#}"] & \Spec(R_{\fp}) \arrow[u, hookrightarrow, "\eta^{\#}"]
+\end{tikzcd}
+\]
+and hence the fibre of $\phi^{\#}$ over $[\fp]$ is naturally identified with the fibre of $\widetilde{\phi}^{\#}$ over the point $[\fp R_{\fp}]$. Since $\eta^{\#}$ and $\eta_S^{\#}$ are homeomorphisms onto their images, this reduces the computation of the fibre of $\phi^{\#}$ over $[\fp]$ to the computation of the fibre of $\widetilde{\phi}^{\#}$ over $[\fp R_{\fp}]$.
+
+Now we would like to understand this latter fibre algebraically. Since $R_{\fp}$ is a local ring with unique maximal ideal $\fp R_{\fp}$, a prime ideal $\fq\subset T^{-1}S$ lies over $\fp R_{\fp}$ if and only if it contains the extended ideal $\fp(T^{-1}S)$. Thus the fibre is exactly the closed subset
+\[
+\VV\!\left(\fp(T^{-1}S)\right)\subset \Spec(T^{-1}S),
+\]
+so
+\[
+(\phi^{\#})^{-1}([\fp]) \cong \Spec\!\left(T^{-1}S/\fp(T^{-1}S)\right).
+\]
+
+At first glance this quotient ring looks a bit mysterious, but tensor products package it very nicely. In fact there is a natural isomorphism $R_{\fp}\otimes_R S \cong T^{-1}S$. The \emph{residue field} at $\fp$ is $\kappa(\fp)\coloneqq R_{\fp}/\fp R_{\fp}$, which one checks is isomorphic to $\Frac(R/\fp)$. (Recall $R/\fp$ is a domain since $\fp$ is a prime ideal.) There is then an isomorphism
+\[
+\kappa(\fp)\otimes_R S
+\cong
+(R_{\fp}\otimes_R S)/\fp(R_{\fp}\otimes_R S)
+\cong
+T^{-1}S/\fp(T^{-1}S).
+\]
+Therefore the fibre of $\phi^{\#}$ over $[\fp]$ is naturally homeomorphic to $\Spec(\kappa(\fp)\otimes_R S)$. The ring $\kappa(\fp)\otimes_R S$ is called the \emph{fibre ring} of $\phi$ at $[\fp]$. The next exercise asks you to prove this carefully.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{Residue Field.} Let $R$ be a ring. Given a prime ideal $\fp \subset R$, the residue field of $R$ at $\fp$ is the ring $R_{\fp}/\fp R_{\fp}$, which we denote by $\kappa(\fp)$. 
+\begin{enumerate}
+	\item Explain why $\fp R_{\fp}$ is the unique maximal ideal of $R_{\fp}$. Deduce that $\kappa(\fp)$ is a field.
+	
+	\item Show that the composite map
+	\[
+	R\longrightarrow R_{\fp}\longrightarrow \kappa(\fp)
+	\]
+	has kernel $\fp$. Deduce that it induces an injective ring map $R/\fp \hookrightarrow \kappa(\fp)$.
+
+	\item Prove that every nonzero element of $R/\fp$ becomes invertible in $\kappa(\fp)$. Conclude that $\kappa(\fp)\cong \Frac(R/\fp)$.
+
+	\item Use part (c) to compute the residue field $\kappa(\fp)$ in each of the following cases. In each case it may be helpful to first identify the quotient ring $R/\fp$:
+	\begin{multicols}{2}
+	\begin{enumerate}
+		\item $R=\ZZ$ and $\fp=\langle p\rangle$ for a prime $p$.
+		\item $R=\ZZ$ and $\fp=\langle 0\rangle$.
+		\item $R=\KK[x]$ and $\fp=\langle x-a\rangle$ for $a\in \KK$.
+		\item $R=\KK[x]$ and $\fp=\langle 0\rangle$.
+		\item $R=\RR[x]$ and $\fp=\langle x^2+1\rangle$.
+		\item $R=\KK[x,y]$ and $\fp=\langle y-x^2\rangle$.
+		\item $R=\KK[x,y]$ and $\fp=\langle x,y\rangle$.
+		\item $R=\ZZ[x]$ and $\fp=\langle p,x\rangle$ for a prime $p$.
+		\item $R=\ZZ[i]$ and $\fp=\langle 1+i\rangle$.
+		\item $R=\ZZ[\sqrt{-5}]$ and $\fp=\langle 2,1+\sqrt{-5}\rangle$.
+	\end{enumerate}
+	\end{multicols}
+\end{enumerate}
+
+\item\label{ex:fibre-ring} \textbf{Fibre Ring.} Let $\phi:R\to S$ be a ring map and fix a point $[\fp]\in \Spec(R)$. Set $U \coloneqq R \setminus \fp$ and $T\coloneqq \phi(U) \subset S$. Let $\widetilde{\phi}:R_{\fp}\longrightarrow T^{-1}S$ be the map induced by the universal property of localization discussed above. 
+\begin{enumerate}
+	\item\label{ex-pt:fibre-ring-iso} Prove that there is a natural isomorphism
+	\[
+	\begin{tikzcd}[row sep=.5em, column sep=3.5em]
+	R_{\fp}\otimes_R S \arrow[r, "\sim"] & T^{-1}S \\
+	\frac{r}{u}\otimes s \arrow[r, mapsto] & \frac{\phi(r)s}{\phi(u)}.
+	\end{tikzcd}
+	\]
+	
+	\item Tensor the exact sequence
+	\[
+	\fp R_{\fp}\longrightarrow R_{\fp}\longrightarrow \kappa(\fp)\longrightarrow 0
+	\]
+	with $S$ over $R$ to obtain an exact sequence
+	\[
+	(\fp R_{\fp})\otimes_R S \longrightarrow R_{\fp}\otimes_R S \longrightarrow \kappa(\fp)\otimes_R S \longrightarrow 0.
+	\]
+	Hint: View $S$ as an $R$-module via $\phi$, and use the right exactness of $-\otimes_R S$, which will be proved in Worksheet 5-1.
+	
+	\item Show that the image of
+	\[
+	(\fp R_{\fp})\otimes_R S \longrightarrow R_{\fp}\otimes_R S
+	\]
+	is exactly the ideal $\fp(R_{\fp}\otimes_R S)$.
+	
+	\item Deduce that there are natural isomorphisms
+	\[
+	\kappa(\fp)\otimes_R S
+	\cong
+	(R_{\fp}\otimes_R S)/\fp(R_{\fp}\otimes_R S)
+	\cong
+	T^{-1}S/\fp(T^{-1}S).
+	\]
+\end{enumerate}
+
+\item \textbf{Fibres of Spec Maps.} Let $\phi:R\to S$ be a ring map and fix a point $[\fp]\in \Spec(R)$. Set $U \coloneqq R \setminus \fp$ and $T\coloneqq \phi(U) \subset S$. Let $\widetilde{\phi}:R_{\fp}\longrightarrow T^{-1}S$ be the map induced by the universal property of localization discussed above. 
+\begin{enumerate}
+	\item Show that the fibre $(\phi^{\#})^{-1}([\fp])$ is naturally homeomorphic to the fibre of $\widetilde{\phi}^{\#}:\Spec(T^{-1}S)\longrightarrow \Spec(R_{\fp})$ over the point $[\fp R_{\fp}]$.
+	\item Let $\fq\in \Spec(T^{-1}S)$. Prove that $\widetilde{\phi}^{-1}(\fq)=\fp R_{\fp}$ if and only if $\fp(T^{-1}S)\subseteq \fq$. Hint: Use that $R_{\fp}$ is a local ring with unique maximal ideal $\fp R_{\fp}$.
+	\item Deduce that
+	\[
+	(\phi^{\#})^{-1}([\fp])\cong \VV\!\left(\fp(T^{-1}S)\right)\subset \Spec(T^{-1}S),
+	\]
+	and hence that there is a homeomorphism of topological spaces $(\phi^{\#})^{-1}([\fp]) \cong \Spec\!\left(T^{-1}S/\fp(T^{-1}S)\right)$.
+	\item Use Exercise~\ref{ex:fibre-ring} to conclude that $(\phi^{\#})^{-1}([\fp]) \cong \Spec(\kappa(\fp)\otimes_R S)$.
+	\item Deduce that the fibre over $[\fp]$ is empty if and only if $\kappa(\fp)\otimes_R S=0$.
+\end{enumerate}
+
+\item \textbf{Computing Fibres of Spec Maps.} In this problem, we use the previous exercise to compute several examples:
+\begin{enumerate}
+	\item Let $\phi:\ZZ\to \ZZ[x]$ be the inclusion. Compute the fibre of the induced map $\phi^{\#}:\Spec(\ZZ[x]) \to \Spec(\ZZ)$ over the generic point $\langle 0\rangle$ and over a closed point $\langle p\rangle$ for $p \in \ZZ$ prime. 
+	\item Fix an integer $n\geq 2$, and consider the localization map $\eta: \ZZ\to \ZZ[\frac{1}{n}]$. For which points of $\Spec(\ZZ)$ is the fibre with respect to $\eta^{\#}$ empty? Compute the nonempty fibres.
+	\item Let $\KK$ be a field and consider the map
+\[
+\KK[t]\longrightarrow \KK[x,y],
+\qquad
+ t\longmapsto x.
+\]
+Compute the fibre of the induced map over $\langle 0\rangle\in \Spec(\KK[t])$ and the fibre over $\langle t-a\rangle$ for $a\in \KK$.
+\item Consider the inclusion of $\CC$-algebras $\CC[t] \to \CC[x,y,t]/\langle xy-t\rangle$ given by $t \mapsto t$.
+\begin{enumerate}
+	\item Compute the fibre over the generic point $\langle 0\rangle$.
+	\item Compute the fibre over $\langle t-a\rangle$ for $a\neq 0$.
+	\item Compute the fibre over $\langle t\rangle$.
+	\item Draw the corresponding map on closed points and compare it with the fibres above.
+\end{enumerate}
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

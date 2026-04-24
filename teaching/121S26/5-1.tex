@@ -1,0 +1,691 @@
+\documentclass[12pt,reqno]{amsart}
+\input{../../121preamble.tex}
+\renewcommand{\originalurl}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/LocalizationWorksheet.pdf}
+\title{Worksheet 5.1: Exactness}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\thispagestyle{firstpageIP}
+
+Throughout this course, ``ring'' means \textit{commutative} ring with unity. In the previous worksheets we introduced modules, homomorphisms, quotient modules, free modules, Hom, tensor products, and localization. The goal of this worksheet is to organize these constructions around one central idea: \emph{exactness}. Exactness is a way to say that one map accounts for exactly the elements killed by the next map. It packages kernels, images, quotient modules, presentations, and many theorems into one flexible language.
+
+Let $R$ be a ring. A \emph{sequence} of $R$-modules is $\ldots,M_{0}, M_{1},M_{2},\ldots$ together with $R$-module homomorphisms $\phi_{i}:M_{i} \to M_{i-1}$. We often arrange a sequence into a diagram like\[
+\begin{tikzcd}[row sep = .3em, column sep = 3em]
+\cdots \arrow[r, "\phi_{i+1}"] & M_{i} \arrow[r, "\phi_{i}"] & M_{i-1} \arrow[r, "\phi_{i-1}"] & M_{i-2} \arrow[r] & \cdots.
+\end{tikzcd}
+\]
+We are most interested in sequences when the maps are related in some nice way that allows us to compare the image of one map with the kernel of the next. A \emph{chain complex}, or simply a \emph{complex}, of $R$-modules is a sequence in which $\phi_{i-1}\circ \phi_{i}=0$ for every $i$. Equivalently, $\img(\phi_{i})\subset \ker(\phi_{i-1})$ for all $i$. We often write $(M_\bullet,\phi_\bullet)$ for a complex and call the maps $\phi_i$ \emph{differentials}. A complex is \emph{exact at $M_i$} if $\img(\phi_{i+1})=\ker(\phi_{i})$. One way to measure the failure, or success, of a complex to be exact at $M_{i}$ is by looking at the \emph{$i$-th homology group} of $(M_{\bullet},\phi_{\bullet})$, which is defined to be the quotient $R$-module:
+\[
+H_{i}\left(M_{\bullet}, \phi_{\bullet}\right) \coloneqq \frac{ \ker\left(\phi_{i}\right)}{\img\left(\phi_{i+1}\right)}.
+\]
+The definition of a complex guarantees this quotient makes sense, since $\img(\phi_{i+1}) \subset \ker(\phi_{i})$. Equivalently, a complex is exact at $M_i$ if and only if $H_i(M_\bullet,\phi_\bullet)=0$. (Here $0$ denotes the zero $R$-module.) A complex is \emph{exact} if it is exact at every module where this condition makes sense. Thus every exact sequence is a complex, but a complex need not be exact. 
+
+Complexes appear throughout commutative algebra and other areas of mathematics. Perhaps the most important special case of a complex is a short exact sequence. A \emph{short sequence} is a complex of the form
+\[
+\begin{tikzcd}[row sep = .3em, column sep = 3em]
+0 \arrow[r] & A \arrow[r, "i"] & B \arrow[r, "p"] & C \arrow[r] & 0.
+\end{tikzcd}
+\]
+It is called a \emph{short exact sequence} if it is exact at $A$, $B$, and $C$. Strictly speaking, a complex extends infinitely in both directions, so the diagram above is shorthand for
+\[
+\begin{tikzcd}[row sep = .3em, column sep = 3em]
+\cdots \arrow[r] & 0 \arrow[r] & A \arrow[r, "i"] & B \arrow[r, "p"] & C \arrow[r] & 0 \arrow[r] & \cdots,
+\end{tikzcd}
+\]
+where all modules outside the displayed range are zero. We will follow the standard convention of suppressing these trailing and leading zero modules. Saying that this sequence is exact is the same as saying that $i$ is injective, $p$ is surjective, and $\img(i)=\ker(p)$. Thus a short exact sequence says that $A$ is being identified with a submodule of $B$, and that the quotient of $B$ by this submodule is isomorphic to $C$.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, series=problems]
+
+\item \textbf{First Encounters with Exactness.} Let $A,B,C$ be $R$-modules.
+\begin{enumerate}
+    \item Prove that a sequence
+    \[
+    \begin{tikzcd}
+    0 \arrow[r] & A \arrow[r, "i"] & B
+    \end{tikzcd}
+    \]
+    is exact at $A$ if and only if $i$ is injective.
+    \item Prove that a sequence
+    \[
+    \begin{tikzcd}
+    B \arrow[r, "p"] & C \arrow[r] & 0
+    \end{tikzcd}
+    \]
+    is exact at $C$ if and only if $p$ is surjective.
+    \item Prove carefully that
+    \[
+    \begin{tikzcd}
+    0 \arrow[r] & A \arrow[r, "i"] & B \arrow[r, "p"] & C \arrow[r] & 0
+    \end{tikzcd}
+    \]
+    is exact if and only if $i$ is injective, $p$ is surjective, and $\img(i)=\ker(p)$.
+    \item If
+    \[
+    \begin{tikzcd}
+    A \arrow[r, "f"] & B \arrow[r, "g"] & C
+    \end{tikzcd}
+    \]
+    is exact at $B$, prove that $g\circ f=0$.
+    \item Give an example of maps of $R$-modules
+    \[
+    \begin{tikzcd}
+    A \arrow[r, "f"] & B \arrow[r, "g"] & C
+    \end{tikzcd}
+    \]
+    such that $g\circ f=0$ but the sequence is not exact at $B$.
+     \item Consider the complex below. Compute the homology at $B$ in each of the following cases:
+\[
+\begin{tikzcd}
+A \arrow[r, "f"] & B \arrow[r, "g"] & C
+\end{tikzcd}
+\]
+\begin{enumerate}
+\item $f=0$ and $g=0$.
+\item $f$ is injective and $g=0$.
+\item $g$ is injective.
+\end{enumerate}
+\end{enumerate}
+
+\item \textbf{Examples of Short Exact Sequences.} Let $R$ be a ring. In this problem we will see that a number of constructions we are quite familiar with can be framed in terms of short exact sequences. 
+\begin{enumerate}
+  \item Let $I \subset R$ be an ideal. Construction a short exact sequence
+     \[
+    \begin{tikzcd}
+    0 \arrow[r] & I \arrow[r, "\iota"] & R \arrow[r, "\pi"] & R/I \arrow[r] & 0
+    \end{tikzcd}
+    \]
+    where $\pi$ is the natural quotient map and $\iota$ is the inclusion $I$ into $R$. 
+    \item Let $N\subset M$ be a submodule. Prove that the sequence
+    \[
+    \begin{tikzcd}
+    0 \arrow[r] & N \arrow[r, "\iota"] & M \arrow[r, "\pi"] & M/N \arrow[r] & 0
+    \end{tikzcd}
+    \]
+    is exact, where $\iota$ is the inclusion of $N$ into $M$. 
+    \item Let $I\subset J\subset R$ be ideals. Construct a short exact sequence
+    \[
+    \begin{tikzcd}
+    0 \arrow[r] & J/I \arrow[r] & R/I \arrow[r] & R/J \arrow[r] & 0.
+    \end{tikzcd}
+    \]
+    Hint: Define $J/I\to R/I$ by $j+I\mapsto j+I$ and define $R/I\to R/J$ by $r+I\mapsto r+J$. Check well-definedness before checking exactness.
+    \item For a positive integer $n$, prove that multiplication by $n$ gives
+    \[
+    \begin{tikzcd}
+    0 \arrow[r] & \ZZ \arrow[r, "\times n"] & \ZZ \arrow[r] & \ZZ/n\ZZ \arrow[r] & 0
+    \end{tikzcd}
+    \]
+    which is a short exact sequence of $\ZZ$-modules.
+\end{enumerate}
+
+\item \textbf{Kernels, Cokernels, and Images.} Let $\phi:A\to B$ be a homomorphism of $R$-modules. The \emph{cokernel} of $\phi$ is the $R$-module $\coker(\phi)\coloneqq B/\img(\phi)$.
+
+\begin{enumerate}
+\item Prove that the sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] & \ker(\phi) \arrow[r, "\iota"] & A \arrow[r, "\phi"] & B 
+\end{tikzcd}
+\]
+where $\iota$ is the inclusion of $\ker(\phi)$ into $A$ is exact.
+\item Suppose
+\[
+\begin{tikzcd}
+0 \arrow[r] & A \arrow[r, "f"] & B \arrow[r, "g"] & C
+\end{tikzcd}
+\]
+is an exact sequence of $R$-modules.  Prove that $f$ induces an isomorphism $A\cong \ker(g)$.
+
+\item Prove that the sequence
+\[
+\begin{tikzcd}
+A \arrow[r, "\phi"] & B \arrow[r, "\pi"] & \coker(\phi) \arrow[r] & 0
+\end{tikzcd}
+\]
+where $\pi$ is the natural quotient map is exact.
+\item Suppose
+\[
+\begin{tikzcd}
+A \arrow[r, "f"] & B \arrow[r, "g"] & C \arrow[r] & 0
+\end{tikzcd}
+\]
+is an exact sequence of $R$-modules. Prove that $g$ induces an isomorphism $\coker(f)\cong C$.
+
+\item Deduce there is an exact sequence of $R$-modules
+\[
+\begin{tikzcd}
+0 \arrow[r] & \ker(\phi) \arrow[r, "\iota"] & A \arrow[r, "\phi"] & B \arrow[r, "\pi"] & \coker(\phi) \arrow[r] & 0 
+\end{tikzcd}.
+\]
+
+\item Prove that $\phi$ induces an isomorphism $A/\ker(\phi)\cong\img(\phi)$, and deduce that the exact sequence in part (e) factors through $\img(\phi)$ as two short exact sequences
+\[
+\begin{tikzcd}
+0 \arrow[r] & \ker(\phi) \arrow[r, "\iota"] & A \arrow[r, "\bar{\phi}"] & \img(\phi) \arrow[r] & 0
+\end{tikzcd}
+\quad\text{and}\quad
+\begin{tikzcd}
+0 \arrow[r] & \img(\phi) \arrow[r, "j"] & B \arrow[r, "\pi"] & \coker(\phi) \arrow[r] & 0
+\end{tikzcd}
+\]
+where $\bar{\phi}$ is $\phi$ with codomain restricted to $\img(\phi)$ and $j$ is the inclusion.
+\end{enumerate}
+
+\item \textbf{Presentations of Modules.} Let $R$ be a ring. A \emph{presentation} of an $R$-module $M$ is an exact sequence of the form
+\[
+\begin{tikzcd}
+F_1 \arrow[r, "\varphi"] & F_0 \arrow[r] & M \arrow[r] & 0
+\end{tikzcd}
+\]
+where $F_0$ and $F_1$ are free modules.
+\begin{enumerate}
+\item  Explain why a presentation of $M$ as above says that $M$ is obtained from the generators of $F_0$ by imposing the relations coming from $\varphi(F_1)$. Hint: Use exactness to identify $M$ with $F_0/\img(\varphi)$.
+\item Let $R=\KK[x]$ and $M=R/\langle x^3\rangle$. Write a presentation of $M$ using finite free $R$-modules.
+\item Let $R=\KK[x,y]$ and $M=R/\langle x^2,xy,y^2\rangle$. Write a presentation of $M$ using one free generator and three relations.
+\item Let $A$ be an $m\times n$ matrix with entries in $R$, viewed as a map $R^n\to R^m$. Interpret the sequence
+\[
+\begin{tikzcd}
+R^n \arrow[r, "A"] & R^m \arrow[r] & \coker(A) \arrow[r] & 0
+\end{tikzcd}
+\]
+as a presentation of $\coker(A)$.
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+We just saw that a short exact sequence $0\to A\xrightarrow{i}B\xrightarrow{p}C\to 0$ of $R$-modules says that $B$ has a submodule isomorphic to~$A$ (namely $\img i$) whose quotient is isomorphic to~$C$ (namely $B/\img i\cong C$). One might hope that knowing $A$ and $C$ determines $B$ up to isomorphism, and in the simplest cases it does: $B\cong A\oplus C$. When this happens -- and when the isomorphism is compatible with the maps $i$ and~$p$ -- the sequence is called split. More precisely, a short exact sequence is \emph{split} (also called \emph{split exact}) if there exists an isomorphism of $R$-modules $h:B \to A\oplus C$ such that the following diagram commutes
+\[
+\begin{tikzcd}[row sep = 3.5em, column sep = 3.5em]
+0 \arrow[r] & A \arrow[r, "i"] \arrow[d, equals] & B \arrow[r, "p"] \arrow[d,"h"]& C \arrow[r] \arrow[d, equals] & 0 \\
+0 \arrow[r] & A \arrow[r, "\iota"] & A\oplus C \arrow[r, "\pi"] & C \arrow[r] & 0
+\end{tikzcd}
+\]
+where $\iota(a)=(a,0)$ is the natural inclusion and $\pi(a,c)=c$ is the natural projection. Saying that the diagram commutes means that the two squares commute. This is the generic situation for vector spaces: every subspace has a complement, so every short exact sequence of vector spaces splits.  Over more general rings, however, splitting is the exception rather than the rule. 
+
+We can characterize when a short exact sequence splits in terms of the existence of either a section of $p$ or a retraction of $i$. A \emph{section} of $p:B \to C$ is an $R$-module homomorphism $s:C \to B$ such that $p \circ s = \Id_{C}$. A \emph{retraction} of $i:A \to B$ is an $R$-module homomorphism $r:B \to A$ such that $r \circ i = \Id_{A}$. Note that in general $s$ is not an inverse to $p$, and $r$ is not an inverse to $i$; the compositions in the other order need not be the identity.
+
+\begin{lemma}[Splitting Lemma]
+Let $R$ be a ring, and consider a short exact sequence of $R$-modules
+\[
+\begin{tikzcd}[row sep = .3em, column sep = 3em]
+0 \arrow[r] & A \arrow[r, "i"] & B \arrow[r, "p"] & C \arrow[r] & 0.
+\end{tikzcd}
+\]
+The following are equivalent:
+\begin{enumerate}[(i)]
+\item The sequence splits, i.e. $B \cong A \oplus C$ in a way compatible with $i$ and $p$.
+\item The map $p$ admits a section $s:C \to B$.
+\item The map $i$ admits a retraction $r:B \to A$.
+\end{enumerate}
+\end{lemma}
+
+Condition (ii) is often called \emph{right split}, while condition (iii) is called \emph{left split}. Thus, for $R$-modules, ``right split,'' ``left split,'' and ``split'' are all equivalent. Warning: This equivalence is special to the setting of $R$-modules (more generally, abelian categories). For example, in the category of non-abelian groups, a sequence may admit a section without being a direct product: such extensions correspond to semidirect products. Fortunately, none of these issues arise for $R$-modules.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+\item \textbf{Split Short Exact Sequences.} Let
+\[
+\begin{tikzcd}
+0 \ar[r] & A \ar[r, "i"] & B \ar[r, "p"] & C \ar[r] & 0
+\end{tikzcd}
+\]
+be a short exact sequence of $R$-modules.
+\begin{enumerate}
+\item Suppose there exists a homomorphism $s:C\to B$ such that $p\circ s=\Id_C$. Prove that the map defined below is an isomorphism of $R$-modules:
+\[
+\Phi:A\oplus C\longrightarrow B,
+\qquad
+(a,c)\longmapsto i(a)+s(c).
+\]
+\item Conversely, suppose there is an isomorphism $B\cong A\oplus C$ under which $i$ becomes the standard inclusion $A\to A\oplus C$ and $p$ becomes the standard projection $A\oplus C\to C$. Construct a homomorphism $s:C\to B$ with $p\circ s=\Id_C$.
+\item Suppose there exists a homomorphism $r:B\to A$ such that $r\circ i=\Id_A$.
+\begin{enumerate}
+\item Prove that the map
+\[
+B\longrightarrow A\oplus C,\qquad b\longmapsto (r(b),p(b))
+\]
+is injective.
+\item Prove that it is surjective. Hint: Given $(a,c)\in A\oplus C$, choose $b_0\in B$ with $p(b_0)=c$ and modify $b_0$ by an element of $i(A)$.
+\item Conclude that $B\cong A\oplus C$.
+\end{enumerate}
+\item Conversely, suppose there is an isomorphism $B\cong A\oplus C$ under which $i$ becomes the standard inclusion $a\mapsto(a,0)$ and $p$ becomes the standard projection $(a,c)\mapsto c$. Construct a homomorphism $r:B\to A$ with $r\circ i=\Id_A$.
+\end{enumerate}
+
+\item \textbf{Examples of Split \& Non-Split Exact Sequences.}
+\begin{enumerate}
+\item Prove that every short exact sequence of vector spaces over a field $\KK$ splits. Hint: Choose a basis for the first term, extend it to a basis for the middle term, and identify the remaining basis vectors with a basis for the third term. 
+\item Explain why the Rank-Nullity theorem for finite dimensional vector spaces over $\KK$ is a consequence of the splitting theorem. 
+\item Prove that the sequence
+\[
+\begin{tikzcd}
+0 \ar[r] & \ZZ \ar[r, "\cdot 2"] & \ZZ \ar[r] & \ZZ/2\ZZ \ar[r] & 0
+\end{tikzcd}
+\]
+does not split as a sequence of $\ZZ$-modules.
+\item Let $p$ be a prime number. Prove that the sequence of $\ZZ$-modules:
+\[
+\begin{tikzcd}
+0 \ar[r] & \ZZ/p\ZZ \ar[r] & \ZZ/p^2\ZZ \ar[r] & \ZZ/p\ZZ \ar[r] & 0,
+\end{tikzcd}
+\]
+where the first map sends $\bar 1\mapsto\bar p$ and the second is reduction modulo~$p$, does not split. Hint: A section would send $\bar 1\in \ZZ/p\ZZ$ to an element of $\ZZ/p^2\ZZ$ whose reduction modulo $p$ is $\bar 1$. What is the order of such an element?
+\item Let $R=\KK[x]$. Prove that the sequence below is exact, but does not split as a sequence of $R$-modules:
+\[
+\begin{tikzcd}
+0 \ar[r] & \langle x \rangle \ar[r] & \KK[x] \ar[r] & \KK \ar[r] & 0.
+\end{tikzcd}
+\]
+Hint: If a section $s:\KK\to \KK[x]$ existed as a $\KK[x]$-module map, what could $s(1)$ be? Use the fact that $x\cdot 1=0$ in $\KK\cong \KK[x]/\langle x\rangle$.
+\item Let $R$ be a ring and let $e\in R$ be an idempotent, meaning $e^2=e$. Prove that
+\[
+\begin{tikzcd}
+0 \ar[r] & eR \ar[r, hook] & R \ar[r, two heads] & R/eR \ar[r] & 0
+\end{tikzcd}
+\]
+splits. Then prove that the map $R\to (1-e)R$ given by $r\mapsto (1-e)r$ induces an isomorphism $R/eR\cong (1-e)R$.
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+We now introduce just enough categorical language to talk cleanly about Hom, tensor product, and localization. A \emph{category} is a collection of objects together with, for each pair of objects, a set of morphisms between them, equipped with an associative composition law and an identity morphism for each object. The quintessential category, both in this class and arguably beyond, is the category of $R$-modules, denoted $R-\Mod$, whose objects are $R$-modules and whose morphisms are $R$-module homomorphisms. 
+
+A \emph{functor} between categories $\textbf{C}$ and $\textbf{D}$ is a mapping that assigns to each object of $\textbf{C}$ an object of $\textbf{D}$ and to each morphism in $\textbf{C}$ a morphism in $\textbf{D}$, preserving identity morphisms and composition. A functor is contravariant if it reverses the order of composition and covariant if it preserves the order of composition. More precisely, a \emph{covariant functor} $F: \textbf{C} \to \textbf{D}$ is the data of
+\begin{enumerate}
+\item for every object $X$ of $\textbf{C}$, $F(X)$ is an object of $\textbf{D}$,
+\item for every morphism $f: X \to Y$ in $\textbf{C}$, $F(f): F(X) \to F(Y)$ is a morphism in $\textbf{D}$,
+\end{enumerate}
+which satisfies the following conditions:
+\begin{enumerate}[(i)]
+\item $F(\Id_X) = \Id_{F(X)}$ for every object $X$ of $\textbf{C}$,
+\item $F(g \circ f) = F(g) \circ F(f)$ for all composable morphisms $f: X \to Y$ and $g: Y \to Z$ in $\textbf{C}$.
+\end{enumerate}
+Similarly a \emph{contravariant functor} $F:\textbf{C} \to \textbf{D}$ is the data of:
+\begin{enumerate}
+\item for every object $X$ of $\textbf{C}$, $F(X)$ is an object of $\textbf{D}$,
+\item for every morphism $f: X \to Y$ in $\textbf{C}$, $F(f): F(Y) \to F(X)$ is a morphism in $\textbf{D}$,
+\end{enumerate}
+which satisfies the following conditions:
+\begin{enumerate}[(i)]
+\item $F(\Id_X) = \Id_{F(X)}$ for every object $X$ of $\textbf{C}$,
+\item $F(g \circ f) = F(f) \circ F(g)$ for all composable morphisms $f: X \to Y$ and $g: Y \to Z$ in $\textbf{C}$.
+\end{enumerate}
+
+We have already constructed several operations that take modules as input and produce new modules. For example, after fixing an $R$-module $T$, the assignments
+\[
+M \longmapsto \Hom_R(T,M),
+\qquad
+M \longmapsto \Hom_R(M,T),
+\qquad
+M \longmapsto M\otimes_R T
+\]
+each send an object of $R-\Mod$ to another object of $R-\Mod$. Similarly, if $U\subset R$ is a multiplicatively closed set, localization gives an assignment
+\[
+M \longmapsto U^{-1}M,
+\]
+which sends an $R$-module to a module over the localized ring $U^{-1}R$. We would like to view each of these constructions as defining functors:
+\[
+\begin{tikzcd}[row sep=.3em, column sep=5em]
+{R\text{-}\Mod} \arrow[r, "{\Hom_R(T,\text{-})}"] & {R\text{-}\Mod}
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[row sep=.3em, column sep=5em]
+{R\text{-}\Mod} \arrow[r, "{\Hom_R(\text{-},T)}"] & {R\text{-}\Mod}
+\end{tikzcd}
+\]
+\[
+\begin{tikzcd}[row sep=.3em, column sep=5em]
+{R\text{-}\Mod} \arrow[r, "{\text{-}\otimes_{R}T}"] & {R\text{-}\Mod}
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[row sep=.3em, column sep=5em]
+{R\text{-}\Mod} \arrow[r, "{U^{-1}\text{-}}"] & {U^{-1}R\text{-}\Mod}
+\end{tikzcd}
+\]
+However, a functor is not merely a rule on objects. To view these constructions functorially, we must also understand what they do to morphisms. Thus, given an $R$-module homomorphism $f:M\to N$, we must define induced maps between the corresponding Hom modules, tensor products, and localizations, and then check that these induced maps respect identities and composition. The following exercise asks you to make these constructions explicit and verify that they really do define functors.
+
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+\item \textbf{Hom, Tensor, and Localization as Functors.} Throughout let $R$ be a ring and fix an $R$-module $T$.
+\begin{enumerate}
+\item Let $T$ be a fixed $R$-module. If $f:M\to N$ is a homomorphism, define
+\[
+f_*:\Hom_R(T,M)\to \Hom_R(T,N),
+\qquad
+\phi\longmapsto f\circ \phi.
+\]
+Prove that $\Hom_R(T,-)$ is a covariant functor from $R-\Mod$ to $R-\Mod$.
+\item If $f:M\to N$ is a homomorphism, define
+\[
+f^*:\Hom_R(N,T)\to \Hom_R(M,T),
+\qquad
+\psi\longmapsto \psi\circ f.
+\]
+Prove that $\Hom_R(-,T)$ is a contravariant functor from $R-\Mod$ to $R-\Mod$.
+\item If $f:M\to N$ is a homomorphism, use the universal property of tensor products to construct
+\[
+f\otimes \Id_T:M\otimes_R T\longrightarrow N\otimes_R T,
+\qquad
+m\otimes t\longmapsto f(m)\otimes t.
+\]
+Prove that $-\otimes_R T$ is a covariant functor from $R-\Mod$ to $R-\Mod$.
+\item Let $U\subset R$ be a multiplicatively closed set. If $f:M\to N$ is a homomorphism, define
+\[
+U^{-1}f:U^{-1}M\to U^{-1}N,
+\qquad
+\frac{m}{u}\longmapsto \frac{f(m)}{u}.
+\]
+Prove that this is well-defined and that $U^{-1}(-)$ is a covariant functor from $R-\Mod$ to $U^{-1}R-\Mod$.
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+The functors constructed above let us ask a new version of the exactness question. Instead of asking whether a given sequence of modules is exact, we can ask whether a construction preserves exactness. Roughly speaking, a functor is exact if applying it to an exact sequence does not introduce any new homology: the kernel of one map is still the image of the previous. This is a very strong condition, and many of the most important functors in algebra preserve only part of an exact sequence.
+
+For the functors in this worksheet, applying the functor to a sequence again produces a sequence: these functors are additive, so they send zero maps to zero maps, and they respect composition. Let $F:R\text{-}\Mod\to S\text{-}\Mod$ be one of the covariant functors under consideration, where $S$ is some ring. We say that $F$ is \emph{exact} if, whenever
+\[
+\begin{tikzcd}[column sep=large]
+M' \arrow[r, "f"] & M \arrow[r, "g"] & M''
+\end{tikzcd}
+\]
+is exact at $M$, the transformed sequence
+\[
+\begin{tikzcd}[column sep=large]
+F(M') \arrow[r, "F(f)"] & F(M) \arrow[r, "F(g)"] & F(M'')
+\end{tikzcd}
+\]
+is exact at $F(M)$. Equivalently, $F$ sends exact sequences to exact sequences. In particular, an exact covariant functor sends every short exact sequence
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & A \arrow[r, "i"] & B \arrow[r, "p"] & C \arrow[r] & 0
+\end{tikzcd}
+\]
+to a short exact sequence
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & F(A) \arrow[r, "F(i)"] & F(B) \arrow[r, "F(p)"] & F(C) \arrow[r] & 0.
+\end{tikzcd}
+\]
+Thus exactness means that $F(i)$ remains injective, $F(p)$ remains surjective, and $\img(F(i))=\ker(F(p))$. A covariant functor $F$ is called \emph{left exact} if every exact sequence
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & A \arrow[r, "i"] & B \arrow[r, "p"] & C
+\end{tikzcd}
+\]
+is sent to a sequence
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & F(A) \arrow[r, "F(i)"] & F(B) \arrow[r, "F(p)"] & F(C)
+\end{tikzcd}
+\]
+which is exact at $F(A)$ and $F(B)$. So a left exact functor preserves the injectivity at the left end and preserves the kernel condition in the middle, but it may fail to make $F(p)$ surjective. Dually, $F$ is called \emph{right exact} if every exact sequence
+\[
+\begin{tikzcd}[column sep=large]
+A \arrow[r, "i"] & B \arrow[r, "p"] & C \arrow[r] & 0
+\end{tikzcd}
+\]
+is sent to a sequence
+\[
+\begin{tikzcd}[column sep=large]
+F(A) \arrow[r, "F(i)"] & F(B) \arrow[r, "F(p)"] & F(C) \arrow[r] & 0
+\end{tikzcd}
+\]
+which is exact at $F(B)$ and $F(C)$. Thus a right exact functor preserves the quotient at the right end, but it may fail to preserve injectivity at the left end. A functor that is both left exact and right exact is exact. One can also define exactness, left exactness, and right exactness for contravariant functors; in that case, the arrows are reversed.
+
+The next exercises focus on three fundamental examples. The Hom functors are naturally left exact. For $\Hom_R(T,-)$, the reason is that a map $T\to B$ whose composite with $B\to C$ is zero is exactly a map whose image lands in the submodule $A\subseteq B$. For the contravariant functor $\Hom_R(-,T)$, the same idea appears in quotient form: a map $B\to T$ that kills $A$ factors uniquely through $C=B/A$. In both cases, surjectivity can fail; a map into or out of one end of a short exact sequence need not lift or extend across the middle term.
+
+Tensor product behaves in the opposite direction. The functor $-\otimes_R T$ is always right exact: it preserves cokernels and therefore preserves quotient presentations. This is why tensor product is so useful for computing modules from generators and relations. But tensor product need not be left exact; after tensoring, an injective map can acquire a kernel. The modules $T$ for which tensoring with $T$ is exact are precisely the flat modules, which will be introduced below.
+
+Localization is the especially well-behaved example in commutative algebra. Since $U^{-1}M\cong U^{-1}R\otimes_R M$, localization is right exact for the same reason tensor product is right exact. What makes localization better than an arbitrary tensor product is that it is also left exact: if a fraction becomes zero after applying a localized map, then after clearing denominators its numerator already came from the previous module. Thus localization preserves all exact sequences, and this exactness is one of the main reasons localization is such a powerful tool.
+
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{Left Exactness of $\Hom_R(T,-)$.} Let $T$ be an $R$-module and let
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & A \arrow[r, hook, "i"] & B \arrow[r, two heads, "p"] & C \arrow[r] & 0
+\end{tikzcd}
+\]
+be a short exact sequence.
+\begin{enumerate}
+\item Define the maps $i_*$ and $p_*$ by postcomposition, and prove that $p_*\circ i_*=0$.
+\item Prove that $i_*:\Hom_R(T,A)\to \Hom_R(T,B)$ is injective.
+\item Suppose $\phi:T\to B$ satisfies $p\circ \phi=0$. Prove that $\phi$ factors uniquely through $i:A\to B$. In other words, prove that there is a unique homomorphism $\widetilde{\phi}:T\to A$ such that $\phi=i\circ \widetilde{\phi}$.
+\item Conclude that the sequence below is exact
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \Hom_R(T,A) \arrow[r, hook, "i_*"] & \Hom_R(T,B) \arrow[r, "p_*"] & \Hom_R(T,C).
+\end{tikzcd}
+\]
+\item Suppose the original short exact sequence splits. Prove that $p_*:\Hom_R(T,B)\to \Hom_R(T,C)$ is surjective. Thus $\Hom_R(T,-)$ sends split short exact sequences to short exact sequences.
+\item Let $R=\ZZ$ and apply $\Hom_{\ZZ}(\ZZ/2\ZZ,-)$ to
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \ZZ \arrow[r, hook, "\cdot 2"] & \ZZ \arrow[r, two heads] & \ZZ/2\ZZ \arrow[r] & 0
+\end{tikzcd}
+\]
+Compute the resulting sequence and explain why $\Hom_{\ZZ}(\ZZ/2\ZZ,-)$ is not right exact.
+\end{enumerate}
+
+\item \textbf{Left Exactness of $\Hom_R(-,T)$.} Let $T$ be an $R$-module and consider the short exact sequence below:
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & A \arrow[r, hook, "i"] & B \arrow[r, two heads, "p"] & C \arrow[r] & 0.
+\end{tikzcd}
+\]
+\begin{enumerate}
+\item Using precomposition define the maps as below. Prove that $i^*\circ p^*=0$:
+\[
+\begin{tikzcd}[column sep=large]
+\Hom_R(C,T) \arrow[r, "p^*"] & \Hom_R(B,T) \arrow[r, "i^*"] & \Hom_R(A,T):
+\end{tikzcd}
+\]
+\item Prove that $p^*$ is injective.
+\item Suppose $\psi:B\to T$ satisfies $\psi\circ i=0$. Prove that $\psi$ factors uniquely through $p:B\to C$. In other words, prove that there is a unique homomorphism $\widetilde{\psi}:C\to T$ such that $\psi=\widetilde{\psi}\circ p$.
+\item Conclude that the sequence below is exact:
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \Hom_R(C,T) \arrow[r, hook, "p^*"] & \Hom_R(B,T) \arrow[r, "i^*"] & \Hom_R(A,T).
+\end{tikzcd}
+\]
+\item Suppose the original short exact sequence splits. Prove that $i^*:\Hom_R(B,T)\to \Hom_R(A,T)$ is surjective. Thus $\Hom_R(-,T)$ sends split short exact sequences to short exact sequences.
+\item Let $R=\ZZ$ and apply $\Hom_{\ZZ}(-,\ZZ)$ to
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \ZZ \arrow[r, hook, "\cdot 2"] & \ZZ \arrow[r, two heads] & \ZZ/2\ZZ \arrow[r] & 0
+\end{tikzcd}
+\]
+Compute the resulting sequence and explain why $\Hom_{\ZZ}(-,\ZZ)$ is not exact.
+\end{enumerate}
+
+\item \textbf{Hom Computations from Exactness.}
+\begin{enumerate}
+\item Let $M$ be an $R$-module and let $I\subseteq R$ be an ideal. Use the short exact sequence
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & I \arrow[r, hook] & R \arrow[r, two heads] & R/I \arrow[r] & 0
+\end{tikzcd}
+\]
+together with $\Hom_R(-,M)$ to recover the description
+\[
+\Hom_R(R/I,M)\cong \{m\in M\mid Im=0\}.
+\]
+Hint: Identify $\Hom_R(R,M)$ with $M$ by evaluating a homomorphism at $1\in R$. Under this identification, what does the condition that a map $R\to M$ vanish on $I$ become?
+\item Let $N$ be an abelian group and $n$ a positive integer. Apply $\Hom_{\ZZ}(-,N)$ to
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \ZZ \arrow[r, hook, "\cdot n"] & \ZZ \arrow[r, two heads] & \ZZ/n\ZZ \arrow[r] & 0
+\end{tikzcd}
+\]
+Show that there is an exact sequence
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \Hom_{\ZZ}(\ZZ/n\ZZ,N) \arrow[r, hook] & N \arrow[r, "\cdot n"] & N
+\end{tikzcd}
+\]
+Deduce that $\Hom_{\ZZ}(\ZZ/n\ZZ,N)$ is naturally isomorphic to the subgroup of $n$-torsion elements of $N$.
+\item For positive integers $m,n$, use the previous part to compute $\Hom_{\ZZ}(\ZZ/m\ZZ,\ZZ/n\ZZ)$.
+\item Let $R=\KK[x]$ and $M=R/\langle x^b\rangle$. Compute $\Hom_R(R/\langle x^a\rangle,M)$ for positive integers $a$ and $b$.
+\item Let $A$ be an $m\times n$ matrix with entries in $R$, let $M=\coker(A)$, and let $N$ be an $R$-module. Use the presentation
+\[
+\begin{tikzcd}[column sep=large]
+R^n \arrow[r, "A"] & R^m \arrow[r, two heads] & M \arrow[r] & 0
+\end{tikzcd}
+\]
+to describe $\Hom_R(M,N)$ as the kernel of an explicit map $N^m\to N^n$. Hint: Identify $\Hom_R(R^m,N)$ with $N^m$ and $\Hom_R(R^n,N)$ with $N^n$. The induced map is precomposition with $A$; in coordinates it is given by the transpose matrix $A^t$ acting on column vectors, with the usual convention.
+\end{enumerate}
+
+\item \textbf{Right Exactness of Tensor Product.} Let $T$ be an $R$-module and let the below be an exact sequence:
+\[
+\begin{tikzcd}[column sep=large]
+A \arrow[r, "f"] & B \arrow[r, "g"] & C \arrow[r] & 0
+\end{tikzcd}
+\]
+\begin{enumerate}
+\item Prove that $g\otimes \Id_T:B\otimes_R T\to C\otimes_R T$ is surjective.
+\item Construct a bilinear map $C\times T\to (B\otimes_R T)/\langle f(a)\otimes t\mid a\in A,\ t\in T\rangle$t by choosing a representative $b\in B$ of $c\in C$ and sending $(c,t)$ to the class of $b\otimes t$. Check that this is well-defined.
+\item Since $C\cong B/\img(f)$, use the universal property of quotients and tensor products to show that
+\[
+C\otimes_R T\cong (B\otimes_R T)/\langle f(a)\otimes t\mid a\in A,\ t\in T\rangle.
+\]
+\item Prove that $\ker(g\otimes \Id_T)=\img(f\otimes \Id_T)$.
+
+\item Conclude that the sequence below is exact:
+\[
+\begin{tikzcd}[column sep=large]
+A\otimes_R T \arrow[r] & B\otimes_R T \arrow[r] & C\otimes_R T \arrow[r] & 0.
+\end{tikzcd}
+\]
+ \item Suppose the original short exact sequence splits. Prove that $g \times \Id_{T}$ is injective. Thus $-\otimes_{R}T$ sends split short exact sequences to short exact sequences.
+\end{enumerate}
+
+\item \textbf{Tensor Product Need Not Be Left Exact.} The next example shows that tensor product can turn a nonzero injective map into the zero map.
+\begin{enumerate}
+\item Tensor the short exact sequence
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \ZZ \arrow[r, hook, "\cdot 2"] & \ZZ \arrow[r, two heads] & \ZZ/2\ZZ \arrow[r] & 0
+\end{tikzcd}
+\]
+with $\ZZ/2\ZZ$. Compute the resulting sequence explicitly.
+\item Explain why the map $\ZZ\otimes_{\ZZ}\ZZ/2\ZZ \to \ZZ\otimes_{\ZZ}\ZZ/2\ZZ$ induced by multiplication by $2$ is the zero map.
+\item Conclude that $-\otimes_{\ZZ}\ZZ/2\ZZ$ is not left exact.
+\item Let $n$ be a positive integer. Compute $(\ZZ/n\ZZ)\otimes_{\ZZ}(\ZZ/2\ZZ)$ and use this to predict what happens when one tensors the exact sequence below with $\ZZ/2\ZZ$:
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \ZZ \arrow[r, hook, "\cdot n"] & \ZZ \arrow[r, two heads] & \ZZ/n\ZZ \arrow[r] & 0.
+\end{tikzcd}
+\]
+\end{enumerate}
+
+\item \textbf{Flat Modules.} An $R$-module $T$ is called \emph{flat} if the functor $-\otimes_R T$ is exact, or equivalently if tensoring with $T$ preserves injective maps.
+\begin{enumerate}
+\item Explain why right exactness of tensor product implies that $T$ is flat if and only if, for every injection $A\hookrightarrow B$, the induced map $A\otimes_R T \to B\otimes_R T$ is injective.
+\item Prove that $R$ is flat as an $R$-module. 
+\item Prove that a finite free module $R^n$ is flat.
+\item Prove that every free $R$-module is flat. Hint: Tensor product commutes with direct sums.
+\end{enumerate}
+
+\end{enumerate}
+
+\hrulefill
+
+Localization is the most important exact functor in commutative algebra. Let $U\subset R$ be a multiplicatively closed set. The localization construction sends an $R$-module $M$ to a $U^{-1}R$-module $U^{-1}M$, and sends a homomorphism $f:M\to N$ to the homomorphism
+\[
+\begin{tikzcd}[column sep=large]
+U^{-1}M \arrow[r, "U^{-1}f"] & U^{-1}N
+\end{tikzcd}
+\qquad
+\frac{m}{u}\longmapsto \frac{f(m)}{u}.
+\]
+We already saw that $U^{-1}M\cong U^{-1}R\otimes_R M$. Since tensor product is right exact, localization is automatically right exact. The special feature of localization is that it is also left exact. The reason is the denominator-clearing argument: if a fraction maps to zero after localization, then some element of $U$ already kills the relevant numerator.
+
+\hrulefill
+
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{Exactness of Localization.} Let $U\subset R$ be a multiplicatively closed set and let the sequence below be exact at $M$:
+\[
+\begin{tikzcd}[column sep=large]
+M' \arrow[r, "f"] & M \arrow[r, "g"] & M''.
+\end{tikzcd}
+\]
+\begin{enumerate}
+\item Prove that
+\[
+\begin{tikzcd}[column sep=large]
+U^{-1}M' \arrow[r, "U^{-1}f"] & U^{-1}M \arrow[r, "U^{-1}g"] & U^{-1}M''
+\end{tikzcd}
+\]
+is a sequence of $U^{-1}R$-modules whose consecutive composition is zero.
+\item Prove that $\img(U^{-1}f)\subseteq \ker(U^{-1}g)$.
+\item Let $m/u\in U^{-1}M$ satisfy $(U^{-1}g)(m/u)=0$. Unpack the definition of equality to zero in $U^{-1}M''$ to show that there exists $t\in U$ such that $g(tm)=0$.
+\item Use exactness of the original sequence at $M$ to find $m'\in M'$ with $f(m')=tm$.
+\item Prove that $\frac{m}{u}=\frac{f(m')}{tu}$ in $U^{-1}M$, and conclude that $m/u\in \img(U^{-1}f)$.
+\item Deduce that localization preserves exactness of arbitrary exact sequences. 
+\end{enumerate}
+
+\item \textbf{Localization Preserves Short Exact Sequences.} Let
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & A \arrow[r, hook, "i"] & B \arrow[r, two heads, "p"] & C \arrow[r] & 0
+\end{tikzcd}
+\]
+be a short exact sequence and let $U\subset R$ be a multiplicatively closed set.
+\begin{enumerate}
+\item Prove directly that $U^{-1}i:U^{-1}A\to U^{-1}B$ is injective.
+\item Prove directly that $U^{-1}p:U^{-1}B\to U^{-1}C$ is surjective.
+\item Use the previous exercise to conclude that
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & U^{-1}A \arrow[r, hook] & U^{-1}B \arrow[r, two heads] & U^{-1}C \arrow[r] & 0
+\end{tikzcd}
+\]
+is a short exact sequence of $U^{-1}R$-modules.
+\item Combine this with the isomorphism $U^{-1}M\cong U^{-1}R\otimes_R M$ to prove that $U^{-1}R$ is a flat $R$-module.
+\end{enumerate}
+
+\item \textbf{Computing Localized Exact Sequences.}
+\begin{enumerate}
+\item Let $I\subseteq R$ be an ideal. Use exactness of localization to prove that $U^{-1}(R/I)\cong U^{-1}R/IU^{-1}R$.
+\item Localize the short exact sequence at $U=\{1,2,2^2,2^3,\ldots\}$. Identify each term explicitly
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \ZZ \arrow[r, hook, "\cdot 6"] & \ZZ \arrow[r, two heads] & \ZZ/6\ZZ \arrow[r] & 0.
+\end{tikzcd}
+\]
+\item Localize the same sequence at $V=\ZZ\setminus \langle 2\rangle$. Identify $V^{-1}(\ZZ/6\ZZ)$.
+\item Let $R=\KK[x]$ and $M=R/\langle x^2(x-1)\rangle$. Compute $M[1/x]$ using the localized presentation
+\[
+\begin{tikzcd}[column sep=large]
+R[1/x] \arrow[r, "\cdot x^2(x-1)"] & R[1/x] \arrow[r, two heads] & M[1/x] \arrow[r] & 0
+\end{tikzcd}
+\]
+\item Explain why localizing $R/\langle x^2(x-1)\rangle$ at the prime ideal $\langle x\rangle$ “keeps” the $x=0$ component and “removes” the $x=1$ component.
+\item With $R$ and $M$ as in the previous part, compute $M_{\langle x\rangle}$. Hint: What happens to $x-1$ in $R_{\langle x\rangle}$?
+\item Let $R=\KK[x,y]$ and $M=R/\langle xy\rangle$. Compute $M[1/x]$ and $M[1/y]$.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
