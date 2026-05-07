@@ -1,0 +1,357 @@
+\documentclass[12pt,reqno]{amsart}
+\input{../../121preamble.tex}
+\renewcommand{\originalurl}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/NakayamaLemma.pdf}
+\renewcommand{\originalurlI}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/IntegralWorksheet.pdf}
+\title{Worksheet 6.2: Exactness Pt. II }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\thispagestyle{firstpage2}
+
+Throughout this course, ``ring'' means \textit{commutative} ring with unity, and all modules are assumed to be modules over the relevant ring. Let $R$ be a ring and let $M$ be an $R$-module. Recall from the previous worksheets that if $U \subset R$ is a multiplicatively closed set, the localization of $M$ at $U$ is a $U^{-1}R$-module, denoted $U^{-1}M$, which intuitively consists of elements of the form $\frac{m}{u}$ for $m\in M$ and $u\in U$ (up to equivalence). Further, localization is a functor, meaning given a map $\phi:M \to N$ of  $R$-modules we get a map $U^{-1}(\phi):U^{-1}M \to U^{-1}N$ of $U^{-1}R$-modules. On elements this map is given by $\frac{m}{u}\mapsto \frac{\phi(m)}{u}$. Further, we saw that localization is an exact functor, meaning that it preserves exact sequences. 
+
+The goal of this worksheet is to use localization in two complementary ways. First, we will prove the slogan: \emph{exactness can be checked locally}. This means that many questions about kernels, images, injections, surjections, and isomorphisms can be answered after localizing at every prime ideal, or even every maximal ideal. Second, we will show that at least for \emph{finitely generated} modules, many of powerful pieces of  linear algebra can imported into module theory. 
+
+Recall that for a prime ideal $\fp\subset R$ we write $M_{\fp}$ for the localization of $M$ at the multiplicatively closed set $R\setminus \fp$. If $f\in R$, we write $M[\frac{1}{f}]$ for the localization of $M$ at the multiplicative set $U=\{1,f,f^2,\ldots\}$. The first local criterion is the most basic one: an $R$-module is zero if and only if it becomes zero after localizing at every point of $\Spec(R)$. The intuition behind this is simple: If $m\in M$ is nonzero, then its annihilator 
+\[
+\Ann(m)=\{r\in R\mid rm=0\}
+\]
+is a proper ideal of $R$. Choosing a maximal ideal containing $\Ann(m)$ gives a point of $\Spec(R)$ where $m$ cannot disappear after localization. This is the algebraic version of saying that a nonzero object must be visible somewhere locally.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, series=problems]
+
+\item \textbf{Local Vanishing for Modules.} Let $R$ be a ring and $M$ an $R$-module. If $\cS \subset M$ is any subset, the \emph{annihilator} of $\cS$ is the ideal:
+\[
+\Ann_{R}(\cS) \coloneqq \left\{ r \in R \;\; \big|\;\; rs = 0 \text{ for all $s\in \cS$}\right\}.
+\] 
+If $\cS=\{m\}$ we write $\Ann_{R}(m)$ for $\Ann_{R}(\{m\})$. 
+\begin{enumerate}
+    \item If $\cS \subset M$ is any subset, prove that $\Ann_{R}(\cS)$ is an ideal of $R$. 
+    \item Let $\fp \subset R$ be a prime ideal. Given $m \in M$, prove that $m/1=0$ in $M_{\fp}$ if and only if there exists $s\in R\setminus \fp$ such that $sm=0$ in $M$.
+    \item Let $M$ be the zero $R$-module. Explain why $U^{-1}M=0$ for any multiplicatively closed subset $U \subset R$. 
+    \item Prove that $M=0$ if and only if $M_{\fm}=0$ for every maximal ideal $\fm\subset R$. Hint: One direction should be easy. For the other, suppose $m\neq 0$, choose a maximal ideal containing $\Ann(m)$.
+    \item Deduce that $M=0$ if and only if $M_{\fp}=0$ for every prime ideal $\fp\in \Spec(R)$.
+    \item Let $f_1,\ldots,f_n\in R$ generate the unit ideal. Prove that $M=0$ if and only if $M[\frac{1}{f_{i}}]=0$ for every $i$. Hint: Again, one direction should be straightforward. For the other direction, given $m\in M$, first find powers $f_i^{t_i}$ killing $m$, then show that the ideal $\langle f_1^{t_1},\ldots,f_n^{t_n}\rangle$ is the unit ideal.
+    \item Let $\phi:M\to N$ be a homomorphism of $R$-modules. Prove that $\phi=0$ if and only if $\phi_{\fm}:M_{\fm}\to N_{\fm}$ is the zero map for every maximal ideal $\fm\subset R$.
+\end{enumerate}
+
+\item \textbf{Homology and Localization Commute.} Let $R$ be a ring and consider the complex of $R$-modules below:
+\[
+\begin{tikzcd}[row sep = .3em, column sep = 3.5em]
+M' \arrow[r, "f"] & M \arrow[r, "g"] & M''
+\end{tikzcd}
+\]
+Recall this means that $\img(f) \subset \ker(g)$. Define $H\coloneqq \ker(g)/\img(f)$, which is the homology of this complex at $M$. Recall that the complex is exact at $M$ if and only if $H=0$.
+\begin{enumerate}
+   \item  Explain why there is a short exact sequence of $R$-modules shown below. What are the maps?
+   \[
+\begin{tikzcd}[row sep = .3em, column sep = 3.5em]
+0 \arrow[r] & \img(f) \arrow[r] & \ker(g) \arrow[r] & H \arrow[r] & 0
+\end{tikzcd}
+\]
+    \item Let $U\subset R$ be a multiplicatively closed set. Use exactness of localization and part (a) to show there is an isomorphism:
+    \[
+    U^{-1}H\cong \frac{\ker(U^{-1}g)}{\img(U^{-1}f)}.
+    \]
+    \item Explain why the previous parts prove the slogan: \textit{The homology of the localization is the localization of the homology.}
+    \item Deduce that the complex is exact at $M$ if and only if the complex below is exact at $M_{\fp}$ for every prime ideal $\fp\subset R$
+    \[
+\begin{tikzcd}[row sep = .3em, column sep = 3.5em]
+    M'_{\fp} \arrow[r, "f_{\fp}"] & M_{\fp} \arrow[r, "g_{\fp}"] & M''_{\fp}.
+    \end{tikzcd}
+    \]
+    \item Prove that it is enough to check exactness after localizing at every maximal ideal.
+    \item Suppose $f_1,\ldots,f_n\in R$ generate the unit ideal. Prove that the complex is exact at $M$ if and only if the complex below is exact at $M[\frac{1}{f_{i}}]$ for every $i=1,\ldots,n$:
+    \[
+    \begin{tikzcd}[column sep=large]
+    M'\left[\frac{1}{f_{i}}\right] \arrow[r] & M\left[\frac{1}{f_{i}}\right] \arrow[r] & M''\left[\frac{1}{f_{i}}\right].
+    \end{tikzcd}
+    \]
+    \item Explain why the previous parts prove the slogan: \textit{exactness can be checked locally.}
+\end{enumerate}
+
+\item \textbf{Checking Injectivity \& Surjectivity Locally.} Let $R$ be a ring and $\phi:M\to N$ be a homomorphism of $R$-modules. 
+\begin{enumerate}
+    \item Prove that $\phi$ is injective if and only if $\phi_{\fm}:M_{\fm}\to N_{\fm}$ is injective for every maximal ideal $\fm\subset R$. Hint: Apply local vanishing to $\ker(\phi)$.
+    \item Prove that $\phi$ is surjective if and only if $\phi_{\fm}:M_{\fm}\to N_{\fm}$ is surjective for every maximal ideal $\fm\subset R$. Hint: Apply local vanishing to $\coker(\phi)$.
+    \item Deduce $\phi$ is an isomorphism if and only if $\phi_{\fm}$ is an isomorphism for every maximal ideal $\fm\subset R$.
+    \item State and prove the analogous criterion using all prime ideals instead of all maximal ideals.
+    \item State and prove the analogous criterion using a finite basic open cover $\Spec(R)=D(f_1)\cup\cdots\cup D(f_n)$.
+    \item Let $n\geq 1$ be an integer and consider multiplication by $n$ as a map of $\ZZ$-modules
+    \[
+    \begin{tikzcd}[column sep=large]
+    \ZZ \arrow[r, "\times n"] & \ZZ.
+    \end{tikzcd}
+    \]
+    For which prime ideals $\langle p\rangle\in \Spec(\ZZ)$ does the localized map become an isomorphism? For which prime ideals is it injective? Surjective?
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+We now turn to a different technique -- seemingly unrelated topic -- namely attempting to port-over aspects of linear algebra to the theory of modules. The basic idea is that while a module might not have a basis -- recall only free modules do -- so long as a module has a finite set of generators many classical identities and facts from linear algebra remain true. 
+
+Let us first recall the relevant linear algebra. Let $\KK$ be a field, and let $A$ be an $n \times n$ matrix over $\KK$. For each pair $1 \leq i,j \leq n$, let $A_{\hat{i},\hat{j}}$ denote the $(n-1)\times(n-1)$ matrix obtained from $A$ by deleting row $i$ and column $j$. The \emph{cofactor} matrix of $A$ is the $n\times n$ matrix whose $(i,j)$-th entry is $c_{i,j}\coloneqq (-1)^{i+j}\det(A_{\hat{i},\hat{j}})$. The \emph{adjugate} of $A$ is defined to be $\adj(A)\coloneqq C^{\tp}$ where $C$ is the cofactor matrix of $A$. A standard theorem from linear algebra says that the identity holds for every $n\times n$ matrix $A$ over the field $\KK$:
+\[
+A\adj(A) = \adj(A)A=\det(A)\Id_{n \times n}.
+\] 
+This identity is often proved using Laplace expansion along rows and columns. It is also the identity behind Cramer's rule. Conceptually, it says that even if
+$A$ is not invertible, multiplying by $\adj(A)$ turns $A$ into the scalar matrix $\det(A)I_n$. This formula has surprisingly important consequences for the structure of endomorphisms of vector spaces.
+
+One clean way to see this is to do the computation once in the \emph{universal} ring
+\[
+\ZZ[x_{i,j}\mid 1\leq i,j\leq n],
+\]
+where $X=(x_{i,j})$ is the generic $n\times n$ matrix whose entries are variables. Every particular matrix over every commutative ring is obtained from $X$ by substituting $x_{i,j}\mapsto a_{i,j}$. Thus a polynomial matrix identity over this polynomial ring can be specialized to any commutative ring. The same universal idea gives a first proof of Cayley--Hamilton over arbitrary commutative rings: If $\chi_A(t)=\det(tI_n-A)$ is the characteristic polynomial of $A$, then $\chi_A(A)=0$. For matrices over fields this is a theorem from linear algebra. For matrices over arbitrary rings, one proves the identity for the generic matrix over the polynomial ring over $\ZZ$, and then specializes.
+
+Before we prove this we need to extend our definition of an algebra slightly. Let $R$ be a commutative ring. An $R$-algebra is a ring $A$ together with a specified ring homomorphism $\phi:R \to A$.  We think of this as defining a scalar multiplication on $A$ by elements of $R$ by defining $r\cdot a \coloneqq \phi(r)a$. A morphism of $R$-algebras $\psi:A\to B$ is a ring homomorphism that preserves scalars, i.e. $\psi(r\cdot 1_A)=r\cdot 1_B$ for every $r\in R$.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+\item \textbf{Universal Adjugate Formula.} Fix a positive integer $n$. Let $R$ be a ring and $A$ be an $n \times n$ matrix with entries in $R$. Define the adjugate matrix of $A=(a_{ij})$ just as one does for matrices over a field. The goal of this exercise is to prove the following identity:
+\begin{equation}\label{eq:ex-det-trick}
+A\adj(A) = \adj(A)A=\det(A)\Id_{n\times n}.
+\end{equation}
+In this problem let $S=\ZZ[x_{i,j}\mid 1\leq i,j\leq n]$ be the polynomial ring in $n^2$ variables. Let $X=(x_{i,j})$ be the generic $n\times n$ matrix with entries in $S$.
+\begin{enumerate} 
+\item Show that an arbitrary ring has a canonical structure of a $\ZZ$-algebra.
+\item Given an $n \times n$ matrix $A=(a_{i,j})$ with entries in $R$ show that there is a well-defined morphism of $\ZZ$-algebras:
+\[
+\begin{tikzcd}[row sep = .3em, column sep = 3.5em]
+S \arrow[r, "\ev_{A}"] & R \\
+x_{i,j} \arrow[r, mapsto] & a_{i,j}
+\end{tikzcd}.
+\]
+\item Let $X=(x_{i,j})$ be the generic $n\times n$ matrix whose entries are the variables in $S$. Assume that \eqref{eq:ex-det-trick} holds true for the matrix $X$. Use the homomorphism $\ev_{A}$ to show the identity holds true for $A$. 
+\item Since $S$ is a domain it embeds into its field of fractions $S \subset \Frac(S)$. Explain why this allows us to view $X$ as a matrix with entries in $\Frac(S)$. 
+\item Viola! Conclude the matrix equation \eqref{eq:ex-det-trick} holds for arbitrary rings from the corresponding linear algebra fact (over fields). Be sure to check the field case too, if it’s not familiar to you. It’s easy, if you know about computing determinants by ”expanding along a row or column''.
+\end{enumerate}
+
+\item \textbf{Universal Cayley-Hamilton Theorem.} Fix a positive integer $n$. Let $R$ be a ring and $A$ be an $n \times n$ matrix with entries in $R$. Define the \emph{characteristic polynomial} of $A$ to be $\chi_{A}(t)=\det(tI_n-A)\in R[t]$. The goal of this is to prove the Cayley-Hamilton theorem for rings, namely: $\chi_{A}(A)=0$. In this problem let $S=\ZZ[x_{i,j}\mid 1\leq i,j\leq n]$ be the polynomial ring in $n^2$ variables. Let $X=(x_{i,j})$ be the generic $n\times n$ matrix with entries in $S$.
+
+\begin{enumerate}
+    \item Prove the Cayley-Hamilton theorem for the generic matrix $X$, i.e., $\chi_{X}(X)=0$. Hint: Again use that you may embed $S$ into its field of fractions. 
+    \item Use the specialization map $\ev_A$  from the previous problem to prove Cayley--Hamilton for every $n\times n$ matrix $A$ over every commutative ring $R$.
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+We now use our universal adjugate formula to prove what is called the \emph{determinant trick}, which allows us to extend the Cayley--Hamilton to endomorphisms of finitely generated modules. Recall an endomorphism of an $R$-module $M$ is just an $R$-module homomorphism $\phi:M \to M$. 
+
+\begin{theorem}[Cayley-Hamilton]
+	Let $R$ be a ring and $I\subset R$ an ideal.  Let $M$ be an $R$-module that can be generated as an $R$-module by $n$ elements. Let $\phi:M\to M$ be an endomorphism of $M$. If $\phi(M) \subset IM$ then there exists a monic polynomial
+	\[
+	p(t) = t^{n} + p_{1}t^{n-1}+\cdots+p_{n-1}t+p_{n} \in R[t]
+	\]
+	with $p_{k} \in I^{k}$, such that $p(\phi)=0$ as an endomorphism on $M$. 
+\end{theorem}
+
+
+Before proving the theorem, let us spell out what the notation means. If $\phi:M\to M$ is an endomorphism, then we write $\phi^{2}\coloneqq \phi\circ \phi$, $\phi^{3}\coloneqq \phi\circ\phi\circ\phi$, and, more generally, $\phi^n$ means the $n$-fold composition of $\phi$ with itself. We also set $\phi^0=\Id_M$. Thus, given a polynomial $p(t)=t^{n} + p_{1}t^{n-1}+\cdots+p_{n-1}t+p_{n}\in R[t]$ then $p(\phi)=\phi^{n} + p_{1}\phi^{n-1}+\cdots+p_{n-1}\phi+p_{n}\Id_{M}$ is in $\End_{R}(M)$. The equation $p(\phi)=0$ means that this endomorphism is the zero map; i.e., $p(\phi)(m)=0$ for all $m\in M$. 
+
+There is another useful way to say the same thing. Giving an $R$-module $M$ together with an endomorphism $\phi:M\to M$ is the same as giving $M$ the structure of an $R[t]$-module extending its original $R$-module structure. The variable $t$ acts on $M$ by the rule $t\cdot m \coloneqq \phi(m)$ and $t^k\cdot m=\phi^k(m)$. Therefore, for a polynomial $p(t)\in R[t]$, the action of $p(t)$ on $M$ is exactly the endomorphism $p(\phi)$. With this language, the conclusion $p(\phi)=0$ says that the polynomial $p(t)$ annihilates $M$ as an $R[t]$-module $p(t)\cdot M=0$. 
+
+The determinant trick constructs such an annihilating polynomial from a finite set of generators of $M$. The key point is that, although $M$ need not have a
+basis, the endomorphism $\phi$ gives us enough ``linear equations'' among a chosen generating set to apply the adjugate identity.
+
+Let $M$ be generated by $x_1,\ldots,x_n$, let $I\subset R$ be an ideal, and let $\phi:M\to M$ be an endomorphism such that $\phi(M)\subseteq IM$. Since the $x_i$ generate $M$, we can write
+\[
+\phi(x_i)=\sum_{j=1}^n a_{ij}x_j
+\qquad\text{with}\qquad a_{ij}\in I.
+\]
+These are $n$ linear equations in the generators $x_i$, but the coefficients include the operator $\phi$. The key observation is that scalar multiplication by elements of $R$ commutes with $\phi$. Thus the subring $R[\phi]\subseteq \End_R(M)$ generated by scalar multiplications and by $\phi$ is commutative; equivalently, it is the image of the evaluation map $R[t]\to \End_R(M)$ sending $t$ to $\phi$.
+
+Let $A=(a_{ij})$. The equations above may be rewritten as
+\[
+(\phi \Id_{n\times n}-A)
+\begin{pmatrix}
+ x_1\\ \vdots \\ x_n
+\end{pmatrix}=0.
+\]
+Now the matrix $\phi \Id_{n\times n}-A$ has entries in the commutative ring $R[\phi]$, so the adjugate identity applies. Multiplying by the adjugate matrix shows that $\det(\phi I_n-A)$ kills each generator $x_i$, and hence kills all of $M$. Expanding this determinant gives a monic polynomial in $\phi$ whose non-leading coefficients lie in powers of $I$. This is the determinant trick.
+
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+\item \textbf{The Determinant Trick.} Let $M$ be an $R$-module generated by $x_1,\ldots,x_n$, let $I\subset R$ be an ideal, and let $\phi\in \End_R(M)$ satisfy $\phi(M)\subseteq IM$.
+\begin{enumerate}
+    \item Prove that there exist elements $a_{ij}\in I$ such that
+    \[
+    \phi(x_i)=\sum_{j=1}^n a_{ij}x_j
+    \qquad\text{for every }i=1,\ldots,n.
+    \]
+    \item Let $A=(a_{ij})$ and let $B=\phi I_n-A$, viewed as a matrix with entries in the commutative ring $R[\phi]\subseteq \End_R(M)$. Prove that
+    \[
+    B
+    \begin{pmatrix}
+    x_1\\ \vdots \\ x_n
+    \end{pmatrix}=0.
+    \]
+    \item Use the identity $\adj(B)B=\det(B)I_n$ to prove that $\det(\phi I_n-A)x_i=0$ for every $i$.
+    \item Deduce the Cayley-Hamilton theorem stated above. 
+    \end{enumerate}
+
+\item \textbf{Applications of the Cayley--Hamilton Theorem.} Let $A=(a_{ij})$ be an $n\times n$ matrix with entries in $R$, and let $\phi_A:R^n\to R^n$ be the corresponding $R$-linear map.
+\begin{enumerate}
+    \item Apply the determinant trick to $M=R^n$, the standard basis $e_1,\ldots,e_n$, $I=R$, and $\phi=\phi_A$. Prove that $\chi_A(\phi_A)=0$.
+    \item Translate the previous statement into the matrix identity $\chi_A(A)=0$.
+    \item Prove that if $A\in \Mat_{n\times n}(R)$ and $\det(A)$ is a unit, then $A$ is invertible. Hint: Use the adjugate matrix.
+    \item Prove the converse: if $A$ is invertible, then $\det(A)$ is a unit.
+    \item Combine this with the local criterion for isomorphisms to prove that $A:R^n\to R^n$ is an isomorphism if and only if $A_{\fp}:R_{\fp}^n\to R_{\fp}^n$ is an isomorphism for every prime ideal $\fp\subset R$.
+    \item Show that the condition in part (e) is equivalent to $\det(A)\notin \fp$ for every prime ideal $\fp\subset R$, and hence to $\det(A)$ being a unit.
+\end{enumerate}
+
+\item \textbf{Cayley--Hamilton Computations.} Compute the characteristic polynomial in each case and verify the Cayley--Hamilton identity directly.
+\begin{enumerate}
+    \item $R=\ZZ$ and $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$.
+    \item $R$ is any ring and $A=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$.
+    \item $R=\ZZ/6\ZZ$ and $A=\begin{pmatrix}2&1\\0&2\end{pmatrix}$.
+    \item $R$ is any ring, $a,b\in R$, and $A=\begin{pmatrix}0&-b\\1&-a\end{pmatrix}$.
+    \item Let $A$ be a $2\times 2$ matrix over $R$ with trace $\tau$ and determinant $\delta$. Prove directly that
+    \[
+    A^2-\tau A+\delta I_2=0.
+    \]
+\end{enumerate}
+
+
+\end{enumerate}
+
+\hrulefill
+
+We now get to a series of amazingly powerful results, all of which can roughly be called some version of Nakayama's Lemma. Somewhat annoyingly each of these results will have its own hypothesis and conclusions, however, they all fit into a broad framework: The slogan is: \emph{for finitely generated modules, if nothing remains after reducing modulo a sufficiently small ideal, then there was nothing there to begin with}. We will begin with the most used versions of this lemma before stating it in its most general form.
+
+
+\begin{lemma}[Nakayama's Lemma I]
+	Let $R$ be a ring and let $M$ be a finitely generated $R$-module. If $I \subset R$ is an ideal such that $IM=M$ then there exists an element $r\in I$ that acts on $M$ as the identity, i.e. $(1-r)M=0$.
+\end{lemma}
+
+Recall that a ring $R$ is local if it has a unique maximal ideal $\fm \subset R$, in which case we denote it by $(R,\fm)$. (Note Mel Hochster's notes adopt the somewhat non-standard terminology that a local ring be required to be Noetherian. We, and most commutative algebraists, do not do this.) In this setting, since $\fm \subset R$ is maximal the quotient $\kappa(R)\coloneqq R/\fm$ is a field, which we call the \emph{residue field} of $R$. For any ideal $I\subset R$, the quotient module $M/IM \cong M\otimes_{R}(R/I)$, and so has the structure of an $R/I$-module. This means that when we specialize to the case when $I=\fm$ the module $M/\fm M$ is isomorphic to $M\otimes_{R}(R/\fm)=M\otimes_{R} \kappa(R)$, meaning $M/\fm M$ is a $\kappa(R)$-module, i.e. it is just a vector space over the field $\kappa(R)$!
+
+\begin{lemma}[(Local) Nakayama's Lemma II]
+	Let $(R, \fm)$ be a local ring and let $M$ be a finitely generated $R$-module. If $\fm M = M$ then $M=0$. 
+\end{lemma}
+
+\begin{lemma}[(Local) Nakayama's Lemma III]
+	Let $(R, \fm)$ be a local ring and let $M$ be a finitely generated $R$-module. A finite set $\{x_1,\ldots,x_n\} \subset M$ is a generating set for $M$ if and only if their images $\{\overline{x}_{1},\ldots,\overline{x}_{n}\}$ span $M/\fm M$ as a vector space over the field $R/\fm=\kappa(R)$.
+\end{lemma}
+
+While the above lemmas are the most common versions of Nakayama's Lemma one might use in commutative algebra and algebraic geometry. They all are, essentially special cases or corollaries, of a more general version. The \emph{Jacobson radical} of $R$ is
+\[
+\Jac(R)\coloneqq \bigcap_{\fm\in \mSpec(R)}\fm,
+\]
+the intersection of all maximal ideals of $R$. Note this is not the same thing in general as the nilradical $\sqrt{\langle 0\rangle}$, which is the set of nilpotent elements and is equal to the intersection of all prime ideals of $R$. If $a\in \Jac(R)$, then $1+a$ is a unit. Indeed, if $1+a$ were not a unit, it would be contained in some maximal ideal $\fm$; since $a\in \fm$ as well, this would force $1\in \fm$, a contradiction. This observation will lead us to the following general version of Nakayama's Lemma.
+
+\begin{lemma}[Nakayama's Lemma IV]
+	Let $R$ be a ring and let $M$ be a finitely generated $R$-module. If $I \subset R$ is an ideal such that $I$ is contained in the Jacobson radical of $R$ and $IM=M$ then $M=0$. 
+\end{lemma}
+
+A brief historical aside: Like most results, a number of versions of Nakayama's lemma appeared before Tadashi Nakayama stated it in its now-familiar form in  1951. Krull proved the case when $M$ was an ideal, and Goro Azumaya published a substantially generalized version (for all associative rings) in 1951. According to Matsumura, ``Priority is obscure, and although it is usually called the Lemma of Nakayama, late Prof. Nakayama did not like the name.''
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{Examples and Hypotheses for Nakayama's Lemma.}
+\begin{enumerate}
+    \item Let $R=\ZZ$,  $I=\langle 2\rangle$, and  $M=\ZZ/3\ZZ$. Verify that $IM=M$ and find $a\in I$ such that $(1-a)M=0$.
+    \item In the previous example, explain why your computation does not imply that $M=0$. Which hypothesis from Nakayama's Lemma is missing?
+    \item Let $R=\KK[x]_{\langle x\rangle}$ and let $M=R[1/x]/R$. Prove that $M\neq 0$ but $xM=M$. Hint: Show that $1/x+R$ is nonzero and that multiplication by $x$ is surjective on $M$.
+    \item Explain why part (c) shows that finite generation cannot be removed from Nakayama's Lemma.
+\end{enumerate}
+
+\item \textbf{The Jacobson Radical.} Let $R$ be a ring.
+\begin{enumerate}
+    \item Prove that if $a\in \Jac(R)$, then $1+a$ is a unit in $R$.
+    \item More generally, prove that if $a\in \Jac(R)$ and $r\in R$, then $1+ra$ is a unit.
+    \item Prove that if $(R,\fm)$ is a local ring, then $\Jac(R)=\fm$.
+    \item Compute $\Jac(R)$ for the following rings: $R=\KK$ a field, $R=\ZZ$, and $R=\ZZ/12\ZZ$.
+        \item Give an example of a ring $R$ for which $\Jac(R)$ and $\sqrt{\langle 0\rangle}$ are not equal.
+\end{enumerate}
+
+\item \textbf{Proving Nakayama's Lemma.} Let $R$ be a ring, $I\subset R$ an ideal, and $M$ a finitely generated $R$-module. 
+\begin{enumerate}
+    \item Use the determinant trick with $\phi=\Id_{M}$ to prove Nakayama's Lemma I: if $IM=M$, then there exists $r\in I$ such that $(1-r)M=0$.
+    \item Assume that $I \subset \Jac(R)$. Use part (a) to deduce Nakayama's Lemma IV: if $IM=M$, then $M=0$.
+    \item Explain why the local version of Nakayama's Lemma II follows from Nakayama's Lemma IV.
+\end{enumerate}
+
+\item \textbf{Applications of Nakayama's Lemma.} Let $R$ be a ring and $M$ a finitely generated $R$-module. Let $I \subset R$ be an ideal, and assume that $I \subset \Jac(R)$. 
+\begin{enumerate}
+    \item Let $N\subseteq M$ be a submodule. Prove that if $M=N+IM$, then $M=N$. Hint: Apply Nakayama's Lemma to $M/N$.
+    \item Let $\phi:M\to N$ be a homomorphism of finitely generated $R$-modules. Prove that $\phi$ is surjective if and only if the induced map
+    \[
+    M/IM\longrightarrow N/IN
+    \]
+    is surjective. Hint: Apply Nakayama's Lemma to $\coker(\phi)$.
+     \item Let $(R,\fm)$ be local and let $M$ be finitely generated. Prove that $M=0$ if and only if $M/\fm M=0$.
+    \item Let $(R,\fm)$ be local and let $\phi:M\to N$ be a homomorphism of finitely generated $R$-modules. Prove that if the induced map
+    \[
+    M/\fm M\longrightarrow N/\fm N
+    \]
+    is an isomorphism, then $\phi$ is surjective. Give an example showing that $\phi$ need not be injective.
+        \item Give an example showing that an injective map of finitely generated modules can become non-injective after reducing modulo $\fm$. Hint: Use multiplication by $x$ on $\KK[x]_{\langle x\rangle}$.
+\end{enumerate}
+
+
+\item \textbf{Surjective Endomorphisms of Finitely Generated Modules.} Let $M$ be a finitely generated $R$-module and let $\phi:M\to M$ be a surjective endomorphism.
+\begin{enumerate}
+    \item Explain how we can view $M$ as an $R[t]$-module by letting $t$ act as $\phi$. Why is $M$ finitely generated as an $R[t]$-module?
+    \item Use that $\phi$ is surjective to prove that $tM=M$ as an $R[t]$-module.
+    \item Apply Nakayama's Lemma I over the ring $R[t]$ with the ideal $\langle t\rangle$ to prove that there exists a polynomial $q(t)\in R[t]$ such that
+    \[
+    (1-tq(t))M=0.
+    \]
+    \item Deduce that $\phi$ is an automorphism of $M$. Hint: Translate the identity in part (c) into an identity involving $\phi$ and $q(\phi)$.
+    \item Now suppose $(R,\fm)$ is local and $M$ is finitely generated. Prove that if the induced map $M/\fm M\to M/\fm M$ is an isomorphism, then $\phi$ is an automorphism of $M$.
+\end{enumerate}
+
+\item \textbf{More Applications of Nakayama's Lemma.} Let $R$ be a nonzero ring.
+\begin{enumerate}
+	\item Prove that $R^{n}\cong R^{m}$ as $R$-modules if and only if $n=m$. Hint: Choose a maximal ideal $\fm$ and reduce modulo $\fm$.
+	\item Let $M$ be a free $R$-module such that $M \cong R^{n}$. Prove that any set of $n$ elements that generate $M$ is a basis for $M$ as an $R$-module. Hint: Use the previous exercise on surjective endomorphisms.
+	\item Define the \emph{rank} of a finitely generated free $R$-module $M$ to be the number of elements in a basis for $M$. Prove that the rank of $M$ is well-defined.
+\end{enumerate}
+
+\item \textbf{Minimal Generating Sets over Local Rings.} Let $(R,\fm)$ be a local ring with residue field $\kappa=R/\fm$. Let $M$ be a finitely generated $R$-module and let $x_1,\ldots,x_r$ be elements of $M$.
+\begin{enumerate}
+    \item Prove that if $x_1,\ldots,x_r$ generate $M$ as an $R$-module, then their images generate $M/\fm M$ as a $\kappa$-vector space.
+    \item Prove the converse: if the images of $x_1,\ldots,x_r$ generate the $\kappa$-vector space $M/\fm M$, then $x_1,\ldots,x_r$ generate $M$ as an $R$-module.
+    \item Deduce Nakayama's Lemma III.
+    \item Let $\mu_R(M)$ denote the minimal number of generators of $M$ as an $R$-module. Prove that $\mu_R(M)=\dim_{\kappa}(M/\fm M)$. 
+    \item We say that $x_{1},\ldots,x_{r}$ are \emph{minimal generators} for $M$ if they generate $M$ and $r=\mu_{R}(M)$. Prove that $x_1,\ldots,x_t$ are minimal generators for $M$ if and only if their images form a basis of $M/\fm M$.
+\end{enumerate}
+
+\item \textbf{Computing Minimal Numbers of Generators.} Let $R=\KK[x,y]_{\langle x,y\rangle}$ with maximal ideal $\fm=\langle x,y\rangle R$ and residue field $\KK$.
+\begin{enumerate}
+    \item Compute the minimal number of generators of $R/\langle x^2,xy,y^2\rangle$ as an $R$-module.
+    \item Compute the minimal number of generators of $\fm$ as an $R$-module.
+    \item Compute the minimal number of generators of $\fm^2$ as an $R$-module.
+    \item Let $S=\ZZ_{\langle p\rangle}$ and $M=S/\langle p^4\rangle\oplus S/\langle p^2\rangle$. Compute the minimal number of generators of $M$ as an $S$-module.
+\end{enumerate}
+
+\item \textbf{Local Generators and Local Surjectivity.} Let $R$ be a ring. Let $M$ be a finitely generated $R$-module and let $x_1,\ldots,x_r\in M$.
+\begin{enumerate}
+    \item Prove that $x_1,\ldots,x_r$ generate $M$ if and only if, for every maximal ideal $\fm\subset R$, their images generate $M_{\fm}/\fm M_{\fm}$ as a vector space over $\kappa(\fm)=R_{\fm}/\fm R_{\fm}$.
+    \item Let $\phi:M\to N$ be a homomorphism of finitely generated $R$-modules. Prove that $\phi$ is surjective if and only if, for every maximal ideal $\fm\subset R$, the induced map below is surjective:
+    \[
+    M_{\fm}/\fm M_{\fm}\longrightarrow N_{\fm}/\fm N_{\fm}
+    \]
+    \item Explain why the analogous statement for injectivity is false by revisiting the multiplication-by-$x$ example over $\KK[x]_{\langle x\rangle}$.
+    \item Let $f_1,\ldots,f_n\in R$ generate the unit ideal. State and prove a version of part (b) where one first localizes at each $f_i$.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
