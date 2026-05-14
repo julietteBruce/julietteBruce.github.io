@@ -1,0 +1,373 @@
+\documentclass[12pt,reqno]{amsart}
+\input{../../121preamble.tex}
+\renewcommand{\originalurl}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/DimensionWorksheet.pdf}
+\renewcommand{\originalurlI}{https://sites.lsa.umich.edu/kesmith/wp-content/uploads/sites/1309/2024/07/NoetherNormalization.pdf}
+\title{Worksheet 7.2: Integral Extension Pt. II}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\thispagestyle{firstpage2}
+Throughout this course, ``ring'' means \textit{commutative} ring with unity and all ring homomorphisms preserve unity. In the previous worksheet we introduced integral elements and integral extensions. We saw that integrality is the mechanism by which monic polynomial equations turn algebraic generation into module generation. The goal of this worksheet is to see what integrality does to prime ideals and to use this to make dimension computable for finitely generated algebras over a field.
+
+Let $\phi:R\to S$ be a ring map. Recall that $\phi$ induces a continuous map
+\[
+\begin{tikzcd}[row sep=.3em, column sep=4em]
+\Spec(S) \arrow[r, "\phi^{\#}"] & \Spec(R),
+\end{tikzcd}
+\qquad
+\fq\longmapsto \phi^{-1}(\fq).
+\]
+The central question of the first half of this worksheet is: \emph{how much of $\Spec(R)$ is seen by $\Spec(S)$, and how do chains of prime ideals compare?} For integral extensions the answer is surprisingly rigid. Prime ideals downstairs have primes upstairs, chains can be lifted upward, and no two comparable upstairs primes can lie over the same downstairs prime. These facts are called \emph{Lying Over}, \emph{Going Up}, and \emph{Incomparability}. A complementary statement, \emph{Going Down}, is more delicate: it is true for flat maps, and for integral extensions of domains when the base is integrally closed.
+
+In the second half of the worksheet we use these theorems to prove and apply \emph{Noether Normalization}. The slogan is that every finitely generated algebra over a field is finite over a polynomial ring. Thus, after a finite map, an affine algebra behaves like affine space of some dimension. This is one of the main reasons polynomial rings control dimension theory.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, series=problems]
+
+\item \textbf{A First Consequence for Maximal Ideals.} Let $\phi:R \to S$ be an integral ring map.
+\begin{enumerate}
+    \item Suppose $S$ is a field and $R$ is a domain. Prove that $R$ is a field. Hint: If $r \neq 0 \in R$, then $\phi(r)^{-1}\in S$ is integral over $R$; write a monic equation for $\phi(r)^{-1}$ and multiply by a suitable power of $\phi(r)$.
+    \item Suppose $S$ is a domain and $R$ is a field. Prove that $S$ is a field.
+    \item Let $\phi:R\to S$ be an integral ring map and let $\fq\in\Spec(S)$ with contraction $\fp=\phi^{-1}(\fq)$. Show that $S/\fq$ is integral over $R/\fp$.
+    \item Deduce that if $\fq$ is maximal, then $\fp$ is maximal.
+    \item Prove the converse: If $\fp$ is maximal, then $\fq$ is maximal. Hint: $S/\fq$ is an integral domain integral over the field $R/\fp$.
+    \item Conclude that under an integral ring map, a prime ideal upstairs is maximal if and only if its contraction downstairs is maximal.
+\end{enumerate}
+
+\item \textbf{Prime Ideals Near a Point.} Let $\phi:R\to S$ be a ring map and let $\fp\in\Spec(R)$. Write $U=R\setminus \fp$ and $S_{\fp}=U^{-1}S$.
+\begin{enumerate}
+    \item Prove that if $\fq\in\Spec(S)$, then $\phi^{-1}(\fq)$ is a prime ideal of $R$.
+    \item Prove that prime ideals of $S_{\fp}$ are in bijection with prime ideals $\fq\in\Spec(S)$ such that $\fq\cap \phi(U)=\varnothing$. Equivalently, these are the primes $\fq$ such that $\phi^{-1}(\fq)\subseteq \fp$.
+    \item Suppose that $R\subseteq S$ is an injective ring map. Show that $S_{\fp}\neq 0$. Hint: If $1=0$ in $S_{\fp}$, then some element of $R\setminus \fp$ becomes zero in $S$.
+    \item Suppose that $S$ is integral over $R$. Prove that $S_{\fp}$ is integral over $R_{\fp}$.
+    \item Let $\mathfrak Q\in\Spec(S_{\fp})$ and let $\fq\subset S$ be the corresponding prime ideal. Show that if $\phi^{-1}_{\fp}(\mathfrak Q)=\fp R_{\fp}$, then $\phi^{-1}(\fq)=\fp$.
+\end{enumerate}
+
+\item \textbf{Lying Over.} Let $R\subseteq S$ be an integral extension of rings. The goal of this exercise is to prove the \emph{Lying Over Theorem}: for every $\fp\in\Spec(R)$, there exists $\fq\in\Spec(S)$ such that $\fq\cap R=\fp$.
+\begin{enumerate}
+    \item Fix $\fp\in\Spec(R)$. Explain why $S_{\fp}$ is a nonzero integral extension of $R_{\fp}$.
+    \item Choose a maximal ideal $\mathfrak N\subset S_{\fp}$. Use the theorem from the previous worksheet saying that maximal ideals contract to maximal ideals under integral extensions to prove
+    \[
+    \mathfrak N\cap R_{\fp}=\fp R_{\fp}.
+    \]
+    \item Pull $\mathfrak N$ back to a prime ideal $\fq\subset S$ and prove that $\fq\cap R=\fp$.
+    \item State the correct version of Lying Over for a not-necessarily-injective integral map $\phi:R\to S$. Hint: Which prime ideals of $R$ can possibly be contractions of prime ideals of $S$?
+    \item Translate Lying Over into a statement about the image of the map $\phi^{\#}:\Spec(S)\to\Spec(R)$.
+\end{enumerate}
+
+\item \textbf{First Examples of Lying Over.} Let $\KK$ be a field.
+\begin{enumerate}
+    \item Show that $\KK[t]$ is integral over $\KK[t^2]$. For a prime ideal $\fq\subset \KK[t]$, compute $\fq\cap \KK[t^2]$ when $\fq=\langle t-a\rangle$.
+    \item Assume $\KK$ is algebraically closed and $\operatorname{char}(\KK)\neq 2$. For $u=t^2$, describe the primes of $\KK[t]$ lying over the maximal ideal $\langle u-a\rangle\subset \KK[u]$ when $a=0$ and when $a\neq 0$.
+    \item Show that $\KK[t]$ is integral over $\KK[t^2,t^3]$. Identify the prime of $\KK[t]$ lying over the cusp point $\langle t^2,t^3\rangle\subset \KK[t^2,t^3]$.
+    \item Show that $\ZZ[i]$ is integral over $\ZZ$. Compute the primes of $\ZZ[i]$ lying over $\langle 2\rangle$, $\langle 3\rangle$, and $\langle 5\rangle$ by factoring $x^2+1$ modulo $2$, $3$, and $5$.
+    \item Let $R\subseteq S$ be integral and let $I\subset R$ be an ideal. Prove that the induced map
+    \[
+    \{\fq\in\Spec(S)\mid \fq\supseteq IS\}\longrightarrow \{\fp\in\Spec(R)\mid \fp\supseteq I\}
+    \]
+    is surjective.
+\end{enumerate}
+
+\end{enumerate}
+
+\hrulefill
+
+The next theorem explains how integral extensions interact with inclusions of prime ideals. Geometrically, if $\fp_0\subseteq \fp_1$ in $\Spec(R)$, then $\fp_1$ is a specialization of $\fp_0$. The theorem says that specializations can be lifted through an integral extension once the starting point upstairs has been chosen.
+
+\begin{theorem}[Going Up]
+Let $R\subseteq S$ be an integral extension. Suppose
+\[
+\fp_0\subseteq \fp_1
+\]
+are prime ideals of $R$, and suppose $\fq_0\in\Spec(S)$ satisfies $\fq_0\cap R=\fp_0$. Then there exists $\fq_1\in\Spec(S)$ such that
+\[
+\fq_0\subseteq \fq_1
+\qquad\text{and}\qquad
+\fq_1\cap R=\fp_1.
+\]
+More generally, every chain of prime ideals downstairs can be lifted to a chain of prime ideals upstairs, after choosing a prime upstairs over the first prime in the chain.
+\end{theorem}
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{Proof of Going Up.} Let $R\subseteq S$ be integral, let $\fp_0\subseteq \fp_1$ be prime ideals of $R$, and let $\fq_0\in\Spec(S)$ lie over $\fp_0$.
+\begin{enumerate}
+    \item Prove that $S/\fq_0$ is integral over $R/\fp_0$.
+    \item Show that $\fp_1/\fp_0$ is a prime ideal of $R/\fp_0$.
+    \item Apply Lying Over to the integral extension $R/\fp_0\subseteq S/\fq_0$ to produce a prime ideal $\fq_1/\fq_0$ of $S/\fq_0$ lying over $\fp_1/\fp_0$.
+    \item Check that the corresponding prime ideal $\fq_1\subset S$ satisfies $\fq_0\subseteq \fq_1$ and $\fq_1\cap R=\fp_1$.
+    \item Prove the chain version of Going Up by induction: if
+    \[
+    \fp_0\subsetneq \fp_1\subsetneq\cdots\subsetneq \fp_n
+    \]
+    is a chain in $R$ and $\fq_0$ lies over $\fp_0$, then there is a chain
+    \[
+    \fq_0\subsetneq \fq_1\subsetneq\cdots\subsetneq \fq_n
+    \]
+    in $S$ with $\fq_i\cap R=\fp_i$ for all $i$.
+\end{enumerate}
+
+\item \textbf{Incomparability.} Let $R\subseteq S$ be an integral extension. The goal of this exercise is to prove: if $\fq\subseteq \fq'$ are prime ideals of $S$ and $\fq\cap R=\fq'\cap R$, then $\fq=\fq'$.
+\begin{enumerate}
+    \item Set $\fp=\fq\cap R=\fq'\cap R$. Explain why $R/\fp\subseteq S/\fq$ is an integral extension of domains.
+    \item Let $\mathfrak P=\fq'/\fq\subset S/\fq$. Show that $\mathfrak P\cap (R/\fp)=\langle 0\rangle$.
+    \item Suppose $0\neq b\in \mathfrak P$. Choose a monic equation of minimal degree
+    \[
+    b^n+a_1b^{n-1}+\cdots+a_{n-1}b+a_n=0
+    \]
+    with $a_i\in R/\fp$. Prove that $a_n=0$.
+    \item Use the fact that $S/\fq$ is a domain to get a monic equation for $b$ of smaller degree, a contradiction.
+    \item Conclude Incomparability.
+\end{enumerate}
+
+\item \textbf{Dimension is Preserved by Integral Extensions.} Let $R\subseteq S$ be an integral extension of nonzero rings.
+\begin{enumerate}
+    \item Let
+    \[
+    \fq_0\subsetneq \fq_1\subsetneq\cdots\subsetneq \fq_n
+    \]
+    be a chain of prime ideals in $S$. Use Incomparability to show that
+    \[
+    \fq_0\cap R\subsetneq \fq_1\cap R\subsetneq\cdots\subsetneq \fq_n\cap R
+    \]
+    is a chain of prime ideals in $R$. Deduce that $\dim(S)\leq \dim(R)$.
+    \item Let
+    \[
+    \fp_0\subsetneq \fp_1\subsetneq\cdots\subsetneq \fp_n
+    \]
+    be a chain of prime ideals in $R$. Use Lying Over and Going Up to lift it to a chain of prime ideals in $S$. Deduce that $\dim(R)\leq \dim(S)$.
+    \item Conclude that $\dim(R)=\dim(S)$.
+    \item Use this theorem to compute the Krull dimension of each ring below.
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\KK[t^2,t^3]$.
+        \item $\KK[x,y]/\langle y^2-x^3\rangle$.
+        \item $\KK[x^2,xy,y^2]$.
+        \item $\ZZ[i]$.
+    \end{enumerate}
+    \end{multicols}
+\end{enumerate}
+
+\item \textbf{Closed Sets Under Integral Maps.} Let $R\subseteq S$ be integral and let $\phi^{\#}:\Spec(S)\to\Spec(R)$ be the induced map.
+\begin{enumerate}
+    \item Let $J\subseteq S$ be an ideal. Show that
+    \[
+    \phi^{\#}(\VV(J))=\VV(J\cap R).
+    \]
+    Hint: One inclusion is direct. For the other, apply Lying Over to $R/(J\cap R)\subseteq S/J$ after checking the kernel carefully.
+    \item Deduce that $\phi^{\#}$ is a closed map.
+    \item If $R\subseteq S$ is finite and $\KK$ is algebraically closed, explain why the induced map on affine algebraic sets should be thought of as a finite-to-one map. Make this precise by showing that for each $\fp\in\Spec(R)$, the fibre ring $\kappa(\fp)\otimes_R S$ is finite-dimensional over $\kappa(\fp)$.
+\end{enumerate}
+
+\end{enumerate}
+
+\hrulefill
+
+We now turn to \emph{Going Down}. For a ring map $R\to S$, Going Down means that chains can be lifted in the opposite direction: if $\fp_0\subseteq \fp_1$ in $R$ and a prime $\fq_1$ upstairs has already been chosen over $\fp_1$, then there should exist a prime $\fq_0\subseteq \fq_1$ lying over $\fp_0$.
+
+Going Down is not automatic for integral extensions. There are two especially important settings where it holds. The first is flatness, which is a module-theoretic condition. The second is the classical integral theorem: an integral extension of domains satisfies Going Down when the base is integrally closed. We will not prove these now, but will explore their consequences. 
+
+\begin{theorem}[Flat Going Down]
+Let $\phi:R\to S$ be a flat ring map. Suppose $\fp_0\subseteq \fp_1$ are prime ideals of $R$ and $\fq_1\in\Spec(S)$ satisfies $\phi^{-1}(\fq_1)=\fp_1$. Then there exists $\fq_0\in\Spec(S)$ such that
+\[
+\fq_0\subseteq \fq_1
+\qquad\text{and}\qquad
+\phi^{-1}(\fq_0)=\fp_0.
+\]
+\end{theorem}
+
+\begin{theorem}[Going Down for Normal Domains]
+Let $A\subseteq B$ be an integral extension of domains. If $A$ is integrally closed in its fraction field, then $A\subseteq B$ satisfies Going Down.
+\end{theorem}
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{Unpacking Going Down.} Let $\phi:R\to S$ be a ring map.
+\begin{enumerate}
+    \item Write the definition of Going Up for $\phi$ using a diagram of prime ideals.
+    \item Write the definition of Going Down for $\phi$ using a diagram of prime ideals.
+    \item Explain why Going Up is about lifting specializations and Going Down is about lifting generalizations.
+    \item Prove directly that a localization map $R\to U^{-1}R$ satisfies Going Down. Hint: Use the correspondence between primes of $U^{-1}R$ and primes of $R$ disjoint from $U$.
+    \item Give an example of a flat map that is not integral and an integral map that is not flat.
+\end{enumerate}
+
+\item \textbf{Consequences of Going Down.} 
+\begin{enumerate}
+    \item Let $R\to S$ be faithfully flat. Prove that $\Spec(S)\to\Spec(R)$ is surjective. Hint: For $\fp\in\Spec(R)$, show that $\kappa(\fp)\otimes_R S\neq 0$.
+    \item Deduce that if $R\to S$ is faithfully flat, then every finite chain of primes in $R$ can be lifted to a chain of primes in $S$. Conclude that $\dim(S)\geq \dim(R)$.
+    \item Apply this to $R\to R[x]$ to recover the inequality $\dim(R[x])\geq \dim(R)+1$ for nonzero $R$. Hint: if $\fp_0\subsetneq\cdots\subsetneq\fp_n$ is a chain in $R$, use the explicit chain $\fp_0R[x]\subsetneq\cdots\subsetneq\fp_nR[x]\subsetneq\fp_nR[x]+\langle x\rangle$.
+    \item Let $A\subseteq B$ be an integral extension of domains with $A$ integrally closed. Let $\fq\in\Spec(B)$ and $\fp=\fq\cap A$. Use Going Up, Going Down for Normal Domains, and Incomparability to prove
+    \[
+    \height(\fq)=\height(\fp).
+    \]
+    \item Specialize the previous part to a finite extension $\KK[y_1,\ldots,y_d]\subseteq B$ where $B$ is a domain. What does it say about heights of primes in $B$?
+\end{enumerate}
+
+\end{enumerate}
+
+\hrulefill
+
+We now move from arbitrary integral extensions to finitely generated algebras over a field. The next theorem is one of the main structural results in commutative algebra. It says that a finitely generated algebra over a field is finite over a polynomial subring.
+
+\begin{theorem}[Noether Normalization]
+Let $\KK$ be a field and let $A$ be an algebra-finite $\KK$-algebra. Then there exist algebraically independent elements $y_1,\ldots,y_d\in A$ such that $A$ is module-finite over the polynomial subring
+\[
+\KK[y_1,\ldots,y_d]\subseteq A.
+\]
+If $A$ is a domain, then $d=\trdeg_{\KK}\Frac(A)$.
+\end{theorem}
+
+The proof is an induction on the number of algebra generators. The key step is a change of variables trick: given a nonzero polynomial relation, we choose new variables so that one old variable satisfies a monic equation over the others.
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{The Monic Change of Variables Trick.} Let $0\neq f\in \KK[x_1,\ldots,x_n]$. The goal of this exercise is to make a change of variables so that $f$ becomes monic in one variable. Write
+\[
+f=\sum_{\alpha} c_{\alpha}x_1^{\alpha_1}\cdots x_n^{\alpha_n},
+\]
+where $\alpha=(\alpha_1,\ldots,\alpha_n)\in \ZZ_{\geq 0}^n$, only finitely many $c_\alpha$ are nonzero, and $c_\alpha\in \KK$. Choose an integer $N$ larger than every exponent appearing in every monomial of $f$; that is, $N>\alpha_i$ for every exponent vector $\alpha$ appearing in $f$ and every $i$.
+
+\begin{enumerate}
+    \item Define
+    \[
+    w(\alpha)
+    =
+    \alpha_n+\alpha_1N+\alpha_2N^2+\cdots+\alpha_{n-1}N^{n-1}.
+    \]
+    Explain why this is the base-$N$ expansion of an integer whose ``digits'' are $\alpha_n,\alpha_1,\alpha_2,\ldots,\alpha_{n-1}$
+
+\item Since all these digits are strictly smaller than $N$, prove that if $w(\alpha)=w(\beta)$ then then $\alpha=\beta$. Thus the weights $w(\alpha)$ are distinct for distinct monomials of $f$.
+
+    \item Introduce new variables
+    \[
+    y_i=x_i-x_n^{N^i}
+    \qquad\text{for }1\leq i\leq n-1.
+    \]
+    Equivalently, $ x_i=y_i+x_n^{N^i}$. Substitute these expressions into a monomial
+    \[
+    x_1^{\alpha_1}\cdots x_{n-1}^{\alpha_{n-1}}x_n^{\alpha_n}.
+    \]
+    Show that the unique term obtained by choosing $x_n^{N^i}$ from every factor $(y_i+x_n^{N^i})^{\alpha_i}$ is $x_n^{w(\alpha)}$. All other terms contain at least one $y_i$ and have strictly smaller degree in $x_n$.
+
+    \item Since the weights $w(\alpha)$ are distinct, there is a unique exponent vector $\alpha^{\max}$ appearing in $f$ for which $w(\alpha)$ is largest. Show that, after the substitution, the highest power of $x_n$ appearing in $f$ is
+    \[
+    c_{\alpha^{\max}}x_n^{w(\alpha^{\max})}.
+    \]
+
+    \item Conclude that, after multiplying $f$ by the nonzero scalar $c_{\alpha^{\max}}^{-1}$ we may regard $f$ as a monic polynomial in $x_n$ with coefficients in
+    \[
+    \KK[y_1,\ldots,y_{n-1}].
+    \]
+
+    \item Let $A=\KK[x_1,\ldots,x_n]/\langle f\rangle$. Prove that the image of $x_n$ in $A$ satisfies a monic polynomial with coefficients in the subalgebra generated by the images of
+    \[
+    y_1,\ldots,y_{n-1}.
+    \]
+    Therefore the image of $x_n$ is integral over this subalgebra.
+
+    \item Show $A$ is generated as an algebra over $\KK[y_1,\ldots,y_{n-1}]$ by the single integral element $x_{n}$. Deduce that $S$ is module-finite over $\KK[y_1,\ldots,y_{n-1}]$. 
+\end{enumerate}
+
+\item \textbf{Proof of Noether Normalization.} Let $A=\KK[x_1,\ldots,x_n]/I$ be an algebra-finite $\KK$-algebra.
+\begin{enumerate}
+    \item If $I=\langle 0\rangle$, prove the theorem.
+    \item If $I\neq \langle 0\rangle$, choose $0\neq f\in I$. Use the previous exercise to make a change of variables so that $A$ is module-finite over the image of a polynomial ring in $n-1$ variables.
+    \item Let $A_1$ denote this image subalgebra. Explain why $A_1$ is algebra-finite over $\KK$ using at most $n-1$ algebra generators.
+    \item Apply induction to $A_1$ to find a polynomial subring $\KK[y_1,\ldots,y_d]\subseteq A_1$ such that $A_1$ is module-finite over $\KK[y_1,\ldots,y_d]$.
+    \item Prove that $A$ is module-finite over $\KK[y_1,\ldots,y_d]$.
+    \item Explain why the elements $y_1,\ldots,y_d$ are algebraically independent over $\KK$.
+\end{enumerate}
+
+\item \textbf{Finding Normalizations by Hand.} For each algebra below, find a polynomial subring over which the algebra is module-finite. When possible, give explicit module generators.
+\begin{multicols}{2}
+\begin{enumerate}
+    \item $\KK[t^2,t^3]$.
+    \item $\KK[x,y]/\langle y^2-x^3\rangle$.
+    \item $\KK[x,y]/\langle xy\rangle$. Hint: Try $x+y$.
+    \item $\KK[x,y,z]/\langle z^2-xy\rangle$.
+    \item $\KK[x^2,xy,y^2]\subseteq \KK[x,y]$.
+    \item $\KK[s^2,s^3,t]$.
+\end{enumerate}
+\end{multicols}
+
+\item \textbf{Zariski's Lemma from Noether Normalization.} Let $A$ be an algebra-finite $\KK$-algebra that is also a field.
+\begin{enumerate}
+    \item By Noether Normalization, choose $\KK[y_1,\ldots,y_d]\subseteq A$ such that $A$ is module-finite over $\KK[y_1,\ldots,y_d]$. Explain why this extension is integral.
+    \item Use the earlier fact that if $B$ is a field integral over a domain $A_0$, then $A_0$ is a field, to prove that $\KK[y_1,\ldots,y_d]$ is a field.
+    \item Prove that $d=0$.
+    \item Conclude that $A$ is a finite-dimensional vector space over $\KK$. Equivalently, every field that is algebra-finite over $\KK$ is algebraic and finite over $\KK$.
+    \item Deduce the weak Nullstellensatz: if $\KK$ is algebraically closed and $\fm\subset \KK[x_1,\ldots,x_n]$ is maximal, then
+    \[
+    \fm=\langle x_1-a_1,\ldots,x_n-a_n\rangle
+    \]
+    for some $a_1,\ldots,a_n\in \KK$.
+\end{enumerate}
+
+\end{enumerate}
+
+\hrulefill
+
+We finish by extracting consequences for dimension. Noether Normalization reduces the dimension theory of affine algebras to the dimension theory of polynomial rings, while Lying Over, Going Up, and Incomparability tell us that finite integral extensions preserve lengths of prime chains.
+
+\begin{theorem}[Dimension of Affine Domains]
+Let $A$ be an algebra-finite $\KK$-algebra that is a domain. Then
+\[
+\dim(A)=\trdeg_{\KK}\Frac(A).
+\]
+Equivalently, if $\KK[y_1,\ldots,y_d]\subseteq A$ is a Noether normalization, then $\dim(A)=d$.
+\end{theorem}
+
+\hrulefill
+
+\begin{enumerate}[leftmargin=*, resume=problems]
+
+\item \textbf{Dimension of Affine Domains.} Let $A$ be an algebra-finite $\KK$-algebra that is a domain.
+\begin{enumerate}
+    \item Let $\KK[y_1,\ldots,y_d]\subseteq A$ be a Noether normalization. Use dimension preservation for integral extensions to prove $\dim(A)=d$.
+    \item Show that $\Frac(A)$ is algebraic over $\KK(y_1,\ldots,y_d)$. Hint: First prove that every element of $A$ is algebraic over $\KK(y_1,\ldots,y_d)$.
+    \item Deduce that $\trdeg_{\KK}\Frac(A)=d$.
+    \item Conversely, explain why $d$ is determined by $A$ and not by the choice of Noether normalization.
+\end{enumerate}
+
+\item \textbf{Computations Using Noether Normalization.} Compute the Krull dimension of each ring. In each case, try to exhibit a finite extension from a polynomial subring or reduce to irreducible components.
+\begin{multicols}{2}
+\begin{enumerate}
+    \item $\KK[t^2,t^3]$.
+    \item $\KK[s^2,s^3,t]$.
+    \item $\KK[x,y,z]/\langle z^2-xy\rangle$.
+    \item $\KK[x,y,z]/\langle xy,z\rangle$.
+    \item $\KK[x,y,z]/\langle xz,yz\rangle$.
+    \item $\KK[x_1,\ldots,x_n]/\langle x_1,\ldots,x_r\rangle$.
+    \item $\ZZ[x]/\langle x^2+1\rangle$.
+    \item $\KK[x^2,xy,y^2]$.
+\end{enumerate}
+\end{multicols}
+
+\item \textbf{Finite Maps to Affine Space.} Let $A$ be an algebra-finite $\KK$-algebra and let $P=\KK[y_1,\ldots,y_d]\subseteq A$ be a Noether normalization.
+\begin{enumerate}
+    \item Show that the induced map $\Spec(A)\longrightarrow \Spec(P)\cong \mathbb{A}^d_{\KK}$ is surjective.
+    \item For $\fp\in\Spec(P)$, prove that the fibre ring $\kappa(\fp)\otimes_P A$ is finite-dimensional over $\kappa(\fp)$.
+    \item Assume $\KK$ is algebraically closed and $\fp=\langle y_1-a_1,\ldots,y_d-a_d\rangle$ is a closed point of $\mathbb A^d_{\KK}$. Show that the closed points in the fibre over $\fp$ correspond to maximal ideals of the finite-dimensional $\KK$-algebra $A/\fp A$.
+    \item Prove that a finite-dimensional algebra over a field has only finitely many maximal ideals. Hint: Distinct maximal ideals are comaximal, and the Chinese Remainder Theorem gives a surjection onto a product of fields.
+    \item Explain the geometric slogan: Noether normalization gives a finite-to-one projection from an affine algebraic set to affine space of the same dimension.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
