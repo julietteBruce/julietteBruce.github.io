@@ -1,0 +1,447 @@
+\documentclass[12pt,reqno]{amsart}
+\newcommand{\worksheetnumber}{2.1}
+\input{../../101preamble.tex}
+
+\title{Worksheet 2.1: Categories, Universal Properties, and Duality}
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+
+A \emph{category} $\cC$ consists of a collection of \emph{objects}, a set $\Hom_{\cC}(X,Y)$ for pair of objects $X$ and $Y$ -- we call elements of $\Hom_{\cC}(X,Y)$ \emph{morphisms} from $X$ to $Y$ and draw them as arrows $\phi:X\to Y$,  and an abstract \emph{composition} rule
+\[
+\begin{tikzcd}[row sep = .2em, column sep = 4em]
+\Hom_{\cC}(Y,Z)\times\Hom_{\cC}(X,Y)\arrow[r, "\circ"] & \Hom_{\cC}(X,Z) \\
+(\psi,\phi)\arrow[r,mapsto] & \psi\circ\phi
+\end{tikzcd},
+\]
+satisfying the following axioms:
+\begin{enumerate}[label=(\roman*)]
+\item (Identity) for every object $X$ there is a morphism $\Id_X\in\Hom_{\cC}(X,X)$ such that $\phi\circ\Id_X=\phi$ and $\Id_Y\circ\phi=\phi$ for all $\phi:X\to Y$, and
+\item (Associativity) $(\chi\circ\psi)\circ\phi=\chi\circ(\psi\circ\phi)$ for all $\phi:X\to Y$, $\psi:Y\to Z$, and $\chi:Z\to Z'$.
+\end{enumerate}
+Given a morphism $\phi:X \to Y$ we call $X$ the \emph{source} and $Y$ the \emph{target} of $\phi$. These are part of the data of a morphism, and $\psi\circ\phi$ is only defined when the target of $\phi$ is the source of $\psi$. Just as we write $ab$ for $a\cdot b$ in a ring, and $fg$ for $f\circ g$ in the endomorphism ring $\End_{\ZZ}(M)$, we will often write $\psi\phi$ for $\psi\circ\phi$. A morphism $\phi:X\to Y$ is an \emph{isomorphism} if there is a morphism $\psi:Y\to X$ such that $\psi\phi=\Id_X$ and $\phi\psi=\Id_Y$, and we write $X\cong Y$ when an isomorphism exists. You already know a number of categories.
+\begin{center}
+\begin{tabular}{c | c | c | c }
+\hline
+Name & Notation & Objects & Morphisms \\
+\hline
+Category of vector spaces
+& $\Vect_{\KK}$ & $\KK$-vector spaces & Linear maps \\
+\hline
+Category of sets
+& $\Set$ & Sets & Functions \\
+\hline
+Category of groups
+& $\Grp$ & Groups & Group homomorphisms \\
+\hline
+Category of abelian groups
+& $\Ab$ & Abelian groups & Group homomorphisms \\
+\hline
+Category of rings
+& $\Ring$ & Rings & Ring homomorphisms \\
+\hline
+Category of left $R$-modules
+& $R\text{-}\Mod$ & Left $R$-modules & $R$-linear maps \\
+\hline
+\end{tabular}
+\end{center}
+In each of these examples the identity axiom holds because identity maps are homomorphisms, and associativity holds because composition of functions is associative. Notice, however, that the definition never mentions elements. The objects of a category need not be sets, and its morphisms need not be functions; we will meet examples of this kind in the first exercise.
+
+The goal of this worksheet is to introduce a language which applies to rings, modules, and vector spaces simultaneously, and in which a construction is described by the maps into or out of it rather than by its elements. You have already seen this idea at work. In Worksheet 1.1 we found that for every ring $R$ there is exactly one ring homomorphism $\ZZ\to R$, and that a homomorphism out of a quotient ring $R/I$ is the same thing as a homomorphism out of $R$ which sends $I$ to zero. Worksheet 1.2 gave the same description of quotient modules. We promised then to return to the general language of universal properties, and this is where we do so. Most of our examples will be vector spaces, where our intuition is strongest, but it is worth asking throughout which arguments survive when $\KK$ is replaced by an arbitrary ring $R$.
+
+As in the previous worksheets, all rings have a multiplicative identity but need not be commutative, ring homomorphisms preserve the multiplicative identity, and the letter $\KK$ will denote a field. In particular, the zero ring is an object of $\Ring$. Vector spaces may have arbitrary dimension unless we say otherwise.
+
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:categories} \textbf{First Examples of Categories.}
+\begin{enumerate}
+\item Let $\iota:\KK\to\KK^2$ be given by $\iota(t)=(t,0)$ and $p:\KK^2\to\KK$ by $p(a,b)=a$. Compute $p\iota$ and $\iota p$, keeping track of their sources and targets. Is $\iota$ an isomorphism? Does a one-sided inverse need not be an inverse?
+\item Check that a composite of ring homomorphisms is a ring homomorphism, and that a composite of $R$-linear maps is $R$-linear, so that $\Ring$ and $R\text{-}\Mod$ really are categories. In which of $\mathbf{Set}$, $\Ab$, $\Ring$, and $\ZZ\text{-}\Mod$ is $n\mapsto 2n$ a morphism $\ZZ\to\ZZ$? Which condition fails in the remaining cases?
+\item Suppose $\psi$ and $\theta$ are both inverses of $\phi:X\to Y$. Evaluate $\psi\phi\theta$ in two different ways and conclude that $\psi=\theta$. Compare this with your proof in Worksheet 1.1 that the inverse of a unit is unique.
+\item A \emph{partially ordered set}, or \emph{poset}, is a set $P$ with a relation $\leq$ which is reflexive, transitive, and antisymmetric. Make $P$ into a category by declaring that there is exactly one morphism $a\to b$ when $a\leq b$, and none otherwise. Which property of $\leq$ provides the identities, and which provides composition? Determine the isomorphisms. Draw the category of positive divisors of $12$, ordered by divisibility. What are the morphisms in this category, and are they functions?
+\item A \emph{monoid} is a set $M$ with an associative multiplication and an identity element. Make $M$ into a category with a single object $\ast$, with $\Hom(\ast,\ast)=M$ and composition $b\circ a=ba$. What are the isomorphisms in this category? Describe what you find when $M$ is a group, when $M=(\ZZ_{\geq0},+)$, and when $M$ is $\Mat_2(\KK)$ under multiplication. Explain why every ring gives a one-object category in this way. Which part of the ring structure has been forgotten?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+In $\Vect_{\KK}$ the isomorphisms are exactly the bijective linear maps, as you checked for modules in Worksheet 1.2. It is natural to ask what injectivity and surjectivity look like when we are only allowed to talk about morphisms, and not about elements. The idea is to probe a morphism with other morphisms. A morphism $\phi:X\to Y$ is a \emph{monomorphism} if for every object $T$ and every pair of morphisms $\alpha,\beta:T\to X$,
+\[
+\phi\alpha=\phi\beta \quad\text{implies}\quad \alpha=\beta.
+\]
+It is an \emph{epimorphism} if for every object $T$ and every pair $\alpha,\beta:Y\to T$, the equation $\alpha\phi=\beta\phi$ implies $\alpha=\beta$. Thus monomorphisms are the morphisms which can be cancelled on the left, and epimorphisms are those which can be cancelled on the right. For vector spaces and modules these conditions turn out to be exactly injectivity and surjectivity. However, the answer depends on which test morphisms a category provides, and in $\Ring$ there is a surprise waiting for us. We explore these notions in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:monoepi} \textbf{Monomorphisms and Epimorphisms.}
+\begin{enumerate}
+\item Starting from the cancellation definitions, prove that an injective linear map is a monomorphism in $\Vect_{\KK}$ and that a surjective linear map is an epimorphism.
+\item Conversely, let $\phi:V\to W$ be a monomorphism in $\Vect_{\KK}$. Compare the inclusion $\ker(\phi)\hookrightarrow V$ with the zero map $\ker(\phi)\to V$, and deduce that $\phi$ is injective. If $\phi$ is an epimorphism, compare the quotient map $W\to W/\img(\phi)$ with the zero map, and deduce that $\phi$ is surjective. Explain why the same arguments work in $R\text{-}\Mod$.
+\item Prove that every morphism in a poset category is both a monomorphism and an epimorphism. Give an example of one which is not an isomorphism. What does this say about the statement ``mono and epi implies iso''?
+\item Let $j:\ZZ\to\QQ$ be the inclusion, and suppose that ring homomorphisms $\alpha,\beta:\QQ\to S$ satisfy $\alpha j=\beta j$. Show that $\alpha(n)=\beta(n)$ for every integer $n$. For $n\ne0$, show that $\alpha(1/n)$ and $\beta(1/n)$ are both inverses of this same element of $S$, and use the uniqueness of inverses to conclude that $\alpha=\beta$.
+\item Deduce that $j$ is an epimorphism in $\Ring$, even though it is not surjective. Which step of your argument in part (b) has no analogue for this ring homomorphism? Hint: recall from Worksheet 1.1 that the image of a ring homomorphism is a subring, while quotient rings are formed using ideals. Is there a ``zero'' ring homomorphism $\QQ\to T$ for a nonzero ring $T$?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+So far we have compared objects within a single category. We would also like to describe constructions which turn objects of one kind into objects of another, in a way that is compatible with morphisms. A \emph{functor} $F:\cC\to\mathcal D$ assigns an object $F(X)$ of $\mathcal D$ to each object $X$ of $\cC$, and a morphism $F(\phi):F(X)\to F(Y)$ to each morphism $\phi:X\to Y$, satisfying the following conditions:
+\begin{enumerate}[label=(\roman*)]
+\item $F(\Id_X)=\Id_{F(X)}$ for every object $X$.
+\item $F(\psi\circ\phi)=F(\psi)\circ F(\phi)$ for all composable $\phi$ and $\psi$.
+\end{enumerate}
+Compare this with the definition of a ring homomorphism: a functor respects composition and identities in the same way that a ring homomorphism respects multiplication and the multiplicative identity.
+
+The simplest examples forget structure. Every $R$-module has an underlying abelian group, and every $R$-linear map is in particular a homomorphism of these groups. Another example comes from fixing a vector space $U$. Recall from Worksheet 1.2 that $\Hom_R(M,P)$ is an abelian group under pointwise addition. For vector spaces, pointwise scalar multiplication $(c\alpha)(u)=c\,\alpha(u)$ also makes $\Hom_{\KK}(U,V)$ a vector space. A linear map $\phi:V\to W$ can then be composed with every linear map $U\to V$, producing a linear map $U\to W$. Thus $V\mapsto\Hom_{\KK}(U,V)$ is a construction on objects together with an action on maps, and we check in the following exercise that it is a functor.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:functors} \textbf{Forgetful Functors and Hom.}
+\begin{enumerate}
+\item Specify the assignments on objects and on morphisms for the forgetful functors $R\text{-}\Mod\to\Ab$ and $\Vect_{\KK}\to\mathbf{Set}$, and verify both functor conditions. 
+
+\item Give an additive map $\CC\to\CC$ which is not $\CC$-linear. What does this example say about the morphisms which become available after forgetting structure?
+\item Fix a vector space $U$. Verify that $H(V)\coloneqq\Hom_{\KK}(U,V)$ is a vector space, and for $\phi:V\to W$ define $H(\phi)(\alpha)\coloneqq\phi\circ\alpha$. Prove that $H(\phi)$ is linear and that $H$ is a functor $\Vect_{\KK}\to\Vect_{\KK}$.
+\item Over $\QQ$, take $U=\QQ^2$, and let $\phi:\QQ^2\to\QQ^3$ and $\psi:\QQ^3\to\QQ$ be given by
+\[
+\phi(a,b)=(a+b,\,b,\,a),\qquad \psi(r,s,t)=r-s+t.
+\]
+Find the matrices $A$ and $B$ of $\phi$ and $\psi$. If $\alpha:U\to\QQ^2$ has matrix $X=\left(\begin{smallmatrix}1&2\\-1&3\end{smallmatrix}\right)$, compute the matrices of $H(\phi)(\alpha)$ and $H(\psi\phi)(\alpha)$, and check the composition condition in this example.
+\item Describe $H(\phi)$ on an arbitrary $2\times2$ matrix, and compute its kernel and image. Describe $H(\psi)$ on an arbitrary $3\times2$ matrix, and show that every $1\times2$ matrix has a preimage. Do you see a pattern relating the injectivity or surjectivity of a map to that of the map $H$ assigns to it?
+\item Let $F:\cC\to\mathcal D$ be any functor. Apply the functor conditions to an inverse pair $\phi,\psi$ to prove that $F$ sends isomorphisms to isomorphisms. Does $F$ necessarily send monomorphisms to monomorphisms? Hint: consider the forgetful functor on a one-object category.
+
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+There is a second natural way to build a vector space from $\Hom$, namely by fixing the target instead of the source. The \emph{dual space} of $V$ is
+\[
+V^{\vee}\coloneqq\Hom_{\KK}(V,\KK),
+\]
+whose elements are called \emph{linear functionals}. A linear map $\phi:V\to W$ induces a \emph{dual map}
+\[
+\phi^{\vee}:W^{\vee}\longrightarrow V^{\vee},\qquad\lambda\longmapsto\lambda\circ\phi.
+\]
+Notice the reversal of direction! Where $\Hom_{\KK}(U,-)$ acts on maps by postcomposition, duality acts by precomposition. One way to understand this is to think of a functional as a scalar-valued measurement of vectors. A measurement on $W$ can be applied to $\phi(v)$ for any $v\in V$, so a map $V\to W$ transports measurements from $W$ back to $V$. No inverse, and no choice of preimage, is involved.
+
+So duality is not quite a functor in the sense above, and it is worth finding the right way to say what it is. The \emph{opposite category} $\cC^{\mathrm{op}}$ has the same objects as $\cC$, with
+\[
+\Hom_{\cC^{\mathrm{op}}}(X,Y)\coloneqq\Hom_{\cC}(Y,X).
+\]
+We write $\phi^{\mathrm{op}}:Y\to X$ for the morphism of $\cC^{\mathrm{op}}$ corresponding to $\phi:X\to Y$, and define composition by $\phi^{\mathrm{op}}\circ\psi^{\mathrm{op}}\coloneqq(\psi\circ\phi)^{\mathrm{op}}$. An opposite arrow is purely formal: it does not assert that $\phi$ has an inverse. A \emph{contravariant functor} from $\cC$ to $\mathcal D$ is a functor $\cC^{\mathrm{op}}\to\mathcal D$. Unwinding the definitions, this is an assignment which preserves identities and satisfies $F(\psi\phi)=F(\phi)F(\psi)$, with the order of composition reversed. We check that duality is such a functor in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:dual} \textbf{Dual Maps and Opposite Categories.}
+\begin{enumerate}
+\item Verify the category axioms for $\cC^{\mathrm{op}}$. Describe the opposite of a poset category, and the opposite of the one-object category of a monoid. When is the latter isomorphic to the original?
+\item Prove that $\phi^{\vee}$ is linear, $(\Id_V)^{\vee}=\Id_{V^{\vee}}$, and $(\psi\phi)^{\vee}=\phi^{\vee}\psi^{\vee}$, writing down the sources and targets in the last equality. Deduce that $D(V)\coloneqq V^{\vee}$ and $D(\phi^{\mathrm{op}})\coloneqq\phi^{\vee}$ defines a functor $D:\Vect_{\KK}^{\mathrm{op}}\to\Vect_{\KK}$.
+\item For the maps $\iota$ and $p$ from Problem~\ref{c:categories}, compute $\iota^{\vee}$ and $p^{\vee}$ on functionals written in coordinates. Apply duality to the equation $p\iota=\Id_{\KK}$. What does the result tell you about the injectivity and surjectivity of $\iota^{\vee}$ and $p^{\vee}$?
+\item Suppose $V$ and $W$ are finite dimensional. For a basis $v_1,\ldots,v_n$ of $V$, define $v_i^{\vee}\in V^{\vee}$ by $v_i^{\vee}(v_j)=\delta_{ij}$. Prove that $v_1^{\vee},\ldots,v_n^{\vee}$ is a basis of $V^{\vee}$, called the \emph{dual basis}. For a basis $w_1,\ldots,w_m$ of $W$, evaluate $\phi^{\vee}(w_j^{\vee})$ on each $v_i$, and prove the matrix of $\phi^{\vee}$ in the dual bases is $A^{\mathsf T}$, where $A$ is the matrix of $\phi$.
+\item For the map $\phi:\QQ^2\to\QQ^3$ of Problem~\ref{c:functors} and the functional $\lambda(r,s,t)=2r-s+3t$, compute $\phi^{\vee}(\lambda)$ both directly and using the transpose of $A$.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We now return to the observation which opened this worksheet. The unique ring homomorphism $\ZZ\to R$ says that $\ZZ$ is distinguished among all rings purely by the maps out of it. Let us give this phenomenon a name. An object $I$ of a category is \emph{initial} if for every object $X$ there is exactly one morphism $I\to X$. An object $T$ is \emph{terminal} if for every object $X$ there is exactly one morphism $X\to T$. A \emph{zero object} is an object which is both initial and terminal.
+
+These are the simplest examples of \emph{universal properties}: we describe an object by requiring that a certain family of morphisms exists and is unique. It is tempting to regard the uniqueness as a technical convenience, but it is really the heart of the matter. As you will see in the following exercise, uniqueness of the maps is exactly what makes the object itself unique.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:initial} \textbf{Initial, Terminal, and Zero Objects.}
+\begin{enumerate}
+\item Identify initial and terminal objects in $\mathbf{Set}$, $\Grp$, $\Vect_{\KK}$, $R\text{-}\Mod$, and $\Ring$, and verify your answers. Which of these categories have zero objects? For $\Ring$, use Worksheet 1.1: which rings receive a homomorphism from the zero ring?
+\item Prove that any two initial objects are isomorphic, and that the isomorphism is unique. Construct maps in both directions, and use uniqueness to identify their composites. Repeat the argument for terminal objects. Where exactly did you use uniqueness?
+\item In a category with a zero object $0$, define the \emph{zero morphism} $X\to Y$ to be the composite $X\to0\to Y$. Show that it does not depend on the chosen zero object, and that composing a zero morphism with any morphism, on either side, gives a zero morphism. What are the zero morphisms in $\Vect_{\KK}$?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Our next universal property describes maps out of an object built from a set. Let $S$ be a set. The \emph{free vector space on $S$}, denoted $\KK^{\langle S\rangle}$, consists of formal finite sums $\sum_{s\in S}a_se_s$ with $a_s\in\KK$, with addition and scalar multiplication defined coefficientwise. Its basis vectors $e_s$ are indexed by $S$, and there is a function
+\[
+\iota:S\longrightarrow\KK^{\langle S\rangle},\qquad s\longmapsto e_s.
+\]
+The universal property says that every function $S\to V$ into a vector space extends uniquely to a linear map $\KK^{\langle S\rangle}\to V$. Notice that no additive structure on $S$ is required. The basis records the freely chosen images of the elements of $S$, and linearity then determines the images of all finite combinations.
+
+The word ``formal'' plays the same role here as it did for polynomial rings in Worksheet 1.1: equality is determined by the coefficients of the specified symbols. In fact, as a vector space $\KK[x]$ is exactly the free vector space on the set $\{1,x,x^2,\ldots\}$. Even if $S$ happens to be the underlying set of a vector space, its existing linear relations are not imposed on the $e_s$. For example, if $S=\KK^2$ then $e_{(0,0)}$ is a basis vector, not the zero vector of $\KK^{\langle S\rangle}$. It is precisely this freedom which allows every function on $S$ to extend, including functions which ignore any algebraic structure $S$ may have had.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:free} \textbf{Free Vector Spaces.} Throughout this exercise let $S$ be a set.
+\begin{enumerate}
+\item For a function $f:S\to V$, define $\widetilde f\big(\sum a_se_s\big)\coloneqq\sum a_sf(s)$. Prove that $\widetilde f$ is linear, that $\widetilde f\iota=f$, and that it is the unique such linear map. State the resulting bijection between $\Hom_{\KK}(\KK^{\langle S\rangle},V)$ and a set of functions.
+\item For a function $u:S\to S'$, define a linear map $F(u):\KK^{\langle S\rangle}\to\KK^{\langle S'\rangle}$ by its values on basis vectors. Prove that $F$ is a functor $\mathbf{Set}\to\Vect_{\KK}$. Compute the matrix of $F(u)$ when $S=\{a,b,c\}$, $S'=\{r,s\}$, and $u(a)=u(b)=r$, $u(c)=s$.
+\item Suppose another pair $(L,j)$, with $j:S\to L$, has the same extension property. Construct the unique isomorphism $\KK^{\langle S\rangle}\to L$ which carries $e_s$ to $j(s)$. What happens when $S=\varnothing$?
+\item Replace $\KK$ by an arbitrary ring $R$, and define the free module $R^{\langle S\rangle}$ in the same way. Check that your proof of part (a) still works. Taking $S$ to be the underlying set of an $R$-module $M$, deduce that every $R$-module is a quotient of a free module. Hint: use the first isomorphism theorem for modules.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The free vector space $\KK^{\langle S\rangle}$ comes with a basis, namely the vectors $e_s$. It is natural to ask the converse question: does every vector space arise in this way? To make this precise, let $V$ be a vector space and let $B\subset V$ be a subset. The \emph{span} of $B$ is the set of finite linear combinations
+\[
+\operatorname{span}(B)\coloneqq\left\{a_1b_1+\cdots+a_tb_t \;\; \big| \;\; t\geq0,\ a_i\in\KK,\ b_i\in B\right\},
+\]
+where the empty combination, with $t=0$, is the zero vector. We say $B$ \emph{spans} $V$ if $\operatorname{span}(B)=V$. We say $B$ is \emph{linearly independent} if whenever $b_1,\ldots,b_t\in B$ are distinct and $a_1b_1+\cdots+a_tb_t=0$, every coefficient $a_i$ is zero. A \emph{basis} of $V$ is a linearly independent spanning set. Notice that every linear combination here is finite, even when $B$ is infinite. An arbitrary vector space has no notion of convergence, so an infinite sum of vectors has no meaning, just as a polynomial is only ever a finite sum of monomials.
+
+The universal property of Problem~\ref{c:free} gives a useful way to think about these conditions. The inclusion $B\hookrightarrow V$ extends to a unique linear map
+\[
+\sigma_B:\KK^{\langle B\rangle}\longrightarrow V,\qquad \sum_{b\in B}a_be_b\longmapsto\sum_{b\in B}a_bb.
+\]
+We will see that $B$ spans $V$ exactly when $\sigma_B$ is surjective, and that $B$ is linearly independent exactly when $\sigma_B$ is injective. So choosing a basis of $V$ is the same thing as choosing an isomorphism $\KK^{\langle B\rangle}\cong V$, and asking whether every vector space has a basis is asking whether every vector space is free.
+
+If $V$ is spanned by finitely many vectors, you have probably seen how to find a basis: discard vectors from a spanning set, one at a time, until what remains is independent. For an infinite-dimensional space, such as $\KK[x]$ or the space of all sequences $(a_1,a_2,\ldots)$ in $\KK$, there is no reason to expect this process to terminate. Instead we use a statement about posets, in the sense of Problem~\ref{c:categories}. A \emph{chain} in a poset $P$ is a subset $C\subset P$ in which any two elements are comparable. An \emph{upper bound} for $C$ is an element $u\in P$ with $c\leq u$ for all $c\in C$. An element $m\in P$ is \emph{maximal} if $m\leq p$ implies $p=m$.
+
+\begin{theorem}[Zorn's Lemma]
+Let $P$ be a nonempty poset in which every chain has an upper bound in $P$. Then $P$ has a maximal element.
+\end{theorem}
+
+Zorn's lemma is equivalent to the axiom of choice, and we will take it as an axiom rather than prove it. It is worth noticing that it asserts that a maximal element exists, without telling us how to find one. Correspondingly, the bases it produces are rarely explicit. For example, nobody has ever written down a basis of $\RR$ as a $\QQ$-vector space, and in a precise sense nobody can. We use Zorn's lemma to prove that every vector space has a basis in the following exercise, and then ask what goes wrong over a ring.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:bases} \textbf{Bases and Zorn's Lemma.} Throughout parts (a) through (f) let $V$ be a vector space.
+\begin{enumerate}
+\item Let $B\subset V$ be a subset. Prove that $B$ spans $V$ if and only if $\sigma_B$ is surjective, and that $B$ is linearly independent if and only if $\sigma_B$ is injective. Deduce that $B$ is a basis if and only if every $v\in V$ can be written as $v=\sum_{b\in B}a_bb$ with only finitely many $a_b$ nonzero, and that the coefficients $a_b$ are then uniquely determined.
+\item Suppose $V$ is spanned by a finite set $S$. Show that if $S$ is linearly dependent, then some element of $S$ can be removed without changing the span. Deduce that $S$ contains a basis of $V$. Why does this argument not obviously work when $S$ is infinite?
+\item Suppose $B\subset V$ is linearly independent and $v\notin\operatorname{span}(B)$. Prove that $B\cup\{v\}$ is linearly independent. Where did you use that $\KK$ is a field? Deduce that a linearly independent subset of $V$ which is maximal with respect to inclusion is a basis.
+\item Fix a linearly independent subset $L\subset V$, and let $P$ be the set of linearly independent subsets of $V$ containing $L$, ordered by inclusion. Show that $P$ is nonempty, and that the union of a nonempty chain in $P$ again lies in $P$. Hint: a linear relation involves only finitely many vectors; show that they all lie in a single member of the chain. What is an upper bound for the empty chain? Apply Zorn's lemma, and conclude that every linearly independent subset of $V$ extends to a basis. Taking $L=\varnothing$, deduce that every vector space has a basis. What is the basis of the zero space?
+\item Adapt your argument from part (d) to show that every spanning set $S$ of $V$ contains a basis. Hint: consider the linearly independent subsets of $S$. Why does a maximal one span $V$?
+\item Let $U\subset V$ be a subspace. By extending a basis of $U$ to a basis of $V$, show that there is a subspace $W\subset V$ with $U\cap W=\{0\}$ and $U+W=V$, so that every $v\in V$ can be written uniquely as $v=u+w$ with $u\in U$ and $w\in W$. Deduce that every linear functional on $U$ extends to a linear functional on $V$. Is $W$ uniquely determined by $U$? You will use these statements in Problems~\ref{c:products} and~\ref{c:annihilators}.
+\item Now replace $\KK$ by $\ZZ$, and use the same definitions for $\ZZ$-modules. Show that for $n\geq2$ the $\ZZ$-module $\ZZ/n\ZZ$ has no basis at all. Show that $\{2,3\}$ spans $\ZZ$ but contains no basis, and that $\{2\}$ is linearly independent but is not contained in any basis. Which step of part (c) fails over $\ZZ$, and why?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Problem~\ref{c:bases} shows that every vector space has a basis, and also that bases are very far from unique: every nonzero vector of $\KK^2$, for instance, is the first vector of many different bases. It is natural to ask what all the bases of $V$ have in common. The answer is their size. We say that $V$ is \emph{finite dimensional} if it is spanned by a finite set, and the goal of the following exercise is to prove the following statement.
+
+\begin{theorem}[Invariance of Dimension]
+Any two bases of a vector space $V$ have the same cardinality.
+\end{theorem}
+
+This common cardinality is the \emph{dimension} of $V$, written $\dim(V)$, or $\dim_{\KK}(V)$ when we want to record the field. Since choosing a basis $B$ of $V$ is the same thing as choosing an isomorphism $\KK^{\langle B\rangle}\cong V$, the theorem can be restated using free vector spaces: $\KK^{\langle S\rangle}\cong\KK^{\langle S'\rangle}$ exactly when $S$ and $S'$ have the same cardinality. Thus a vector space is determined up to isomorphism by a single, possibly infinite, number. Nothing like this is true for modules. The $\ZZ$-modules $\ZZ$, $\ZZ/2\ZZ$, and $\ZZ/3\ZZ$ are pairwise non-isomorphic, and by Problem~\ref{c:bases} only the first has a basis at all. Nevertheless, part of the theorem survives over $\ZZ$, as we will see.
+
+For infinite bases we need one fact from set theory, which, like Zorn's lemma, we take for granted: if $X$ is an infinite set, then $X\times\NN$ has the same cardinality as $X$. Recall also the Schr\"oder--Bernstein theorem: if there are injections $X\hookrightarrow Y$ and $Y\hookrightarrow X$, then $X$ and $Y$ have the same cardinality.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:dimension} \textbf{Dimension.} Throughout parts (a) through (d) let $V$ be a vector space.
+\begin{enumerate}
+\item (Exchange lemma) Suppose $v_1,\ldots,v_m\in V$ are linearly independent and $w_1,\ldots,w_n$ span $V$. Writing $v_1=\sum_ja_jw_j$, show that some $a_j$ is nonzero, and that after renumbering the $w_j$ the vectors $v_1,w_2,\ldots,w_n$ still span $V$. Repeat the argument to show that $m\leq n$. Where did you use that $\KK$ is a field, and where did you use that the $v_i$ are independent? Deduce that any two bases of a finite-dimensional space have the same number of elements, and that a finite-dimensional space has no infinite basis.
+\item Suppose $B$ and $B'$ are bases of $V$ and $B$ is infinite. For each $b'\in B'$, let $F_{b'}\subset B$ be the finite set of basis vectors which occur with nonzero coefficient when $b'$ is expanded in the basis $B$. Prove that $\bigcup_{b'\in B'}F_{b'}=B$. Hint: if $b$ lies in no $F_{b'}$, compare $\operatorname{span}(B')$ with $\operatorname{span}(B\smallsetminus\{b\})$. Deduce that $B'$ is infinite, construct an injection $B\hookrightarrow B'\times\NN$, and conclude that $B$ and $B'$ have the same cardinality.
+\item Prove that an isomorphism carries a basis to a basis, and deduce that $V\cong W$ if and only if $\dim(V)=\dim(W)$. Hint: for the converse, use Problem~\ref{c:free}. 
+\item Compute $\dim(\KK^{\langle S\rangle})$, $\dim(\Mat_{m\times n}(\KK))$, $\dim(\Hom_{\KK}(\KK^n,\KK^m))$, $\dim(\KK[x])$, and the dimension of the subspace of polynomials of degree at most $d$. What are $\dim_{\CC}(\CC^n)$ and $\dim_{\RR}(\CC^n)$?
+\item Let $U\subset V$ be a subspace. Using Problem~\ref{c:bases}, prove that $\dim(U)\leq\dim(V)$. If $V$ is finite dimensional and $\dim(U)=\dim(V)$, prove that $U=V$. Show that the subspace $x\KK[x]\subset\KK[x]$ has the same dimension as $\KK[x]$, and explain why this does not contradict the previous sentence.
+\item Now replace $\KK$ by $\ZZ$. Show that every $\ZZ$-linear map $\ZZ^m\to\ZZ^n$ sends $2\ZZ^m$ into $2\ZZ^n$, and hence that an isomorphism $\ZZ^m\cong\ZZ^n$ induces an isomorphism $\ZZ^m/2\ZZ^m\cong\ZZ^n/2\ZZ^n$. Explain why these quotients are vector spaces over the field $\FF_2=\ZZ/2\ZZ$, compute their dimensions, and deduce that $m=n$. Thus the number of elements in a basis of a free $\ZZ$-module is well defined, even though, as we saw in Problem~\ref{c:bases}, many $\ZZ$-modules have no basis at all.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Initial objects and free vector spaces are each characterized by the maps out of a single object. The same idea lets us describe objects built from several others. Let $(V_j)_{j\in J}$ be a family of objects. A \emph{product} of this family is an object $P$ together with morphisms $p_j:P\to V_j$ such that for every object $T$ and every family of morphisms $\phi_j:T\to V_j$, there is a unique morphism $\phi:T\to P$ with $p_j\phi=\phi_j$ for all $j$. A \emph{coproduct} is an object $Q$ together with morphisms $\iota_j:V_j\to Q$ such that for every family $\psi_j:V_j\to T$, there is a unique morphism $\psi:Q\to T$ with $\psi\iota_j=\psi_j$ for all $j$. Products describe maps into an object, whereas coproducts describe maps out of it.
+
+In terms of diagrams, the product and coproduct properties say
+\[
+\begin{tikzcd}[row sep=4em,column sep=4em]
+T \arrow[d,dashed,"\phi"'] \arrow[dr,"\phi_j"] & \\
+P \arrow[r,"p_j"'] & V_j
+\end{tikzcd}
+\qquad\qquad\qquad
+\begin{tikzcd}[row sep=4em,column sep=4em]
+V_j \arrow[r,"\iota_j"] \arrow[dr,"\psi_j"'] & Q \arrow[d,dashed,"\psi"] \\
+& T
+\end{tikzcd}
+\]
+where $j$ ranges over all of $J$. For every family of solid arrows $\phi_j$ out of $T$, there is a single dashed arrow $\phi$ making the triangle commute for every $j$ simultaneously, and it is the only one. Dually, every family of solid arrows $\psi_j$ into $T$ determines a unique dashed arrow $\psi$ out of $Q$. When there are only two factors we can draw the whole product diagram at once:
+\[
+\begin{tikzcd}[row sep=4em,column sep=4em]
+& T \arrow[dl,"\phi_1"'] \arrow[d,dashed,"\phi"] \arrow[dr,"\phi_2"] & \\
+V_1 & P \arrow[l,"p_1"] \arrow[r,"p_2"'] & V_2
+\end{tikzcd}
+\]
+Notice that these definitions specify how the object interacts with \emph{every} other object $T$, and that the maps $p_j$ or $\iota_j$ are part of the data. A vector space with the correct dimension, for example, is not a product until we specify maps satisfying the required equations.
+
+For vector spaces there are two natural candidates. The first is the Cartesian product
+\[
+\prod_{j\in J}V_j\coloneqq\left\{(v_j)_{j\in J} \;\; \big| \;\; v_j\in V_j\text{ for all }j\in J\right\},
+\]
+whose elements are families indexed by $J$, that is, functions $j\mapsto v_j$ on $J$ with $v_j\in V_j$ for every $j$. Addition and scalar multiplication are defined coordinatewise, by $(v_j)_j+(w_j)_j=(v_j+w_j)_j$ and $c(v_j)_j=(cv_j)_j$. The second is its subspace
+\[
+\bigoplus_{j\in J}V_j\coloneqq\left\{(v_j)_j\in\prod_jV_j \;\; \big| \;\; v_j=0\text{ for all but finitely many }j\right\},
+\]
+called the \emph{direct sum}. The finite-support condition is exactly what allows a family of linear maps out of the $V_j$ to be combined using a finite sum. For finitely many factors the two spaces coincide, and we write $V_1\oplus\cdots\oplus V_t$. It is natural to ask whether a single construction can play both roles. We will find that the answer is yes for finitely many vector spaces, but not in general.
+
+Both spaces come with \emph{coordinate projections} $p_j$, which pick out the $j$th coordinate, and the direct sum comes with \emph{coordinate inclusions} $\iota_j:V_j\to\bigoplus_jV_j$, where $\iota_j(v)$ has $v$ in coordinate $j$ and $0$ in every other coordinate. Bases give a concrete picture of the difference between the two spaces. If $B_j$ is a basis of $V_j$ for each $j$, then the vectors $\iota_j(b)$, for $j\in J$ and $b\in B_j$, form a basis of $\bigoplus_jV_j$. Thus a basis of the coproduct is obtained by placing bases of the factors side by side, one coordinate at a time, and in particular $\bigoplus_{s\in S}\KK\cong\KK^{\langle S\rangle}$. The same vectors remain linearly independent in $\prod_jV_j$, but since every linear combination is finite, their span is exactly the direct sum. So when infinitely many of the $V_j$ are nonzero they are not a basis of the product. The product still has a basis by Problem~\ref{c:bases}, but such a basis must contain vectors with infinitely many nonzero coordinates, and Zorn's lemma gives no explicit description of one.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:products} \textbf{Products, Coproducts, and Uniqueness.} Let $(V_j)_{j\in J}$ be a family of $\KK$-vector spaces.
+\begin{enumerate}
+\item Prove that $\prod_jV_j$ with its coordinate projections is a product, by constructing $\phi(t)=(\phi_j(t))_j$. Prove that $\bigoplus_jV_j$ with its coordinate inclusions is a coproduct, by constructing $\psi((v_j)_j)=\sum_j\psi_j(v_j)$. Verify linearity and uniqueness in each case. Why is the sum defining $\psi$ finite?
+\item For each $j$ let $B_j$ be a basis of $V_j$. Prove that the vectors $\iota_j(b)$, for $j\in J$ and $b\in B_j$, form a basis of $\bigoplus_jV_j$, and deduce that $\bigoplus_{s\in S}\KK\cong\KK^{\langle S\rangle}$ for every set $S$. Prove that these vectors are linearly independent in $\prod_jV_j$ and that their span is $\bigoplus_jV_j$. When is this a basis of the product?
+\item For two factors $V_1\oplus V_2$, write down the inclusions and projections and verify the identities
+\[
+p_1\iota_1=\Id_{V_1},\qquad p_2\iota_2=\Id_{V_2},\qquad p_1\iota_2=0,\qquad p_2\iota_1=0,\qquad \iota_1p_1+\iota_2p_2=\Id_{V_1\oplus V_2}.
+\]
+Explain how these identities let $V_1\oplus V_2$ play the role of both the product and the coproduct.
+\item Now take countably many copies of $\KK$. Exhibit a vector in the product which does not lie in the direct sum. Show that the direct sum with its coordinate projections is not a product, by considering the family of maps $\KK\to\KK$ which are all identities. Explain why the finite-sum formula of part (a) does not define a map on every vector of the product.
+\item Show that the infinite product with its coordinate inclusions is not a coproduct either. Extend the basis of the direct sum from part (b), together with the all-ones vector, to a basis of the product, and use it to construct a nonzero functional on the product which vanishes on every coordinate subspace. Compare this functional with the zero functional. (Such an extension exists by Problem~\ref{c:bases}.)
+\item Suppose $(P,p_j)$ and $(P',p'_j)$ are both products of the same family. Construct morphisms $u:P\to P'$ and $v:P'\to P$ which are compatible with the projections. Prove that $vu=\Id_P$ and $uv=\Id_{P'}$ using uniqueness, and prove that $u$ is the only isomorphism compatible with the projections. Is there necessarily only one isomorphism between the underlying objects $P$ and $P'$?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Kernels and quotients also have universal descriptions, and here we will recognize a property we have already proved twice. In a category with zero morphisms, a \emph{kernel} of $\phi:V\to W$ is a morphism $\iota:K\to V$ such that $\phi\iota=0$, and such that every $\alpha:T\to V$ with $\phi\alpha=0$ factors uniquely as $\alpha=\iota\widetilde\alpha$. A \emph{cokernel} of $\phi$ is a morphism $q:W\to C$ such that $q\phi=0$, and such that every $\beta:W\to T$ with $\beta\phi=0$ factors uniquely as $\beta=\widetilde\beta q$:
+\[
+\begin{tikzcd}[row sep=4em,column sep=4em]
+V \arrow[r,"\phi"] & W \arrow[r,"q"] \arrow[d,"\beta"'] & C \arrow[dl,dashed,"\widetilde\beta"] \\
+& T &
+\end{tikzcd}
+\]
+The condition $\beta\phi=0$ is what guarantees that the dashed arrow exists, and the equation $\widetilde\beta q=\beta$ then determines its values.
+
+For vector spaces these are the familiar inclusion $\ker(\phi)\hookrightarrow V$ and the quotient map $W\to W/\img(\phi)$. The kernel describes all maps into $V$ which are killed by $\phi$, while the cokernel describes all maps out of $W$ which kill the image of $\phi$. Compare the cokernel diagram with the universal property of quotient modules from Worksheet 1.2: the submodule being set equal to zero is now the image of a specified morphism, and the construction is described without ever mentioning representatives. We check these descriptions, and see how far they extend, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:kernels} \textbf{Universal Properties of Kernels and Cokernels.} Let $\phi:V\to W$ be a linear map of $\KK$-vector spaces.
+\begin{enumerate}
+\item Prove that the inclusion $\ker(\phi)\hookrightarrow V$ is a kernel of $\phi$, by restricting the target of $\alpha$ to $\ker(\phi)$. Prove that the quotient map $W\to W/\img(\phi)$ is a cokernel of $\phi$, by defining $\widetilde\beta(w+\img(\phi))=\beta(w)$. Check that $\widetilde\beta$ does not depend on the chosen representative, that it is linear, and that it is unique.
+\item Adapt your argument from Problem~\ref{c:products}(f) to prove that kernels, and cokernels, are unique up to a unique isomorphism which is compatible with their specified maps. Write down the compatibility equations explicitly.
+\item For $\phi:\QQ^3\to\QQ^2$ given by $\phi(a,b,c)=(a+b,0)$, find a basis of the kernel and identify the cokernel with $\QQ$, writing down both structure maps. For maps $\alpha:T\to\QQ^3$ and $\beta:\QQ^2\to T$, describe concretely the conditions under which they factor through these structure maps.
+\item Which of these proofs work without change for $R$-modules? Show, directly from the universal properties, that a kernel map is always a monomorphism and a cokernel map is always an epimorphism.
+\item Recall from Problem~\ref{c:initial} that $\Ring$ has no zero object. Why does this mean our definition of kernel does not apply in $\Ring$? How does this fit with the observation from Worksheet 1.1 that the kernel of a ring homomorphism is an ideal, which is usually not a subring?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We have now seen several constructions which are unique up to a unique isomorphism, and it is natural to ask what it means for two whole constructions to agree. Let $F,G:\cC\to\mathcal D$ be functors. A \emph{natural transformation} $\eta:F\Rightarrow G$ assigns to every object $X$ a morphism $\eta_X:F(X)\to G(X)$ such that for every morphism $\phi:X\to Y$ the square below commutes:
+\[
+\begin{tikzcd}[row sep=4em,column sep=4em]
+F(X) \arrow[r,"\eta_X"] \arrow[d,"F(\phi)"'] & G(X) \arrow[d,"G(\phi)"] \\
+F(Y) \arrow[r,"\eta_Y"'] & G(Y)
+\end{tikzcd}.
+\]
+That is $G(\phi)\circ\eta_X=\eta_Y\circ F(\phi)$. A \emph{natural isomorphism} is a natural transformation such that $\eta_X$ is an isomorphism for all $X$.  The square compares two ways of getting from $F(X)$ to $G(Y)$. We may first move along $\phi$ and then compare, or first compare and then move along $\phi$. Naturality asks that these always agree. For a family of isomorphisms this is a genuine additional condition: it rules out choosing unrelated isomorphisms object by object, and it is the precise sense in which a comparison is ``made without choices.''
+
+Double duality provides our first example. Since duality reverses arrows, applying it twice reverses them back, so $V\mapsto V^{\vee\vee}$ and $\phi\mapsto\phi^{\vee\vee}$ define an ordinary functor $\Vect_{\KK}\to\Vect_{\KK}$. There is a map from $V$ to its double dual defined without any choice of basis,
+\[
+\eta_V:V\longrightarrow V^{\vee\vee},\qquad \eta_V(v)(\lambda)\coloneqq\lambda(v),
+\]
+which evaluates functionals at $v$. On finite-dimensional spaces it is a natural isomorphism. For finite-dimensional $V$ a chosen basis also gives an isomorphism $V\cong V^{\vee}$, and it is worth asking what distinguishes the two. We investigate this in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:doubledual} \textbf{Naturality and Double Duality.}
+\begin{enumerate}
+\item Verify the functor conditions for $V\mapsto V^{\vee\vee}$. Check that $\eta_V(v)$ is a linear functional on $V^{\vee}$, and that $\eta_V$ is linear.
+\item Prove that $\phi^{\vee\vee}\eta_V=\eta_W\phi$ for every linear map $\phi:V\to W$, by evaluating both sides at $v\in V$ and then at $\lambda\in W^{\vee}$. Draw the corresponding naturality square.
+\item Suppose $V$ is finite dimensional. Using a basis and its dual basis, prove that $\eta_V$ is injective and surjective. Deduce that $\eta$ is a natural isomorphism between the identity functor and double duality on finite-dimensional vector spaces.
+\item For finite-dimensional $V$, a basis $B=(v_1,\ldots,v_n)$ gives an isomorphism $\theta_B:V\to V^{\vee}$ with $v_i\mapsto v_i^{\vee}$. For $V=\QQ$, compare the bases $(1)$ and $(2)$, and compute both versions of $\theta_B(1)$. Explain why this construction depends on a basis, while $\eta_V$ does not.
+\item Explain why there is no way to regard $V\mapsto\theta_B$ as a natural transformation from the identity functor to duality: write down the directions of the two functors on a map $V\to W$, and observe that they are not functors with the same source and target. Finally, prove that the componentwise inverses of a natural isomorphism again form a natural transformation.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Duality also interacts well with the quotient constructions we have been studying. For a subspace $U\subset V$, its \emph{annihilator} is
+\[
+U^\circ\coloneqq\left\{\lambda\in V^{\vee} \;\; \big| \;\; \lambda(u)=0 \text{ for all } u\in U\right\}.
+\]
+By the universal property of quotients, these are exactly the functionals on $V$ which descend to $V/U$. Thus the dual of a quotient can be described as a subspace of a dual. This description does not refer to bases, although coordinates are often useful for computing it. We make this precise in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:annihilators} \textbf{Annihilators and Duals of Quotients.} Throughout this exercise let $U\subset V$ be a subspace and let $q:V\to V/U$ be the quotient map.
+\begin{enumerate}
+\item Prove that $q^{\vee}:(V/U)^{\vee}\to V^{\vee}$ is injective and that its image is $U^\circ$. For the reverse containment, construct the descended functional using Problem~\ref{c:kernels}. Conclude that $(V/U)^{\vee}\cong U^\circ$.
+\item Suppose $V$ is finite dimensional. Extend a basis of $U$ to a basis of $V$, and use the dual basis to prove that $\dim(U^\circ)=\dim(V)-\dim(U)$. Show also that every functional on $U$ extends to a functional on $V$. Is the extension unique? Explain why there are generally many choices.
+\item For a linear map $\phi:V\to W$, prove that $\ker(\phi^{\vee})=\img(\phi)^\circ$. When $V$ and $W$ are finite dimensional, prove that $\img(\phi^{\vee})=\ker(\phi)^\circ$: first prove one containment, and then use parts (a) and (b) to prove the other.
+\item Take $V=\QQ^3$ and $U=\operatorname{span}\{(1,1,0),(0,1,1)\}$. Compute $U^\circ$, choose a basis of $V/U$, and write down the isomorphism $(V/U)^{\vee}\to U^\circ$ explicitly in coordinates.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Dimension gives us our first numerical invariant of a linear map. The \emph{rank} of a linear map $\phi:V\to W$ is
+\[
+\rank(\phi)\coloneqq\dim\big(\img(\phi)\big).
+\]
+For an $m\times n$ matrix $A$ over $\KK$, the \emph{column rank} of $A$ is the dimension of the subspace of $\KK^m$ spanned by its columns, and the \emph{row rank} is the dimension of the subspace of $\KK^n$ spanned by its rows. Since the image of the map $\KK^n\to\KK^m$, $v\mapsto Av$, is exactly the span of the columns, the column rank of $A$ is the rank of this map. More generally, let $B=(v_1,\ldots,v_n)$ and $C=(w_1,\ldots,w_m)$ be bases of $V$ and $W$, and let $c_B:V\to\KK^n$ and $c_C:W\to\KK^m$ be the \emph{coordinate isomorphisms} with $c_B(v_i)=e_i$ and $c_C(w_j)=e_j$. The matrix $[\phi]_{C\leftarrow B}$ of $\phi$ is the matrix of $c_C\phi c_B^{-1}:\KK^n\to\KK^m$. We will see that its column rank is $\rank(\phi)$, no matter which bases we choose.
+
+The row rank is more mysterious. The rows of $A$ live in a different space from its columns, and there is no evident reason why the two spans should have the same dimension. Duality supplies the reason. The rows of $A$ are the columns of $A^{\mathsf T}$, which by Problem~\ref{c:dual} is the matrix of $\phi^{\vee}$ in the dual bases, so the equality of row rank and column rank is the statement $\rank(\phi^{\vee})=\rank(\phi)$. To prove it without computing, factor $\phi$ through its image as a surjection followed by an injection,
+\[
+\begin{tikzcd}[column sep=3em]
+V \arrow[r,two heads,"q"] & \img(\phi) \arrow[r,hook,"j"] & W.
+\end{tikzcd}
+\]
+Duality reverses the arrows, and we will see that it also exchanges injections with surjections. Thus $\phi^{\vee}=q^{\vee}j^{\vee}$ is again a surjection followed by an injection, and this identifies the image of $\phi^{\vee}$ with $\img(\phi)^{\vee}$. We carry this out in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:rank} \textbf{Rank, and Row Rank Equals Column Rank.} Let $\phi:V\to W$ be a $\KK$-linear map.
+\begin{enumerate}
+\item Let $\alpha:V'\to V$ and $\beta:W\to W'$ be isomorphisms. Prove that $\rank(\beta\phi\alpha)=\rank(\phi)$. Deduce that when $V$ and $W$ are finite dimensional, the column rank of $[\phi]_{C\leftarrow B}$ equals $\rank(\phi)$ for all bases $B$ and $C$, and that $QAP$ has the same column rank as $A$ for all invertible matrices $P$ and $Q$ of the appropriate sizes.
+\item For a linear map $\psi:W\to U$, prove that $\rank(\psi\phi)\leq\min\{\rank(\psi),\rank(\phi)\}$. Hint: show that $\img(\psi\phi)=\psi(\img(\phi))$, and that a linear map carries a spanning set to a spanning set of its image. Give an example with $\rank(\psi\phi)<\min\{\rank(\psi),\rank(\phi)\}$.
+\item Prove that if $q:V\to U$ is surjective then $q^{\vee}$ is injective, and that if $j:U\to W$ is injective then $j^{\vee}$ is surjective. Hint: for the second, use Problem~\ref{c:bases}(f). Applying this to the factorization $\phi=jq$ through $\img(\phi)$, prove that $\img(\phi^{\vee})\cong\img(\phi)^{\vee}$ and that $\ker(\phi^{\vee})=\img(\phi)^\circ$. Does any of this require finite dimensionality?
+\item Now suppose $V$ and $W$ are finite dimensional. Deduce that $\rank(\phi^{\vee})=\rank(\phi)$. Using Problem~\ref{c:dual}(d) and part (a), conclude that the row rank of every matrix equals its column rank. This common number is called the \emph{rank} of the matrix. Where exactly did you use finite dimensionality?
+\item The finite-dimensionality is really needed. Take $\KK=\QQ$ and $V=\QQ[x]$. Show that $V$ is a countable set, and that $V^{\vee}$ is uncountable. Hint: a functional may take arbitrary values on $1,x,x^2,\ldots$. Explain why a $\QQ$-vector space with a countable basis is a countable set, and deduce that $\dim(V^{\vee})\neq\dim(V)$. What does this say about $\rank(\Id_V^{\vee})$ and $\rank(\Id_V)$?
+\item Over $\QQ$, find bases of the column space and the row space of
+\[
+A=\begin{pmatrix}1&2&0&1\\2&4&1&1\\3&6&1&2\end{pmatrix},
+\]
+and verify that they have the same dimension. What are the ranks of the maps $\phi$ and $\psi$ of Problem~\ref{c:functors}, and of their duals?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Finally, we would like to say when two categories are ``essentially the same.'' An \emph{isomorphism of categories} is a pair of functors $F:\cC\to\mathcal D$ and $G:\mathcal D\to\cC$ with $GF=\Id_{\cC}$ and $FG=\Id_{\mathcal D}$. This turns out to be far too strict for most purposes. An \emph{equivalence of categories} instead asks only for natural isomorphisms
+\[
+GF\cong\Id_{\cC}\qquad\text{and}\qquad FG\cong\Id_{\mathcal D}.
+\]
+An equivalence allows an object to be recovered up to isomorphism rather than on the nose, and naturality guarantees that these recovering isomorphisms respect all of the morphisms.
+
+Here is the example to keep in mind. Many different vector spaces have dimension $n$, and each can be identified with $\KK^n$ after choosing a basis. A category of matrices keeps just one object for each dimension, while keeping all of the matrices which describe linear maps. We should not expect to recover a vector space as the very same object from its dimension, only up to isomorphism, and so an equivalence is the right notion of comparison. Duality gives another equivalence, this time between a category and its opposite, where the recovering isomorphisms come from double duality. On the other hand, some of the dictionaries from Worksheet 1.2 turn out to be isomorphisms of categories in the strict sense. We compare these examples in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:equivalence} \textbf{Matrix Descriptions and Equivalences.} Let $\mathbf{Mat}_{\KK}$ be the category whose objects are integers $n\geq0$, whose morphisms $n\to m$ are the $m\times n$ matrices over $\KK$, and whose composition is matrix multiplication. Write $\Vect_{\KK}^{\mathrm{fd}}$ for the category of finite-dimensional vector spaces and linear maps.
+\begin{enumerate}
+\item Verify the category axioms for $\mathbf{Mat}_{\KK}$, including the object $n=0$. What is a $0\times n$ matrix? For bases $B$ of $V$ and $C$ of $W$, express the matrix of $\phi:V\to W$ using the coordinate isomorphisms $c_B:V\to\KK^{\dim(V)}$ and $c_C:W\to\KK^{\dim(W)}$, and prove that composition of linear maps becomes matrix multiplication.
+\item Suppose $P$ and $Q$ are the matrices whose columns express new bases $B'$ and $C'$ in terms of the old bases $B$ and $C$. Derive the change of basis formula
+\[
+[\phi]_{C'\leftarrow B'}=Q^{-1}[\phi]_{C\leftarrow B}P.
+\]
+What does this become for an endomorphism, when the same change of basis is used on both sides? Compare with Worksheet 1.2, where you found when $V_T\cong W_S$.
+\item Choose a basis for each finite-dimensional vector space, taking the standard basis for each $\KK^n$. Define $F(V)=\dim(V)$ and $F(\phi)=[\phi]$, and define $G(n)=\KK^n$ and $G(A)(v)=Av$. Prove that $F$ and $G$ are functors, that $FG=\Id_{\mathbf{Mat}_{\KK}}$, and that the coordinate isomorphisms define a natural isomorphism $\Id\cong GF$. Why is $GF$ not equal to the identity functor? Show that isomorphic objects of $\mathbf{Mat}_{\KK}$ are equal, whereas there are distinct isomorphic vector spaces, and use this to show that no isomorphism of categories between $\mathbf{Mat}_{\KK}$ and $\Vect_{\KK}^{\mathrm{fd}}$ exists.
+\item Using duality, define a functor $D:(\Vect_{\KK}^{\mathrm{fd}})^{\mathrm{op}}\to\Vect_{\KK}^{\mathrm{fd}}$, and a functor in the other direction by the same construction with the arrows interpreted oppositely. Use $\eta$ and its inverse from Problem~\ref{c:doubledual} to prove that these functors form an equivalence. In each category, which composite is double duality, and in which direction does the natural isomorphism point?
+\item Let $\mathbf{Op}_{\KK}$ be the category whose objects are pairs $(V,T)$ of a vector space and a linear operator, and whose morphisms $(V,T)\to(W,S)$ are the intertwining maps. Using the dictionary between $\KK[x]$-modules and linear operators from Worksheet 1.2, write down functors in both directions between $\mathbf{Op}_{\KK}$ and $\KK[x]\text{-}\Mod$, and show that they form an isomorphism of categories. Do the same for $\Ab$ and $\ZZ\text{-}\Mod$. Why are these dictionaries isomorphisms, while the matrix description of part (c) is only an equivalence?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+\end{document}s

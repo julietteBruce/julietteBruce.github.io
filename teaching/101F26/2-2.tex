@@ -1,0 +1,353 @@
+\documentclass[12pt,reqno]{amsart}
+\newcommand{\worksheetnumber}{2.2}
+\input{../../101preamble.tex}
+
+\providecommand{\rank}{\operatorname{rank}}
+
+\title{Worksheet 2.2: Exact Sequences, Tensor Products, and Adjunctions}
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+
+A sequence of linear maps
+\[
+\begin{tikzcd}
+\cdots \arrow[r] & V_{i-1} \arrow[r,"\phi_{i-1}"] & V_i \arrow[r,"\phi_i"] & V_{i+1} \arrow[r] & \cdots
+\end{tikzcd}
+\]
+is \emph{exact at $V_i$} if $\img(\phi_{i-1})=\ker(\phi_i)$, and it is \emph{exact} if it is exact at every space which has both an incoming and an outgoing map. A \emph{short exact sequence} is an exact sequence of the form
+\[
+\begin{tikzcd}
+0 \arrow[r] & A \arrow[r,"\iota"] & B \arrow[r,"p"] & C \arrow[r] & 0.
+\end{tikzcd}
+\]
+Unwinding the definition, exactness at $A$, $B$, and $C$ says that $\iota$ is injective, that $\img(\iota)=\ker(p)$, and that $p$ is surjective. Thus $\iota$ identifies $A$ with a subspace of $B$, and $p$ identifies $C$ with the quotient of $B$ by that subspace. You already know one example: the sequence $0\to A\to A\oplus C\to C\to0$, with the coordinate inclusion and projection from Worksheet 2.1.
+
+The goal of this worksheet is to study constructions on vector spaces through what they do to maps, and in particular to exact sequences. You have already seen the ingredients. In Worksheet 2.1 we described kernels and cokernels by the maps which factor through them: for a subspace $A\subset B$, the inclusion $A\hookrightarrow B$ is a kernel of the quotient map $B\to B/A$, and that quotient map is a cokernel of the inclusion. A short exact sequence is a convenient way to record that two maps fit together in exactly this way. We will first extract a numerical consequence of splitting, the additivity of dimension, of which the rank--nullity theorem is a special case. We then see how $\Hom$ interacts with short exact sequences, and construct a new vector space, the tensor product, whose linear maps encode bilinear maps. The relation between tensor products and $\Hom$ will lead us to adjunctions, which put several of the universal properties from Worksheet 2.1 into a common framework. As in Worksheet 2.1, it is worth asking throughout which arguments survive when $\KK$ is replaced by an arbitrary ring $R$.
+
+As in the previous worksheets, all rings have a multiplicative identity but need not be commutative, modules are left modules, and the letter $\KK$ will denote a field. All vector spaces and linear maps are over $\KK$ unless we say otherwise, and vector spaces may have arbitrary dimension.
+
+The example $0\to A\to A\oplus C\to C\to0$ is the simplest possible short exact sequence, and it is natural to ask which short exact sequences look like it. We say a short exact sequence \emph{splits} if there is an isomorphism $\theta:A\oplus C\to B$ such that
+\[
+\theta(a,0)=\iota(a)\qquad\text{and}\qquad p\theta(a,c)=c
+\]
+for all $a\in A$ and $c\in C$. Notice that we ask for an isomorphism which respects the specified maps, and not merely for an abstract isomorphism $B\cong A\oplus C$, just as we did when comparing two products or two cokernels in Worksheet 2.1.
+
+There are two other ways to express splitting. A \emph{section} of $p$ is a linear map $s:C\to B$ with $ps=\Id_C$, and a \emph{retraction} of $\iota$ is a linear map $r:B\to A$ with $r\iota=\Id_A$. Compare these equations with the maps $\iota(t)=(t,0)$ and $p(a,b)=a$ from the beginning of Worksheet 2.1, which satisfy $p\iota=\Id_{\KK}$ although $\iota p\neq\Id_{\KK^2}$. Neither $s$ nor $r$ is required to be a two-sided inverse. The following statement says that either one supplies exactly the extra information needed to split the sequence.
+
+\begin{theorem}[Splitting Lemma]
+For a short exact sequence as above, the existence of a section, the existence of a retraction, and splitting are equivalent. Every short exact sequence of vector spaces splits.
+\end{theorem}
+
+In Worksheet 2.1 we extended bases to show that every subspace has a complement. This is where the last assertion comes from: choose a complement to $\img(\iota)$ in $B$, and use $p$ to identify that complement with $C$. The choice is usually far from unique. For the projection $p:\KK^2\to\KK$ given by $p(a,b)=b$, both $c\mapsto(0,c)$ and $c\mapsto(c,c)$ are sections, with different images. It is natural to ask what information belongs to the exact sequence itself, and what information we have added by choosing a section.
+
+For a quotient sequence $0\to A\to B\to B/A\to0$, choosing a section amounts to choosing representatives in $B$ for a basis of $B/A$ and extending linearly. We may change any of those representatives by an element of $A$. We prove the splitting lemma, and describe precisely how these choices differ, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{t:split} \textbf{The Splitting Lemma and Choices of Splitting.} Throughout this exercise let $0\to A\xrightarrow{\iota}B\xrightarrow{p}C\to0$ be a short exact sequence.
+\begin{enumerate}
+\item Verify that exactness at $A$, $B$, and $C$ is equivalent to the three conditions stated above. Show that $p$ induces an isomorphism $B/\img(\iota)\cong C$. Hint: use the first isomorphism theorem.
+\item Choose a subspace $D\subset B$ with $\img(\iota)\cap D=\{0\}$ and $\img(\iota)+D=B$. Prove that the restriction $p|_D:D\to C$ is an isomorphism, and use its inverse to construct a section $s$.
+\item Given a section $s$, prove that $\theta(a,c)\coloneqq\iota(a)+s(c)$ is an isomorphism compatible with $\iota$ and $p$. To construct its inverse, first show that $b-s(p(b))$ lies in $\img(\iota)$ for every $b\in B$.
+\item Use this decomposition to construct a retraction $r$ with $\iota r+sp=\Id_B$. Conversely, given a retraction $r$, show that the restriction of $p$ to $\ker(r)$ is an isomorphism onto $C$, and use it to construct a section. Deduce all assertions of the splitting lemma. Which parts of the equivalence between a section, a retraction, and a splitting work without change for $R$-modules? Where did you use that $\KK$ is a field to show that a splitting exists?
+\item Fix a section $s_0$. Prove that every section can be written uniquely as $s_0+\iota\alpha$ for some $\alpha\in\Hom_{\KK}(C,A)$. Hint: the difference of two sections has image in $\ker(p)$. Describe the corresponding complements of $\img(\iota)$.
+\item For $\iota:\KK\to\KK^2$ given by $\iota(a)=(a,0)$ and $p:\KK^2\to\KK$ given by $p(a,b)=b$, find every section, its corresponding complement, and the retraction compatible with it. Explain why the sequence itself does not distinguish one of these choices from the others.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The splitting lemma has a numerical shadow. A splitting identifies $B$ with $A\oplus C$, and in Worksheet 2.1 we found a basis of $A\oplus C$ by placing bases of $A$ and of $C$ side by side. The splitting involved a choice, but the dimension of $B$ does not depend on it, and so we obtain the following statement, in which the sum of two infinite cardinals means the cardinality of a disjoint union.
+
+\begin{theorem}[Additivity of Dimension]
+If $0\to A\to B\to C\to0$ is a short exact sequence of vector spaces, then $\dim(B)=\dim(A)+\dim(C)$.
+\end{theorem}
+
+You have probably met the rank--nullity theorem, and you used it in Worksheet 2.1: if $\phi:V\to W$ is linear and $V$ is finite dimensional, then $\dim(V)=\dim(\ker(\phi))+\rank(\phi)$. In this form it looks like a fact about a single map, usually proved by extending a basis of $\ker(\phi)$ to a basis of $V$. From our current point of view it is nothing but additivity of dimension, applied to the short exact sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] & \ker(\phi) \arrow[r,hook] & V \arrow[r,"\phi"] & \img(\phi) \arrow[r] & 0.
+\end{tikzcd}
+\]
+It is more symmetric to keep the target $W$, and with it the cokernel, in the picture. Every linear map sits in an exact sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] & \ker(\phi) \arrow[r,hook] & V \arrow[r,"\phi"] & W \arrow[r] & \coker(\phi) \arrow[r] & 0,
+\end{tikzcd}
+\]
+and when $V$ and $W$ are finite dimensional, the modern form of rank--nullity reads
+\[
+\dim(\ker(\phi))-\dim(V)+\dim(W)-\dim(\coker(\phi))=0.
+\]
+That is, the alternating sum of the dimensions along an exact sequence vanishes. The rank of $\phi$ has disappeared from this formula, and the number $\dim(\ker(\phi))-\dim(\coker(\phi))$, called the \emph{index} of $\phi$, turns out to depend only on $V$ and $W$, and not on $\phi$ at all. This is the simplest example of an \emph{Euler characteristic}. The same principle, that a numerical invariant which is additive on short exact sequences has vanishing alternating sums along exact sequences, reappears in topology and in the index theory of operators. We prove these statements, and use them, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{t:dimension} \textbf{Additivity of Dimension and Rank--Nullity.}
+\begin{enumerate}
+\item Let $0\to A\xrightarrow{\iota}B\xrightarrow{p}C\to0$ be a short exact sequence. Using a splitting $\theta:A\oplus C\to B$ and your description of a basis of a direct sum from Worksheet 2.1, prove that $\dim(B)=\dim(A)+\dim(C)$. Describe the resulting basis of $B$ directly in terms of $\iota$, a section $s$ of $p$, and bases of $A$ and $C$. Is there a preferred basis of this kind?
+\item Let $\phi:V\to W$ be linear. Verify that the four-term sequence displayed above is exact, and show that it is obtained by splicing together the two short exact sequences
+\[
+0\to\ker(\phi)\to V\to\img(\phi)\to0
+\qquad\text{and}\qquad
+0\to\img(\phi)\to W\to\coker(\phi)\to0.
+\]
+Deduce the classical rank--nullity theorem, valid for arbitrary $V$, and when $V$ and $W$ are finite dimensional deduce the modern form, $\dim(\ker(\phi))-\dim(\coker(\phi))=\dim(V)-\dim(W)$.
+\item More generally, let
+\[
+\begin{tikzcd}
+0 \arrow[r] & V_1 \arrow[r,"\phi_1"] & V_2 \arrow[r,"\phi_2"] & \cdots \arrow[r,"\phi_{n-1}"] & V_n \arrow[r] & 0
+\end{tikzcd}
+\]
+be an exact sequence of finite-dimensional vector spaces. Setting $K_i\coloneqq\ker(\phi_i)$ for $1\leq i\leq n-1$ and $K_n\coloneqq V_n$, show that $K_1=0$ and that each sequence $0\to K_i\to V_i\xrightarrow{\phi_i}K_{i+1}\to0$, for $1\leq i\leq n-1$, is exact, and deduce that $\sum_{i=1}^n(-1)^i\dim(V_i)=0$. What does this say for $n=1$, $n=2$, and $n=3$? Conversely, if a sequence of maps with $\phi_{i+1}\phi_i=0$ has vanishing alternating sum of dimensions, must it be exact?
+\item Suppose $V$ and $W$ are finite dimensional with $\dim(V)=\dim(W)$. Use part (b) to prove that a linear map $V\to W$ is injective if and only if it is surjective, if and only if it is an isomorphism. Deduce that if $A$ and $B$ are $n\times n$ matrices with $AB=I_n$, then $BA=I_n$, and compare this with the maps $\iota:\KK\to\KK^2$ and $p:\KK^2\to\KK$ from the beginning of Worksheet 2.1. On $\KK[x]$, show that multiplication by $x$ is injective but not surjective, and that $f\mapsto\big(f-f(0)\big)/x$ is surjective but not injective. Which step of your argument fails in infinite dimensions?
+\item Let $U,U'\subset V$ be finite-dimensional subspaces. Show that
+\[
+0\longrightarrow U\cap U'\longrightarrow U\oplus U'\longrightarrow U+U'\longrightarrow0,
+\qquad x\longmapsto(x,-x),\qquad (u,u')\longmapsto u+u',
+\]
+is exact, and deduce that $\dim(U+U')+\dim(U\cap U')=\dim(U)+\dim(U')$. Deduce that any two $2$-dimensional subspaces of $\KK^3$ meet in a subspace of dimension at least one.
+\item (Rank normal form) Let $\phi:V\to W$ be a linear map between finite-dimensional spaces with $\dim(V)=n$, $\dim(W)=m$, and $\rank(\phi)=r$. Choose a basis $v_{r+1},\ldots,v_n$ of $\ker(\phi)$ and extend it to a basis $v_1,\ldots,v_n$ of $V$. Prove that $\phi(v_1),\ldots,\phi(v_r)$ is a basis of $\img(\phi)$; how is this related to part (b) and to a complement of $\ker(\phi)$ as in Problem~\ref{t:split}(b)? Extend it to a basis of $W$, and show that in these bases the matrix of $\phi$ is
+\[
+\begin{pmatrix}I_r&0\\0&0\end{pmatrix}.
+\]
+Deduce that two $m\times n$ matrices $A$ and $A'$ satisfy $A'=Q^{-1}AP$ for some invertible matrices $P$ and $Q$ if and only if they have the same rank. Thus rank is the \emph{only} invariant of a linear map up to independent changes of basis in its source and target. By contrast, show that $\left(\begin{smallmatrix}1&0\\0&0\end{smallmatrix}\right)$ and $\left(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right)$ have the same rank but are not similar, and explain why this is consistent with your classification of the modules $V_T$ in Worksheet 1.2.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Recall from Worksheet 2.1 that fixing the source of $\Hom$ gives a functor $H=\Hom_{\KK}(U,-)$, which acts on maps by postcomposition, while fixing the target $\KK$ gives duality, which acts by precomposition and reverses arrows. The same reasoning applies to any fixed target $U$, and it will be convenient to have a compact notation for both actions. For a fixed vector space $U$ and a linear map $\phi:V\to W$, write
+\[
+\begin{aligned}
+\phi_*:\Hom_{\KK}(U,V)&\longrightarrow\Hom_{\KK}(U,W),
+&\alpha&\longmapsto\phi\alpha,\\
+\phi^{\vee}:\Hom_{\KK}(W,U)&\longrightarrow\Hom_{\KK}(V,U),
+&\beta&\longmapsto\beta\phi.
+\end{aligned}
+\]
+Thus $\phi_*$ is the map we called $H(\phi)$ in Worksheet 2.1, and when $U=\KK$ the map $\phi^{\vee}$ is exactly the dual map $\phi^{\vee}$. We can apply these functors to the maps in a short exact sequence. Do we get another exact sequence? For vector spaces the answer is yes, with the direction reversed in the contravariant case:
+\[
+\begin{tikzcd}[row sep=1.5em]
+0 \arrow[r] & \Hom_{\KK}(U,A) \arrow[r,"\iota_*"] & \Hom_{\KK}(U,B) \arrow[r,"p_*"] & \Hom_{\KK}(U,C) \arrow[r] & 0,\\
+0 \arrow[r] & \Hom_{\KK}(C,U) \arrow[r,"p^{\vee}"] & \Hom_{\KK}(B,U) \arrow[r,"\iota^{\vee}"] & \Hom_{\KK}(A,U) \arrow[r] & 0.
+\end{tikzcd}
+\]
+A functor between categories of vector spaces or modules is \emph{additive} if $F(\phi+\psi)=F(\phi)+F(\psi)$ for all morphisms $\phi$ and $\psi$ with the same source and target. In particular, an additive functor preserves zero morphisms. We call an additive functor \emph{exact} if it takes short exact sequences to short exact sequences, reversing their direction in the contravariant case.
+
+It is worth reading the surjectivity assertions in these sequences carefully. In the first, every map $U\to C$ must lift through $p$ to a map $U\to B$. In the second, every map $A\to U$ must extend along $\iota$ to a map $B\to U$. A section gives the lifts, and a retraction gives the extensions. Notice that we do not need a preferred splitting, only the existence of one. The other parts of exactness follow from the universal properties of kernels and cokernels, as we check in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{t:homexact} \textbf{Exactness of Hom.} Use the notation of Problem~\ref{t:split}, and let $U$ be a vector space.
+\begin{enumerate}
+\item Prove that the maps in both displayed sequences are linear, and that consecutive maps compose to zero. Check also that both functors are additive.
+\item Prove that $\iota_*$ is injective. If $\phi:U\to B$ satisfies $p\phi=0$, show that $\phi$ factors uniquely through $\iota$. Deduce that the first sequence is exact at $\Hom_{\KK}(U,B)$.
+\item Given $\psi:U\to C$, use a section $s$ to find a lift of $\psi$ to $B$. Is the lift unique? Show that the difference between any two lifts can be written uniquely as $\iota\alpha$ with $\alpha:U\to A$.
+\item Prove that $p^{\vee}$ is injective. If $\phi:B\to U$ vanishes on $\img(\iota)$, use the isomorphism $B/\img(\iota)\cong C$ from Problem~\ref{t:split} to factor $\phi$ through $p$. Deduce that the second sequence is exact at $\Hom_{\KK}(B,U)$.
+\item Given $\psi:A\to U$, use a retraction $r$ to extend $\psi$ along $\iota$. Conclude that both sequences are exact. Where did you use a section or a retraction, and where did the universal properties from Worksheet 2.1 suffice?
+\item Taking $U=\KK$, interpret the second sequence as an exact sequence of dual spaces with maps $p^{\vee}$ and $\iota^{\vee}$. Show that the kernel of $\iota^{\vee}$ is $\img(\iota)^\circ$, and compare this with the description of the dual of a quotient using annihilators from Worksheet 2.1. For the maps $\iota$ and $p$ of Problem~\ref{t:split}(f), compute $p^{\vee}$ and $\iota^{\vee}$ on functionals written in coordinates.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+So far we have studied maps which are linear in a single input. Many familiar operations involve two inputs and are linear in each input separately. Let $V\times W$ denote the Cartesian product of the underlying sets. A function $\beta:V\times W\to U$ is \emph{bilinear} if $w\mapsto\beta(v,w)$ is linear for each fixed $v\in V$, and $v\mapsto\beta(v,w)$ is linear for each fixed $w\in W$. Matrix multiplication $\Mat_{m\times n}(\KK)\times\Mat_{n\times k}(\KK)\to\Mat_{m\times k}(\KK)$ is one example, and evaluation $(v,\lambda)\mapsto\lambda(v)$ on $V\times V^{\vee}$ is another. Notice that a bilinear map is usually not a linear map on $V\oplus W$. For instance, multiplication $(a,b)\mapsto ab$ is bilinear on $\KK\times\KK$, but $(1,1)=(1,0)+(0,1)$ is sent to $1$ while $(1,0)$ and $(0,1)$ are both sent to $0$. Can we construct a vector space whose linear maps describe exactly the bilinear maps on $V\times W$?
+
+A \emph{tensor product} of $V$ and $W$ is a vector space $V\otimes W$ together with a bilinear map $\tau:V\times W\to V\otimes W$, written $\tau(v,w)=v\otimes w$, with the following universal property: for every vector space $U$ and every bilinear map $\beta:V\times W\to U$, there is a unique linear map $\widetilde\beta:V\otimes W\to U$ such that $\beta=\widetilde\beta\tau$. In terms of diagrams, we require a unique dashed arrow making
+\[
+\begin{tikzcd}[row sep=4em,column sep=4em]
+V\times W \arrow[r,"\tau"] \arrow[dr,"\beta"'] & V\otimes W \arrow[d,dashed,"\widetilde\beta"]\\
+& U
+\end{tikzcd}
+\]
+commute. The maps $\tau$ and $\beta$ are bilinear, while the dashed arrow is linear. Compare this with the universal property of the free vector space in Worksheet 2.1: there we extended arbitrary functions out of a set, whereas here we want to extend bilinear maps out of a pair of vector spaces.
+
+To construct the tensor product, we combine two constructions from Worksheet 2.1: a free vector space and a quotient. Consider the free vector space $\KK^{\langle V\times W\rangle}$ on the set $V\times W$, whose basis vectors $e_{(v,w)}$ are indexed by pairs with $v\in V$ and $w\in W$. Let $N$ be the subspace spanned by
+\[
+\begin{gathered}
+e_{(v+v',w)}-e_{(v,w)}-e_{(v',w)},\qquad e_{(v,w+w')}-e_{(v,w)}-e_{(v,w')},\\
+e_{(av,w)}-a\,e_{(v,w)},\qquad e_{(v,aw)}-a\,e_{(v,w)},
+\end{gathered}
+\]
+for all $v,v'\in V$, $w,w'\in W$, and $a\in\KK$. Define
+\[
+V\otimes W\coloneqq\KK^{\langle V\times W\rangle}/N,
+\]
+and let $v\otimes w$ be the class of $e_{(v,w)}$. The quotient imposes exactly the relations which make $\tau$ bilinear. Elements of the form $v\otimes w$ are called \emph{pure tensors}, and every element of $V\otimes W$ is a finite sum of pure tensors.
+
+The word ``formal'' is doing the same work here as it did for free vector spaces. In $\KK^{\langle V\times W\rangle}$, the symbol $e_{(v+v',w)}$ is a single basis vector, indexed by the pair $(v+v',w)$; it is not the sum $e_{(v,w)}+e_{(v',w)}$. Likewise, $e_{(av,w)}$ has $a$ inside its label, whereas $a\,e_{(v,w)}$ is a scalar multiple of a basis vector. This is the same phenomenon we saw in Worksheet 2.1, where $e_{(0,0)}$ was a basis vector of $\KK^{\langle\KK^2\rangle}$ rather than its zero vector. Passing to the quotient makes these expressions equal. The classes of the original basis vectors still span, but they are no longer linearly independent.
+
+Now suppose we are given a bilinear map $\beta:V\times W\to U$. The universal property of the free vector space gives a linear map $\KK^{\langle V\times W\rangle}\to U$, and the universal property of the quotient says exactly when this map descends to $V\otimes W$: it must vanish on $N$. The generators of $N$ were chosen so that this condition is precisely bilinearity. We verify this argument, and then use the resulting universal property to compare tensor products and construct maps between them, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{t:construction} \textbf{Construction and Uniqueness of Tensor Products.} Let$V$ and $W$ be $\KK$-vector spaces.
+\begin{enumerate}
+\item Verify that the quotient construction makes $\tau$ bilinear. Deduce that $0\otimes w=v\otimes0=0$ and that $(-v)\otimes w=-(v\otimes w)$.
+\item Given a bilinear map $\beta:V\times W\to U$, use the universal property of the free vector space to extend $e_{(v,w)}\mapsto\beta(v,w)$ to a linear map $\KK^{\langle V\times W\rangle}\to U$. Show that this extension vanishes on each generator of $N$, and hence induces a linear map $\widetilde\beta:V\otimes W\to U$ with $\widetilde\beta\tau=\beta$.
+\item Prove that $\widetilde\beta$ is unique, using that the pure tensors span $V\otimes W$. In the universal properties of the free vector space and of the quotient, where did you use existence, and where did you use uniqueness?
+\item Suppose $(T,\tau')$ is another tensor product of $V$ and $W$. Use the two universal properties to construct linear maps $V\otimes W\to T$ and $T\to V\otimes W$. Show that their composites are identities, and that the isomorphism compatible with $\tau$ and $\tau'$ is unique. Compare your proof with the uniqueness proofs for products and cokernels in Worksheet 2.1.
+\item Let $\phi:V\to V'$ and $\psi:W\to W'$ be linear. Construct a linear map $\phi\otimes\psi:V\otimes W\to V'\otimes W'$ with $(\phi\otimes\psi)(v\otimes w)=\phi(v)\otimes\psi(w)$. Verify that $\Id_V\otimes\Id_W=\Id_{V\otimes W}$ and that $(\phi'\phi)\otimes(\psi'\psi)=(\phi'\otimes\psi')(\phi\otimes\psi)$, so that the tensor product is functorial in both variables.
+\item Construct isomorphisms $V\otimes W\cong W\otimes V$, $\KK\otimes V\cong V$, and $(V\otimes W)\otimes U\cong V\otimes(W\otimes U)$. Specify their values on pure tensors, use the universal property to check that they are well defined, and give inverse maps. For associativity, first hold $u\in U$ fixed and apply the universal property to $(v,w)\mapsto v\otimes(w\otimes u)$. Check that the resulting linear map depends linearly on $u$, and apply the universal property a second time.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We have constructed the tensor product without choosing bases. It is natural to ask what a basis of it looks like. Let $(e_i)_{i\in I}$ and $(f_j)_{j\in J}$ be bases of $V$ and $W$. For each $i\in I$ let $e_i^{\vee}:V\to\KK$ be the \emph{coordinate functional} with $e_i^{\vee}(e_{i'})=\delta_{ii'}$, which reads off the coefficient of $e_i$, and define $f_j^{\vee}:W\to\KK$ similarly. When $V$ is finite dimensional these form the dual basis from Worksheet 2.1. When $V$ is infinite dimensional they are still linearly independent, but they do not span $V^{\vee}$, since every finite combination of them vanishes on all but finitely many $e_i$.
+
+We will see tha $(e_i\otimes f_j)_{(i,j)\in I\times J}$ form a basis of $V\otimes W$. In particular, for finite-dimensional $V$ and $W$,
+\[
+\dim(V\otimes W)=\dim(V)\dim(W).
+\]
+Compare this with $\dim(V\oplus W)=\dim(V)+\dim(W)$. Spanning follows by expanding each factor in its basis. For linear independence, we can use coordinate functionals to read off one coefficient at a time, just as we used a dual basis in Worksheet 2.1. Notice that every tensor is a sum of pure tensors, but it need not be a single pure tensor. We will see this distinction already in $\KK^2\otimes\KK^2$. A basis also turns a tensor into an array of numbers. When $V$ and $W$ are finite dimensional with bases $e_1,\ldots,e_n$ and $f_1,\ldots,f_m$, writing a tensor as $t=\sum_{i,j}a_{ij}\,e_i\otimes f_j$ identifies $V\otimes W$ with $\Mat_{n\times m}(\KK)$, and we will find that the pure tensors are exactly the arrays of rank at most one. This suggests measuring how far a tensor is from being pure by the smallest number of pure tensors needed to write it, and we will see that this number is the rank of the corresponding matrix. Since that matrix depends on the chosen bases, we should check that its rank does not. We verify these statements, and compute some examples, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{t:basis} \textbf{Bases, Matrices, and the Rank of a Tensor.} Throughout parts (a) and (b) let $(e_i)_{i\in I}$ and $(f_j)_{j\in J}$ be bases of $V$ and $W$.
+\begin{enumerate}
+\item Expand $v\otimes w$ in terms of the tensors $e_i\otimes f_j$, and deduce that they span $V\otimes W$. Explain why only finitely many terms occur, even when the bases are infinite.
+\item Show that $(v,w)\mapsto e_i^{\vee}(v)f_j^{\vee}(w)$ is bilinear, and hence induces a linear functional on $V\otimes W$. Apply these functionals to a finite linear relation among the $e_i\otimes f_j$ to prove that they are linearly independent. Deduce the dimension formula.
+\item Over $\QQ$, take $V=W=\QQ^2$ with standard basis $e_1,e_2$. Expand $(e_1+2e_2)\otimes(3e_1-e_2)$ and $(e_1+e_2)\otimes(e_1+e_2)-e_1\otimes e_1-e_2\otimes e_2$ in the tensor basis.
+\item Prove that $e_1\otimes e_1+e_2\otimes e_2\in\KK^2\otimes\KK^2$ is not a pure tensor, over any field. Hint: if it equals $(ae_1+be_2)\otimes(ce_1+de_2)$, compare all four coefficients. Is the second tensor in part (c) pure?
+\item On $\QQ^2$, let $\phi(e_1)=e_2$, $\phi(e_2)=0$, and let $\psi(e_1)=e_1+e_2$, $\psi(e_2)=e_2$. Compute the matrix of $\phi\otimes\psi$ in the ordered basis $(e_1\otimes e_1,e_1\otimes e_2,e_2\otimes e_1,e_2\otimes e_2)$, together with its kernel and image. How is this $4\times4$ matrix built from the matrices of $\phi$ and $\psi$?
+\item Now let $V$ and $W$ be finite dimensional with bases $e_1,\ldots,e_n$ and $f_1,\ldots,f_m$. By part (b), every $t\in V\otimes W$ is $\sum_{i,j}a_{ij}\,e_i\otimes f_j$ for a unique matrix $A=(a_{ij})$, so $t\mapsto A$ is an isomorphism $V\otimes W\to\Mat_{n\times m}(\KK)$. Prove that $t$ is a pure tensor if and only if $\rank(A)\leq1$. Hint: the matrix of $v\otimes w$ has entries $e_i^{\vee}(v)f_j^{\vee}(w)$; for the converse, show that a nonzero matrix of rank one has every row a multiple of a single nonzero row. Use this to redo part (d) in one line.
+\item Define the \emph{rank} of a tensor $t$ to be the smallest $r$ such that $t$ is a sum of $r$ pure tensors, with $r=0$ for $t=0$. Prove that the rank of $t$ equals $\rank(A)$. Hint: if $t$ is a sum of $r$ pure tensors then $A$ is a sum of $r$ matrices of rank at most one, so use part (f) together with $\rank(A+B)\leq\rank(A)+\rank(B)$, which follows from $\img(A+B)\subseteq\img(A)+\img(B)$ and Problem~\ref{t:dimension}(e). Conversely, change bases of $V$ and $W$ so that $A$ is in the rank normal form of Problem~\ref{t:dimension}(f), and read off $t$. Deduce that the rank of $t$ does not depend on the chosen bases. Give a second proof of this by considering the linear map $V^{\vee}\to W$ sending $\lambda\mapsto(\lambda\otimes\Id_W)(t)$, where we identify $\KK\otimes W$ with $W$ as in Problem~\ref{t:construction}: show that its matrix in the bases $(e_i^{\vee})$ and $(f_j)$ is $A^{\mathsf T}$, whose rank is that of $A$. What are the ranks of the two tensors in part (c)?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+There is another way to describe a bilinear map $\beta:V\times W\to U$. Hold $v\in V$ fixed. Then $w\mapsto\beta(v,w)$ is a linear map $W\to U$, and hence an element of $\Hom_{\KK}(W,U)$. As $v$ varies, this element depends linearly on $v$. Thus a bilinear map gives a linear map $V\to\Hom_{\KK}(W,U)$, and we can recover the bilinear map by evaluating at $w$. Together with the universal property of the tensor product, this gives the \emph{tensor--Hom correspondence}
+\[
+\Hom_{\KK}(V\otimes W,U)\cong\Hom_{\KK}\big(V,\Hom_{\KK}(W,U)\big).
+\]
+Explicitly, a linear map $\phi:V\otimes W\to U$ corresponds to the map $\widehat\phi:V\to\Hom_{\KK}(W,U)$ with
+\[
+\widehat\phi(v)(w)\coloneqq\phi(v\otimes w).
+\]
+Conversely, a linear map $\gamma:V\to\Hom_{\KK}(W,U)$ gives the bilinear map $(v,w)\mapsto\gamma(v)(w)$, and hence a linear map $V\otimes W\to U$.
+
+The two pairs of parentheses in $\widehat\phi(v)(w)$ are worth keeping track of: $\widehat\phi(v)$ is a linear map, and we then evaluate that map at $w$. For $U=\KK$, a bilinear form on $V\times W$ can therefore be viewed as a linear map $V\to W^{\vee}$. More generally, the bilinear evaluation map $\Hom_{\KK}(W,U)\times W\to U$ induces a linear map
+\[
+\ev:\Hom_{\KK}(W,U)\otimes W\longrightarrow U,\qquad \alpha\otimes w\longmapsto\alpha(w),
+\]
+and the map $V\otimes W\to U$ corresponding to $\gamma$ is the composite $\ev\circ(\gamma\otimes\Id_W)$.
+
+No basis has appeared in this correspondence. As with double duality in Worksheet 2.1, we should check the precise compatibility with maps: the correspondence is \emph{natural} in all three variables. For example, given $\alpha:V'\to V$, we may first precompose $\phi$ with $\alpha\otimes\Id_W$ and then form the corresponding map, or first form $\widehat\phi$ and then precompose with $\alpha$. Naturality says that the results agree. We check this statement, together with the analogous statements for $W$ and $U$, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{t:adjunction} \textbf{The Tensor--Hom Correspondence.} Throughout this exercise let $U$, $V$, and $W$ be vector spaces.
+\begin{enumerate}
+\item For a linear map $\phi:V\otimes W\to U$, check that $\widehat\phi(v)$ is linear and that $v\mapsto\widehat\phi(v)$ is linear. Conversely, for a linear map $\gamma:V\to\Hom_{\KK}(W,U)$, verify that $(v,w)\mapsto\gamma(v)(w)$ is bilinear.
+\item Prove that the two constructions are mutually inverse linear maps between $\Hom_{\KK}(V\otimes W,U)$ and $\Hom_{\KK}\big(V,\Hom_{\KK}(W,U)\big)$.
+\item Let $a:V'\to V$, $b:W'\to W$, and $c:U\to U'$ be linear. Verify the naturality formula
+\[
+\widehat{c\phi(a\otimes b)}(v')(w')
+=c\big(\widehat\phi(a(v'))(b(w'))\big).
+\]
+In which variables is the correspondence contravariant, and in which is it covariant?
+\item Take $V=W=\QQ^2$ and $U=\QQ$, and let $\phi:\QQ^2\otimes\QQ^2\to\QQ$ be given by $\phi(e_i\otimes e_j)=a_{ij}$. Describe $\widehat\phi$ explicitly as a map $\QQ^2\to(\QQ^2)^{\vee}$, and identify the bilinear form it represents. How are the entries $a_{ij}$ recovered without ambiguity?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The tensor--Hom correspondence describes maps out of a tensor product. We can also ask whether a space of linear maps is itself a tensor product. There is a natural candidate:
+\[
+\Phi:W\otimes V^{\vee}\longrightarrow\Hom_{\KK}(V,W),\qquad
+w\otimes\lambda\longmapsto\big(v\mapsto\lambda(v)w\big).
+\]
+A pure tensor gives a map whose image has dimension at most one, and a finite sum of pure tensors gives a sum of such maps. When $V$ is finite dimensional, every linear map $V\to W$ has this form, and $\Phi$ is an isomorphism. Its definition makes no choices, although a basis and its dual basis will help us prove the assertion. What might fail when $V$ is infinite dimensional?
+
+We now return to the exact sequences with which we began. Tensor product distributes over finite direct sums, so a splitting $B\cong A\oplus C$ gives a corresponding decomposition after tensoring. Consequently, for every vector space $W$, the sequence
+\[
+\begin{tikzcd}[column sep=3.5em]
+0 \arrow[r] & A\otimes W \arrow[r,"\iota\otimes\Id_W"] & B\otimes W \arrow[r,"p\otimes\Id_W"] & C\otimes W \arrow[r] & 0
+\end{tikzcd}
+\]
+is exact whenever $0\to A\xrightarrow{\iota}B\xrightarrow{p}C\to0$ is exact. As before, we need to check the specified maps and not only the spaces: under the decomposition, $\iota\otimes\Id_W$ and $p\otimes\Id_W$ become the coordinate inclusion and projection. We prove both assertions, and ask where we have used that $\KK$ is a field, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{t:exacttensor} \textbf{Tensor Products, Linear Maps, and Exactness.}
+\begin{enumerate}
+\item Verify that $\Phi$ is well defined. Suppose $V$ is finite dimensional, and let $v_1,\ldots,v_n$ be a basis of $V$ with dual basis $v_1^{\vee},\ldots,v_n^{\vee}$. Prove that $\phi\mapsto\sum_i\phi(v_i)\otimes v_i^{\vee}$ is inverse to $\Phi$. Deduce that this tensor does not depend on the chosen basis.
+\item For linear maps $a:V'\to V$ between finite-dimensional spaces and $b:W\to W'$, show that $\Phi\big((b\otimes a^{\vee})(t)\big)=b\,\Phi(t)\,a$ for every $t\in W\otimes V^{\vee}$. Explain why this equation expresses the naturality of $\Phi$. If $V$ is infinite dimensional and $W=V$, explain why $\Id_V$ is not in the image of $\Phi$.
+\item Construct an isomorphism $(A\oplus C)\otimes W\cong(A\otimes W)\oplus(C\otimes W)$ using the inclusions and projections of Worksheet 2.1. Give formulas in both directions and verify that they are inverse on pure tensors. Why is it enough to check pure tensors?
+\item Choose a splitting $\theta:A\oplus C\to B$ of a short exact sequence $0\to A\xrightarrow{\iota}B\xrightarrow{p}C\to0$. Tensor $\theta$ with $\Id_W$, and use part (c) to identify $\iota\otimes\Id_W$ and $p\otimes\Id_W$ with an inclusion and a projection. Deduce that the tensored sequence is exact, and find a section of $p\otimes\Id_W$.
+\item Explain why $-\otimes W$ is additive. We have now seen three exact functors: $\Hom_{\KK}(U,-)$, $\Hom_{\KK}(-,U)$, and $-\otimes W$. For each, record the direction of the resulting sequence, and identify where a complement or a splitting was used in the proof. Which conclusions follow from a given splitting, and which use the existence of complements for vector spaces?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The tensor--Hom correspondence compares two different constructions by the maps into and out of them. We have seen another correspondence of exactly this kind: a linear map out of a free vector space is the same thing as a function on its basis. Let us give this pattern a name. For functors $L:\cC\to\cD$ and $G:\cD\to\cC$, an \emph{adjunction}, written $L\dashv G$, is a family of bijections
+\[
+\Theta_{X,Y}:\Hom_{\cD}(L(X),Y)\longrightarrow\Hom_{\cC}(X,G(Y))
+\]
+which is natural in $X$ and $Y$. We call $L$ the \emph{left adjoint} and $G$ the \emph{right adjoint}. Explicitly, naturality asks that for all $\alpha:X'\to X$, $\beta:Y\to Y'$, and $\phi:L(X)\to Y$,
+\[
+\Theta_{X',Y'}\big(\beta\phi L(\alpha)\big)
+=G(\beta)\,\Theta_{X,Y}(\phi)\,\alpha.
+\]
+The equation compares changing the source and target before using the correspondence with changing them afterwards. For a fixed vector space $W$, the correspondence of Problem~\ref{t:adjunction} gives an adjunction $-\otimes W\dashv\Hom_{\KK}(W,-)$. Compare this with an equivalence of categories from Worksheet 2.1: an adjunction gives a correspondence between maps, without requiring the two functors to recover each object up to isomorphism.
+
+Free constructions provide a family of further examples. Recall the free vector space $\KK^{\langle S\rangle}$ on a set $S$, and write $|V|$ for the underlying set of a vector space $V$. The functor $|{-}|:\Vect_{\KK}\to\Set$ forgets the vector space structure, as in Worksheet 2.1. The universal property of $\KK^{\langle S\rangle}$ says exactly that the free vector space functor is left adjoint to $|{-}|$. The same idea works for groups, modules, and algebras, with each forgetful functor taking values in $\Set$.
+
+Here are the constructions we will use. The free left $R$-module $R^{\langle S\rangle}$ consists of formal finite sums $\sum_{s\in S}r_se_s$, with coefficients on the left, as in Worksheet 2.1. By a \emph{$\KK$-algebra} we mean a vector space with an associative, unital, $\KK$-bilinear multiplication, and a homomorphism of $\KK$-algebras is a linear map preserving multiplication and the multiplicative identity. The \emph{free $\KK$-algebra} $\KK\langle S\rangle$ has as a basis all finite words in $S$, including the empty word. Multiplication concatenates words and extends bilinearly, and the empty word is the multiplicative identity. Notice the difference between $\KK\langle S\rangle$ and the free vector space $\KK^{\langle S\rangle}$: the latter has a basis indexed by $S$ itself, while the former has a basis indexed by all words in $S$. For example, when $S=\{x\}$ the free algebra $\KK\langle S\rangle$ is the polynomial ring $\KK[x]$, whereas $\KK^{\langle S\rangle}$ is one dimensional. In each example, a map out of the free object is determined by where it sends the generators. We make this precise in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{t:freeadjoints} \textbf{Examples of Adjunctions.} Throughout this exercise let $S$ be a set.
+\begin{enumerate}
+\item Use Problem~\ref{t:adjunction} to verify that $-\otimes W\dashv\Hom_{\KK}(W,-)$, including the naturality requirement.
+\item Write down the bijection $\Hom_{\KK}(\KK^{\langle S\rangle},V)\cong\Hom_{\Set}(S,|V|)$, giving the maps in both directions. Check naturality with respect to a function $S'\to S$ and a linear map $V\to V'$.
+\item For an arbitrary ring $R$ and left $R$-module $M$, extend a function $S\to|M|$ to an $R$-linear map $R^{\langle S\rangle}\to M$, and prove that the extension is unique. State the free module adjunction. Where did you use that the coefficients are on the left?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We have now met enough universal properties that it is useful to collect them under two names. Products describe compatible families of maps \emph{into} a family of objects, whereas coproducts describe compatible families of maps \emph{out of} one. A \emph{limit} is the general form of the first construction, and a \emph{colimit} is the general form of the second. A category is \emph{small} if its collections of objects and morphisms are sets. A \emph{diagram} in $\cC$ indexed by a small category $J$ is a functor $D:J\to\cC$. A \emph{cone} from an object $X$ to $D$ consists of morphisms $q_j:X\to D(j)$ satisfying $D(a)q_j=q_{j'}$ for every morphism $a:j\to j'$ in $J$. A \emph{limit} of $D$ is a cone $(P,p_j)$ through which every cone factors uniquely: for every cone $(X,q_j)$ there is a unique morphism $\theta:X\to P$ with $p_j\theta=q_j$ for every $j$. Reversing arrows, a \emph{cocone} from $D$ to $X$ consists of morphisms $q_j:D(j)\to X$ with $q_{j'}D(a)=q_j$, and a \emph{colimit} of $D$ is a cocone $(Q,\iota_j)$ such that for every cocone $(X,q_j)$ there is a unique morphism $\theta:Q\to X$ with $\theta\iota_j=q_j$ for every $j$.
+
+If $J$ has only identity morphisms, these definitions give products and coproducts. For two parallel morphisms $\phi,\psi:V\to W$, their \emph{equalizer} is a morphism $e:E\to V$ with $\phi e=\psi e$ which is universal among such morphisms, and their \emph{coequalizer} is a morphism $q:W\to Q$ with $q\phi=q\psi$ which is universal among such morphisms. These are a limit and a colimit, respectively, of a diagram with two objects and two parallel arrows. Taking $\psi=0$ recovers the kernel and cokernel from Worksheet 2.1. Other shapes of $J$ give new constructions from old ones. For linear maps $\phi:V\to Z$ and $\psi:W\to Z$, the limit of the diagram $V\to Z\leftarrow W$ is called their \emph{pullback}, and you can check that it is the equalizer of $\phi p_V$ and $\psi p_W$ on $V\oplus W$, that is, the subspace of pairs $(v,w)$ with $\phi(v)=\psi(w)$. Why introduce this language here? Adjunctions tell us which functors preserve all of these universal properties at once.
+
+\begin{theorem}[Preservation by Adjoints]
+A left adjoint preserves all small colimits which exist, and a right adjoint preserves all small limits which exist.
+\end{theorem}
+
+To say that a functor \emph{preserves} a limit or colimit means that applying it to the universal cone or cocone gives a universal cone or cocone for the transformed diagram. The idea of the proof is familiar: use the adjunction to translate a family of maps, apply the universal property, and translate back. Naturality ensures that the compatibility equations survive this translation.
+
+For additive functors between categories of vector spaces or modules, the theorem applies in particular to kernels and cokernels, since such functors preserve zero morphisms. Thus the tensor--Hom adjunction explains why $-\otimes W$ preserves cokernels and $\Hom_{\KK}(W,-)$ preserves kernels. Compare this with the exactness statements we proved earlier. Those statements also used splittings, and hence used more than the adjunction alone. We separate these two ingredients in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{t:limits} \textbf{Adjoints and Universal Constructions.}
+\begin{enumerate}
+\item Suppose $L\dashv G$, and let $(Q,\iota_j)$ be a colimit of a diagram $D:J\to\cC$. Use the bijections $\Hom_{\cD}(L(D(j)),Y)\cong\Hom_{\cC}(D(j),G(Y))$ to match cocones from $L\circ D$ to $Y$ with cocones from $D$ to $G(Y)$. Use naturality to check compatibility with the morphisms of $J$, and deduce that $L(Q)$ is a colimit of $L\circ D$. For a diagram in $\cD$, give the dual argument showing that $G$ preserves its limit.
+\item For a linear map $\phi:V\to V'$, construct an isomorphism
+\[
+\coker(\phi\otimes\Id_W)\cong\coker(\phi)\otimes W
+\]
+using the quotient map $V'\to\coker(\phi)$. Justify it using the preceding theorem, or directly from the universal properties, and specify the image of the class of $v'\otimes w$.
+\item Similarly, let $\phi_*:\Hom_{\KK}(W,V)\to\Hom_{\KK}(W,V')$ be postcomposition with $\phi$, and construct an isomorphism $\ker(\phi_*)\cong\Hom_{\KK}(W,\ker(\phi))$. Describe the isomorphism using the inclusion $\ker(\phi)\hookrightarrow V$. Explain why this  does not assert that any map obtained by applying $\Hom_{\KK}(W,-)$ is surjective.
+\item Over $\QQ$, take $\phi:\QQ\to\QQ^2$ given by $\phi(a)=(a,a)$, and $W=\QQ^2$. Find bases of $\coker(\phi\otimes\Id_W)$ and of $\coker(\phi)\otimes W$, and write down the isomorphism of part (b) in these bases.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+\end{document}
