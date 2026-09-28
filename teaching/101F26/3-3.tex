@@ -1,0 +1,308 @@
+\documentclass[12pt,reqno]{amsart}
+\newcommand{\worksheetnumber}{3.3}
+\input{../../101preamble.tex}
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\diag}{diag}
+
+\title{Worksheet 3.3: Bilinear Forms, Quadratic Forms, and Trace}
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+
+A \emph{bilinear form} on a vector space $V$ is a bilinear map $B:V\times V\to\KK$. Recall that $V^{\vee}=\Hom_{\KK}(V,\KK)$. By the universal property of the tensor product and the tensor--Hom correspondence from Worksheet 2.2, a bilinear form determines linear maps
+\[
+\begin{aligned}
+\widetilde B:V\otimes V&\longrightarrow\KK,&v\otimes w&\longmapsto B(v,w),\\
+\beta_L:V&\longrightarrow V^{\vee},&v&\longmapsto\bigl(w\mapsto B(v,w)\bigr),
+\end{aligned}
+\]
+and conversely either of these linear maps determines $B$. Thus bilinear forms are the same thing as elements of $\Hom_{\KK}(V\otimes V,\KK)$, or equivalently of $\Hom_{\KK}(V,V^{\vee})$. The second description compares vectors with functionals by means of the form, and whether this comparison is an isomorphism will be an important property of $B$.
+
+You already know some examples. The dot product $B(v,w)=\sum_iv_iw_i$ is a bilinear form on $\KK^n$. Over $\RR$ it has the additional property that $B(v,v)>0$ whenever $v\ne0$, but this uses the ordering of $\RR$, and it is not part of the definition of a bilinear form. Another example on $\KK^2$ is the signed area $B((a,b),(c,d))=ad-bc$ from Worksheet 3.2, which vanishes whenever its two inputs agree even though the form itself is not zero. Thus vanishing on pairs of equal vectors is quite different from vanishing against every possible second input. Notice also that over $\CC$ the expression $\sum_i\overline{v_i}w_i$ is not complex-linear in its first input, so it is not a bilinear form in our sense.
+
+The goal of this worksheet is to understand bilinear and quadratic forms up to a change of basis. It is natural to ask two questions: in which bases does a form have a particularly simple expression, and which features of that expression do not depend on the basis? You have seen questions of this kind before. In Worksheet 2.2 we found that rank is the only invariant of a linear map up to independent changes of basis in its source and target, and in Worksheet 1.2 we compared operators using similar matrices. Bilinear forms transform in yet another way, and the answers will depend on the field and on its characteristic. We finish by returning to duality, where the evaluation pairing gives a definition of the trace which does not depend on a basis.
+
+As in the previous worksheets, all rings have a multiplicative identity but need not be commutative, and the letter $\KK$ will denote a field. Throughout this worksheet all vector spaces are finite dimensional over $\KK$, and we will state explicitly when a result requires a restriction on the characteristic of $\KK$ or a particular field.
+
+There is also a second map to the dual, $\beta_R:V\to V^{\vee}$ with $\beta_R(v)(w)\coloneqq B(w,v)$, obtained by placing $v$ in the second input instead. The \emph{left radical} and \emph{right radical} of $B$ are
+\[
+\begin{aligned}
+\rad_L(B)&\coloneqq\ker(\beta_L)=\left\{v\in V \;\; \big| \;\; B(v,w)=0\text{ for all }w\in V\right\},\\
+\rad_R(B)&\coloneqq\ker(\beta_R)=\left\{v\in V \;\; \big| \;\; B(w,v)=0\text{ for all }w\in V\right\}.
+\end{aligned}
+\]
+They need not be the same subspace. Since $V$ is finite dimensional, however, we will see that one is zero if and only if the other is. In this case we call $B$ \emph{nondegenerate}, and both maps to the dual are isomorphisms. A nondegenerate form therefore identifies $V$ with $V^{\vee}$. Notice that this identification depends on the chosen form, in contrast with the double duality isomorphism of Worksheet 2.1. We check these statements in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:maps} \textbf{Bilinear Forms and Maps to the Dual.} Throughout parts (a) and (b) let $B$ be a bilinear form on $V$.
+\begin{enumerate}
+\item Verify that $B\mapsto\widetilde B$ and $B\mapsto\beta_L$ give the stated correspondences. Starting with a linear map $\phi:V\to V^{\vee}$, recover the bilinear form, and check that the two constructions are inverse to one another.
+\item Prove that both radicals are subspaces of $V$. If $\beta_L$ is injective, use finite dimensionality to show that it is surjective. If $v\ne0$, choose a functional which does not vanish at $v$, and use this surjectivity to prove that $v\notin\rad_R(B)$. Prove the converse by interchanging the inputs.
+\item On $\KK^2$, let $B((a,b),(c,d))=ad$. Compute $\beta_L$, $\beta_R$, and both radicals. Must the two radicals of a bilinear form agree?
+\item For $B((a,b),(c,d))=ac+bd$, compute the isomorphism $\beta_L:\KK^2\to(\KK^2)^{\vee}$. Repeat this for $B'((a,b),(c,d))=ad+bc$, and compare the two resulting identifications of $\KK^2$ with its dual.
+\item Let $\phi:V\to W$ be linear and let $C$ be a bilinear form on $W$. Show that $B(v,w)\coloneqq C(\phi(v),\phi(w))$ is a bilinear form on $V$, and express $\beta_L^B$ as the composite $\phi^{\vee}\beta_L^C\phi$. Must the pullback of a nondegenerate form be nondegenerate?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Choose an ordered basis $\cE=(e_1,\ldots,e_n)$ of $V$. The \emph{Gram matrix} of $B$ is $G\coloneqq\big(B(e_i,e_j)\big)_{1\leq i,j\leq n}$. If $x$ and $y$ are the coordinate columns of $v$ and $w$, then $B(v,w)=x^{\mathsf T}Gy$. Notice that the same basis is used in both inputs. If the columns of an invertible matrix $P$ express a new basis in terms of the old one, then the new Gram matrix is $P^{\mathsf T}GP$. Matrices related in this way are called \emph{congruent}.
+
+Compare this with the change of basis formula $P^{-1}AP$ for an endomorphism from Worksheet 2.1. An endomorphism has a vector as its output, so changing coordinates changes the descriptions of both its input and its output. A bilinear form has two vector inputs and a scalar output, so the change of coordinates is applied to each input. Classifying forms therefore means classifying Gram matrices up to congruence. Two forms $B$ on $V$ and $C$ on $W$ are \emph{isometric} if there is an isomorphism $\phi:V\to W$ with $C(\phi(v),\phi(w))=B(v,w)$ for all $v,w\in V$; in coordinates, this says exactly that their Gram matrices are congruent.
+
+In particular, we should not expect the eigenvalues of a Gram matrix to be invariants of the form, since rescaling a basis vector can change them. On the other hand, rank is preserved, because multiplying on either side by an invertible matrix preserves rank. We call this common value the \emph{rank} of the form; it is also the rank of either map to the dual. What further information survives congruence? The determinant changes by a square, and over $\RR$ the signs in a suitable diagonal Gram matrix will carry additional information. We establish these transformation rules in the following exercise, before using them to classify forms.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:gram} \textbf{Gram Matrices and Congruence.} Throughout parts (a) through (c) let $B$ be a bilinear form on $V$, with Gram matrix $G$ in the basis $\cE$.
+\begin{enumerate}
+\item Derive the formula $B(v,w)=x^{\mathsf T}Gy$ by expanding in the basis. Conversely, show that every $n\times n$ matrix defines a bilinear form by this formula.
+\item Compute the matrices of $\beta_L$ and $\beta_R$ using $\cE$ and its dual basis, and show that they are $G^{\mathsf T}$ and $G$ respectively. Deduce that both radicals have dimension $n-\rank(G)$, and that $B$ is nondegenerate exactly when $G$ is invertible.
+\item Derive the formula $G'=P^{\mathsf T}GP$. Deduce that rank is invariant under congruence, and that $\det(G')=\det(P)^2\det(G)$. What does this say about the determinant of the Gram matrix of a nondegenerate form, up to multiplication by a nonzero square?
+\item Over $\RR$, consider the form on $\RR^2$ whose Gram matrix in the standard basis is $I_2$. Find its Gram matrix in the basis $(2e_1,e_2)$. Are the two matrices congruent? Are they similar? Explain why your answers are consistent.
+\item Let $G=\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$ over a field of characteristic different from $2$. Compute the Gram matrix of the corresponding form in the basis $(e_1+e_2,e_1-e_2)$. Why is this not a change of basis in characteristic $2$?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+A bilinear form $B$ is \emph{symmetric} if $B(v,w)=B(w,v)$ for all $v,w\in V$, \emph{skew-symmetric} if $B(v,w)=-B(w,v)$ for all $v,w\in V$, and \emph{alternating} if $B(v,v)=0$ for all $v\in V$. As with the alternating maps of Worksheet 3.2, expanding $B(v+w,v+w)$ shows that an alternating form is skew-symmetric. When the characteristic of $\KK$ is different from $2$, the converse follows by setting $w=v$. In characteristic $2$, however, skew-symmetric means the same thing as symmetric, and the alternating condition is stronger. For example, the form $B(a,b)=ab$ on the one-dimensional space $\KK$ is symmetric and skew-symmetric in characteristic $2$, but it is not alternating.
+
+For symmetric or alternating forms the two radicals agree, and we write $\rad(B)$ for their common value. In these cases orthogonality is also symmetric: $B(v,w)=0$ if and only if $B(w,v)=0$. For a subspace $U\subset V$, its \emph{orthogonal complement} is
+\[
+U^{\perp}\coloneqq\left\{v\in V \;\; \big| \;\; B(u,v)=0\text{ for all }u\in U\right\}.
+\]
+Notice that this notation refers to the specified form, and does not imply that $V=U\oplus U^{\perp}$. The obstruction is that $U$ may meet its orthogonal complement nontrivially, even when $B$ is nondegenerate on $V$. We explore these notions in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:types} \textbf{Symmetric, Skew-Symmetric, and Alternating Forms.} Throughout this exercise let $B$ be a bilinear form on $V$, with Gram matrix $G$ in some basis.
+\begin{enumerate}
+\item Prove the implications between alternating and skew-symmetric forms stated above. Express symmetry and skew-symmetry of $B$ in terms of $G$ and $G^{\mathsf T}$.
+\item Prove that $B$ is alternating exactly when $G^{\mathsf T}=-G$ and every diagonal entry of $G$ is zero. Explain why the second requirement cannot be omitted in characteristic $2$.
+\item Over $\FF_2$, compare the forms on $\FF_2^2$ with Gram matrices $I_2$ and $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$. Determine which of the three adjectives above apply to each, and whether each is nondegenerate. Can the two forms be isometric?
+\item Suppose $B$ is symmetric or alternating. Prove that $U^{\perp}$ is a subspace, that $\rad(B)=V^{\perp}$, and that $U\cap U^{\perp}$ is the radical of the restriction of $B$ to $U$.
+\item Suppose $B$ is symmetric or alternating, and nondegenerate. Using the isomorphism $V\to V^{\vee}$ followed by restriction $V^{\vee}\to U^{\vee}$, prove that $\dim(U^{\perp})=\dim(V)-\dim(U)$. Deduce that $V=U\oplus U^{\perp}$ exactly when the restriction of $B$ to $U$ is nondegenerate.
+\item For the nondegenerate form on $\KK^2$ with Gram matrix $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$, compute $(\KK e_1)^{\perp}$. Explain why nondegeneracy does not mean that $B(v,v)\ne0$ for every nonzero vector $v$.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We first classify symmetric forms when $\operatorname{char}(\KK)\ne2$. A basis is \emph{orthogonal} if distinct basis vectors pair to zero, or equivalently if the Gram matrix is diagonal. The main step is to find a vector $v$ with $B(v,v)\ne0$. For a nonzero symmetric form, the identity
+\[
+B(u+v,u+v)-B(u,u)-B(v,v)=2B(u,v)
+\]
+shows that such a vector exists. Its span is then nondegenerate, and so it can be split off from its orthogonal complement. Repeating the argument on the complement produces an orthogonal basis, even when the original form is degenerate.
+
+\begin{theorem}[Diagonalization of Symmetric Forms]
+If $\operatorname{char}(\KK)\ne2$, every symmetric bilinear form has an orthogonal basis. In such a basis its Gram matrix is $\diag(a_1,\ldots,a_r,0,\ldots,0)$, where each $a_i\ne0$ and $r$ is the rank of the form.
+\end{theorem}
+
+The theorem gives a diagonal Gram matrix, but its nonzero diagonal entries still depend on the field. Rescaling a basis vector multiplies its diagonal entry by a nonzero square. Over $\RR$ this will let us reduce each nonzero entry to $1$ or $-1$, and over $\CC$ to $1$. Over a general field, nonzero elements need not have the square roots required for either reduction. Moreover, other changes of basis may relate different diagonal lists, so diagonalization by itself does not give a complete classification over an arbitrary field.
+
+It is worth comparing this construction with Gram--Schmidt orthogonalization. For a positive definite real form, any nonzero vector satisfies $B(v,v)\ne0$ and can be used as the first vector. A general nondegenerate symmetric form can have nonzero vectors with $B(v,v)=0$, so nondegeneracy alone does not let us divide by this value, and the displayed identity is what supplies a suitable vector. If the restriction of the form to a later complement is zero, then every remaining basis vector lies in the radical, and the induction still applies. We construct an orthogonal basis in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:orthogonal} \textbf{Construction of an Orthogonal Basis.} Throughout this exercise suppose $\operatorname{char}(\KK)\ne2$, and let $B$ be a symmetric bilinear form on $V$.
+\begin{enumerate}
+\item Prove the displayed identity. Deduce that if $B(v,v)=0$ for every $v\in V$, then $B=0$.
+\item Suppose $B\ne0$, and choose $v$ with $a\coloneqq B(v,v)\ne0$. For $w\in V$, show that $w-a^{-1}B(v,w)v$ lies in $(\KK v)^{\perp}$.
+\item Prove directly that $V=\KK v\oplus(\KK v)^{\perp}$, and that the two summands are orthogonal to one another. Explain why the restriction of $B$ to $(\KK v)^{\perp}$ is again symmetric.
+\item Induct on $\dim(V)$ to construct an orthogonal basis. Include the zero form as well as the zero space, so that your proof applies to degenerate forms.
+\item In an orthogonal basis, prove that the basis vectors with zero diagonal entry form a basis of $\rad(B)$. Deduce that the number of nonzero diagonal entries is the rank of $B$.
+\item If $e_i$ is replaced by $c_ie_i$ with $c_i\ne0$, compute the new diagonal entry. Use this to prove that every symmetric form over $\CC$ is congruent to $\diag(I_r,0)$, and that two symmetric forms over $\CC$ on spaces of the same dimension are isometric exactly when they have the same rank.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+A \emph{quadratic form} on $V$ is a function $q:V\to\KK$ such that $q(av)=a^2q(v)$ for all $a\in\KK$ and $v\in V$, and such that its \emph{polar form}
+\[
+b_q(u,v)\coloneqq q(u+v)-q(u)-q(v)
+\]
+is bilinear. We use this convention for the polar form, without a factor of $\tfrac12$, because it makes sense in every characteristic. For any bilinear form $B$, the function $q_B(v)\coloneqq B(v,v)$ is a quadratic form, with polar form $b_{q_B}(u,v)=B(u,v)+B(v,u)$. Notice that evaluating on the diagonal forgets the distinction between the two inputs.
+
+When $\operatorname{char}(\KK)\ne2$, quadratic forms and symmetric bilinear forms contain the same information: the assignments
+\[
+B\longmapsto q_B\qquad\text{and}\qquad q\longmapsto B_q\coloneqq\tfrac12b_q
+\]
+are mutually inverse. In particular, a diagonal Gram matrix gives $q_B(x_1,\ldots,x_n)=\sum_ia_ix_i^2$. In characteristic $2$, however, the polar form of every quadratic form is alternating, and distinct quadratic forms can have the same polar form. On the other hand, evaluating a symmetric bilinear form on the diagonal then loses all of its off-diagonal entries. These are two different losses of information, and it is worth keeping them separate.
+
+Already in one variable, the quadratic form $q(t)=ct^2$ has polar form $b_q(s,t)=2cst$. When $2$ is invertible this recovers the symmetric form $B(s,t)=cst$. In characteristic $2$, the polar form is zero for every $c$, although the quadratic form need not be zero. So the problem is not merely that a familiar formula has a denominator: the information needed to reconstruct the form has disappeared. We will compare this with a two-variable example, whose polar form is nondegenerate but still does not determine the quadratic form, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:quadratic} \textbf{Quadratic Forms and Polarization.}
+\begin{enumerate}
+\item Verify that $q_B$ is a quadratic form for every bilinear form $B$, and compute its polar form. If $\operatorname{char}(\KK)\ne2$, show that $q_B$ depends only on the symmetric part $\tfrac12\big(B(u,v)+B(v,u)\big)$ of $B$.
+\item Suppose $\operatorname{char}(\KK)\ne2$, and let $q$ be a quadratic form. Show that $B_q$ is symmetric and that $B_q(v,v)=q(v)$. Prove that the two assignments above are inverse to one another, and that an isometry of symmetric forms is the same thing as an invertible linear map preserving their quadratic forms.
+\item Express $q_B$ and $b_{q_B}$ in terms of a Gram matrix. For a symmetric Gram matrix $G$, identify the coefficient of $x_ix_j$ for $i\ne j$, and explain where the $2$ comes from.
+\item Suppose $\operatorname{char}(\KK)=2$. Prove that $b_q(v,v)=0$ for every quadratic form $q$. On $\KK^2$, compute the polar forms of $q(x,y)=xy$ and $q'(x,y)=x^2+xy$. Show that $q$ and $q'$ are distinct, but that their polar forms agree and are nondegenerate.
+\item Continue to suppose $\operatorname{char}(\KK)=2$. Compare the zero quadratic form with $q(x,y)=x^2$. Then show that $xy$ is not $B(v,v)$ for any symmetric bilinear form $B$, although it does arise in this way from a bilinear form which is not symmetric. Give a Gram matrix for such a form.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Over $\RR$, diagonalization followed by rescaling gives a Gram matrix $\diag(I_p,-I_q,0_r)$. The triple $(p,q,r)$ is called the \emph{inertia} of the form, and the difference $p-q$ is called its \emph{signature}. To obtain a classification, we must prove that a different choice of orthogonal basis cannot change these numbers. This does not follow from the existence of a diagonalization.
+
+The intrinsic meaning of $p$ comes from positive subspaces. A real symmetric form is \emph{positive definite} on a subspace $U$ if $B(u,u)>0$ for every nonzero $u\in U$, and \emph{negative definite} on $U$ if $B(u,u)<0$ for every nonzero $u\in U$. We will see that the largest possible dimension of a subspace on which the form is positive definite is $p$, and similarly for $q$, while $r$ is the dimension of the radical. These descriptions refer to the form rather than to its coordinates, and they give the uniqueness assertion in the following theorem.
+
+Notice that the positive and negative subspaces themselves need not be unique; only their maximal dimensions are determined by the form. To bound the dimension of an arbitrary positive definite subspace, we compare it with the sum of the negative and zero coordinate subspaces from one diagonalization. A nonzero vector in their intersection would have to be both positive and nonpositive under the quadratic form, which is impossible. This converts a statement about signs into an inequality of dimensions, and it is the essential step in the proof.
+
+\begin{theorem}[Sylvester's Law of Inertia]
+Every symmetric bilinear form on a finite-dimensional real vector space has a basis in which its Gram matrix is $\diag(I_p,-I_q,0_r)$. The triple $(p,q,r)$ does not depend on the basis, and two real symmetric forms are isometric if and only if their triples agree.
+\end{theorem}
+
+We prove the theorem in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:sylvester} \textbf{Sylvester's Law of Inertia.} Throughout parts (a) through (e) let $B$ be a symmetric bilinear form on a real vector space $V$.
+\begin{enumerate}
+\item Apply Problem~\ref{b:orthogonal} and rescale the nonzero diagonal entries to prove that the stated normal form exists. Write down the rescaling explicitly, both for positive and for negative entries.
+\item Let $V_+$, $V_-$, and $V_0$ be the spans of the basis vectors corresponding to the blocks $I_p$, $-I_q$, and $0_r$. Prove that $V_0=\rad(B)$, that $B$ is positive definite on $V_+$, and that $B$ is negative definite on $V_-$.
+\item If $B$ is positive definite on a subspace $U$, show that $U\cap(V_-\oplus V_0)=0$. Use the formula for $\dim(U+U')$ from Worksheet 2.2 to deduce that $\dim(U)\leq p$.
+\item Prove similarly that every subspace on which $B$ is negative definite has dimension at most $q$. Conclude that $p$ and $q$ are the maximal dimensions described above, and hence do not depend on the chosen diagonalization. Why is $r$ also intrinsic?
+\item Complete the classification. If two forms have the same inertia, match their normal form bases to construct an isometry. Conversely, show that an isometry carries positive definite subspaces, negative definite subspaces, and the radical of one form to those of the other.
+\item Explain why rank alone does not classify real symmetric forms, by comparing $\diag(1,1)$ with $\diag(1,-1)$. Can two forms on spaces of the same dimension have the same signature $p-q$ but different inertia? Give an example.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We can now compare three kinds of information in a single computation: the coordinate calculation which produces an orthogonal basis, the real classification by inertia, and the complex classification by rank. The same matrix may be viewed over several fields, but an allowed change of basis must have entries in the field under consideration. This is why a negative diagonal entry can be changed to $1$ over $\CC$ but not over $\RR$, while over $\QQ$ even a positive entry need not be reducible to $1$. We compare these classifications in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:examples} \textbf{Classification in Examples.} Throughout parts (a) through (d) let $B(v,w)=v^{\mathsf T}Gw$, where
+\[
+G=\begin{pmatrix}1&1&0\\1&0&1\\0&1&-1\end{pmatrix}.
+\]
+\begin{enumerate}
+\item Over $\QQ$, compute $q_B(x,y,z)$ and $\rad(B)$. Beginning with $e_1$, use the formula from Problem~\ref{b:orthogonal}(b) to find an orthogonal basis of $\QQ^3$.
+\item Let $P$ be the matrix whose columns are this basis. Verify that $P$ is invertible, and compute $P^{\mathsf T}GP$. Check your answer independently by writing $q_B$ as a difference of two squares.
+\item View the same form over $\RR$, and determine its inertia and signature. Exhibit a vector $v\notin\rad(B)$ with $B(v,v)=0$. Why does this not contradict Sylvester's law of inertia?
+\item Over $\CC$, rescale your orthogonal basis to obtain the normal form $\diag(1,1,0)$. Which property of $\CC$ makes this rescaling possible?
+\item On the one-dimensional space $\QQ$, compare the forms $B(x,y)=xy$ and $C(x,y)=2xy$. Show that they have the same rank, but are not isometric over $\QQ$. What happens over $\RR$ and over $\CC$? Deduce that the classification by rank which holds over $\CC$ does not hold over every field of characteristic different from $2$.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We turn to alternating forms, for which there is a normal form valid in every characteristic. An orthogonal basis cannot describe a nonzero alternating form: all of its diagonal entries would also be zero, making the form zero. Instead, we split off pairs of vectors which pair nontrivially with one another and are orthogonal to all other pairs.
+
+Suppose $B$ is nondegenerate and alternating, and let $e\ne0$. Then there is an $f$ with $B(e,f)\ne0$, and after rescaling $f$ the restriction of $B$ to $H\coloneqq\KK e+\KK f$ has Gram matrix
+\[
+J\coloneqq\begin{pmatrix}0&1\\-1&0\end{pmatrix}.
+\]
+This restriction is nondegenerate, so $V=H\oplus H^{\perp}$ and the construction can continue on $H^{\perp}$. In characteristic $2$ the minus sign is a plus sign, but the matrix $J$ is still invertible and the same argument applies.
+
+\begin{theorem}[Symplectic Basis]
+If $B$ is a nondegenerate alternating form on $V$, then $\dim(V)=2m$ is even, and there is a basis $(e_1,f_1,\ldots,e_m,f_m)$ with $B(e_i,e_j)=B(f_i,f_j)=0$ and $B(e_i,f_j)=\delta_{ij}$ for all $i$ and $j$. In this basis the Gram matrix of $B$ is a block diagonal matrix with $m$ copies of $J$.
+\end{theorem}
+
+Such a basis is called a \emph{symplectic basis}. In particular, nondegenerate alternating forms on spaces of the same dimension are all isometric. We construct symplectic bases in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:symplectic} \textbf{Construction of a Symplectic Basis.} Throughout this exercise let $B$ be a nondegenerate alternating form on $V$.
+\begin{enumerate}
+\item Suppose $V\ne0$, and choose $e\ne0$. Use nondegeneracy to find $f$ with $B(e,f)=1$, and prove that $e$ and $f$ are linearly independent.
+\item Compute the Gram matrix of $B$ on $H=\KK e+\KK f$, and show that it is invertible in every characteristic.
+\item For $v\in V$, verify that $v-B(v,f)e+B(v,e)f$ lies in $H^{\perp}$. Deduce that $V=H\oplus H^{\perp}$, either directly or using Problem~\ref{b:types}(e).
+\item Prove that the restriction of $B$ to $H^{\perp}$ is alternating and nondegenerate. Hint: a vector of $H^{\perp}$ which is orthogonal to all of $H^{\perp}$ is also orthogonal to $H$, and hence to all of $V$.
+\item Induct on $\dim(V)$ to prove the symplectic basis theorem, starting from the zero space. Explain why the process cannot end with a one-dimensional space carrying a nondegenerate alternating form.
+\item Match symplectic bases to prove that nondegenerate alternating forms on spaces of the same dimension are isometric. Check explicitly that your argument remains valid in characteristic $2$.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+It is natural to ask what happens for a degenerate alternating form. The radical consists of the vectors which pair to zero with everything, in either input. Passing to the quotient by the radical therefore gives a well-defined form, and we will see that this form is nondegenerate. This reduces the degenerate case to the symplectic basis theorem. Lifting a basis of the quotient back to $V$ involves choices, but changing a lift by a vector of the radical does not change any of its pairings. Consequently the number of symplectic pairs is determined by the rank, while the remaining basis vectors span the radical. We carry out this reduction, and compute a normal form in dimension three, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:degenerate} \textbf{Degenerate Alternating Forms.} Throughout parts (a) through (c) let $B$ be an alternating form on $V$, and put $R\coloneqq\rad(B)$.
+\begin{enumerate}
+\item Define $\overline B(v+R,w+R)\coloneqq B(v,w)$. Check that $\overline B$ is well defined and alternating, and prove that it is nondegenerate on $V/R$.
+\item Lift a symplectic basis of $V/R$ to $V$, and adjoin a basis of $R$. Prove that these vectors form a basis of $V$, and that the Gram matrix of $B$ in this basis is block diagonal with some copies of $J$ followed by a zero block.
+\item Deduce that the rank of every alternating form is even, and that alternating forms on spaces of the same dimension are isometric exactly when they have the same rank. In particular, show that an alternating form on an odd-dimensional space is degenerate, including in characteristic $2$.
+\item For the form with Gram matrix
+\[
+G=\begin{pmatrix}0&1&1\\-1&0&0\\-1&0&0\end{pmatrix},
+\]
+find the radical and a basis in which the Gram matrix is block diagonal with blocks $J$ and $0$. Carry out the calculation over an arbitrary field, and check what changes in characteristic $2$.
+\item Compare this classification with the classifications of symmetric forms over $\RR$, over $\CC$, and in characteristic $2$. Which classification statements use rank alone, and which hypotheses must accompany them?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We finish by returning to duality. Recall from Worksheet 2.2 the isomorphism
+\[
+\Phi:V\otimes V^{\vee}\longrightarrow\End_{\KK}(V),\qquad v\otimes\lambda\longmapsto\bigl(w\mapsto\lambda(w)v\bigr),
+\]
+which is defined without choices. Evaluation is a bilinear map $V\times V^{\vee}\to\KK$, and therefore induces a linear map
+\[
+\ev:V\otimes V^{\vee}\longrightarrow\KK,\qquad v\otimes\lambda\longmapsto\lambda(v).
+\]
+The \emph{trace} of an endomorphism $T$ of $V$ is $\tr(T)\coloneqq\ev(\Phi^{-1}(T))$. Notice that this definition does not require a bilinear form on $V$, or any other choice. Since neither $\Phi$ nor $\ev$ depends on a basis, the trace is an invariant of the endomorphism itself. For example, if $T(w)=\lambda(w)v$, so that $T$ has rank at most one, then $\tr(T)=\lambda(v)$.
+
+If $e_1,\ldots,e_n$ is a basis of $V$ with dual basis $e_1^{\vee},\ldots,e_n^{\vee}$, then by Worksheet 2.2 we have $\Phi^{-1}(T)=\sum_iT(e_i)\otimes e_i^{\vee}$. Applying evaluation gives $\tr(T)=\sum_ie_i^{\vee}(T(e_i))$, which is the sum of the diagonal entries of the matrix of $T$. This explains why the familiar formula does not depend on the basis. The pairing used here is the evaluation pairing between $V$ and $V^{\vee}$; we have not identified these two spaces using a bilinear form.
+
+This evaluation map is often called \emph{contraction}: it pairs a vector factor with a functional factor to obtain a scalar. It is worth checking its compatibility with isomorphisms directly. If $\phi:V\to W$ is an isomorphism, the tensor $v\otimes\lambda$ is transported to $\phi(v)\otimes(\lambda\circ\phi^{-1})$, and evaluating the latter gives $\lambda(\phi^{-1}(\phi(v)))=\lambda(v)$. On endomorphisms, the same transport is $T\mapsto\phi T\phi^{-1}$. Thus invariance under change of coordinates is built into the pairing, and the formula as a sum of diagonal entries expresses it in a basis. We check these statements in the following exercise.
+
+\hrulefill
+
+\begin{problems}[before=\Needspace{5\baselineskip}]
+\item\label{b:trace} \textbf{Trace as Evaluation.} Throughout parts (a) and (c) let $T$ be an endomorphism of $V$.
+\begin{enumerate}
+\item Check that evaluation is bilinear, so that the linear map $\ev$ exists. Use the isomorphism $\Phi$ to show that $\tr(T)$ is linear in $T$.
+\item For $T(w)=\lambda(w)v$, compute $\tr(T)$ directly from the definition. On $\QQ^2$, take $v=(1,2)$ and $\lambda(x,y)=3x-y$. Write down the matrix of $T$, and compare the sum of its diagonal entries with $\lambda(v)$.
+\item Verify that $\Phi$ sends $\sum_iT(e_i)\otimes e_i^{\vee}$ to $T$. Apply evaluation to prove that $\tr(T)$ is the sum of the diagonal entries of the matrix of $T$, and explain why this sum does not depend on the basis.
+\item On $\QQ^2$, let $T$ have matrix $\left(\begin{smallmatrix}1&2\\-3&4\end{smallmatrix}\right)$ in the standard basis. Compute its matrix in the basis $(e_1+e_2,e_1-e_2)$, and compare the two traces. Which change of basis formula is appropriate here: congruence or similarity?
+\item Show that $\tr(\Id_V)=\dim(V)\cdot1_{\KK}$. Explain why this is an equation in $\KK$, rather than an equation of integers.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Trace is compatible with composition in a useful way. If $\phi:V\to W$ and $\psi:W\to V$ are linear, then $\psi\phi$ and $\phi\psi$ are endomorphisms of possibly different spaces, but
+\[
+\tr_V(\psi\phi)=\tr_W(\phi\psi),
+\]
+where the subscripts record the space on which each trace is taken. This is called the \emph{cyclicity} of the trace; in particular, $\tr(ST)=\tr(TS)$ for endomorphisms $S$ and $T$ of $V$. Why should the two orders give the same scalar? Writing one of the maps as a sum of maps of rank at most one reduces both traces to the same evaluations. Notice, however, that the operators themselves need not commute, and that the trace does not preserve multiplication.
+
+We also return to the formula $\tr(\Id_V)=\dim(V)\cdot1_{\KK}$. If $\operatorname{char}(\KK)=p>0$, this scalar is zero whenever $\dim(V)=p$. Thus the trace records the dimension only as an element of $\KK$, where some of the information carried by the integer is lost. We explore these properties in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{b:cyclic} \textbf{Cyclicity and Trace Computations.}
+\begin{enumerate}
+\item Let $\phi:V\to W$ and $\psi:W\to V$ be linear. Using the tensor description from Worksheet 2.2, write $\phi(v)=\sum_i\lambda_i(v)w_i$ with $\lambda_i\in V^{\vee}$ and $w_i\in W$. Express both composites as sums of maps of rank at most one, and apply Problem~\ref{b:trace} to prove cyclicity, without assuming that $V$ and $W$ have the same dimension.
+\item Deduce that $\tr(ST-TS)=0$, and that $\tr(P^{-1}TP)=\tr(T)$ for invertible $P$. Compute $ST$ and $TS$ for $S=E_{12}$ and $T=E_{21}$ acting on $\KK^2$. Explain why equal traces do not imply equal operators.
+\item Let $P:V\to V$ satisfy $P^2=P$. Prove that $V=\img(P)\oplus\ker(P)$, identify the action of $P$ on each summand, and deduce that $\tr(P)=\rank(P)\cdot1_{\KK}$.
+\item Suppose $\operatorname{char}(\KK)=p>0$. Compare the zero operator and $\Id$ on $\KK^p$ by computing their traces and ranks. Can either rank be recovered from the trace alone? In particular, does trace zero imply nilpotence?
+\item On $\QQ^2$, exhibit matrices $S$ and $T$ with $\tr(ST)\ne\tr(S)\tr(T)$. Verify your example both by matrix multiplication and, when possible, using the formula for the trace of a map of rank at most one.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+\end{document}
