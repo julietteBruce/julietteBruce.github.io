@@ -1,0 +1,377 @@
+\documentclass[12pt,reqno]{amsart}
+\newcommand{\worksheetnumber}{4.1}
+\input{../../101preamble.tex}
+
+\title{Worksheet 4.1: Free Presentations and Exact Sequences}
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+
+Let $R$ be a ring and let $S$ be a set. The \emph{free left $R$-module} on $S$ is
+\[
+R^{\langle S\rangle}\coloneqq\left\{\sum_{s\in S}r_se_s \;\; \big| \;\; r_s\in R,\ r_s=0\text{ for all but finitely many }s\in S\right\},
+\]
+with addition and scalar multiplication defined coefficientwise, exactly as for the free vector space in Worksheet 2.1. Notice that the coefficients act on the left, so no commutativity is needed. For every left $R$-module $M$ and every choice of elements $m_s\in M$, there is a unique homomorphism $R^{\langle S\rangle}\to M$ sending $e_s$ to $m_s$, namely $\sum_sr_se_s\mapsto\sum_sr_sm_s$. This is the \emph{universal property of the free module}, and in Worksheet 2.1 you checked that its proof works without change over an arbitrary ring.
+
+The goal of this worksheet is to return from vector spaces to modules. In Worksheets 2.1 through 3.3 we developed constructions for vector spaces using their maps and universal properties. Many of these constructions survive for modules: a module is still an abelian group with a scalar action, and kernels, images, quotients, and direct sums are defined as in Worksheets 1.2 and 2.1. What we can no longer assume is that a module has a basis, or that a submodule has a complementary submodule. Indeed, you saw in Worksheet 2.1 that the $\ZZ$-module $\ZZ/n\ZZ$ has no basis at all. We address the first difficulty by describing a module using generators and relations. Even when a module is not free, it is a quotient of a free module, and the kernel of the quotient map records the relations among the chosen generators. We will study how different choices change such a description, and then use exact sequences to compare the resulting maps. The splitting lemma, the five lemma, and the snake lemma will organize three different ways in which information can be recovered from exact sequences.
+
+As in the previous worksheets, all rings have a multiplicative identity but need not be commutative, ring homomorphisms preserve the multiplicative identity, and the letter $\KK$ will denote a field. Throughout this worksheet $R$ is a nonzero ring, modules are left $R$-modules, and homomorphisms of modules are $R$-linear. We will say explicitly when we assume that $R$ is commutative, for instance when we use maximal ideals to study rank, or matrices acting on columns of coordinates. The universal property has an immediate consequence. Taking $S$ to be the underlying set of a module $M$ and $m_s=s$, we obtain a homomorphism $R^{\langle S\rangle}\to M$ sending $e_m$ to $m$, which is certainly surjective. Thus every module is a quotient of a free module. This free module is usually far larger than necessary, and in practice we choose a smaller set of generators. A module is \emph{finitely generated} if finitely many of its elements generate it. Choosing generators $m_1,\ldots,m_n$ is the same thing as choosing a surjection $\pi:R^n\to M$ which sends the $i$th standard basis vector to $m_i$. The kernel of $\pi$ then records the \emph{relations} among the chosen generators: a vector $(r_1,\ldots,r_n)$ lies in $\ker(\pi)$ exactly when $r_1m_1+\cdots+r_nm_n=0$. We explore these ideas in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:free} \textbf{Free Modules and Generators.} Throughout this exercise let $M$ be an $R$-module.
+\begin{enumerate}
+\item Verify the universal property of the free module, including linearity and uniqueness, and check that the homomorphism $R^{\langle S\rangle}\to M$ described above is surjective.
+\item Prove that $M$ is finitely generated if and only if there is a surjection $R^n\to M$ for some finite $n$. Explain why the chosen generators form a basis exactly when this surjection is also injective.
+\item For $M=\ZZ/6\ZZ$, compute the kernel of the surjection $\ZZ\to M$ given by the single generator $\overline1$, and the kernel of the surjection $\ZZ^2\to M$ given by the pair $(\overline2,\overline3)$. Describe each kernel as a set of relations among the chosen generators.
+\item Suppose $q:N\to P$ is surjective and $\phi:R^{\langle S\rangle}\to P$ is a homomorphism. Choose a preimage in $N$ of each $\phi(e_s)$, and use the universal property to construct $\widetilde\phi:R^{\langle S\rangle}\to N$ with $q\widetilde\phi=\phi$. Is the lift necessarily unique? Give an example.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The finite-support condition also appears in direct sums of arbitrary families of modules. Recall from Worksheet 2.1 that for a family of modules $(M_j)_{j\in J}$, the product $\prod_jM_j$ consists of all families $(m_j)_j$, while the direct sum $\bigoplus_jM_j$ consists of those with only finitely many nonzero coordinates. Both have coordinatewise operations. When $J$ is finite these are the same module, but for an infinite family they can differ substantially.
+
+The direct sum is suited to specifying maps \emph{out of} a module: a family of homomorphisms $\phi_j:M_j\to N$ can be combined by the formula $(m_j)_j\mapsto\sum_j\phi_j(m_j)$. The sum is finite for every input, even if the family of homomorphisms is infinite, so an infinite collection of maps never requires us to add infinitely many elements of $N$. This is the same distinction between a finite expression and an infinite list of available generators which appeared in the free module. For vector spaces, you proved in Worksheet 2.1 that the direct sum is a coproduct and the product is a product; we now record the same statements for modules in terms of Hom in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:sums} \textbf{Direct Sums, Products, and Hom.} Throughout this exercise let $(M_j)_{j\in J}$ be a family of $R$-modules, and let $N$ be an $R$-module.
+\begin{enumerate}
+\item Verify that $\bigoplus_jM_j$ is a submodule of $\prod_jM_j$. Write down the coordinate inclusions $\iota_j:M_j\to\bigoplus_jM_j$ and the coordinate projections $p_j:\prod_jM_j\to M_j$, and verify that they are $R$-linear.
+\item Prove that restriction to the summands gives an isomorphism of abelian groups
+\[
+\Hom_R\Bigl(\bigoplus_jM_j,N\Bigr)\longrightarrow\prod_j\Hom_R(M_j,N),\qquad\phi\longmapsto(\phi\iota_j)_j.
+\]
+Construct its inverse, verify both composites, and check that it preserves addition. When $R$ is commutative, check that it is also an isomorphism of $R$-modules for pointwise scalar multiplication.
+\item Construct an analogous isomorphism $\Hom_R\bigl(N,\prod_jM_j\bigr)\cong\prod_j\Hom_R(N,M_j)$. Explain why the product appears as the target here, whereas the direct sum appeared as the source in part (b).
+\item For countably many copies of $R$, show that the all-ones vector lies in the product but not in the direct sum, and deduce that the coordinate vectors do not generate the product. Why does prescribing arbitrary images of the coordinate vectors determine a homomorphism out of the direct sum, but not, by the same argument, a homomorphism out of the product?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Before counting free generators, we should justify that the count is an invariant. Over a field this is invariance of dimension from Worksheet 2.1. For a nonzero commutative ring, we can reduce to that result by passing to a quotient which is a field. An ideal $\fm\subset R$ with $\fm\neq R$ is \emph{maximal} if the only ideals of $R$ containing $\fm$ are $\fm$ and $R$ itself.
+
+Every proper ideal $I$ of a commutative ring is contained in a maximal ideal. To see this, we use Zorn's lemma, as in Worksheet 2.1. Let $P$ be the set of proper ideals containing $I$, ordered by inclusion; it is nonempty, since $I\in P$, and $I$ is an upper bound for the empty chain. If $C\subset P$ is a nonempty chain, let $J$ be the union of its members. Any two elements of $J$ lie in a common member of $C$, since $C$ is a chain, so their sum lies in $J$; and $J$ is closed under multiplication by elements of $R$, since each member of $C$ is. Thus $J$ is an ideal. The point requiring care is that $J$ must remain proper, and the element $1$ provides the test: an ideal is proper exactly when it does not contain $1$, and $1$ lies in no member of $C$, so $1\notin J$. Hence $J\in P$ is an upper bound for $C$, and Zorn's lemma gives a maximal element of $P$, which is a maximal ideal containing $I$.
+
+A maximal ideal $\fm$ gives a field $R/\fm$. If $F=R^n$, we write $\fm F$ for the submodule of finite sums of elements $am$ with $a\in\fm$ and $m\in F$. The quotient $F/\fm F$ is then a vector space over $R/\fm$, and an isomorphism of free modules induces an isomorphism of these vector spaces. Notice that this comparison uses only quotients, and not tensor products. We prove that the rank of a finite free module over a nonzero commutative ring is well defined in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:rank} \textbf{Maximal Ideals and Finite Free Rank.} Throughout this exercise let $R$ be a nonzero commutative ring.
+\begin{enumerate}
+\item Let $\fm$ be a maximal ideal. Prove that $R/\fm$ is a field. Hint: for $r\notin\fm$, use $\fm+\langle r\rangle=R$ to find an inverse of $r+\fm$. Conversely, prove that if $R/I$ is a field, then $I$ is maximal.
+\item Show that $\fm R^n$ consists precisely of the tuples whose coordinates all lie in $\fm$. Construct an isomorphism of $R/\fm$-vector spaces $R^n/\fm R^n\cong(R/\fm)^n$.
+\item If $\phi:R^a\to R^b$ is an isomorphism, prove that $\phi(\fm R^a)=\fm R^b$, and obtain an isomorphism of the quotients. Use invariance of dimension from Worksheet 2.1 to deduce that $a=b$. What happens if one of these numbers is zero?
+\item Explain why the hypothesis that $R$ is nonzero is necessary, and identify where commutativity entered the proof. Which field quotients could you use for $R=\ZZ$ and for $R=\KK[x]$?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+A ring has \emph{invariant basis number} if $R^a\cong R^b$ for finite $a$ and $b$ implies $a=b$. We have just proved this for nonzero commutative rings. It is natural to ask whether the commutativity hypothesis can be removed. It cannot: some noncommutative rings have a free module with both a one-element basis and a two-element basis.
+
+For a concrete example, let $V$ be a $\KK$-vector space with countable basis $e_1,e_2,\ldots$, and let $R=\End_{\KK}(V)$ be its endomorphism ring from Worksheet 1.1, with multiplication given by composition. The odd and the even basis vectors each span a copy of $V$, so $V\cong V\oplus V$. To obtain a statement about free $R$-modules, we must translate this decomposition into formulas which respect the left action of $R$. Composing on the wrong side would give a different module structure, so it is worth keeping the formulas explicit. We construct the isomorphism in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:ibn} \textbf{A Noncommutative Failure of Invariant Basis Number.} Throughout this exercise let $V$ and $R=\End_{\KK}(V)$ be as above.
+\begin{enumerate}
+\item Define $i_1(e_j)\coloneqq e_{2j-1}$ and $i_2(e_j)\coloneqq e_{2j}$. Define $p_1$ by $p_1(e_{2j-1})\coloneqq e_j$ and $p_1(e_{2j})\coloneqq0$, and define $p_2$ analogously using the even positions. Verify that
+\[
+p_ai_b=\begin{cases}\Id_V&a=b,\\0&a\neq b,\end{cases}
+\qquad\text{and}\qquad i_1p_1+i_2p_2=\Id_V.
+\]
+Compare these identities with those for $V_1\oplus V_2$ in Worksheet 2.1.
+\item Regard $R$ and $R^2$ as left $R$-modules, with $R$ acting on $R^2$ coordinatewise by left multiplication. Prove that
+\[
+\Phi:R\to R^2,\quad r\mapsto(ri_1,ri_2),\qquad\qquad\Psi:R^2\to R,\quad(a,b)\mapsto ap_1+bp_2
+\]
+are $R$-linear, by multiplying an input on the left by an arbitrary $s\in R$.
+\item Use the identities of part (a) to prove that $\Phi$ and $\Psi$ are inverse to one another. Identify the two-element basis of the left module $R$ obtained by transporting the standard basis of $R^2$.
+\item Show that $R$ is noncommutative by comparing $p_1i_1$ and $i_1p_1$. Explain why $R\cong R^2$ does not contradict invariance of dimension for vector spaces, or Problem~\ref{p:rank}.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We now describe modules by generators and relations. A \emph{presentation} of a module $M$ is a pair of homomorphisms
+\[
+R^{\langle T\rangle}\xrightarrow{\ \rho\ }R^{\langle S\rangle}\xrightarrow{\ \pi\ }M\longrightarrow0
+\]
+in which $\pi$ is surjective and $\img(\rho)=\ker(\pi)$. The images under $\pi$ of the basis vectors indexed by $S$ are \emph{generators} of $M$, while the images under $\rho$ of the basis vectors indexed by $T$ are \emph{relations} which generate all relations among these generators. We do not require $\rho$ to be injective: there may be relations among the relations. A module is \emph{finitely presented} if it has a presentation with both $S$ and $T$ finite. In particular, a finitely presented module is finitely generated.
+
+Suppose for the moment that $R$ is commutative. A homomorphism $R^m\to R^n$ is then given by multiplying columns of coordinates by an $n\times m$ matrix $A$, whose $j$th column records the image of the $j$th basis vector. The module \emph{presented} by $A$ is
+\[
+\coker(A)\coloneqq R^n/\img(A).
+\]
+Thus the rows of $A$ correspond to the chosen generators $g_1,\ldots,g_n$ of the quotient, and its columns correspond to the specified relations. For example, a column $(a_1,\ldots,a_n)^{\mathsf T}$ imposes the relation $a_1g_1+\cdots+a_ng_n=0$.
+
+It is natural to ask when two matrices present the same module. Changing the basis of the target changes the names of the generators, and changing the basis of the source changes the generating list of relations. We can also add a new generator whose value is prescribed by a new relation, or add a relation which follows from the existing ones. These operations need not preserve the size of the matrix. A presentation is therefore a description of a module which involves choices, rather than an invariant attached to the module alone.
+
+For example, over $R=\KK[x]$ consider the matrix $A=\left(\begin{smallmatrix}x&1\\0&x\end{smallmatrix}\right)$, whose columns impose the relations $xg_1=0$ and $g_1+xg_2=0$. The second relation says that $g_1=-xg_2$, so the first generator is redundant, and substituting into the first relation leaves the single relation $x^2g_2=0$. We therefore expect that $\coker(A)\cong R/\langle x^2\rangle$, with $g_2$ corresponding to the class of $1$. To make this precise, we write down mutually inverse homomorphisms: $[(a,b)]\mapsto b-xa+\langle x^2\rangle$ from $\coker(A)$, which is well defined because it sends both columns of $A$ to zero, and $f+\langle x^2\rangle\mapsto[(0,f)]$ in the other direction, which is well defined because $x^2g_2=-xg_1=0$ in $\coker(A)$. We explore other changes of presentation in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:matrices} \textbf{Matrices, Cokernels, and Changes of Presentation.} Throughout parts (b) through (d) let $R$ be commutative.
+\begin{enumerate}
+\item Over $\ZZ$, let $A=\left(\begin{smallmatrix}2&4\\0&6\end{smallmatrix}\right)$. Write down its generators and relations. Subtract twice the first column from the second, and identify $\coker(A)$ explicitly as a direct sum of cyclic groups. Describe the quotient map on an arbitrary pair of integers.
+\item Let $A:R^m\to R^n$, $U\in\GL_n(R)$, and $V\in\GL_m(R)$. Show that $\img(UAV)=U(\img(A))$. Prove that $[y]\mapsto[Uy]$ is an isomorphism $\coker(A)\to\coker(UAV)$, and write down its inverse. Interpret elementary row and column operations using this statement.
+\item Let $c\in R^n$, and form $\widehat A=\left(\begin{smallmatrix}A&-c\\0&1\end{smallmatrix}\right)$. Interpret the new generator $h$ and the new relation $h=\sum_ic_ig_i$. Prove that $\coker(\widehat A)\cong\coker(A)$, either by constructing mutually inverse maps on generators or by using $(y,t)\mapsto[y+tc]$.
+\item For $b\in R^m$, show that appending the column $Ab$ to $A$ does not change its image. Explain how this differs from adding a generator together with a relation.
+\item Starting with $D=\left(\begin{smallmatrix}2&0\\0&6\end{smallmatrix}\right)$ over $\ZZ$, write down explicitly a presentation obtained by adding the generator $h=g_1+g_2$, and another obtained by adding the sum of the two existing relations. Give isomorphisms from all three cokernels to the same abelian group.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Finite generation alone does not guarantee that finitely many relations suffice. To prove this, we need to rule out every possible finite presentation, and not merely exhibit one presentation with infinitely many relations. The following criterion lets us work with any convenient finite set of generators.
+
+\begin{lemma}[Finite Relations for a Chosen Finite Generating Set]
+Let $\pi:R^n\to M$ be surjective, with $n$ finite. Then $M$ is finitely presented if and only if $\ker(\pi)$ is finitely generated.
+\end{lemma}
+
+One implication is immediate: if $\ker(\pi)$ is generated by $k_1,\ldots,k_a$, then the homomorphism $R^a\to R^n$ sending the standard basis vectors to $k_1,\ldots,k_a$ has image $\ker(\pi)$, and so it gives a finite presentation of $M$. For the other, suppose a finite presentation uses a different finite free module $R^b$. Maps between the two free modules can be constructed by lifting their basis vectors, as in Problem~\ref{p:free}(d). Their composites need not be identities, but the discrepancy has image in the relevant kernel, and since it is the image of a finite free module, it contributes only finitely many additional generators. This is the mechanism behind independence of the chosen generating set.
+
+Our example will be the polynomial ring in countably many variables. Its elements are still ordinary polynomials, in the sense of Worksheet 1.1: each involves only finitely many variables and finitely many terms. Thus a finite list of relations can involve only finitely many of the variables, leaving another variable with which to test the proposed presentation. We prove the lemma, and use it to find a cyclic module which is not finitely presented, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:finitepresentation} \textbf{Finite Generation and Finite Presentation.} Throughout parts (a) and (b) let $\pi:R^n\to M$ be surjective, with $n$ finite.
+\begin{enumerate}
+\item Let $q:R^b\to M$ be surjective with finitely generated kernel $K$. Use Problem~\ref{p:free}(d) to choose homomorphisms $f:R^b\to R^n$ and $g:R^n\to R^b$ with $\pi f=q$ and $qg=\pi$. Show that $f(K)$ and $(\Id-fg)(R^n)$ are contained in $\ker(\pi)$.
+\item For $z\in\ker(\pi)$, show that $g(z)\in K$, and write $z=f(g(z))+(\Id-fg)(z)$. Deduce a finite generating set for $\ker(\pi)$ from generators of $K$ and the standard basis of $R^n$, and finish the proof of the lemma. Did you use commutativity anywhere?
+\item Now let $R=\KK[x_1,x_2,\ldots]$ and $I=\langle x_1,x_2,\ldots\rangle$. Prove that evaluation at zero in every variable identifies $R/I$ with $\KK$. In particular, $\KK$ is a cyclic $R$-module.
+\item Suppose $I$ were generated by finitely many polynomials $f_1,\ldots,f_t$, and choose a variable $x_j$ which appears in none of them. Construct a ring homomorphism $R\to\KK[t]$ sending $x_j$ to $t$ and every other variable to zero. Explain why it kills every $f_i$ but does not kill $x_j$, and deduce that $I$ is not finitely generated.
+\item Apply the lemma to the quotient map $R\to R/I$. Conclude that this cyclic module is not finitely presented, and explain why changing the chosen finite generating set cannot remove the obstruction.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Presentations are examples of exact sequences, which we met for vector spaces in Worksheet 2.2. A \emph{complex} is a sequence of modules and homomorphisms
+\[
+\cdots\longrightarrow M_{i+1}\xrightarrow{\ d_{i+1}\ }M_i\xrightarrow{\ d_i\ }M_{i-1}\longrightarrow\cdots
+\]
+such that $d_id_{i+1}=0$ at every position, or equivalently $\img(d_{i+1})\subset\ker(d_i)$. It is \emph{exact at $M_i$} if these two submodules are equal, and \emph{exact} if it is exact at every module which has both an incoming and an outgoing map. As in Worksheet 2.2, a \emph{short exact sequence} is an exact sequence of the form
+\[
+0\longrightarrow A\xrightarrow{\ \iota\ }B\xrightarrow{\ q\ }C\longrightarrow0.
+\]
+Exactness at $A$, $B$, and $C$ says that $\iota$ is injective, that $\img(\iota)=\ker(q)$, and that $q$ is surjective, so the first isomorphism theorem identifies $C$ with $B/\iota(A)$. Notice that knowing the three modules is not enough to know whether a sequence is exact: the maps determine which kernels and images are being compared. We check some examples in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:exactness} \textbf{Complexes and Exact Sequences.}
+\begin{enumerate}
+\item Verify the description of a short exact sequence just given. For a submodule $N\subset M$, verify that $0\to N\to M\to M/N\to0$ is exact, using the inclusion and the quotient map.
+\item For any homomorphism $\phi:M\to N$, construct an exact sequence
+\[
+0\longrightarrow\ker(\phi)\longrightarrow M\xrightarrow{\ \phi\ }N\longrightarrow\coker(\phi)\longrightarrow0,
+\]
+where $\coker(\phi)\coloneqq N/\img(\phi)$. Verify each equality of image and kernel, and identify every map explicitly.
+\item Over $\ZZ$, consider the sequence $\ZZ\to\ZZ^2\to\ZZ$ with maps $a\mapsto(2a,0)$ and $(b,c)\mapsto c$. Show that it is a complex, but that it is not exact at $\ZZ^2$. Compute the quotient of the kernel of the second map by the image of the first.
+\item Explain why a presentation $R^m\xrightarrow{A}R^n\to M\to0$ is an exact sequence. Must $0\to R^m\xrightarrow{A}R^n\to M\to0$ also be exact? Use the redundant relation from Problem~\ref{p:matrices}(d) to give a counterexample.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Over a field, every short exact sequence splits, because every subspace has a complement. Recall from Worksheet 2.2 that a \emph{section} of $q$ is a homomorphism $s:C\to B$ with $qs=\Id_C$, and a \emph{retraction} of $\iota$ is a homomorphism $r:B\to A$ with $r\iota=\Id_A$. We say a short exact sequence \emph{splits} if there is an isomorphism $\theta:A\oplus C\to B$ with
+\[
+\theta(a,0)=\iota(a)\qquad\text{and}\qquad q\theta(a,c)=c
+\]
+for all $a\in A$ and $c\in C$. As in Worksheet 2.2, these compatibility conditions are part of the definition: they say that $\theta$ identifies the given inclusion and quotient map with the coordinate maps, rather than merely identifying the middle module with an abstract direct sum.
+
+\begin{theorem}[Splitting Lemma]
+For a short exact sequence $0\to A\xrightarrow{\iota}B\xrightarrow{q}C\to0$ of $R$-modules, the following are equivalent: the sequence splits, $q$ has a section, and $\iota$ has a retraction.
+\end{theorem}
+
+In Worksheet 2.2 you asked which parts of the proof of the splitting lemma work for $R$-modules. The equivalence of the three conditions uses only addition and the maps already present in the sequence, so it survives. What can fail is the earlier step in which we \emph{constructed} a section by choosing a complement: a quotient module need not have a basis, and its relations can prevent arbitrary lifts from defining a homomorphism.
+
+Let us recall how a section produces a splitting. Given a section $s$, define $\theta(a,c)\coloneqq\iota(a)+s(c)$. This is $R$-linear, $\theta(a,0)=\iota(a)$, and $q\theta(a,c)=qs(c)=c$, so $\theta$ satisfies both compatibility equations. To invert $\theta$, notice that for $b\in B$ the element $b-s(q(b))$ is killed by $q$, so by exactness it equals $\iota(a)$ for a unique $a\in A$. Then $b=\theta(a,q(b))$, so $\theta$ is surjective. Moreover, if $b=\theta(a,c)$, then applying $q$ shows that $c=q(b)$, and then $a$ is determined by the injectivity of $\iota$, so $\theta$ is injective. Notice also that the assignment $b\mapsto a$ is a retraction of $\iota$. We prove the remaining implications in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:splitting} \textbf{The Splitting Lemma for Modules.} Throughout this exercise let $0\to A\xrightarrow{\iota}B\xrightarrow{q}C\to0$ be a short exact sequence of $R$-modules.
+\begin{enumerate}
+\item Check that the assignment $r:B\to A$, $b\mapsto a$, described above is $R$-linear and satisfies $r\iota=\Id_A$.
+\item Conversely, suppose $r$ is a retraction of $\iota$. Prove that the restriction $q|_{\ker(r)}:\ker(r)\to C$ is injective. For $c\in C$, lift it to $b\in B$ and replace $b$ by $b-\iota(r(b))$ to prove surjectivity. Use the inverse of this restriction to construct a section of $q$.
+\item Starting instead with a compatible isomorphism $\theta:A\oplus C\to B$, construct a section and a retraction using the coordinate inclusions and projections. Finish the proof of the splitting lemma.
+\item If $s$ is a section, show that $s+\iota h$ is a section for every homomorphism $h:C\to A$. Conversely, show that any two sections differ in this way for a unique $h$. Explain why even a split sequence can have many different splittings.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The simplest failures of splitting come from relations satisfied by a generator of the quotient. A homomorphism must preserve these relations, so a section requires a lift which already satisfies them in the middle module. Surjectivity alone only supplies \emph{some} lift, with no such guarantee.
+
+For instance, let $n\geq2$ and consider the short exact sequence $0\to\ZZ\xrightarrow{\times n}\ZZ\xrightarrow{q}\ZZ/n\ZZ\to0$. The generator $\overline1$ of $\ZZ/n\ZZ$ is killed by $n$, so a section $s$ would have to satisfy $n\,s(\overline1)=s(n\cdot\overline1)=s(\overline0)=0$ in $\ZZ$. Since no nonzero integer is killed by $n$, this forces $s(\overline1)=0$, and then $q(s(\overline1))=0\neq\overline1$. Thus no section exists, and the sequence does not split. The polynomial ring gives an example of the same form: an element of the quotient is killed by $x$, but its lifts can fail this relation by a nonzero element of the submodule. These examples will recur when we apply Hom and tensor products to exact sequences. We check that the second one does not split in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:nonsplit} \textbf{A Nonsplit Sequence of $\KK[x]$-Modules.}
+\begin{enumerate}
+\item Let $R=\KK[x]$, identify $\KK$ with $R/\langle x\rangle$, and give $R/\langle x^2\rangle$ its structure as a quotient module. Verify that
+\[
+0\longrightarrow\KK\xrightarrow{\ \iota\ }R/\langle x^2\rangle\xrightarrow{\ q\ }\KK\longrightarrow0,\qquad\iota(a)=ax+\langle x^2\rangle,\quad q(a+bx+\langle x^2\rangle)=a,
+\]
+is a short exact sequence of $R$-modules. Check compatibility with the action of $x$, and not merely $\KK$-linearity.
+\item Suppose $s$ were an $R$-linear section. Use $q(s(1))=1$ to write $s(1)=1+bx+\langle x^2\rangle$. Compare $x\,s(1)$ with $s(x\cdot1)$, and deduce that no section exists.
+\item Forget the action of $x$, and regard the sequence of part (a) as a sequence of $\KK$-vector spaces. Construct a section. Explain why this section is not $R$-linear, and compare the two categories in which the sequence is being considered.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The compatibility conditions in the definition of splitting cannot be replaced by the assertion that $B\cong A\oplus C$. The following example makes this distinction visible in a single short exact sequence. Infinite direct sums can absorb an additional summand without changing their isomorphism type, so the middle module can be abstractly isomorphic to a direct sum for reasons which have nothing to do with the given quotient map.
+
+Fix a prime $p$, and let
+\[
+B\coloneqq\Bigl(\bigoplus_{j\geq1}\ZZ/p^2\ZZ\Bigr)\oplus\Bigl(\bigoplus_{j\geq1}\ZZ/p\ZZ\Bigr).
+\]
+Let $q:B\to\ZZ/p\ZZ$ reduce the first $\ZZ/p^2\ZZ$ coordinate modulo $p$ and ignore all the other coordinates, and put $A\coloneqq\ker(q)$. We will compare the abstract isomorphism types by reindexing summands, and then examine the relation which a section would have to preserve, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:abstractsplit} \textbf{An Abstract Direct Sum without a Splitting.} Throughout this exercise let $p$, $A$, $B$, and $q$ be as above.
+\begin{enumerate}
+\item Prove that $q$ is surjective. Describe $A$ as the direct sum of the subgroup $p(\ZZ/p^2\ZZ)$ in the first coordinate, the remaining $\ZZ/p^2\ZZ$ coordinates, and all of the $\ZZ/p\ZZ$ coordinates.
+\item Identify $p(\ZZ/p^2\ZZ)$ with $\ZZ/p\ZZ$. Give explicit reindexings of the countable families of summands to prove that $A\cong B$ and $A\oplus\ZZ/p\ZZ\cong B$. Explain why these reindexings define homomorphisms of direct sums.
+\item Prove that if $b\in B$ satisfies $pb=0$, then the first $\ZZ/p^2\ZZ$ coordinate of $b$ is divisible by $p$, and hence $q(b)=0$. Equivalently, show that every lift of $\overline1$ has order $p^2$, whereas $\overline1$ has order $p$.
+\item Deduce that $q$ has no section, so that the short exact sequence $0\to A\to B\xrightarrow{q}\ZZ/p\ZZ\to0$ does not split. Explain why no abstract isomorphism $A\oplus\ZZ/p\ZZ\to B$ can satisfy both of the compatibility equations in the definition of splitting.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We finish with two results which compare exact sequences. A \emph{commutative diagram}, as in Worksheet 1.1, is one in which any two composites along paths with the same start and end agree. When an element maps to zero, exactness lets us lift it through the preceding map, and commutativity then compares that lift with another row. A \emph{diagram chase} is an organized use of these two operations. Since the chosen lifts need not be unique, it is important to keep track of which ambiguity is killed by a later map.
+
+Consider a commutative diagram with exact rows:
+\[
+\begin{tikzcd}[column sep=2.5em,row sep=4em]
+A_1\arrow[r,"f_1"]\arrow[d,"h_1"']&A_2\arrow[r,"f_2"]\arrow[d,"h_2"']&A_3\arrow[r,"f_3"]\arrow[d,"h_3"']&A_4\arrow[r,"f_4"]\arrow[d,"h_4"']&A_5\arrow[d,"h_5"]\\
+B_1\arrow[r,"g_1"']&B_2\arrow[r,"g_2"']&B_3\arrow[r,"g_3"']&B_4\arrow[r,"g_4"']&B_5
+\end{tikzcd}
+\]
+Exactness is required at the three interior modules of each row. The following form of the five lemma is slightly more precise than the familiar statement that four isomorphisms force the fifth.
+
+\begin{theorem}[Five Lemma]
+In the diagram above, suppose $h_1$ is surjective, $h_2$ and $h_4$ are isomorphisms, and $h_5$ is injective. Then $h_3$ is an isomorphism.
+\end{theorem}
+
+To prove injectivity, we begin with an element of $\ker(h_3)$ and move toward the left-hand end of the diagram. Suppose $h_3(a_3)=0$. Then $h_4(f_3(a_3))=g_3(h_3(a_3))=0$, and since $h_4$ is injective, $f_3(a_3)=0$. By exactness at $A_3$ we can write $a_3=f_2(a_2)$. Now $g_2(h_2(a_2))=h_3(f_2(a_2))=0$, so by exactness at $B_2$ we can write $h_2(a_2)=g_1(b_1)$, and since $h_1$ is surjective, $b_1=h_1(a_1)$ for some $a_1\in A_1$. Then
+\[
+h_2(f_1(a_1))=g_1(h_1(a_1))=g_1(b_1)=h_2(a_2),
+\]
+and the injectivity of $h_2$ gives $a_2=f_1(a_1)$. Therefore $a_3=f_2(f_1(a_1))=0$, and $h_3$ is injective.
+
+To prove surjectivity, we begin instead with an element of $B_3$, move to the right to find a lift of its image, and then correct that lift using the left-hand part of the diagram. Notice that the hypotheses on the outer maps play different roles in these two arguments. We carry out the second diagram chase in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:five} \textbf{The Five Lemma.} Throughout this exercise use the diagram and hypotheses of the five lemma.
+\begin{enumerate}
+\item Let $b_3\in B_3$. Use the surjectivity of $h_4$ to choose $a_4$ with $h_4(a_4)=g_3(b_3)$. Use the injectivity of $h_5$ and exactness to find $a_3\in A_3$ with $f_3(a_3)=a_4$.
+\item Show that $b_3-h_3(a_3)\in\ker(g_3)$, and write it as $g_2(b_2)$. Lift $b_2$ through $h_2$, and modify $a_3$ by an element of $\img(f_2)$ to obtain a preimage of $b_3$ under $h_3$. Conclude the proof.
+\item In the injectivity and surjectivity arguments separately, record which half of each isomorphism hypothesis was used. Deduce the familiar version of the five lemma, in which $h_1$, $h_2$, $h_4$, and $h_5$ are all isomorphisms.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The snake lemma compares the kernels and cokernels of a map between two short exact sequences. Suppose all squares commute in the diagram
+\[
+\begin{tikzcd}[column sep=3em,row sep=4em]
+0\arrow[r]&A\arrow[r,"\iota"]\arrow[d,"\alpha"']&B\arrow[r,"q"]\arrow[d,"\beta"']&C\arrow[r]\arrow[d,"\gamma"]&0\\
+0\arrow[r]&A'\arrow[r,"\iota'"']&B'\arrow[r,"q'"']&C'\arrow[r]&0
+\end{tikzcd}
+\]
+with exact rows. Restricting the horizontal maps gives maps between the kernels of the vertical maps, and passing to quotients gives maps between their cokernels. One additional map connects the two lists. Let $c\in\ker(\gamma)$, and choose $b\in B$ with $q(b)=c$. Then $q'(\beta(b))=\gamma(q(b))=0$, so by exactness of the lower row $\beta(b)=\iota'(a')$ for a unique $a'\in A'$, and we define
+\[
+\delta(c)\coloneqq[a']\in\coker(\alpha)=A'/\img(\alpha).
+\]
+This does not depend on the chosen lift. Indeed, if $b_1$ is another lift of $c$, then $q(b_1-b)=0$, so $b_1-b=\iota(a)$ for some $a\in A$, and $\beta(b_1)-\beta(b)=\beta(\iota(a))=\iota'(\alpha(a))$. Since $\iota'$ is injective, the elements of $A'$ obtained from $b_1$ and from $b$ differ by $\alpha(a)$, and so they have the same class in $\coker(\alpha)$.
+
+\begin{theorem}[Snake Lemma]
+For the diagram above, there is a homomorphism $\delta:\ker(\gamma)\to\coker(\alpha)$ such that the sequence
+\[
+0\longrightarrow\ker(\alpha)\longrightarrow\ker(\beta)\longrightarrow\ker(\gamma)\xrightarrow{\ \delta\ }\coker(\alpha)\longrightarrow\coker(\beta)\longrightarrow\coker(\gamma)\longrightarrow0
+\]
+is exact.
+\end{theorem}
+
+The map $\delta$ is called the \emph{connecting homomorphism}, and it measures an obstruction to lifting a kernel element to another kernel element. Surjectivity of $q$ lifts $c\in\ker(\gamma)$ to some $b\in B$, but there need not be such a lift satisfying $\beta(b)=0$. We will see that exactness at $\ker(\gamma)$ says precisely that this additional requirement can be met exactly when $\delta(c)=0$. We check the details of the construction of $\delta$, and its first properties, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:snakeconstruction} \textbf{Constructing the Connecting Homomorphism.} Throughout this exercise use the diagram of the snake lemma.
+\begin{enumerate}
+\item Verify that $\iota$ restricts to a homomorphism $\ker(\alpha)\to\ker(\beta)$, and that $q$ restricts to a homomorphism $\ker(\beta)\to\ker(\gamma)$. On the cokernels, define
+\[
+\overline{\iota'}([a'])\coloneqq[\iota'(a')]\qquad\text{and}\qquad\overline{q'}([b'])\coloneqq[q'(b')],
+\]
+and prove that they are well-defined homomorphisms $\coker(\alpha)\to\coker(\beta)$ and $\coker(\beta)\to\coker(\gamma)$.
+\item Check the details of the construction of $\delta$ above. Where did you use the injectivity of $\iota'$, and where did you use the surjectivity of $q$?
+\item For $c_1,c_2\in\ker(\gamma)$, use the sum of chosen lifts as a lift of $c_1+c_2$ to prove that $\delta$ is additive. Use $rb$ as a lift of $rc$ to prove that $\delta(rc)=r\delta(c)$ for $r\in R$. Thus $\delta$ is $R$-linear, even when $R$ is noncommutative.
+\item Show directly that if $c$ has a lift $b\in\ker(\beta)$, then $\delta(c)=0$. Conversely, if $\delta(c)=0$, write $a'=\alpha(a)$ and replace $b$ by $b-\iota(a)$. Verify that this corrected lift lies in $\ker(\beta)$.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We have now constructed all of the maps in the snake lemma and established exactness at $\ker(\gamma)$. Exactness at the remaining terms expresses related statements about lifting and changing representatives. For example, a class in $\coker(\beta)$ maps to zero in $\coker(\gamma)$ when its image in $C'$ comes from $\gamma(C)$. Lifting the corresponding element of $C$ to $B$ allows us to subtract a vertical image, leaving an element which comes from $A'$. This is why both the quotient defining the cokernel and the exactness of the rows are needed.
+
+It is worth being careful here: each equality of image and kernel must be checked in both directions. The containments saying that consecutive maps compose to zero often follow immediately from commutativity, while the reverse containments are the actual lifting statements. Keep representatives in their original modules until the relevant equality of classes has been justified. We finish the proof of the snake lemma in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:snakeexactness} \textbf{Exactness of the Snake Sequence.} Throughout this exercise use the diagram of the snake lemma and the maps constructed in Problem~\ref{p:snakeconstruction}.
+\begin{enumerate}
+\item Prove that $\ker(\alpha)\to\ker(\beta)$ is injective. If $b\in\ker(\beta)$ satisfies $q(b)=0$, write $b=\iota(a)$, and use the injectivity of $\iota'$ to show that $a\in\ker(\alpha)$. Verify the reverse containment, and deduce exactness at $\ker(\beta)$.
+\item Use Problem~\ref{p:snakeconstruction}(d) to state and prove that the image of $\ker(\beta)\to\ker(\gamma)$ is $\ker(\delta)$.
+\item Show that $\overline{\iota'}\delta=0$. Conversely, suppose $[a']\in\coker(\alpha)$ satisfies $[\iota'(a')]=0$ in $\coker(\beta)$, and choose $b$ with $\beta(b)=\iota'(a')$. Prove that $q(b)\in\ker(\gamma)$, compute $\delta(q(b))$, and deduce exactness at $\coker(\alpha)$.
+\item Show that $\overline{q'}\,\overline{\iota'}=0$. Conversely, suppose $[b']\in\coker(\beta)$ satisfies $[q'(b')]=0$. Choose $c\in C$ with $\gamma(c)=q'(b')$, and lift $c$ to $b\in B$. Show that $b'-\beta(b)\in\ker(q')$, and use this to write $[b']$ as an image of an element of $\coker(\alpha)$.
+\item Prove that $\overline{q'}:\coker(\beta)\to\coker(\gamma)$ is surjective, by lifting a representative in $C'$ through $q'$. Combine all of these steps to verify exactness at every term of the snake lemma, including both ends.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The connecting homomorphism can be nonzero even when each row is one of our most familiar short exact sequences. In the following example, an element of $\ker(\gamma)$ is a residue class, its lift is an integer, and passing back through the left-hand map amounts to dividing a known multiple of $n$ by $n$. Notice that we are not dividing in a ring: existence and uniqueness of the quotient come from the inclusion of the subgroup $n\ZZ$. We compute the snake sequence for this diagram in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{p:snakeexample} \textbf{An Explicit Connecting Homomorphism.} Throughout this exercise let $n\geq2$, and consider the diagram
+\[
+\begin{tikzcd}[column sep=3em,row sep=4em]
+0\arrow[r]&\ZZ\arrow[r,"\times n"]\arrow[d,"\times n"']&\ZZ\arrow[r,"q"]\arrow[d,"\times n"']&\ZZ/n\ZZ\arrow[r]\arrow[d,"0"]&0\\
+0\arrow[r]&\ZZ\arrow[r,"\times n"']&\ZZ\arrow[r,"q"']&\ZZ/n\ZZ\arrow[r]&0
+\end{tikzcd}
+\]
+where $q$ and $q'$ are both reduction modulo $n$.
+\begin{enumerate}
+\item Check that both rows are exact and that both squares commute. Compute the kernels and the cokernels of all three vertical maps.
+\item Start with $\overline a\in\ker(\gamma)=\ZZ/n\ZZ$, choose the lift $a\in\ZZ$, and follow the construction of $\delta$. Identify $\delta$ explicitly, and show how changing the integer representative $a$ changes the chosen element of $A'$.
+\item Write down the entire snake sequence, identifying all of its modules and maps, and verify its exactness directly. Which map in the snake sequence is zero, even though the horizontal map defining it in the original diagram is injective?
+\item Interpret $\delta(\overline1)$ as the obstruction to lifting $\overline1$ to an element of $\ker(\beta)$. Compare this obstruction with our proof, before Problem~\ref{p:nonsplit}, that the top row does not split.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+\end{document}

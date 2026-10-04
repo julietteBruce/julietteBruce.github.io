@@ -1,0 +1,371 @@
+\documentclass[12pt,reqno]{amsart}
+\newcommand{\worksheetnumber}{4.2}
+\input{../../101preamble.tex}
+
+\DeclareMathOperator{\tr}{tr}
+
+\title{Worksheet 4.2: Hom, Projective Modules, and Injective Modules}
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+
+Let $M$ and $N$ be $R$-modules. Recall from Worksheet 1.2 that the set $\Hom_R(M,N)$ is an abelian group under pointwise addition,
+\[
+(\phi+\psi)(m)\coloneqq\phi(m)+\psi(m).
+\]
+If $R$ is commutative, it is also an $R$-module, with $(r\phi)(m)\coloneqq r\phi(m)$. Over a noncommutative ring, however, this formula need not produce an $R$-linear map. Consequently, unless we impose commutativity, our Hom functors take values in $\Ab$, the category of abelian groups. This does not prevent us from asking about exactness: the kernels and images of the induced maps are still subgroups, which we can compare. As in Worksheet 2.2, composition gives the maps between these Hom groups. A homomorphism $\alpha:N\to N'$ induces
+\[
+\alpha_*:\Hom_R(M,N)\longrightarrow\Hom_R(M,N'),\qquad\phi\longmapsto\alpha\phi,
+\]
+while a homomorphism $\beta:M'\to M$ induces
+\[
+\beta^{\vee}:\Hom_R(M,N)\longrightarrow\Hom_R(M',N),\qquad\phi\longmapsto\phi\beta.
+\]
+The first construction is covariant, and the second is contravariant. Notice that changing the first argument reverses the direction of the arrows; we will keep the subscripts and superscripts in the first few sequences to make this reversal visible.
+
+The goal of this worksheet is to understand what happens when we apply $\Hom_R(M,-)$ or $\Hom_R(-,N)$ to a short exact sequence of modules. In Worksheet 2.2 we found that for vector spaces both functors are exact, and the proof used splittings. In Worksheet 4.1 we saw that short exact sequences of modules need not split. We will find that part of the exactness always survives, while the remaining part places a substantial condition on the module we have fixed. The modules satisfying these conditions are called projective and injective modules; over a field, every module is both. We finish by returning to the Weyl algebra from Worksheet 1.1, whose modules behave very differently from finite-dimensional vector spaces.
+
+As in the previous worksheets, all rings have a multiplicative identity but need not be commutative, ring homomorphisms preserve the multiplicative identity, and the letter $\KK$ will denote a field. Throughout this worksheet $R$ is a ring, and modules are left $R$-modules unless we say otherwise. We will state explicitly when we assume that $R$ is commutative.
+
+There is a useful calculation which makes Hom quite concrete. A homomorphism out of $R$ is determined by the image of $1$, since $\phi(r)=r\phi(1)$. Conversely, for every $n\in N$ the map $r\mapsto rn$ is $R$-linear, so evaluation at $1$ gives an isomorphism of abelian groups $\Hom_R(R,N)\cong N$, with inverse $n\mapsto(r\mapsto rn)$. A homomorphism out of a cyclic quotient $R/J$ is subject to an additional condition: the relations satisfied by the generator $1+J$ must also be satisfied by its image. If $J\subset R$ is a left ideal, evaluation at $1+J$ therefore gives an isomorphism of abelian groups
+\[
+\Hom_R(R/J,N)\cong\left\{n\in N \;\; \big| \;\; an=0\text{ for all }a\in J\right\}.
+\]
+Notice that for a general left ideal the group on the right need not be an $R$-submodule of $N$. When $R$ is commutative, however, this is an isomorphism of $R$-modules. We check these statements in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:hom} \textbf{Hom Groups and Cyclic Modules.} Throughout this exercise let $M$ and $N$ be $R$-modules.
+\begin{enumerate}
+\item Verify that $\alpha_*$ and $\beta^{\vee}$ are homomorphisms of abelian groups. Check the identity and composition rules for each construction, paying attention to the order of composition in the contravariant case.
+\item When $R$ is commutative, check that the scalar multiplication above makes $\Hom_R(M,N)$ an $R$-module. For a noncommutative ring, take $M=N=R$ and $\phi=\Id_R$, and show that $a\mapsto ra$ is left $R$-linear if and only if $r$ lies in the center $Z(R)$ from Worksheet 1.1.
+\item Let $J\subset R$ be a left ideal, and prove the displayed description of $\Hom_R(R/J,N)$. Given $n\in N$ with $an=0$ for all $a\in J$, check that $r+J\mapsto rn$ is well defined and $R$-linear. Check that the two constructions are inverse to one another and preserve addition.
+\item Compute $\Hom_{\ZZ}(\ZZ/m\ZZ,\ZZ)$ and $\Hom_{\ZZ}(\ZZ,\ZZ/n\ZZ)$ for positive integers $m$ and $n$. Explain how these calculations record the possible images of a generator.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We next compare Hom groups along a short exact sequence
+\[
+0\longrightarrow A\xrightarrow{\ \iota\ }B\xrightarrow{\ \pi\ }C\longrightarrow0.
+\]
+A homomorphism $M\to B$ whose composite with $\pi$ is zero has image in $\ker(\pi)=\img(\iota)$, so it comes from a homomorphism $M\to A$. In the other variable, a homomorphism $B\to N$ which vanishes on $\img(\iota)$ descends to the quotient $C$. Compare these with the universal properties of the kernel and cokernel from Worksheet 2.1: they are precisely the two factorization properties which give the following statement.
+
+\begin{theorem}[Left Exactness of Hom]
+For every short exact sequence as above, and all $R$-modules $M$ and $N$, the sequences of abelian groups
+\[
+\begin{aligned}
+0&\longrightarrow\Hom_R(M,A)\xrightarrow{\ \iota_*\ }\Hom_R(M,B)\xrightarrow{\ \pi_*\ }\Hom_R(M,C),\\
+0&\longrightarrow\Hom_R(C,N)\xrightarrow{\ \pi^{\vee}\ }\Hom_R(B,N)\xrightarrow{\ \iota^{\vee}\ }\Hom_R(A,N)
+\end{aligned}
+\]
+are exact. Neither final map need be surjective.
+\end{theorem}
+
+The missing surjectivity has a different interpretation in each row. In the first row, it asks whether a homomorphism to a quotient can be lifted to the module before taking the quotient. In the second row, it asks whether a homomorphism defined on a submodule can be extended to the larger module. For vector spaces both are always possible: a surjection has a section, and a subspace has a complement. For modules there may be relations which prevent the required lift or extension.
+
+An additive functor, covariant or contravariant, is \emph{exact} if it takes every short exact sequence to a short exact sequence, reversing the arrows in the contravariant case. The theorem says that the Hom functors are always \emph{left exact}: the initial zero and exactness at the first two Hom groups are present, while a final zero has not been asserted. Let us prove that the first row is exact. If $\iota\phi=0$, then $\phi=0$ because $\iota$ is injective, so $\iota_*$ is injective; and $\pi_*\iota_*(\phi)=\pi\iota\phi=0$, so $\img(\iota_*)\subset\ker(\pi_*)$. Conversely, suppose $\phi:M\to B$ satisfies $\pi\phi=0$. For each $m\in M$, the element $\phi(m)$ lies in $\ker(\pi)=\img(\iota)$, so $\phi(m)=\iota(a)$ for a unique $a\in A$, and we set $\widetilde\phi(m)\coloneqq a$. The injectivity of $\iota$ shows that $\widetilde\phi$ is $R$-linear; for instance,
+\[
+\iota\bigl(\widetilde\phi(rm)\bigr)=\phi(rm)=r\phi(m)=\iota\bigl(r\widetilde\phi(m)\bigr).
+\]
+Then $\phi=\iota\widetilde\phi=\iota_*(\widetilde\phi)$, which proves exactness at $\Hom_R(M,B)$. Exactness of the second row is similar, using the universal property of the quotient in place of the kernel. We prove it, and see explicit failures of surjectivity at the last group, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:left-exact} \textbf{Left Exactness and Its Failure.} Throughout part (a) use the notation of the theorem.
+\begin{enumerate}
+\item In the second row, prove that $\pi^{\vee}$ is injective. If $\psi:B\to N$ satisfies $\psi\iota=0$, define $\overline\psi:C\to N$ by choosing preimages in $B$. Check that $\overline\psi$ does not depend on the chosen preimages and is $R$-linear, and finish the proof of exactness of this row.
+\item Let $n\geq2$, and apply $\Hom_{\ZZ}(\ZZ/n\ZZ,-)$ to the short exact sequence
+\[
+0\longrightarrow\ZZ\xrightarrow{\ \times n\ }\ZZ\longrightarrow\ZZ/n\ZZ\longrightarrow0
+\]
+from Worksheet 4.1. Compute all three Hom groups and the induced maps. Which map fails to be surjective? In particular, explain why $\Id_{\ZZ/n\ZZ}$ cannot be lifted to a homomorphism $\ZZ/n\ZZ\to\ZZ$.
+\item Apply $\Hom_{\ZZ}(-,\ZZ)$ to the same sequence. Identify each copy of $\Hom_{\ZZ}(\ZZ,\ZZ)$ with $\ZZ$ by evaluation at $1$, and compute the map between them. Interpret its failure to be surjective as the impossibility of extending the homomorphism $n\ZZ\to\ZZ$ which sends $n$ to $1$.
+\item Suppose instead that the original short exact sequence splits. Use a section of $\pi$ and a retraction of $\iota$ to show that both final maps are surjective, for all $M$ and $N$. Compare with your proof for vector spaces in Worksheet 2.2.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+For homomorphisms between finite cyclic groups, the relation satisfied by a generator leads to a greatest common divisor. Recall from Worksheet 1.2 that if $m,n>0$ and $d=\gcd(m,n)$, then
+\[
+\Hom_{\ZZ}(\ZZ/m\ZZ,\ZZ/n\ZZ)\cong\ZZ/d\ZZ.
+\]
+Notice that this isomorphism does not identify a homomorphism with an arbitrary element of the target. It records which elements of $\ZZ/n\ZZ$ are killed by $m$, and these permitted images of $\overline1$ form the subgroup generated by the class of $n/d$.
+
+We will use the elementary fact that if $\gcd(a,b)=1$, then there are integers $u$ and $v$ with $ua+vb=1$. More generally, the greatest common divisor of two positive integers is an integer linear combination of them; to see this, take the least positive integer linear combination and apply division with remainder. Thus these calculations require only arithmetic in $\ZZ$, rather than a structure theorem for modules. For instance, write $m=da$ and $n=db$, where $\gcd(a,b)=1$. Then $m\overline t=0$ in $\ZZ/n\ZZ$ means that $db$ divides $dat$, that is, that $b$ divides $at$. Choosing $u$ and $v$ with $ua+vb=1$, we have $t=u(at)+v(bt)$, so this happens exactly when $b=n/d$ divides $t$. Thus the possible images of $\overline1$ are exactly the multiples of the class of $n/d$. We revisit the isomorphism above, and use it to compute kernels and images, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:cyclic} \textbf{Homomorphisms of Abelian Groups.} Throughout part (a) let $m,n\geq1$ be integers and put $d\coloneqq\gcd(m,n)$.
+\begin{enumerate}
+\item Prove that the assignment
+\[
+\ZZ/d\ZZ\longrightarrow\Hom_{\ZZ}(\ZZ/m\ZZ,\ZZ/n\ZZ),\qquad\overline s\longmapsto\bigl(\overline1\longmapsto\overline{(n/d)s}\bigr),
+\]
+is a well-defined isomorphism of abelian groups.
+\item List the possible images of $\overline1$ under homomorphisms $\ZZ/6\ZZ\to\ZZ/15\ZZ$. For the homomorphism sending $\overline1$ to $\overline5$, determine its kernel and image, and write down the isomorphism given by the first isomorphism theorem from Worksheet 1.2.
+\item For the homomorphism $\ZZ/12\ZZ\to\ZZ/8\ZZ$ sending $\overline1$ to $\overline2$, find the kernel and the image. Is there a surjective homomorphism $\ZZ/12\ZZ\to\ZZ/8\ZZ$? Explain your answer using the possible images of a generator.
+\item Prove that $\Hom_{\ZZ}(\QQ,\ZZ)=0$. First observe that the image of $1$ would have to be divisible in $\ZZ$ by every positive integer. Then use $b\,\phi(a/b)=a\,\phi(1)$ to determine the image of every rational number.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+An $R$-module $P$ is \emph{projective} if homomorphisms out of $P$ can be lifted through every surjection. More precisely, whenever $\pi:B\to C$ is surjective and $\phi:P\to C$ is $R$-linear, there is an $R$-linear map $\widetilde\phi:P\to B$ with $\pi\widetilde\phi=\phi$:
+\[
+\begin{tikzcd}[row sep=4em,column sep=4em]
+& P\arrow[d,"\phi"]\arrow[dl,dashed,"\widetilde\phi"']&\\
+B\arrow[r,two heads,"\pi"']&C\arrow[r]&0
+\end{tikzcd}
+\]
+Notice that, unlike in the universal properties of Worksheet 2.1, the lift need not be unique. The condition asks for its existence for every surjection, and not just for a particular presentation of $P$.
+
+You already know the first examples. A homomorphism out of a free module is determined by the images of its basis vectors, and in Worksheet 4.1 you lifted these images individually through a surjection. There are no relations between distinct basis vectors which the chosen lifts must satisfy. Explicitly, let $F$ have basis $(e_s)_{s\in S}$, let $\pi:B\to C$ be surjective, and let $\phi:F\to C$ be $R$-linear. Choose $b_s\in B$ with $\pi(b_s)=\phi(e_s)$ for each $s$. By the universal property of $F$, there is a homomorphism $\widetilde\phi:F\to B$ with $\widetilde\phi(e_s)=b_s$, and then $\pi\widetilde\phi$ and $\phi$ agree on the basis, so they are equal. Thus every free module is projective. Notice that the finite-support condition causes no difficulty even when $S$ is infinite. For an arbitrary basis, however, this argument uses the axiom of choice to choose all of the lifts at once, just as Zorn's lemma did when we constructed bases of vector spaces in Worksheet 2.1.
+
+Projective modules need not have bases themselves, but they can always be realized as summands of modules which do. By a \emph{direct summand} of $F$ we mean a module $P$ for which there is an isomorphism $F\cong P\oplus Q$ for some module $Q$; notice that the complement $Q$ and the isomorphism are not part of the data of $P$. The following theorem collects several equivalent descriptions of projective modules.
+
+\Needspace{12\baselineskip}
+\begin{theorem}[Characterizations of Projective Modules]
+For an $R$-module $P$, the following are equivalent:
+\begin{enumerate}
+\item $P$ is projective.
+\item The functor $\Hom_R(P,-)$ is exact.
+\item Every surjection $B\to P$ has an $R$-linear section.
+\item $P$ is isomorphic to a direct summand of a free $R$-module.
+\end{enumerate}
+\end{theorem}
+
+We prove the theorem in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:projective} \textbf{Projective Modules.}
+\begin{enumerate}
+\item Use the left exactness of Hom to prove that $P$ is projective if and only if $\Hom_R(P,-)$ is exact. For one direction, apply exactness to the short exact sequence formed by the kernel of an arbitrary surjection.
+\item If $P$ is projective, apply the lifting property to $\Id_P$ to prove that every surjection onto $P$ has a section.
+\item For any module $M$, recall from Worksheet 4.1 the free module with one basis vector $e_m$ for each element $m\in M$, and the surjection onto $M$ sending $e_m$ to $m$. Apply this with $M=P$, and use a section and the splitting lemma to exhibit $P$ as a direct summand of a free module.
+\item Suppose $F\cong P\oplus Q$ is projective, and that a lifting problem is given for $P$. Extend the map $P\to C$ to $F$ using the projection $F\to P$, lift from $F$, and restrict the lift to $P$. Deduce that a direct summand of a projective module is projective, and finish the proof of the theorem.
+\item Explain why every short exact sequence ending in a projective module splits. Use the short exact sequence of Problem~\ref{h:left-exact}(b) to show that $\ZZ/n\ZZ$ is not projective over $\ZZ$ when $n\geq2$.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The free surjection used in Problem~\ref{h:projective}(c) shows that every module is a quotient of a projective module. This property is often expressed by saying that the category of $R$-modules has \emph{enough projectives}. It does not assert that every module is projective: a presentation supplies a surjection from a free module, but it generally does not supply a section.
+
+Projectivity also depends on the ring of scalars. The group $\ZZ/2\ZZ$ is not projective as a $\ZZ$-module, but we will see that it is projective as a module over $\ZZ/6\ZZ$. To see why a decomposition can appear after changing the ring, recall that an element $e$ of a ring is \emph{idempotent} if $e^2=e$. In a commutative ring, multiplication by $e$ is a projection onto $eR$, and multiplication by $1-e$ is the complementary projection. Compare this with the idempotent operators of Worksheet 3.3. The resulting decomposition of the free module $R$ of rank one can have summands which are not free, as we see in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:idempotent} \textbf{A Projective Module Which Is Not Free.}
+\begin{enumerate}
+\item Let $R$ be commutative, and let $e\in R$ satisfy $e^2=e$. Prove that $R=eR\oplus(1-e)R$ as $R$-modules. Identify the inclusions and projections, and check that the two summands intersect in zero.
+\item Let $R=\ZZ/6\ZZ$, and take $e=\overline3$. Compute $eR$ and $(1-e)R$. Let $R$ act on $\ZZ/2\ZZ$ through reduction modulo $2$, and prove that $\ZZ/2\ZZ\to eR$, $\overline a\mapsto\overline{3a}$, is an isomorphism of $R$-modules.
+\item Deduce that $\ZZ/2\ZZ$ is projective over $\ZZ/6\ZZ$. Prove that it is not free over $\ZZ/6\ZZ$: multiplication by $\overline2$ kills this module, but it does not kill a basis vector of any nonzero free $\ZZ/6\ZZ$-module.
+\item Compare this with the failure of $\ZZ/2\ZZ$ to be projective over $\ZZ$. Which module structures, surjections, and lifting problems are being tested in the two statements?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+The extension problem in the other variable of Hom leads to a second class of modules. An $R$-module $E$ is \emph{injective} if every $R$-linear map from a submodule into $E$ extends to the ambient module. Equivalently, for every injective homomorphism $\iota:A\to B$ and every $\phi:A\to E$, there is a homomorphism $\widetilde\phi:B\to E$ with $\widetilde\phi\iota=\phi$:
+\[
+\begin{tikzcd}[row sep=4em,column sep=4em]
+0\arrow[r]&A\arrow[r,hook,"\iota"]\arrow[d,"\phi"']&B\arrow[dl,dashed,"\widetilde\phi"]\\
+&E&
+\end{tikzcd}
+\]
+Since an injective homomorphism $\iota:A\to B$ identifies $A$ with the submodule $\iota(A)$, it makes no difference whether we ask for extensions across inclusions of submodules or across arbitrary injective homomorphisms. As with projectivity, there is no uniqueness requirement. Notice also that the word refers to the extension property of the module, rather than to an individual map being injective.
+
+Left exactness now tells us that $E$ is injective if and only if $\Hom_R(-,E)$ is exact. At first, the definition seems to require checking homomorphisms out of every submodule of every module. Remarkably, it is enough to check the left ideals of $R$, viewed as submodules of $R$ itself. This reduction is called \emph{Baer's criterion}. Its proof explains why ideals enter an extension problem: when we try to add a single element $x$ to the domain of a homomorphism, the relations between $x$ and the existing domain are recorded by the left ideal of scalars $r$ for which $rx$ already lies in that domain. We begin with the definition in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:injective} \textbf{Injective Modules and Extensions.} Throughout this exercise let $E$ be an $R$-module.
+\begin{enumerate}
+\item Prove that $E$ is injective if and only if $\Hom_R(-,E)$ is exact. Use the quotient $B/A$ to fit an arbitrary inclusion of a submodule $A\subset B$ into a short exact sequence.
+\item If $E$ is injective, show that every inclusion $E\hookrightarrow B$ has a retraction. Use the splitting lemma from Worksheet 4.1 to interpret this as a direct sum decomposition of $B$.
+\item Over a field, extend a basis of a subspace to a basis of the ambient space, as in Worksheet 2.1, to prove that every vector space is injective. Over $\ZZ$, use the homomorphism $2\ZZ\to\ZZ$ sending $2$ to $1$ to show that $\ZZ$ is not injective. Thus a free module need not be injective over a general ring.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+\begin{theorem}[Baer's Criterion]
+An $R$-module $E$ is injective if and only if, for every left ideal $J\subset R$, every $R$-linear map $J\to E$ extends to an $R$-linear map $R\to E$.
+\end{theorem}
+
+One direction is immediate: if $E$ is injective, apply the extension property to the inclusion of a left ideal $J\subset R$. The other direction proceeds by taking an extension with the largest possible domain. As in Worksheet 2.1, we use Zorn's lemma, here applied to the poset of extensions, ordered by enlargement of their domains together with agreement on the smaller domain. Along a chain, the maps fit together on the union of their domains, which supplies the required upper bound.
+
+A maximal extension might still appear to have a domain smaller than the whole module. If it does, choose an element outside that domain, and ask what value an extension should assign to it. Baer's hypothesis provides a value which is compatible with all of its scalar multiples already lying in the domain. This allows one more extension, which contradicts maximality. It is worth being careful with the compatibility and well-definedness checks in this step, particularly when $R$ is noncommutative. We prove Baer's criterion in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:baer} \textbf{Proof of Baer's Criterion.} Throughout this exercise let $E$ be an $R$-module.
+\begin{enumerate}
+\item Assume the stated extension property for left ideals. Let $N\subset M$ be a submodule and $\phi:N\to E$ a homomorphism. Consider all pairs $(N',\phi')$ where $N\subset N'\subset M$ is a submodule and $\phi':N'\to E$ extends $\phi$, and define the extension ordering precisely. Show that this poset is nonempty, and that every nonempty chain has an upper bound given by a union of domains and maps. What is an upper bound for the empty chain? Apply Zorn's lemma to obtain a maximal pair $(N',\phi')$.
+\item Suppose $x\in M\smallsetminus N'$. Prove that
+\[
+J\coloneqq\left\{r\in R \;\; \big| \;\; rx\in N'\right\}
+\]
+is a left ideal, and check that $\theta:J\to E$, $\theta(r)\coloneqq\phi'(rx)$, is $R$-linear. Why is a left ideal the appropriate object here?
+\item Extend $\theta$ to $\Theta:R\to E$, and set $y\coloneqq\Theta(1)$. Prove that $\Theta(r)=ry$ for all $r\in R$, and hence that $\phi'(rx)=ry$ whenever $rx\in N'$.
+\item On the submodule $N'+Rx$, propose the map
+\[
+\phi''(n+rx)\coloneqq\phi'(n)+ry.
+\]
+If $n+rx=n_1+r_1x$, show that $r-r_1\in J$, and use part (c) to prove that the two proposed values agree. Conclude that $\phi''$ is well defined.
+\item Check that $\phi''$ is $R$-linear and extends $\phi'$. Explain why $N'+Rx$ strictly contains $N'$. Deduce that $N'=M$, and finish the proof.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+For abelian groups, Baer's criterion takes a particularly concrete form. An abelian group $D$ is \emph{divisible} if for every $d\in D$ and every positive integer $n$ there is an element $y\in D$ with $ny=d$. Notice that $y$ need not be unique; for example, division in $\QQ/\ZZ$ has several possible answers. Divisibility asserts only that solutions exist within the group, and it does not assert that $D$ is a vector space over $\QQ$.
+
+Every ideal $I$ of $\ZZ$ is of the form $n\ZZ$ for some $n\geq0$. Indeed, if $I\neq0$, let $n$ be its least positive element. For $a\in I$, division with remainder gives $a=kn+r$ with $0\leq r<n$, and then $r=a-kn\in I$, so $r=0$ by the minimality of $n$. Thus $I=n\ZZ$. A homomorphism out of $n\ZZ$ is determined by its value at $n$, and extending it to $\ZZ$ asks exactly whether that value can be divided by $n$. Thus Baer's criterion gives the following characterization.
+
+\begin{theorem}[Injective Abelian Groups]
+An abelian group is injective as a $\ZZ$-module if and only if it is divisible.
+\end{theorem}
+
+The groups $\QQ$ and $\QQ/\ZZ$ are basic examples. We will make particular use of $\QQ/\ZZ$, because it has elements of every positive finite order, and as we will see, it has enough homomorphisms into it to distinguish the elements of any abelian group. This will eventually provide injective modules over an arbitrary ring, even though divisibility itself is specific to abelian groups. We prove the theorem in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:divisible} \textbf{Divisible Groups.}
+\begin{enumerate}
+\item Suppose $D$ is injective. For $d\in D$ and $n\geq1$, define a homomorphism $n\ZZ\to D$ sending $n$ to $d$, extend it to $\ZZ$, and use its value at $1$ to prove that $D$ is divisible.
+\item Conversely, suppose $D$ is divisible. Given a homomorphism $n\ZZ\to D$ with $n>0$, choose an appropriate value at $1$ and extend it to $\ZZ$. Treat the zero ideal separately, and apply Baer's criterion.
+\item Prove that $\QQ$ and $\QQ/\ZZ$ are divisible. For every $n\geq1$, determine the order of $1/n+\ZZ$ in $\QQ/\ZZ$.
+\item Show that a product of divisible groups is divisible, for an arbitrary indexing set. Explain where a simultaneous choice of solutions enters the argument.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We have seen that every module is a quotient of a projective module. There is a corresponding statement for injective modules: every module embeds in an injective module. Constructing such an embedding takes more work, since a collection of generators naturally gives a surjection rather than an injection. We first construct embeddings of abelian groups, and then arrange an action of $R$ on a suitable larger group.
+
+For an abelian group $A$, let $H\coloneqq\Hom_{\ZZ}(A,\QQ/\ZZ)$. Evaluating at all of these homomorphisms at once defines
+\[
+j:A\longrightarrow(\QQ/\ZZ)^H\coloneqq\prod_{\chi\in H}\QQ/\ZZ,\qquad a\longmapsto(\chi(a))_{\chi\in H}.
+\]
+Notice that this is a product, so its elements need not have finite support. To prove that $j$ is injective, it is enough to show that for each nonzero $a\in A$ at least one homomorphism $\chi$ does not vanish at $a$. The cyclic subgroup generated by $a$ supplies such a homomorphism on a small domain, and the injectivity of $\QQ/\ZZ$ extends it to $A$. A group with this detection property is called a \emph{cogenerator}. Compare this with double duality in Worksheet 2.1, where linear functionals separated the vectors of a vector space. We construct the embedding in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:cogenerator} \textbf{Embedding an Abelian Group in an Injective Group.} Throughout this exercise let $A$ be an abelian group.
+\begin{enumerate}
+\item Let $a\in A$ be nonzero. If $a$ has finite order $n$, define a homomorphism $\langle a\rangle\to\QQ/\ZZ$ sending $a$ to $1/n+\ZZ$. If $a$ has infinite order, define one sending $a$ to $1/2+\ZZ$. Check in each case that the homomorphism is well defined and does not vanish at $a$.
+\item Use the injectivity of $\QQ/\ZZ$ to extend this homomorphism to $A$. Deduce that the map $j$ above is injective.
+\item Prove that $(\QQ/\ZZ)^H$ is an injective abelian group. Conclude that every abelian group embeds in an injective abelian group.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Now let $D$ be an injective abelian group, and consider
+\[
+E\coloneqq\Hom_{\ZZ}(R,D),
+\]
+where $R$ is regarded as an abelian group under addition. Although $D$ has no specified action of $R$, the group $E$ does: we define
+\[
+(r\phi)(s)\coloneqq\phi(sr)\qquad(r,s\in R).
+\]
+Notice that the multiplication takes place inside the input of $\phi$, and that the order matters: placing $r$ on the right of $s$ is what gives a \emph{left} action on $E$. Indeed,
+\[
+\bigl(r_1(r_2\phi)\bigr)(s)=(r_2\phi)(sr_1)=\phi(sr_1r_2)=\bigl((r_1r_2)\phi\bigr)(s),
+\]
+whereas placing $r$ on the left of $s$ would reverse the order of $r_1$ and $r_2$. This construction is called \emph{coinduction} from abelian groups to $R$-modules.
+
+Its useful feature is a correspondence, natural in $M$,
+\[
+\Hom_R\bigl(M,\Hom_{\ZZ}(R,D)\bigr)\cong\Hom_{\ZZ}(M,D),\qquad\psi\longmapsto\bigl(m\mapsto\psi(m)(1)\bigr),
+\]
+where on the right we regard $M$ as an abelian group. Compare this with the adjunctions of Worksheet 2.2: coinduction is right adjoint to the forgetful functor $R\text{-}\Mod\to\Ab$. Thus an additive map to $D$ can be encoded by an $R$-linear map to $E$. Since additive maps to $D$ extend across inclusions, this correspondence will make $E$ injective. Moreover, if the original additive map embeds $M$ in $D$, then the corresponding $R$-linear map embeds $M$ in $E$. We carry out this argument in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:enough-injectives} \textbf{Enough Injective Modules.} Throughout this exercise let $D$ be an injective abelian group, and let $E=\Hom_{\ZZ}(R,D)$.
+\begin{enumerate}
+\item For an additive map $g:M\to D$, define
+\[
+\widetilde g:M\longrightarrow E,\qquad\widetilde g(m)(r)\coloneqq g(rm).
+\]
+Check that $\widetilde g(m)$ is additive in $r$ and that $\widetilde g$ is $R$-linear. Prove that $g\mapsto\widetilde g$ and evaluation at $1$ are inverse homomorphisms of abelian groups in the displayed correspondence.
+\item Check naturality in $M$: if $\alpha:M'\to M$ is $R$-linear, show that $\widetilde{g\alpha}=\widetilde g\alpha$.
+\item Let $A\subset B$ be $R$-modules, and let $A\to E$ be $R$-linear. Pass to the corresponding additive map $A\to D$, extend it to $B$, and pass back to an $R$-linear map $B\to E$. Use naturality to check that this is an extension of the original map, and deduce that $E$ is injective.
+\item Let $M$ be an arbitrary $R$-module. Use Problem~\ref{h:cogenerator} to embed its underlying abelian group in an injective abelian group $D$, by an injective homomorphism $j:M\to D$. Prove that
+\[
+M\longrightarrow\Hom_{\ZZ}(R,D),\qquad m\longmapsto\bigl(r\mapsto j(rm)\bigr),
+\]
+is an injective $R$-linear map. Conclude that the category of $R$-modules has \emph{enough injectives}.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We finish with a noncommutative ring whose modules have a rather different character from finite-dimensional vector spaces. For the rest of this worksheet, let $\KK$ be a field of characteristic zero. In Worksheet 1.1 we defined the first Weyl algebra as the subring of $\End_{\KK}(\KK[t])$ generated by multiplication by $t$ and differentiation. We now describe it instead by generators and relations:
+\[
+A_1(\KK)\coloneqq\KK\langle x,\partial\rangle/\langle\partial x-x\partial-1\rangle.
+\]
+Here $\KK\langle x,\partial\rangle$ is the free algebra on two letters from Worksheet 2.2, whose elements are finite linear combinations of words multiplied by concatenation, and $\langle\partial x-x\partial-1\rangle$ is the two-sided ideal generated by the displayed element. We use the same symbols $x$ and $\partial$ for their images in the quotient.
+
+The relation is motivated by differentiation. On $\KK[t]$, let $X$ be multiplication by $t$ and let $D$ be differentiation. As you checked in Worksheet 1.1, the product rule says
+\[
+D(tf)-tD(f)=f,\qquad\text{or equivalently}\qquad DX-XD=\Id_{\KK[t]}.
+\]
+This is exactly what we need to let $A_1(\KK)$ act on $\KK[t]$. By the universal property of the free algebra from Worksheet 2.2, there is a unique algebra homomorphism $\KK\langle x,\partial\rangle\to\End_{\KK}(\KK[t])$ sending $x$ to $X$ and $\partial$ to $D$. It sends the generator $\partial x-x\partial-1$ of the ideal to $DX-XD-\Id_{\KK[t]}=0$, so by the universal property of quotient rings from Worksheet 1.1 it descends to an algebra homomorphism
+\[
+\rho:A_1(\KK)\longrightarrow\End_{\KK}(\KK[t]).
+\]
+As in Worksheet 1.2, a ring homomorphism into an endomorphism ring is the same thing as a module structure, so $\rho$ makes $\KK[t]$ an $A_1(\KK)$-module, with $x$ acting by $X$ and $\partial$ acting by $D$. The same argument shows that an $A_1(\KK)$-module is the same thing as a $\KK$-vector space together with two endomorphisms $X$ and $D$ satisfying $DX-XD=\Id$, just as a $\KK[x]$-module was a vector space together with a single endomorphism in Worksheet 1.2.
+
+This description already shows that $A_1(\KK)$ has no interesting finite-dimensional modules. Suppose $V$ is a finite-dimensional $A_1(\KK)$-module, with $x$ and $\partial$ acting by $X$ and $D$. Taking traces, and using the cyclicity of the trace from Worksheet 3.3, we find
+\[
+\dim(V)\cdot1_{\KK}=\tr(\Id_V)=\tr(DX-XD)=\tr(DX)-\tr(XD)=0.
+\]
+Since $\KK$ has characteristic zero, this forces $\dim(V)=0$, so $V=0$. Thus every nonzero $A_1(\KK)$-module is infinite dimensional, and the polynomial module $\KK[t]$ is the simplest example. Notice that characteristic zero was essential: in characteristic $p$ the scalar $p\cdot1_{\KK}$ is zero, and we will see that finite-dimensional modules can then exist.
+
+It is natural to ask whether the quotient $A_1(\KK)$ agrees with the ring of operators from Worksheet 1.1. The relation $\partial x=x\partial+1$ lets us move every occurrence of $x$ to the left of every occurrence of $\partial$, at the cost of shorter correction terms, so every element of $A_1(\KK)$ can be written as $\sum_jp_j(x)\partial^j$ with $p_j(x)\in\KK[x]$. Showing that this expression is unique takes more work, since passing to a quotient might have imposed an unexpected linear relation, as could have happened for the exterior algebra in Worksheet 3.2. We will use the following statement without proof. One proves it by showing that the operator $\sum_jp_j(X)D^j$ on $\KK[t]$ is zero only when every $p_j$ is zero, which identifies $A_1(\KK)$ with its image under $\rho$.
+
+\begin{theorem}[Ordered Basis for the Weyl Algebra]
+The elements $x^i\partial^j$, for $i,j\geq0$, form a $\KK$-basis of $A_1(\KK)$, and $\rho$ identifies $A_1(\KK)$ with the ring of operators from Worksheet 1.1.
+\end{theorem}
+
+A nonzero module is \emph{simple} if its only submodules are zero and itself. For the polynomial module, a submodule must be closed under both multiplication by $t$ and differentiation, rather than just under scalar multiplication, and these two operations together make $\KK[t]$ simple. Indeed, if a submodule $W$ contains a nonzero polynomial $f$ of degree $m$, then differentiating $m$ times gives $D^m(f)=m!\,c$, where $c\neq0$ is the leading coefficient of $f$. Since $m!\,c$ is a nonzero scalar in characteristic zero, $W$ contains $1$, and multiplying by powers of $t$ then shows that $W$ contains every polynomial. Notice that this is an example in which simplicity has little to do with having dimension one as a vector space.
+
+Finally, we can describe $\KK[t]$ in the language of presentations from Worksheet 4.1. The homomorphism of left modules $A_1(\KK)\to\KK[t]$, $a\mapsto a\cdot1$, is surjective, since $x^i\cdot1=t^i$. To find its kernel, write $a=\sum_jp_j(x)\partial^j$ using the ordered basis. Every term with $j\geq1$ differentiates the constant polynomial $1$, so $a\cdot1=p_0(t)$, and $a$ lies in the kernel exactly when $p_0=0$, that is, exactly when $a$ lies in the left ideal $A_1(\KK)\partial$. By the first isomorphism theorem,
+\[
+\KK[t]\cong A_1(\KK)/A_1(\KK)\partial.
+\]
+Thus $\KK[t]$ is a cyclic module, generated by $1$, with the single relation $\partial\cdot1=0$. This also shows that $\KK[t]$, although free as a $\KK$-vector space, is not free as an $A_1(\KK)$-module. A free module of rank zero is zero, and a free module of rank at least two has a nonzero proper submodule spanned by one basis vector, so neither is simple. On the other hand, the free module $A_1(\KK)$ of rank one is not simple either, since $A_1(\KK)\partial$ is a nonzero proper submodule. We check these statements, and look at what changes in positive characteristic, in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{h:weyl-modules} \textbf{Modules over the Weyl Algebra.}
+\begin{enumerate}
+\item Verify that $DX-XD=\Id_{\KK[t]}$ by evaluating both sides on $t^k$ for every $k\geq0$. Check that the homomorphism out of the free algebra described above kills every element of the two-sided ideal generated by $\partial x-x\partial-1$, and not only the generator itself.
+\item Using the module $\KK[t]$, compute $x^2\partial\cdot t^3$ and $\partial x^2\cdot t^3$. Then use the relation $\partial x=x\partial+1$ to write $\partial x^2$ in the form $\sum_jp_j(x)\partial^j$, and check that both sides act in the same way on $t^3$.
+\item Fill in the details of the proof that $\KK[t]$ is simple. Why is it enough to show that $1\in W$?
+\item In the proof that $\KK[t]\cong A_1(\KK)/A_1(\KK)\partial$, where exactly did we use the ordered basis? Explain why $A_1(\KK)\partial$ is a proper left ideal, and why it is nonzero.
+\item Now suppose $\KK$ has characteristic $p>0$. Show that $D(t^p)=0$, and deduce that $X$ and $D$ induce endomorphisms of the $p$-dimensional quotient $\KK[t]/\langle t^p\rangle$ which still satisfy $DX-XD=\Id$. Which step of the trace argument above fails?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+\end{document}
