@@ -1,0 +1,331 @@
+\documentclass[12pt,reqno]{amsart}
+\newcommand{\worksheetnumber}{6.2}
+\input{../../101preamble.tex}
+
+
+\title{Worksheet 6.2: Chain Conditions and Decompositions}
+\hypersetup{pdftitle={Worksheet 6.2: Chain Conditions and Decompositions},pdfauthor={Juliette Bruce}}
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+
+Let $R$ be a ring and let $M$ be an $R$-module. We say that $M$ is \emph{Noetherian} if every ascending chain of submodules
+\[
+M_1\subset M_2\subset M_3\subset\cdots
+\]
+eventually stabilizes, meaning that there is an index $n$ such that $M_j=M_n$ for every $j\geq n$. This is called the \emph{ascending chain condition}, often abbreviated ACC. Similarly, $M$ is \emph{Artinian} if every descending chain of submodules $M_1\supset M_2\supset\cdots$ eventually stabilizes; this is the \emph{descending chain condition}, or DCC. Notice that neither condition gives a single bound on the lengths of chains. Instead, each says that any particular process of repeatedly enlarging, or shrinking, a submodule cannot continue forever. A ring $R$ is \emph{left Noetherian} or \emph{left Artinian} if its regular left module ${}_RR$ is, and when $R$ is commutative we simply say that $R$ is a \emph{Noetherian} or \emph{Artinian ring}.
+
+You already know examples. In Worksheet 6.1 we proved that every ascending chain of ideals in a PID stabilizes, and we used this twice: to show that factorizations into irreducibles terminate, and to show that Smith reduction terminates over a PID which is not Euclidean. In the language of this worksheet, a PID is a Noetherian ring. A finite-dimensional vector space is both Noetherian and Artinian, since a strict inclusion of subspaces changes the dimension. This familiar example can make the two conditions look more closely related than they really are: $\ZZ$ is Noetherian, but repeatedly multiplying by $2$ gives a descending chain which never stabilizes.
+
+The goal of this worksheet is to study how a module can be built from simpler pieces over a general ring. Over a PID, a finitely generated module breaks into a free part and cyclic torsion pieces, but over a general ring there may be no comparable list of cyclic pieces. It is still natural to ask whether a module can be built from finitely many simpler modules, and whether those pieces are determined by the original module. There are two different ways to make this precise. We could look for a chain of submodules whose successive quotients are simple, or we could look for a decomposition as a direct sum of modules which cannot be split further. These need not give the same pieces, since a quotient may be simple without being a direct summand. We will develop both approaches, beginning with the finiteness conditions which make them possible, and we will compare them using the modules over $\KK[x]/\langle x^N\rangle$ from Worksheet 6.1.
+
+As in the previous worksheets, all rings have a multiplicative identity but need not be commutative, and the letter $\KK$ will denote a field. All modules are unital, and unless we say otherwise, module means left module.
+
+There are two other useful ways to recognize the ascending chain condition. The \emph{maximal condition} says that every nonempty family of submodules of $M$ has a maximal member, meaning a member which is not strictly contained in any other member of the family. Notice that a maximal member need not contain all of the other members. The third formulation says that every submodule of $M$ is finitely generated, which connects a condition about chains with the generators we have been using all along. In the same way, DCC is equivalent to the \emph{minimal condition}: every nonempty family of submodules has a minimal member. We prove these statements in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:noetherian} \textbf{Noetherian and Artinian Modules.} Throughout this exercise let $M$ be an $R$-module.
+\begin{enumerate}
+\item Suppose $M$ satisfies ACC. If a nonempty family of submodules had no maximal member, explain how to construct an infinite strictly ascending chain of members of the family. Deduce the maximal condition.
+\item Suppose $M$ satisfies the maximal condition, and let $N\subset M$ be a submodule. Choose a maximal member $L$ of the family of finitely generated submodules of $N$, which includes the zero submodule. If $n\in N\setminus L$, what can you say about $L+Rn$? Conclude that $N=L$.
+\item Suppose every submodule of $M$ is finitely generated, and let $(M_i)$ be an ascending chain of submodules. Show that $N\coloneqq\bigcup_iM_i$ is a submodule. Choose finitely many generators of $N$, find a single $M_j$ containing all of them, and prove that the chain stabilizes at $M_j$.
+\item Deduce that a Noetherian module is finitely generated. Explain why the definition requires more than finite generation of $M$ itself, using the fact that the regular module ${}_RR$ is cyclic regardless of the left ideals of $R$. Use the description of ideals in a PID to show that every PID is a Noetherian ring.
+\item Adapt part (a) to show that DCC is equivalent to the minimal condition. Prove that every finite-dimensional $\KK$-vector space is both Noetherian and Artinian, and use the chain $\ZZ\supsetneq2\ZZ\supsetneq4\ZZ\supsetneq\cdots$ to show that $\ZZ$ is not Artinian.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Both chain conditions behave well in short exact sequences. This matters because most of our constructions produce new modules by taking submodules, quotients, or extensions. For example, if a submodule and its quotient are both Noetherian, we expect that an ascending chain in the middle module cannot continue to grow forever. To prove this, we need a way to detect a change in the chain, either inside the submodule or after passing to the quotient.
+
+Let $A\subset M$ be a submodule with quotient map $q:M\to M/A$. Each submodule $L\subset M$ gives two pieces of information:
+\[
+L\cap A\subset A\qquad\text{and}\qquad q(L)\subset M/A.
+\]
+These two pieces do not determine $L$ among all submodules of $M$. For instance, two different lines in a plane can both meet a fixed line only at zero, and have the same image in the quotient by that line. They do, however, detect whether an inclusion between two submodules is an equality, and this is exactly what we need for chains. We prove these statements in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:extensions} \textbf{Chain Conditions and Exact Sequences.} Throughout this exercise consider an exact sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] & A \arrow[r] & M \arrow[r,"q"] & C \arrow[r] & 0,
+\end{tikzcd}
+\]
+and identify $A$ with its image in $M$.
+\begin{enumerate}
+\item Suppose $X\subset Y\subset M$ are submodules with $X\cap A=Y\cap A$ and $q(X)=q(Y)$. Given $y\in Y$, choose $x\in X$ with $q(x)=q(y)$, and use $y-x$ to prove that $X=Y$.
+\item If $M$ is Noetherian, show that $A$ and $C$ are Noetherian. For the quotient, use the inverse images of a chain under $q$. Give the same argument for Artinian modules.
+\item Suppose $A$ and $C$ are Noetherian, and let $(L_i)$ be an ascending chain of submodules of $M$. Show that the chains $(L_i\cap A)$ and $(q(L_i))$ both stabilize. Choose an index after which both have stabilized, apply part (a), and conclude that $M$ is Noetherian.
+\item Repeat part (c) for descending chains. Conclude that $M$ is Noetherian if and only if $A$ and $C$ are Noetherian, and that $M$ is Artinian if and only if $A$ and $C$ are Artinian.
+\item Deduce that a finite direct sum of Noetherian modules is Noetherian, and similarly for Artinian modules. If $R$ is left Noetherian, use a surjection $R^d\to M$ to show that every finitely generated left $R$-module is Noetherian. Thus, over a left Noetherian ring, a module is Noetherian if and only if it is finitely generated.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+A nonzero $R$-module $S$ is \emph{simple} if its only submodules are $0$ and $S$. For example, $\ZZ/p\ZZ$ is a simple $\ZZ$-module when $p$ is prime, and a one-dimensional vector space is a simple module over its field. Notice that simplicity concerns all submodules, so it is stronger than saying that a module is not a direct sum of two nonzero submodules.
+
+A \emph{composition series} of an $R$-module $M$ is a finite chain of submodules
+\[
+0=M_0\subsetneq M_1\subsetneq\cdots\subsetneq M_r=M
+\]
+such that every quotient $M_i/M_{i-1}$ is simple. These quotients are called the \emph{composition factors} of the series. We say that $M$ has \emph{finite length} if it has a composition series. The zero module has the empty composition series, with no factors.
+
+It is natural to ask whether two composition series of the same module have the same number of factors, and whether they have the same factors. We will prove both assertions. First, however, we show that a composition series exists exactly when both chain conditions hold. The two conditions play complementary roles: the ascending chain condition supplies maximal proper submodules, and the descending chain condition guarantees that repeatedly choosing them eventually reaches zero. We prove this in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:finite-length} \textbf{When Can We Find a Composition Series?}
+\begin{enumerate}
+\item Show that a simple module is both Noetherian and Artinian. Use the short exact sequences
+\[
+\begin{tikzcd}
+0 \arrow[r] & M_{i-1} \arrow[r] & M_i \arrow[r] & M_i/M_{i-1} \arrow[r] & 0
+\end{tikzcd}
+\]
+and Problem~\ref{c:extensions} to show that every module with a composition series satisfies both chain conditions.
+\item Suppose $M$ is nonzero and Noetherian. Apply the maximal condition to the family of proper submodules of $M$ to find a maximal proper submodule $N$, and prove that $M/N$ is simple.
+\item Suppose $M$ is both Noetherian and Artinian. Choose a maximal proper submodule $M^{(1)}\subsetneq M$, then a maximal proper submodule of $M^{(1)}$ if $M^{(1)}$ is nonzero, and so on. Explain why these choices are always possible, and why the process must reach zero after finitely many steps. Reverse the resulting chain to obtain a composition series.
+\item Conclude that $M$ has finite length if and only if it is both Noetherian and Artinian. Deduce that submodules and quotients of modules of finite length have finite length, and show that an extension of two modules of finite length has finite length.
+\item Let $B$ be a $\KK$-algebra. Show that a $B$-module which is finite dimensional as a $\KK$-vector space has finite length as a $B$-module. Must a simple $B$-module be one dimensional over $\KK$? Hint: for $d\geq2$, consider $\KK^d$ as a module over $\Mat_d(\KK)$, and show that matrices can send a fixed nonzero vector to any chosen vector.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+To compare two composition series, we begin with a useful observation about a single one. Given a submodule $N\subset M$, intersect every term of a composition series of $M$ with $N$. The resulting chain need not be strictly increasing, but we will see that its successive quotients inject into the original composition factors. Each of these quotients is therefore either zero or simple, and deleting repeated terms gives a composition series of $N$.
+
+If $N$ is a proper submodule, at least one factor must disappear. Indeed, if every successive quotient were nonzero, simplicity would force the entire first term of the series into $N$, then the entire second term, and so on, until $M\subset N$. Thus if $M$ has a composition series with $r$ factors, then every proper submodule has a composition series with fewer than $r$ factors. This lets us use induction on the number of factors in a chosen series, before we know that this number does not depend on the choice.
+
+The comparison itself rests on a small configuration of submodules. If $A$ and $B$ are distinct maximal proper submodules of $M$, then $A+B=M$, and with $C\coloneqq A\cap B$ the isomorphism theorems give
+\[
+A/C\cong M/B\qquad\text{and}\qquad B/C\cong M/A.
+\]
+Thus the two routes from $C$ up to $M$ produce the same pair of simple factors, in the opposite order. We will see that this local comparison accounts for the entire theorem.
+
+\Needspace{6\baselineskip}
+\begin{theorem}[Jordan--H\"older]
+Any two composition series of a module of finite length have the same number of factors. Moreover, after reordering, their composition factors are pairwise isomorphic.
+\end{theorem}
+
+We prove the theorem in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:jordan-holder} \textbf{Comparing Two Composition Series.}
+\begin{enumerate}
+\item Fix a composition series $0=M_0\subsetneq\cdots\subsetneq M_r=M$, and let $N\subset M$ be a submodule. Construct an injective homomorphism
+\[
+\frac{N\cap M_i}{N\cap M_{i-1}}\longrightarrow M_i/M_{i-1}.
+\]
+Show that deleting repeated terms from the chain $(N\cap M_i)$ gives a composition series of $N$ with at most $r$ factors.
+\item If none of these successive quotients is zero, prove by induction on $i$ that $M_i\subset N$. For the induction step, use that the map of part (a) is surjective onto the simple module $M_i/M_{i-1}$. Deduce that a proper submodule $N$ has a composition series with fewer than $r$ factors.
+\item Prove the theorem by strong induction on the number $r$ of factors in one chosen composition series of $M$. First handle the cases where $M=0$ or $M$ is simple. For the induction step, let $A$ and $B$ be the second-to-last terms of the two series. Why does part (b) allow us to apply the induction hypothesis to every proper submodule of $M$? If $A=B$, explain how the induction hypothesis applies to the remaining portions of the two series.
+\item Suppose $A\ne B$. Prove that $A+B=M$. Set $C\coloneqq A\cap B$, construct the two isomorphisms displayed above, and show that $A/C$ and $B/C$ are simple.
+\item Choose a composition series of $C$, which exists by Problem~\ref{c:finite-length}. Appending $A$ to it gives a composition series of $A$, and appending $B$ gives one of $B$. Apply the induction hypothesis within $A$ and within $B$ to compare these series with the remaining portions of the original two series.
+\item Now append the final quotients $M/A$ and $M/B$. Show that each of the original two lists of factors consists, up to isomorphism and order, of the factors of $C$ together with $M/A$ and $M/B$. This completes the induction. Explain why the argument compares multiplicities, even when several of the factors are isomorphic.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We can now define the \emph{length} $\ell_R(M)$ of a module of finite length to be the number of factors in any composition series of $M$, and we write $\ell(M)$ when the ring is clear from context. Length is a useful replacement for dimension, although the simple factors being counted need not be isomorphic to one another. For a vector space over a field, every simple factor is one dimensional, and length is exactly dimension.
+
+Length is additive in short exact sequences. To see why, place a composition series of the submodule underneath the inverse image of a composition series of the quotient; the resulting chain is a composition series of the middle module. Notice what additivity does not say: the short exact sequence need not split. The composition factors describe how a module is assembled from extensions, but they do not remember everything about those extensions.
+
+For instance, both $\ZZ/p^2\ZZ$ and $(\ZZ/p\ZZ)\oplus(\ZZ/p\ZZ)$ have two composition factors, each isomorphic to $\ZZ/p\ZZ$. Multiplication by $p$ behaves differently on the two modules, so they are not isomorphic. Thus the Jordan--H\"older theorem gives an invariant of a module, rather than a classification of the modules with given composition factors. We check these statements in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:length} \textbf{Length, Exact Sequences, and What the Factors Forget.}
+\begin{enumerate}
+\item Let $0\to A\to M\xrightarrow{q}C\to0$ be an exact sequence of modules of finite length. Combine a composition series of $A$ with the inverse images under $q$ of the terms of a composition series of $C$. Verify that the successive quotients are the composition factors of $A$ and of $C$, and prove that
+\[
+\ell(M)=\ell(A)+\ell(C).
+\]
+In particular, prove that length is additive for finite direct sums.
+\item Show that $\ell(M)=0$ if and only if $M=0$, and that a proper submodule has strictly smaller length. For an endomorphism $f:M\to M$ of a module of finite length, use the exact sequences involving $\ker(f)$ and $\img(f)$ to show that $f$ is injective if and only if it is surjective, if and only if it is an automorphism.
+\item In $M=\ZZ/12\ZZ$, check that
+\[
+0\subsetneq\langle\overline6\rangle\subsetneq\langle\overline2\rangle\subsetneq M
+\qquad\text{and}\qquad
+0\subsetneq\langle\overline4\rangle\subsetneq\langle\overline2\rangle\subsetneq M
+\]
+are composition series. Compute their composition factors in order, and verify the Jordan--H\"older theorem in this example.
+\item Construct composition series of $\ZZ/p^2\ZZ$ and of $(\ZZ/p\ZZ)^2$, and verify that their composition factors agree. Show that multiplication by $p$ is nonzero on the first module and zero on the second, and deduce that the modules are not isomorphic.
+\item Show that $\ZZ/p^2\ZZ$ is not a direct sum of two nonzero submodules. One approach is to list its subgroups. Compare this with the direct sum $(\ZZ/p\ZZ)^2$.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+A nonzero module $M$ is \emph{indecomposable} if whenever $M=A\oplus B$, either $A=0$ or $B=0$. Every simple module is indecomposable, but Problem~\ref{c:length}(e) shows that the converse fails. It is worth keeping this distinction in view: a composition series is built from successive quotients, while a direct sum decomposition requires complementary submodules.
+
+Direct sum decompositions have an equivalent description in terms of endomorphisms. The projection onto a direct summand is an \emph{idempotent}, meaning an endomorphism $e$ with $e^2=e$. Conversely, we will see that every idempotent endomorphism $e$ gives a decomposition
+\[
+M=\img(e)\oplus\ker(e).
+\]
+Thus a nonzero module is indecomposable exactly when its endomorphism ring has no idempotents other than $0$ and $1=\Id_M$. Notice that the endomorphism ring, whose multiplication is composition, may be noncommutative even when $R$ is commutative.
+
+For a module of finite length, it is fairly direct to decompose it into indecomposable summands. If the module is not indecomposable, split it, and then split any summand which is not indecomposable. Passing to a nonzero proper summand lowers the length, so this process cannot continue forever. Uniqueness of the decomposition is more subtle, and requires more information about the endomorphisms of an indecomposable module. We prove the existence of decompositions in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:indecomposable} \textbf{Splittings and Idempotents.} Throughout this exercise let $M$ be an $R$-module.
+\begin{enumerate}
+\item If $M=A\oplus B$, verify that the projection onto $A$ along $B$, regarded as an endomorphism of $M$, is idempotent. Identify its image and kernel.
+\item If $e^2=e$, write $m=e(m)+(m-e(m))$ and prove that $M=\img(e)\oplus\ker(e)$. Deduce the criterion for indecomposability stated above.
+\item Use induction on length to prove that every nonzero module of finite length is a finite direct sum of indecomposable modules. What is the decomposition of the zero module? Explain why the induction only uses strictly smaller positive lengths when a summand is split.
+\item Identify the indecomposable summands of a nonzero finite-dimensional vector space, regarded as a module over its field. In this case, how is the number of summands related to length and to dimension?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Let $f:M\to M$ be an endomorphism of a module of finite length. Iterating $f$ gives two chains of submodules:
+\[
+\ker(f)\subset\ker(f^2)\subset\cdots\qquad\text{and}\qquad\img(f)\supset\img(f^2)\supset\cdots.
+\]
+Since $M$ has finite length, both chains stabilize. The stable kernel consists of the elements which are eventually sent to zero, while the stable image consists of the elements which can still be reached after arbitrarily many iterations. We will see that once the chains have stopped changing, these two submodules are complementary.
+
+More precisely, for all sufficiently large $n$ there is a decomposition, called the \emph{Fitting decomposition},
+\[
+M=\ker(f^n)\oplus\img(f^n).
+\]
+An endomorphism is \emph{nilpotent} if some positive power of it is zero. We will see that $f$ is nilpotent on the first summand and an automorphism on the second. Notice that this decomposition does not require a field, a basis, or a characteristic polynomial; it is a consequence of the two chain conditions.
+
+If $M$ is also indecomposable, then one of the two summands must be zero. Consequently, every endomorphism of a nonzero indecomposable module of finite length is either an automorphism or nilpotent. This is a strong restriction, and we will use it to compare different decompositions. We prove these statements in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:fitting} \textbf{The Stable Kernel and Stable Image.} Throughout this exercise let $M$ have finite length, and let $f:M\to M$ be an endomorphism.
+\begin{enumerate}
+\item Choose $n\geq1$ so large that both chains have stabilized by their $n$th terms. In particular, justify that
+\[
+\ker(f^n)=\ker(f^{2n})\qquad\text{and}\qquad\img(f^n)=\img(f^{2n}).
+\]
+\item If $y=f^n(x)$ lies in $\ker(f^n)$, use the equality of kernels to prove that $y=0$. Deduce that $\ker(f^n)\cap\img(f^n)=0$.
+\item Given $m\in M$, use the equality of images to find $x\in M$ with $f^n(m)=f^{2n}(x)$. Show that $m-f^n(x)\in\ker(f^n)$, and deduce the Fitting decomposition.
+\item Show that $f$ preserves both summands, that $f$ is nilpotent on $\ker(f^n)$, and that $f$ is an automorphism of $\img(f^n)$. For the last statement, use stability of the images for surjectivity, and part (b) for injectivity. More generally, show that every endomorphism commuting with $f$ preserves both summands.
+\item Suppose $M$ is nonzero and indecomposable. Deduce that every $f\in\End_R(M)$ is either invertible or nilpotent. Which conclusion occurs when each of the two summands is zero?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+You have met commutative local rings when studying localization. For a ring which may be noncommutative, we will say that a nonzero ring is \emph{local} if it has a unique maximal left ideal. For the endomorphism rings which appear here, we will prove a more concrete description: the nonunits form a proper two-sided ideal. This immediately makes that ideal the unique maximal left ideal, and also the unique maximal right ideal, since a proper one-sided ideal cannot contain a unit.
+
+Why should such an ideal appear? Let $M$ be a nonzero indecomposable module of finite length. By the Fitting decomposition, every endomorphism $h$ of $M$ which is not invertible is nilpotent, and then $1-h$ is invertible, with inverse
+\[
+1+h+\cdots+h^{n-1}\qquad\text{if }h^n=0.
+\]
+This gives a way to test a proposed sum of nonunits. If $f+g$ were invertible for nonunits $f$ and $g$, multiplying on the left by its inverse would produce two nonunits summing to $1$. But $1$ minus a nilpotent endomorphism is invertible, which gives a contradiction.
+
+There is a noncommutative point to settle before we can use this argument: a product involving a nonunit must again be a nonunit. In an arbitrary ring, one-sided inverses deserve care. Here, however, a one-sided inverse makes an endomorphism injective or surjective, and finite length then makes it an automorphism. These facts about modules give exactly the properties of the ring which we need. We prove these statements in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:local-endomorphisms} \textbf{The Endomorphism Ring of an Indecomposable Module.} Throughout this exercise let $M$ be a nonzero indecomposable module of finite length, put $E\coloneqq\End_R(M)$, and let $J\subset E$ be the set of nonunits of $E$.
+\begin{enumerate}
+\item Show that an endomorphism with a left inverse is injective, and that one with a right inverse is surjective. Use Problem~\ref{c:length}(b) to conclude that an endomorphism with either kind of one-sided inverse is a unit of $E$.
+\item Verify that $0\in J$, that $1\notin J$, and that $-f\in J$ whenever $f\in J$. For $a\in E$ and $f\in J$, suppose $af$ is invertible, and use $(af)^{-1}a$ to obtain a contradiction. Similarly, use $a(fa)^{-1}$ to show that $fa$ is not invertible. Thus $af,fa\in J$.
+\item Suppose $f,g\in J$, but $u\coloneqq f+g$ is a unit. By part (b), $h\coloneqq u^{-1}f$ is a nonunit, and hence nilpotent by Problem~\ref{c:fitting}. Verify directly that $1-h$ is invertible using the finite geometric sum. Since $1-h=u^{-1}g$, obtain a contradiction, and deduce that $J$ is closed under addition.
+\item Conclude that $J$ is a proper two-sided ideal. Show that every proper left ideal and every proper right ideal of $E$ is contained in $J$, so that $E$ is local in the sense above. Show also that $E/J$ is a division ring.
+\item If $a_1+\cdots+a_s=1$ in $E$, prove that at least one $a_i$ is invertible. This is the consequence of locality which we will use in the next exercise.
+\item More generally, suppose the nonunits of a nonzero ring form an ideal. Show that the ring has no idempotents other than $0$ and $1$, by applying the previous part to $e+(1-e)=1$ and using $e^2=e$. Explain why a module with such an endomorphism ring is indecomposable.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+We can now prove that decompositions into indecomposable modules are unique. The \emph{Krull--Schmidt theorem} says that the indecomposable summands of a module of finite length are determined up to isomorphism and order. Unlike the Jordan--H\"older theorem, it concerns direct summands rather than successive quotients, and the summands need not be simple.
+
+Suppose we have two decompositions of the same module:
+\[
+M=A_1\oplus\cdots\oplus A_r=B_1\oplus\cdots\oplus B_s.
+\]
+Start with $A_1$: include it into $M$, project onto some $B_j$, include $B_j$ back into $M$, and project back onto $A_1$. Adding up these round trips over all $j$ gives $\Id_{A_1}$. Since $\End_R(A_1)$ is local, at least one of the round trips is invertible, and we will see that the corresponding map $A_1\to B_j$ is an isomorphism.
+
+After matching these two summands, we still need to compare the remaining summands. Notice that an isomorphism between one pair of summands does not by itself give an isomorphism between their complements. Instead, we will replace $B_j$ in the second decomposition by the submodule $A_1\subset M$ itself. Then the two remaining sums are complements of the same submodule, so both are isomorphic to the quotient by it. This exchange is the step which makes induction possible.
+
+\Needspace{6\baselineskip}
+\begin{theorem}[Krull--Schmidt for Modules of Finite Length]
+Every nonzero module of finite length is a finite direct sum of indecomposable modules. If two such decompositions have $r$ and $s$ summands, then $r=s$, and after reordering the summands of the two decompositions are pairwise isomorphic.
+\end{theorem}
+
+We prove the theorem in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:krull-schmidt} \textbf{Matching a Summand and Exchanging Complements.} Existence was proved in Problem~\ref{c:indecomposable}. For uniqueness, consider the two decompositions above, with all summands indecomposable. Write $i_a:A_a\to M$ and $p_a:M\to A_a$ for the inclusions and projections of the first decomposition, and $j_b:B_b\to M$ and $q_b:M\to B_b$ for those of the second.
+\begin{enumerate}
+\item Verify that $\sum_{b=1}^sj_bq_b=\Id_M$, and deduce that
+\[
+\Id_{A_1}=\sum_{b=1}^sp_1j_bq_bi_1.
+\]
+Each term is an endomorphism of $A_1$. Use Problem~\ref{c:local-endomorphisms}(e) to choose an invertible term, and relabel so that it is the term with $b=1$.
+\item Set $u\coloneqq q_1i_1:A_1\to B_1$ and $v\coloneqq p_1j_1:B_1\to A_1$, so that $vu$ is invertible. Define $w\coloneqq(vu)^{-1}v$, and check that $wu=\Id_{A_1}$. Prove that
+\[
+B_1=u(A_1)\oplus\ker(w).
+\]
+Since $B_1$ is indecomposable and $A_1\ne0$, deduce that $u$ is an isomorphism.
+\item Let $B'\coloneqq B_2\oplus\cdots\oplus B_s=\ker(q_1)$, viewed as a submodule of $M$. Given $m\in M$, check that
+\[
+m-i_1u^{-1}q_1(m)\in B'.
+\]
+Show also that $i_1(A_1)\cap B'=0$. Conclude that $M=i_1(A_1)\oplus B'$. In other words, the first summand of the $A$-decomposition can replace $B_1$ in the $B$-decomposition.
+\item Put $A'\coloneqq A_2\oplus\cdots\oplus A_r$. Restrict the quotient map $M\to M/i_1(A_1)$ to $A'$ and to $B'$, and show that both restrictions are isomorphisms. Deduce that $A'\cong B'$.
+\item Complete the proof by induction on $\ell(M)$, transporting the decomposition of $B'$ along this isomorphism. Why is the length of the remaining module strictly smaller? Include the case where the remaining module is zero, and one or both of the lists of remaining summands is empty.
+\item Does the theorem say that the summands themselves are uniquely determined as submodules of $M$? Use different decompositions of $\KK^2$ as a direct sum of two lines to explain the difference between uniqueness of submodules and uniqueness of their isomorphism types, counted with multiplicity.
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+Let us bring the two decomposition theorems together in a family of modules which we can compute explicitly. Fix $N\geq1$ and let
+\[
+A\coloneqq\KK[x]/\langle x^N\rangle\qquad\text{and}\qquad t\coloneqq x+\langle x^N\rangle\in A.
+\]
+For $1\leq j\leq N$, put $M_j\coloneqq A/\langle t^j\rangle$.
+In particular, $M_N=A$, since $t^N=0$. Each $M_j$ has $\KK$-basis $1,t,\ldots,t^{j-1}$, where we now read these elements in the quotient. By Worksheet 6.1, every finite-dimensional $A$-module is a direct sum of modules of this form, and we will see that this is its decomposition into indecomposable modules.
+
+An endomorphism of $M_j$ is determined by the image of $1$, and every element of $M_j$ can occur as that image, since $t^j$ annihilates all of $M_j$. Thus the endomorphism ring of $M_j$ is again a truncated polynomial ring. In that ring, an element with nonzero constant term is invertible: factor out the constant term, and use a finite geometric series to invert the remaining factor, whose nonconstant part is nilpotent. The elements with zero constant term form the ideal generated by $t$. This gives a concrete example of the local endomorphism rings used to prove the Krull--Schmidt theorem.
+
+Composition factors tell a different story. Multiplication by successive powers of $t$ gives a composition series of $M_j$ with $j$ factors, all isomorphic to $A/\langle t\rangle\cong\KK$. Thus the composition factors of a finite-dimensional $A$-module only record its dimension, while its indecomposable summands record how that dimension is grouped into modules $M_j$. To distinguish these groupings, we can examine how powers of $t$ act. We compare the two theorems in the following exercise.
+
+\hrulefill
+
+\begin{problems}
+\item\label{c:truncated} \textbf{Composition Factors and Indecomposable Pieces.} Throughout this exercise let $A$, $t$, and $M_j$ be as above.
+\begin{enumerate}
+\item Define a map $A/\langle t^j\rangle\to\End_A(M_j)$ by sending an element to multiplication by it on $M_j$. Prove that this map is an isomorphism of rings, using the image of $1$ to prove both injectivity and surjectivity.
+\item In $A/\langle t^j\rangle$, show that an element is a unit if and only if its constant term is nonzero, and write down its inverse as a finite geometric series in that case. Show that the nonunits form the ideal $\langle t\rangle$, and conclude that $\End_A(M_j)$ is local and $M_j$ is indecomposable.
+\item Show that
+\[
+0=t^jM_j\subsetneq t^{j-1}M_j\subsetneq\cdots\subsetneq t^0M_j=M_j
+\]
+is a composition series, with every factor isomorphic to $A/\langle t\rangle$. What is this chain when $j=1$? Deduce that $\ell_A(M_j)=j$.
+\item Use the classification of Worksheet 6.1 together with part (b) to describe the decomposition of every finite-dimensional $A$-module into indecomposable modules, and apply the Krull--Schmidt theorem to show that it is unique. Show that all of its composition factors are isomorphic to $A/\langle t\rangle$, and that its length equals its dimension over $\KK$.
+\item Suppose $N\geq3$, and compare
+\[
+U\coloneqq M_3\oplus M_1\qquad\text{and}\qquad V\coloneqq M_2\oplus M_2.
+\]
+List their composition factors and their indecomposable summands. Compute $\dim_{\KK}(t^2U)$ and $\dim_{\KK}(t^2V)$ to prove directly that $U\not\cong V$. Explain how each of the two uniqueness theorems applies to this example.
+\item Suppose $N=2$, and compare $A=M_2$ with $M_1\oplus M_1$. Write down a short exact sequence $0\to M_1\to A\to M_1\to0$, and show that it does not split. Which facts about $A$ make this consistent with its two simple composition factors?
+\end{enumerate}
+\end{problems}
+
+\hrulefill
+
+\end{document}
